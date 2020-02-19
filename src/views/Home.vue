@@ -1,18 +1,56 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <div class="container">
+      <div class="text-center my-5 px-5">
+        <h3>Explore endless</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </div>
+        <div class="row no-gutters endless-block my-5">
+          <div class="col-md-6" style="z-index: 10" border->
+            <img src="./view-img/homephoto1.jpg" class="img-fluid rounded-right" alt="">
+          </div>
+          <div class="col-md-6 bg-section endless-position rounded-left d-flex align-items-center ">
+            <div class="mb-2 pl-5">
+              <h5 class="text-center">title1</h5>
+              <p class="px-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <div class="text-right mr-5">
+                <button class="btn btn-outline-info" type="button" name="button">來去逛逛</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <section>
+        <parallax>
+          <img src="https://images.unsplash.com/photo-1518085050105-3c33befa5442?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80" alt="very cool bg">
+        </parallax>
+      </section>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+import Parallax from '../components/Parallax.vue';
 export default {
   name: 'Home',
   components: {
-    HelloWorld
-  }
+  Parallax,
+}
 }
 </script>
+
+<style lang="scss" scoped>
+  .bg-section{
+    background-color: rgba( 67, 48, 34, 0.9);
+  }
+  .endless-block{
+    position: relative;
+    height: 400px;
+  }
+  .endless-position{
+    position: absolute;
+    right:55px;
+    top:50px;
+    height: 95%;
+  }
+</style>

@@ -1,15 +1,28 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
+import Vuex from 'vuex';
+import axios from 'axios';
 
-Vue.use(Vuex)
+//將products模組輸入到index.js
+import productsModules from './products';
+import cartModules from './cart';
+
+Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {
+  actions:{
+    removeCart(context, id) {
+      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${id}`;
+      // context.commit('LOADING',true);
+      axios.delete(url).then((response) => {
+        // 刪除後重新抓getCart的資料
+        context.dispatch('getCart');
+        // console.log('刪除購物車項目', response);
+        // context.commit('LOADING',false);
+      });
+    },
   },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
+  modules:{
+    productsModules,
+    cartModules
   }
-})
+});
