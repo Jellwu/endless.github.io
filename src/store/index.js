@@ -5,6 +5,7 @@ import axios from 'axios';
 //將products模組輸入到index.js
 import productsModules from './products';
 import cartModules from './cart';
+import loginModules from './login';
 
 Vue.use(Vuex);
 
@@ -23,6 +24,7 @@ export default new Vuex.Store({
   },
   modules:{
     productsModules,
-    cartModules
+    cartModules,
+    loginModules
   }
 });

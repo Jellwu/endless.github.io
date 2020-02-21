@@ -1,33 +1,32 @@
 <template>
   <div class="about container my-5">
       <div class="row d-flex justify-content-center">
-        <table class="table">
+        <table class="table table-sm text-endless" style="width:60%">
           <thead>
             <tr>
+              <td valign="middle">項目</td>
               <td valign="middle">產品名稱</td>
-              <td valign="middle">產品縮圖</td>
               <td>購買數量</td>
               <td>產品單價</td>
             </tr>
           </thead>
           <tbody>
             <tr v-for="items in cart.carts" :key="items.id">
-              <td style="height:150px" valign="middle">{{items.product.title}}</td>
-              <td style="width:150px;"><img class="img-fluid" :src="items.product.imageUrl"></td>
-              <td>{{items.qty}}</td>
-              <td>{{items.product.price}}</td>
+              <td style="width:80px;"><img class="img-fluid" :src="items.product.imageUrl"></td>
+              <td style="vertical-align: middle;">{{items.product.title}}</td>
+              <td style="width:80px; vertical-align: middle;">{{items.qty}}</td>
+              <td style="width:100px; vertical-align: middle;">{{items.product.price}}</td>
             </tr>
           </tbody>
-          <tfoot>
+          <tfoot class="pt-2">
             <tr>
-              <td colspan="3">
-                  <p class="h5 text-right">結帳金額：{{cart.final_total}}</p>
+              <td colspan="3" style="vertical-align: middle;">
+                  <p class="h5 text-right pt-2">結帳金額：{{cart.final_total}}</p>
               </td>
-              <td>
-                <button class="btn btn-info" type="button" name="button">結帳去</button>
+              <td class="text-right">
+                <button class="btn btn-outline-warning" type="button" name="button">結帳去</button>
               </td>
             </tr>
-
           </tfoot>
         </table>
       </div>
@@ -59,7 +58,5 @@ export default{
 
 </script>
 <style scpoed>
-  td{
-    vertical-align:middle;
-  }
+
 </style>

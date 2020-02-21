@@ -52,6 +52,30 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "Custom" */ '../views/customList.vue')
   },
+  {
+    path: '/admin',
+    name: 'Admin',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "login" */ '../views/admin.vue'),
+    children:[
+      {
+        path: 'productscheck',
+        name: 'Productscheck',
+        component: () => import(/* webpackChunkName: "login" */ '../views/adminPage/productscheck.vue'),
+        // meta: { requiresAuth: true }
+      },
+    ]
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "login" */ '../views/login.vue')
+  },
 ]
 
 const router = new VueRouter({

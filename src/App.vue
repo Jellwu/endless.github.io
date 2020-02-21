@@ -1,32 +1,31 @@
 <template>
-    <div id="app" class="bg-endless">
-      <!-- <div class="">
-          <div class="nav-bg fixed-top">
-            <div class="container">
-              <div class="row">
-                <div class="col-md-9">
-                    <a class="navbar-brand" href="#">
-                      endless
-                    </a>
-                </div>
-                <div class="col-md-3 d-flex justify-content-end">
-                  <button class="btn btn-outline-info border-0 mx-1" type="button" name="button">
-                    <i class="fas fa-cogs" style="font-size:20px"></i>
-                  </button>
-                  <button class="btn btn-outline-info border-0 mx-1" type="button" name="button">
-                    <i class="fas fa-shopping-cart" style="font-size:20px">
-                      <span class="badge badge-light">{{cart.carts.length}}</span>
-                    </i>
-
-                  </button>
-                </div>
-              </div>
-
+    <div id="app">
+      <div id="nav">
+        <nav class="navbar navbar-expand-lg navbar-dark nav-bg p-0 fixed-top"  id="mainNav">
+          <div class="container">
+            <a class="navbar-brand logo-text" href="#page-top">Endless</a>
+            <div class="collapse navbar-collapse " id="navbarResponsive">
+              <ul class="navbar-nav text-uppercase ml-auto">
+                <li class="nav-item">
+                  <router-link class="nav-item nav-link mx-2" to="/"><span class="underline">關於黑膠</span></router-link>
+                </li>
+                <li class="nav-item">
+                  <router-link class="nav-item nav-link mx-2 " to="/productList"><span class="underline">唱盤列表</span></router-link>
+                </li>
+                <li class="nav-item">
+                  <router-link class="nav-item nav-link mx-2" to="/customList"><span class="underline">機台資訊</span></router-link>
+                </li>
+                <li class="nav-item">
+                  <router-link class="nav-item nav-link mx-2" to="/blog"><span class="underline">黑膠歷程</span></router-link>
+                </li>
+              </ul>
             </div>
-            </div>
-      </div> -->
-      <div class="d-flex justify-content-center banner-bg">
-        <img src="../image/banner.jpg" class="img-fluid p-1" alt="">
+          </div>
+        </nav>
+      </div>
+      <div class="height-box"></div>
+      <!-- <div class="d-flex justify-content-center banner-bg">
+      <img src="../image/banner.jpg" class="img-fluid p-1" alt="">
       </div>
       <div class="bg-endless">
         <div id="nav">
@@ -45,75 +44,43 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       <Loading :active.sync="isLoading"></Loading>
       <router-view/>
-      <footer class="bg-endless text-muted py-5">
+      <footer class="bg-endless py-4">
         <div class="container">
-            <div class="row">
-              <div class="col-md-6 justify-content-center d-flex">
-                <div class="row">
-                <div class="col-md-12 text-center text-endless">
-                    <h5>Contact US</h5>
-                </div>
-                <div class="col-md-12 text-center">
-                  <li class="list-inline-item">
-                    <a class="text-info" href="#">
-                      <i class="fab fa-instagram fa-2x text-endless" aria-hidden="true"></i>
-                    </a>
-                  </li>
-                  <li class="list-inline-item">
-                    <a class="text-info" href="#">
-                      <i class="fab fa-facebook fa-2x text-endless" aria-hidden="true"></i>
-                    </a>
-                  </li>
-                  <li class="list-inline-item">
-                    <a class="text-info" href="#">
-                      <i class="fab fa-twitter fa-2x text-endless" aria-hidden="true"></i>
-                    </a>
-                  </li>
-                  <li class="list-inline-item">
-                    <a class="text-info" href="#">
-                      <i class="fab fa-github-square fa-2x text-endless" aria-hidden="true"></i>
-                    </a>
-                  </li>
-                </div>
-              </div>
-              </div>
-              <div class="col-md-6">
-                <div class="row">
-                <div class="col-md-12 text-center text-endless">
-                    <h5 style="font-weight:bold;">Contact US</h5>
-                </div>
-                <div class="col-md-12 text-center">
-                  <li class="list-inline-item">
-                    <a class="text-info" href="#">
-                      <i class="fab fa-instagram fa-2x text-endless" aria-hidden="true"></i>
-                    </a>
-                  </li>
-                  <li class="list-inline-item">
-                    <a class="text-info" href="#">
-                      <i class="fab fa-facebook fa-2x text-endless" aria-hidden="true"></i>
-                    </a>
-                  </li>
-                  <li class="list-inline-item">
-                    <a class="text-info" href="#">
-                      <i class="fab fa-twitter fa-2x text-endless" aria-hidden="true"></i>
-                    </a>
-                  </li>
-                  <li class="list-inline-item">
-                    <a class="text-info" href="#">
-                      <i class="fab fa-github-square fa-2x text-endless" aria-hidden="true"></i>
-                    </a>
-                  </li>
-                </div>
-                </div>
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <p class="badge badge-pill badge-warning p-2">此網站僅供教學使用，無其他商業用途</p>
+            </div>
+            <div class="col-md-4 ">
+              <div class="row d-flex justify-content-center">
+                <li class="list-inline-item">
+                  <a class="text-endless" href="#">
+                    <i class="fab fa-instagram fa-2x text-endless" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a class="text-endless" href="#">
+                    <i class="fab fa-facebook fa-2x text-endless" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a class="text-endless" href="#">
+                    <i class="fab fa-twitter fa-2x text-endless" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <router-link class="text-endless" href="#" to="/login">
+                    <i class="fas fa-cog fa-2x text-endless" aria-hidden="true"></i>
+                  </router-link>
+                </li>
               </div>
             </div>
-            <div class="text-center mt-4">
-              <p class="badge badge-pill badge-info p-2">此網站僅供教學使用，無其他商業用途</p>
-              <p class="mb-0">Copright 2020 © JELL</p>
+            <div class="col-md-4 d-flex justify-content-end">
+              <p class="text-word">Copyright © Jell's Website 2020</p>
             </div>
+          </div>
         </div>
       </footer>
     </div>
@@ -144,36 +111,41 @@ export default{
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #5A83A5;
+  background-color:#262626;
 }
 
 #app .logo-text{
   display: inline-block;
   text-decoration: none;
-  font-family:cursive;
+  font-family:Arial Black;
   font-size: 30px;
   padding: 5px 15px;
-  background: -webkit-linear-gradient(45deg,#433022,#FEAC1A);
+  background: -webkit-linear-gradient(45deg,#F3E1AA,#66698D);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 #nav {
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #5A83A5;
-    }
-  }
+.router-link-exact-active {
+      color: #F2CA52;
+      font-weight: bold;
+}
   .underline:hover{
-    border-bottom: 2px solid #2E4959;
+    border-bottom: 2px solid #F2CA52;
+    color:#F2CA52;
+    font-weight: bold;
+    transition: all 0.2s;
     }
 }
+.height-box{
+  height:55px;
+}
+.navbar-dark{
+  font-weight: bold;
+}
 .bg-endless{
-  background-color:#C5D1D9;
+  background-color:#594539;
 }
 .banner-bg{
   background-image: url('https://images.unsplash.com/photo-1543433983-d79d332dd7a9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80');
@@ -186,12 +158,27 @@ export default{
   color:#F3F6E0;
 }
 .nav-bg{
-  background-color: rgba(26, 67, 89,0.8)
+  background-color: #594539;
 }
 .text-endless{
-  color:#5A83A5;
+  color:#F3F6E0;
   font-weight: bold;
 }
+.list-inline-item{
+  margin: 0px 10px;
+}
+footer .text-word{
+  color:#F3F6E0;
+  font-weight: bold;
+}
+footer .text-endless{
+  color:#F3F6E0;
+  font-weight: bold;
+}
+footer .text-endless:hover{
+  color:#BF8F65;
+}
+
 // .cartspace{
 //   color:black;
 //   text-align: center;
@@ -214,8 +201,6 @@ h1,h2,h3,h4,h5,h6{
 p{
   padding:0px;
   margin:0px;
-  color:#153E5A;
-  font-weight: bold;
 }
 ul,li{
   list-style: none;

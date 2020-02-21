@@ -1,5 +1,10 @@
 <template>
   <div>
+    <div class="home-bg">
+      <div class="home-text-box">
+        <p class="text-white home-text-bg">不敗的，是經典</p>
+      </div>
+    </div>
     <div class="container">
       <div class="text-center my-5 px-5">
         <h3>Explore endless</h3>
@@ -20,11 +25,7 @@
           </div>
         </div>
       </div>
-      <section>
-        <parallax>
-          <img src="https://images.unsplash.com/photo-1518085050105-3c33befa5442?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80" alt="very cool bg">
-        </parallax>
-      </section>
+    </div>
   </div>
 </template>
 
@@ -52,5 +53,39 @@ export default {
     right:55px;
     top:50px;
     height: 95%;
+  }
+  .home-bg{
+    background-image: url("https://images.unsplash.com/photo-1489068353139-3740c7af5fb4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1522&q=80");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    height:650px;
+  }
+  .home-box{
+    position: absolute;
+    height:400px;
+    right:0px;
+    top:0px;
+    z-index: 10;
+  }
+  .bg-style{
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    height:400px;
+  }
+  .home-text-box{
+    font-size: 60px;
+    width:100%;
+    height:650px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .home-text-bg{
+    // background-color: rgba(0, 0, 0, 0.7);
+    padding:10px 50px;
+    border-radius: 20px;
   }
 </style>
