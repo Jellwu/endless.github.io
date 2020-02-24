@@ -22,7 +22,8 @@ export default {
       axios.post(api,user).then((response =>{
         context.commit('LOADING',false);
         if(response.data.success){
-          router.push('/admin');
+          router.push('/admin/productscheck');
+          console.log(response.data);
         }
         else{
           alert(response.data.message);

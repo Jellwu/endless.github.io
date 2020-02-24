@@ -3,7 +3,7 @@
       <div id="nav">
         <nav class="navbar navbar-expand-lg navbar-dark nav-bg p-0 fixed-top"  id="mainNav">
           <div class="container">
-            <a class="navbar-brand logo-text" href="#page-top">Endless</a>
+            <router-link class="navbar-brand logo-text" to="/">Endless</router-link>
             <div class="collapse navbar-collapse " id="navbarResponsive">
               <ul class="navbar-nav text-uppercase ml-auto">
                 <li class="nav-item">
@@ -117,7 +117,7 @@ export default{
 #app .logo-text{
   display: inline-block;
   text-decoration: none;
-  font-family:Arial Black;
+  font-family:'Kaushan Script',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
   font-size: 30px;
   padding: 5px 15px;
   background: -webkit-linear-gradient(45deg,#F3E1AA,#66698D);

@@ -12,6 +12,7 @@ export default{
     // 全產品寫入
     PRODUCTS(state, payload){
       state.products = payload;
+      console.log(state.products);
     },
     // 分類資料寫入
     CATEGORIES(state, payload){
@@ -29,6 +30,11 @@ export default{
     PRODUCTDETAIL(state, payload){
       state.product = payload;
     },
+    // 單一產品更新
+    UPDATEPRODUCT(state,payload){
+      state.product = payload;
+      console.log(state.product);
+    }
   },
   actions: {
     // 抓全產品資料
@@ -52,6 +58,42 @@ export default{
         context.commit('PRODUCTDETAIL',response.data.product);
       });
     },
+    // 更新單一產品內容(接收tempProduct的資料)
+    updateProduct(context,item){
+      // console.log({data:item},`${item.id}`);
+      let url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/product/${item.id}`;
+      axios.put(url,{data:item}).then((response =>{
+        if(response.data.success){
+          alert(response.data.message);
+        }else{
+          alert(response.data.message);
+        }
+        // 重新呼叫一次products的資料
+        url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`;
+        axios.get(url).then((response) => {
+          // 將api取到的資料抓出來，準備給mutation改寫
+          context.commit('PRODUCTS',response.data.products);
+          context.commit('CATEGORIES',response.data.products);
+        });
+      }))
+    },
+    addProduct(context,item){
+      let url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/product/`;
+      console.log({data:item});
+      axios.post(url,{data:item}).then((response) =>{
+        if(response.data.success){
+          alert(response.data.message);
+        }else{
+          alert(response.data.message);
+        }
+          url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`;
+          axios.get(url).then((response) => {
+          // 將api取到的資料抓出來，準備給mutation改寫
+          context.commit('PRODUCTS',response.data.products);
+          context.commit('CATEGORIES',response.data.products);
+        });
+      })
+    }
   },
   // 給computed的mapGetters使用
   getters:{

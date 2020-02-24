@@ -7,6 +7,11 @@ Vue.use(VueRouter);
 
 
 const routes = [
+  //若使用者在網站隨意輸入不存在的分頁，會直接導向首頁
+  {
+    path:'*',
+    redirect:'/',
+  },
   {
     path: '/',
     name: 'Home',
@@ -59,12 +64,13 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "login" */ '../views/admin.vue'),
+    meta: { requiresAuth: true },
     children:[
       {
         path: 'productscheck',
         name: 'Productscheck',
         component: () => import(/* webpackChunkName: "login" */ '../views/adminPage/productscheck.vue'),
-        // meta: { requiresAuth: true }
+        meta: { requiresAuth: true }
       },
     ]
   },

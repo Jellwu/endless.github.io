@@ -40,8 +40,16 @@
                 </a>
               </li>
             </ul>
+            <div class="text-right">
+              <button class="btn btn-outline-warning mb-2"type="button" name="button"
+              @click.prevent="logout">
+                管理者登出
+              </button>
+            </div>
           </div>
+
         </nav>
+
 
         <div class="col-md-10">
           <router-view/>
@@ -54,8 +62,17 @@
 // @ is an alias to /src
 export default {
   name: 'Admin',
-
+  methods:{
+    logout(){
+      const api = `${process.env.VUE_APP_APIPATH}/logout`;
+      this.$http.post(api).then((response) =>{
+        alert(response.data.message);
+        this.$router.push('/login');
+      })
+    }
+  }
 }
+
 </script>
 
 <style lang="scss" scoped>
