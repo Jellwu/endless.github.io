@@ -6,6 +6,7 @@ import axios from 'axios';
 import productsModules from './products';
 import cartModules from './cart';
 import loginModules from './login';
+import couponModules from './coupon';
 
 Vue.use(Vuex);
 
@@ -25,6 +26,7 @@ export default new Vuex.Store({
   modules:{
     productsModules,
     cartModules,
-    loginModules
+    loginModules,
+    couponModules,
   }
 });

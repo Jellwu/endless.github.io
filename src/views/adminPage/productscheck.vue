@@ -26,7 +26,7 @@
           <td v-else="item.is_enabled" class="text-danger">未啟用</td>
           <td>
             <button class="btn btn-outline-warning mr-2" @click.prevent="openPdcModal(false,item)">編輯</button>
-            <button class="btn btn-outline-danger" @click.prevent="opendropModal">刪除</button>
+            <button class="btn btn-outline-danger" @click.prevent="opendropModal(item)">刪除</button>
           </td>
         </tr>
       </tbody>
@@ -129,6 +129,32 @@
         </div>
       </div>
     </div>
+
+    <!-- dropModel -->
+        <div class="modal fade" id="dropModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="exampleModalLabel">刪除確認</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="p-2" v-model="tempProduct.title">
+                    <p>是否刪除產品：<span class="text-danger font-weight-bold">{{tempProduct.title}}?</span></p>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-danger" @click="dropProduct">刪除</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    </div>
+    </template>
   </div>
 </template>
 
@@ -162,6 +188,10 @@ export default{
         this.isNew = false
       }
       $('#pdcModal').modal('show');
+    },
+    opendropModal(item){
+      $('#dropModel').modal('show');
+      this.tempProduct = item;
     },
 
     updateProduct(){
@@ -199,6 +229,11 @@ export default{
         }
       })
     },
+
+    dropProduct(){
+      this.$store.dispatch('productsModules/dropProduct',this.tempProduct);
+      $('#dropModel').modal('hide');
+    }
   },
   created(){
     this.getProducts()

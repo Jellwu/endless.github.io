@@ -1,6 +1,7 @@
 <template>
     <div class="container-fluid">
       <div class="row">
+        <!-- sidebar -->
         <nav class="pt-3 col-md-2 d-none d-md-block sidebar">
           <div class="sidebar-sticky">
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
@@ -47,10 +48,9 @@
               </button>
             </div>
           </div>
-
         </nav>
 
-
+        <!-- 內容區 -->
         <div class="col-md-10">
           <router-view/>
         </div>

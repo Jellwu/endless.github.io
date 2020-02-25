@@ -1,8 +1,8 @@
 <template>
   <div class="product-bg-color">
     <div class="about container my-5">
-      <!-- sideBar -->
         <div class="row no-gutters">
+          <!-- sideBar -->
           <div class="col-md-3">
               <div class="rounded product-menu">
                 <!-- <div class="px-3 py-2 h6 pt-5 mr-2">
@@ -14,12 +14,12 @@
                     <li class="my-3 px-3 py-2 h6 mr-md-0 border border-pdc" v-for="items in categories" :key="items">{{items}}</li>
                   </ul>
                 </div> -->
-                <div class="px-3 py-2 h6 pt-5 mr-2">
+                <div class="px-3 py-2 pt-5 mr-2">
                   <i class="fas fa-tags pr-2"></i>TAGS
-                  <div class="mx-4 my-2">
+                  <div class="mx-2 my-2">
                     <span class="badge badge-pill badge-warning m-1 py-2"
                     v-for="items in categories" :key="items">
-                      <i class="fas fa-tag mx-2 fa" style="font-size:14px"></i>
+                      <i class="fas fa-tag mx-2 fa" style="font-size:13px"></i>
                       <span class="px-2 h6">{{items}}</span>
                     </span>
                   </div>

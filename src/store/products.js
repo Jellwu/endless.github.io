@@ -93,6 +93,19 @@ export default{
           context.commit('CATEGORIES',response.data.products);
         });
       })
+    },
+    dropProduct(context,item){
+    // console.log(item);
+      let url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/product/${item.id}`;
+      axios.delete(url).then((response) =>{
+        alert(response.data.message);
+        url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`;
+        axios.get(url).then((response) => {
+        // 將api取到的資料抓出來，準備給mutation改寫
+        context.commit('PRODUCTS',response.data.products);
+        context.commit('CATEGORIES',response.data.products);
+      })
+    });
     }
   },
   // 給computed的mapGetters使用

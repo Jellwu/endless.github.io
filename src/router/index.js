@@ -57,6 +57,15 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "Custom" */ '../views/customList.vue')
   },
+  // 後台管理
+  {
+    path: '/login',
+    name: 'Login',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "login" */ '../views/login.vue')
+  },
   {
     path: '/admin',
     name: 'Admin',
@@ -72,15 +81,13 @@ const routes = [
         component: () => import(/* webpackChunkName: "login" */ '../views/adminPage/productscheck.vue'),
         meta: { requiresAuth: true }
       },
+      {
+        path: 'coupon',
+        name: 'coupon',
+        component: () => import(/* webpackChunkName: "login" */ '../views/adminPage/coupon.vue'),
+        meta: { requiresAuth: true }
+      },
     ]
-  },
-  {
-    path: '/login',
-    name: 'Login',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "login" */ '../views/login.vue')
   },
 ]
 
