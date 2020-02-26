@@ -7,16 +7,14 @@ export default {
     coupon:{},
     isLogin: false,
     isLoading: false,
-    },
+  },
   mutations: {
     LOADING(state, payload){
       state.isLoading = payload;
     },
     COUPON(state, payload){
       state.coupon = payload;
-      // console.log(state.coupon);
     },
-
   },
   actions: {
     updateLoading(context ,payload){
@@ -36,6 +34,7 @@ export default {
       axios.post(url,{data:item}).then((response) =>{
         if(response.data.success){
           alert(response.data.message);
+          context.dispatch('getCoupon');
         }else{
           alert(response.data.message)
         }
@@ -48,6 +47,7 @@ export default {
       axios.put(url,{data:item}).then((response) =>{
         if(response.data.success){
           alert(response.data.message);
+          context.dispatch('getCoupon');
         }else{
           alert(response.data.message)
         }
@@ -66,7 +66,6 @@ export default {
         context.commit('LOADING',false);
       })
     },
-
   },
   getters:{
     isLoading(state) {

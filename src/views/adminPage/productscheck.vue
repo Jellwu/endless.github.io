@@ -1,5 +1,5 @@
 <template>
-  <div class="about container my-5">
+  <div class="container my-5">
     <div class="text-right mb-4">
       <button type="button" class="btn btn-warning" @click="openPdcModal(true)">
         新增產品
@@ -236,7 +236,7 @@ export default{
     }
   },
   created(){
-    this.getProducts()
+    this.getProducts();
   },
 }
 

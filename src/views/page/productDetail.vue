@@ -100,7 +100,7 @@ export default {
     // ...mapActions('productsModules',['getproductDetail'], id),
   },
   created() {
-    let productId = this.$route.params.productID
+    let productId = this.$route.params.productID;
     this.getproductDetail(productId);
   },
 }

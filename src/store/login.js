@@ -23,11 +23,9 @@ export default {
         context.commit('LOADING',false);
         if(response.data.success){
           router.push('/admin/productscheck');
-          console.log(response.data);
         }
         else{
           alert(response.data.message);
-          console.log(response.data);
         }
       }))
     },

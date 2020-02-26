@@ -1,5 +1,5 @@
 <template>
-  <div class="about container my-5" style="width:60%">
+  <div class="about container my-5">
     <loading :active.sync="isLoading"></loading>
     <div class="text-right my-3">
       <button class="btn btn-warning" type="button" name="button"
@@ -163,6 +163,10 @@ export default{
 <style scpoed>
 td{
   padding:0px;
+}
+.about{
+  width: 60%;
+  min-height:450px;
 }
 
 </style>

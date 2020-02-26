@@ -24,8 +24,8 @@
                     </span>
                   </div>
                 </div>
-                <hr class="mx-4">
-                <div class="px-3 py-2 h6 pt-2 mr-2">
+                <hr class="mx-4" v-if="cart.carts.length !== 0">
+                <div class="px-3 py-2 h6 pt-2 mr-2" v-if="cart.carts.length !== 0">
                   購物清單
                   <span class="badge badge-warning">{{cart.carts.length}}</span>
                   <i class="pl-1 fas fa-sort-down fa-x"></i>
@@ -45,7 +45,7 @@
                           </button>
                       </div>
                     </div>
-                    <div class="row">
+                    <div class="row" v-if="cart.carts.length !== 0">
                       <div class="col-md-6 text-right">
                         <h5 style="line-height:38px">總金額:{{cart.final_total}}</h5>
                       </div>

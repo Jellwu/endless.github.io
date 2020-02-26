@@ -7,6 +7,7 @@ export default {
     cart: {
       carts: [],
     },
+    couponCode:{},
   },
   mutations: {
     LOADING(state, payload){
@@ -14,7 +15,9 @@ export default {
     },
     CART(state,payload){
       state.cart = payload;
-      console.log(state.cart);
+    },
+    COUPONCODE(state, payload){
+      state.couponCode = payload;
     }
   },
   actions: {
@@ -52,6 +55,23 @@ export default {
         context.commit('LOADING',false);
       });
     },
+    applyCounpon(context,code){
+      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/coupon`;
+      const cupon = {
+        code:code
+      }
+      // console.log({data:{"code":code}});
+      axios.post(url,{ data:cupon }).then((response) =>{
+        if(response.data.success){
+          context.commit('COUPONCODE',cupon);
+          alert(response.data.message);
+          context.dispatch('getCart');
+        }else{
+          context.commit('COUPONCODE',{});
+          alert(response.data.message);
+        }
+      })
+    }
   },
   getters:{
     cart(state){
