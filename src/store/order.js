@@ -40,6 +40,18 @@ export default {
           alert(response.data.message);
         }
       })
+    },
+    payOrder(context, id){
+      // console.log(id);
+      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/pay/${id}`;
+      axios.post(url).then((response) =>{
+        if(response.data.success){
+          alert(response.data.message);
+          router.push('/productList');
+        }else{
+          alert(response.data.message);
+        }
+      })
     }
   },
   getters:{

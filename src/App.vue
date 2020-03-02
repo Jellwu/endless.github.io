@@ -106,6 +106,7 @@ export default{
 
 <style lang="scss">
 @import "~bootstrap/scss/bootstrap";
+@import "./assets/all";
 @import "~@nextindex/next-scss/next-scss";
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
