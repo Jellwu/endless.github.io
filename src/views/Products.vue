@@ -1,25 +1,33 @@
 <template>
 <div class="product-bg-color">
+  <Loading :active.sync="isLoading"></Loading>
+  <div class="product-banner d-flex align-items-center justify-content-center">
+    <div class="">
+      <h1 class="text-white">黑膠專區</h1>
+    </div>
+  </div>
   <div class="about container my-5">
     <div class="row no-gutters">
       <!-- sideBar -->
       <div class="col-md-3">
         <div class="rounded product-menu">
-          <!-- <div class="px-3 py-2 h6 pt-5 mr-2">
-                  商品分類
-                  <i class="pl-1 fas fa-sort-down fa-x"></i>
-                </div>
-                <div class="row flex-md-column p-0 no-gutters justify-content-center">
-                  <ul class="mx-3">
-                    <li class="my-3 px-3 py-2 h6 mr-md-0 border border-pdc" v-for="items in categories" :key="items">{{items}}</li>
-                  </ul>
-                </div> -->
           <div class="px-3 py-2 pt-5 mr-2">
-            <i class="fas fa-tags pr-2"></i>TAGS
-            <div class="mx-2 my-2">
-              <span class="badge badge-pill badge-warning m-1 py-2" v-for="items in categories" :key="items">
-                <i class="fas fa-tag mx-2 fa" style="font-size:13px"></i>
-                <span class="px-2 h6">{{items}}</span>
+            <i class="fas fa-tags pr-1"></i>TAGS
+            <div class="mx-2 mt-2">
+              <span class="badge badge-pill badge-warning m-1 py-2"
+              v-for="items in categories" :key="items">
+                <i class="fas fa-tag mx-1 fa" style="font-size:13px"></i>
+                <span class="cursor px-1 h6" @click.prevent="searchText = items">
+                  {{items}}
+                </span>
+              </span>
+            </div>
+            <div class="mx-2 mb-2">
+              <span class="badge badge-pill badge-warning m-1 py-2">
+                <i class="fas fa-tag mx-1 fa" style="font-size:13px"></i>
+                <span class="cursor px-1 h6" @click.prevent="searchText = ''">
+                  All Products
+                </span>
               </span>
             </div>
           </div>
@@ -49,7 +57,7 @@
               </div>
               <div class="col-md-6">
                 <button class="btn bg-warning" type="button" name="button" @click.prevnet="gocart()">
-                  CheckOut
+                  結帳
                 </button>
               </div>
             </div>
@@ -60,11 +68,37 @@
       <!-- 產品列表 -->
       <div class="col-md-9 pl-4">
         <div class="row">
-          <div class="card-deck col-md-6 mb-4"
-          v-for="(item) in products.slice(pagination.pageStart, pagination.pageStart + pagination.num_page)"
-          :key="item.id">
+          <!-- 全產品顯示 -->
+          <div class="card-deck col-md-6 mb-4" v-if="searchText === ''"
+            v-for="(item) in products.slice(pagination.pageStart, pagination.pageStart + pagination.num_page)" :key="item.id">
             <div class="card product-card text-center" @click.prevent="getproductId(item.id)">
-              <div class="card-img-top card-img-bg" :style="{backgroundImage: 'url(' + item.imageUrl + ')' }"></div>
+              <div class="card-img-top card-img-bg" :style="{backgroundImage: 'url(' + item.imageUrl + ')' }">
+              </div>
+              <div class="card-body product-card-body">
+                <p class="card-title py-2 m-0">{{ item.title }}</p>
+                <div class="row">
+                  <div class="col-md-6">
+                    <span class="badge badge-warning mt-3 px-3 py-1">
+                      <i class="fas fa-tag mr-2"></i>{{item.category}}
+                    </span>
+                  </div>
+                  <div class="col-md-6">
+                    <p class="text-secondary text-right pr-3 mb-0"><small><del class="endless-text">{{item.origin_price}}</del></small></p>
+                    <p class="card-text text-right">{{item.price}}</p>
+                  </div>
+                </div>
+                <div class="card-text">
+                  More <i class="fas fa-angle-double-right"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 過濾產品顯示 -->
+          <div class="card-deck col-md-6 mb-4"
+            v-for="(item) in filterData" :key="item.id" v-if="searchText !== ''">
+            <div class="card product-card text-center" @click.prevent="getproductId(item.id)">
+              <div class="card-img-top card-img-bg" :style="{backgroundImage: 'url(' + item.imageUrl + ')' }">
+              </div>
               <div class="card-body product-card-body">
                 <p class="card-title py-2 m-0">{{ item.title }}</p>
                 <div class="row">
@@ -90,27 +124,15 @@
         <div class="row justify-content-center">
           <nav aria-label="Page navigation example">
             <ul class="pagination">
-              <!-- <li class="page-item" :class="{'disabled': pagination.has_pre === false}">
-                <a class="page-link" href="#" aria-label="Previous"
-                @click.prevent="getProducts(pagination.current_page - 1)">
-                  <span aria-hidden="true">&laquo;</span>
-                </a>
-              </li> -->
               <li class="page-item" v-for="pages in pagination.total_pages"
+              v-if="searchText === ''"
               :class="{'active':pagination.current_page === pages}"
               @click.prevent = getProducts(pages);>
                 <a class="page-link" href="#">{{pages}}</a>
               </li>
-              <!-- <li class="page-item" :class="{'disabled': pagination.has_next === false}">
-                <a class="page-link" href="#" aria-label="Next"
-                @click.prevent="getProducts(pagination.current_page + 1)">
-                  <span aria-hidden="true">&raquo;</span>
-                </a>
-              </li> -->
             </ul>
           </nav>
         </div>
-
       </div>
     </div>
 
@@ -125,6 +147,7 @@ import {
   mapGetters,
   mapActions
 } from 'vuex';
+import 'vue-loading-overlay/dist/vue-loading.css';
 
 export default {
   name: 'Products',
@@ -137,37 +160,27 @@ export default {
   computed: {
     filterData() {
       const vm = this;
-      if (vm.searchText) {
-        return vm.products.filter((item) => {
-          const data = item.title.toLowerCase().includes(vm.searchText.toLowerCase());
+      // 重新抓一次產品資料做過濾
+      let products = this.$store.state.productsModules.production.products;
+      if(vm.searchText){
+        return products.filter((item) =>{
+          const data = item.category.toLowerCase().includes(vm.searchText.toLowerCase());
           return data;
-        });
+        })
       }
-      return this.products;
+      return products;
     },
-    // product Get
-    // product() {
-    //   return this.$store.state.products;
-    // },
     ...mapGetters('productsModules', ['products','categories','pagination']),
-    // carts Get
-    // cart(){
-    //   return this.$store.state.cart;
-    // },
-    ...mapGetters('cartModules', ['cart']),
+    ...mapGetters('cartModules', ['cart','isLoading']),
 
   },
   methods: {
+    // 抓全產品資料
     getProducts(pages = 1) {
       this.$store.dispatch('productsModules/getProducts',pages);
       // this.pages = this.$store.state.productsModules.pages;
       // console.log(this.pages);
     },
-    // ...mapActions('productsModules', ['getProducts']),
-
-    // getCart(){
-    //   this.$store.dispatch('getCart');
-    // },
     ...mapActions('cartModules', ['getCart']),
     removeCart(id) {
       this.$store.dispatch('cartModules/removeCart', id);
@@ -184,7 +197,7 @@ export default {
     },
     setPage(page){
       this.$store.dispatch('productsModules/setPage', page);
-    }
+    },
   },
   created() {
     this.getProducts();
@@ -196,6 +209,14 @@ export default {
 /* .product-bg-color{
     background-color: #262626;
   } */
+.product-banner{
+  background-image: url('https://images.unsplash.com/photo-1530288782965-fbad40327074?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 250px;
+
+}
 .card-body {
   height: 170px;
 }
@@ -256,5 +277,9 @@ export default {
 
 .text-title {
   font-weight: bold;
+}
+
+.cursor{
+  cursor:pointer;
 }
 </style>

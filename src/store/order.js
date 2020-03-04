@@ -8,6 +8,7 @@ export default {
     order:{
       user:{},
     },
+    orders:{},
   },
   mutations: {
     ORDERID(state, payload){
@@ -16,6 +17,10 @@ export default {
     GETORDER(state, payload){
       state.order = payload;
       console.log(state.order);
+    },
+    GETORDERLIST(state,payload){
+      state.orders = payload;
+      console.log(state.orders)
     }
   },
   actions: {
@@ -52,11 +57,22 @@ export default {
           alert(response.data.message);
         }
       })
+    },
+    getOrderList(context , page){
+      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/orders?page=${page}`;
+      axios.get(url).then((response) =>{
+        if(response.data.success){
+          context.commit('GETORDERLIST',response.data.orders);
+        }
+      })
     }
   },
   getters:{
     Order(state){
       return state.order;
+    },
+    Orders(state){
+      return state.orders;
     }
   }
 }

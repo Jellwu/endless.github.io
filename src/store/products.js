@@ -14,10 +14,10 @@ export default{
         pageStart:1,
       },
     },
-    categories:[],
-    productId:'',
-    product:{},
-  },
+      categories:[],
+      productId:'',
+      product:{},
+    },
   mutations: {
     // 全產品寫入
     PRODUCTS(state, payload){
@@ -31,6 +31,19 @@ export default{
       });
       state.categories = Array.from(categories);
     },
+    // 過濾資料寫入
+    // FILTERDATA(state, payload){
+    //  state.searchText = payload;
+    //  let products = state.production.products;
+    //  if(state.searchText !== ''){
+    //   state.filterProduct.products = products.filter((item) =>{
+    //     const data = item.category.toLowerCase().includes(state.searchText.toLowerCase());
+    //     return data;
+    //   })
+    //  }else{
+    //    state.filterProduct.products = products;
+    //  }
+   // },
     // 分頁資料寫入
     PAGES(state, payload){
       // 計算頁面總數
@@ -79,6 +92,11 @@ export default{
         context.commit('PAGES',pages);
       });
     },
+    // 抓過濾的產品資料
+    // getFilter(context, tag){
+    //   // context.dispatch('getProducts');
+    //   context.commit('FILTERDATA',tag);
+    // },
     // 抓單一產品id(要丟給明細頁面用的)
     getproductId(context, id){
       context.commit('PRODUCTID',id);
@@ -151,5 +169,8 @@ export default{
     pagination(state){
       return state.production.pagination;
     },
+    filterProducts(state){
+      return  state.filterProduct.products;
+    }
   }
 }

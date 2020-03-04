@@ -90,6 +90,12 @@ const routes = [
         meta: { requiresAuth: true }
       },
       {
+        path: 'orders',
+        name: 'orders',
+        component: () => import(/* webpackChunkName: "login" */ '../views/adminPage/orders.vue'),
+        meta: { requiresAuth: true }
+      },
+      {
         path: 'coupon',
         name: 'coupon',
         component: () => import(/* webpackChunkName: "login" */ '../views/adminPage/coupon.vue'),

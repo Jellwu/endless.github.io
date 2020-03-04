@@ -5,20 +5,23 @@
           <div class="container">
             <router-link class="navbar-brand logo-text" to="/">Endless</router-link>
             <div class="collapse navbar-collapse " id="navbarResponsive">
-              <ul class="navbar-nav text-uppercase ml-auto">
+              <ul class="navbar-nav text-uppercase">
                 <li class="nav-item">
                   <router-link class="nav-item nav-link mx-2" to="/"><span class="underline">關於黑膠</span></router-link>
                 </li>
                 <li class="nav-item">
                   <router-link class="nav-item nav-link mx-2 " to="/productList"><span class="underline">唱盤列表</span></router-link>
                 </li>
-                <li class="nav-item">
-                  <router-link class="nav-item nav-link mx-2" to="/customList"><span class="underline">機台資訊</span></router-link>
-                </li>
-                <li class="nav-item">
-                  <router-link class="nav-item nav-link mx-2" to="/blog"><span class="underline">黑膠歷程</span></router-link>
-                </li>
               </ul>
+            </div>
+            <div class="adminArea">
+              <div class="position-relative">
+
+              </div>
+              <router-link class="text-endless" href="#" to="/cart"><i class="fas fa-shipping-fast fa-2x">
+                <span class="badge badge-pill badge-danger">{{cart.carts.length}}</span>
+              </i></router-link>
+              <router-link class="text-endless" href="#" to="/login"><i class="fas fa-user-cog fa-2x"></i></router-link>
             </div>
           </div>
         </nav>
@@ -70,11 +73,6 @@
                     <i class="fab fa-twitter fa-2x text-endless" aria-hidden="true"></i>
                   </a>
                 </li>
-                <li class="list-inline-item">
-                  <router-link class="text-endless" href="#" to="/login">
-                    <i class="fas fa-cog fa-2x text-endless" aria-hidden="true"></i>
-                  </router-link>
-                </li>
               </div>
             </div>
             <div class="col-md-4 d-flex justify-content-end">
@@ -87,7 +85,8 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import $ from 'jquery';
+import { mapGetters,mapActions } from 'vuex';
 // Import stylesheet
 import 'vue-loading-overlay/dist/vue-loading.css';
 
@@ -97,8 +96,15 @@ export default{
 
     };
   },
+  methods:{
+    ...mapActions('cartModules', ['getCart']),
+  },
   computed:{
     ...mapGetters('cartModules',['isLoading'],{root:true}),
+    ...mapGetters('cartModules', ['cart']),
+  },
+  created(){
+    this.getCart();
   }
 }
 
@@ -108,6 +114,7 @@ export default{
 @import "~bootstrap/scss/bootstrap";
 @import "./assets/all";
 @import "~@nextindex/next-scss/next-scss";
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -138,6 +145,17 @@ export default{
     font-weight: bold;
     transition: all 0.2s;
     }
+.badge{
+  font-size:9px;
+  margin-right:10px;
+}
+i{
+  color:rgba(255, 255, 255, 0.5);
+}
+i:hover{
+  color:#F2CA52;
+}
+
 }
 .height-box{
   height:55px;
@@ -167,6 +185,12 @@ export default{
 }
 .list-inline-item{
   margin: 0px 10px;
+}
+.card-img-bg {
+  height: 250px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 footer .text-word{
   color:#F3F6E0;

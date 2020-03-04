@@ -5,61 +5,217 @@
         <p class="text-white home-text-bg">不敗的，是經典</p>
       </div>
     </div>
-    <div class="container">
-      <div class="text-center my-5 px-5">
-        <h3>Explore endless</h3>
-        <p class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-      </div>
-        <div class="row no-gutters endless-block my-5">
-          <div class="col-md-6" style="z-index: 10" border->
-            <img src="./view-img/homephoto1.jpg" class="img-fluid rounded-right" alt="">
-          </div>
-          <div class="col-md-6 bg-section endless-position rounded-left d-flex align-items-center ">
-            <div class="mb-2 pl-5">
-              <h5 class="text-center">title1</h5>
-              <p class="px-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-              <div class="text-right mr-5">
-                <button class="btn btn-outline-info" type="button" name="button">來去逛逛</button>
+    <section id='sectionAbout'>
+      <div class="pt-5">
+        <div class="container">
+          <div class="row no-gutters endless-block my-5">
+            <div class="col-md-6 left-position" style="z-index: 10" border->
+              <img src="https://images.unsplash.com/photo-1513746469853-a03fc9a0d6ec?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80" class="img-fluid rounded" alt="">
+            </div>
+            <!-- <div class="col-md-12 rounded-left d-flex align-content-end"> -->
+            <div class="col-md-11 vertical-content d-flex justify-content-end">
+              <div class="rightArea pt-4 pb-1 py-md-7 ml-auto mr-md-0 text-endless">
+                <div class="ml-4" style="letter-spacing:5px;">
+                  <h2>黑膠——</h2>
+                  <h2 style="text-indent:4rem">是一種生活態度</h2>
+                </div>
+                <p>
+                  「流行總會被取代，經典會永久流傳」
+                </p>
+                <p>
+                  黑膠唱盤獨特又溫暖的聲音，是數位音樂無法取代的；以新技術傳承經典，體現了無法取代的聲音。
+                </p>
+                <p>
+                  享受這個過程：將唱片從盒子裡拿出來，放到唱盤上、擺上唱針，細細品味。
+                </p>
+
               </div>
             </div>
           </div>
         </div>
       </div>
+      <div class="">
+        <div class="container">
+          <hr class="p-3">
+          <div class="row no-gutters endless-block my-5">
+            <div class="col-md-6 vertical-content-l d-flex justify-content-start">
+              <div class="leftArea pt-4 pb-1 py-md-7 mr-md-0 text-endless">
+                <div class="ml-4" style="letter-spacing:5px;">
+                  <h2>堅持——</h2>
+                  <h2 style="text-indent:4rem">專屬於你的聲音</h2>
+                </div>
+                <p>
+                  「金窩銀窩，最愛的是自己的狗窩」
+                </p>
+                <p>
+                  如此與眾不同的我們，從不妥協追求自己想要的，暫時脫離別人眼光中的自己，放首歌，好好做自己。
+                </p>
+                <p>
+                  盡情做自己：製作屬於你的黑膠播放器，讓黑膠融入你的生活，陪伴你。
+                </p>
+              </div>
+            </div>
+            <div class="col-md-6 right-position" style="z-index: 10" border->
+              <img src="https://images.unsplash.com/photo-1522258079018-a20492fa3b7b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80" class="img-fluid rounded" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sectionLink" class="bg-section" >
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-6 mt-5">
+            <div class="link-product">
+              <div class="box-link p-5 d-flex align-items-center">
+                <h2> <i class="fas fa-compact-disc fa-2x"></i> 收藏你的黑膠</h2>
+                <a href="#"></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 mb-5">
+            <div class="link-coupon">
+              <div class="box-link">
+                <div>
+                  <h2>膠友們，交個朋友吧！</h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sectionNews" class="bg-News">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <div class="bg-products">
+              1234
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="bg-products">
+              12344
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Parallax from '../components/Parallax.vue';
+import $ from 'jquery';
+import {
+  mapGetters,
+  mapActions
+} from 'vuex';
+// import Parallax from '../components/Parallax.vue';
 export default {
   name: 'Home',
-  components: {
-  Parallax,
-}
+  computed:{
+    ...mapGetters('productsModules', ['products']),
+  },
+  methods:{
+    handleScroll(){
+      if ($(window).scrollTop() > $('#sectionAbout').offset().top - 400) {
+        $('.rightArea').addClass('fadeInRight');
+        $('.leftArea').addClass('fadeInLeft');
+      } else {
+        $('.rightArea').removeClass('fadeInRight')
+        $('.leftArea').removeClass('fadeInLeft');
+      }
+    },
+    getProducts(pages = 1) {
+      this.$store.dispatch('productsModules/getProducts',pages);
+      // this.pages = this.$store.state.productsModules.pages;
+      // console.log(this.pages);
+    },
+  },
+  created(){
+    this.getProducts();
+  },
+  mounted() {
+    window.addEventListener('scroll', this.handleScroll);
+    // carousel autoplay do not stop on flag change
+    $('.carousel').carousel('cycle');
+    },
+  destroyed() {
+    window.removeEventListener('scroll', this.handleScroll);
+  },
 }
 </script>
 
 <style lang="scss" scoped>
+hr{
+  border-top: 1px solid #EDE8CB;
+  background-color:rgba(0,0,0,0);
+  margin:10px;
+
+}
+  .fadeInRight {
+    animation-duration: 2s;
+    animation-fill-mode: both;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-fill-mode: both;
+    animation-name: fadeInRight;
+    -webkit-animation-name: fadeInRight;
+  }
+  .fadeInLeft {
+    animation-duration: 2s;
+    animation-fill-mode: both;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-fill-mode: both;
+    animation-name: fadeInLeft;
+    -webkit-animation-name: fadeInLeft;
+  }
   .bg-section{
-    background-color: rgba( 67, 48, 34, 0.9);
+    background-color: #EDE8CB;
+
   }
   .endless-block{
     position: relative;
     height: 400px;
   }
-  .endless-position{
+  .left-position{
     position: absolute;
-    right:55px;
-    top:50px;
+    left:0px;
+    top:-20px;
     height: 95%;
   }
+  .right-position{
+    position: absolute;
+    right:0px;
+    top:-20px;
+    height: 95%;
+  }
+  .vertical-content{
+    -webkit-writing-mode: vertical-rl;
+    writing-mode: vertical-rl ;
+  }
+  .vertical-content-l{
+    -webkit-writing-mode: vertical-lr;
+    writing-mode: vertical-lr ;
+  }
+  .vertical-content p,  .vertical-content-l p{
+    font-size: 18px;
+    margin-left: 28px;
+    padding: 22px 0px 0px 0px;
+    line-height:35px;
+    color:#F2E3D5;
+    font-family:Microsoft JhengHei;
+  }
   .home-bg{
-    background-image: url("https://images.unsplash.com/photo-1489068353139-3740c7af5fb4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1522&q=80");
+    background-image: url("https://images.unsplash.com/photo-1491421722235-b556e8f64dab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1280&q=80");
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-    height:650px;
+    height:600px;
   }
   .home-box{
     position: absolute;
@@ -78,7 +234,7 @@ export default {
   .home-text-box{
     font-size: 60px;
     width:100%;
-    height:650px;
+    height:400px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -88,4 +244,33 @@ export default {
     padding:10px 50px;
     border-radius: 20px;
   }
+#sectionProduct{
+  margin-bottom: 100px;
+}
+#sectionLink .box-link{
+  background-color:rgba(255, 255, 255, 0.7);
+  height:450px;
+}
+#sectionLink .link-product{
+  background-image: url('https://images.unsplash.com/photo-1578416489575-d90958228a5f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80');
+  background-position: center center;
+  background-size: cover;
+  padding:20px;
+}
+#sectionLink .link-coupon{
+  background-image: url('https://images.unsplash.com/photo-1534445817031-c529c7186f30?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80');
+  background-position: center center;
+  background-size: cover;
+  padding:20px;
+}
+.bg-News{
+    // background-image: url("https://images.unsplash.com/photo-1558125986-abf7f3428420?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1360&q=80");
+    background-image: url('https://images.unsplash.com/photo-1496293455970-f8581aae0e3b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1601&q=80');
+    background-size: cover;
+    background-position: center bottom;
+    background-attachment: fixed;
+    margin: 0px;
+    padding: 200px;
+    border-radius: 5px;
+}
 </style>
