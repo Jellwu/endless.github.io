@@ -3,7 +3,7 @@
       <div id="nav">
         <nav class="navbar navbar-expand-lg navbar-dark nav-bg p-0 fixed-top"  id="mainNav">
           <div class="container">
-            <router-link class="navbar-brand logo-text" to="/">Endless</router-link>
+            <router-link class="navbar-brand logo-text p-0" to="/">Endless</router-link>
             <div class="collapse navbar-collapse " id="navbarResponsive">
               <ul class="navbar-nav text-uppercase">
                 <li class="nav-item">
@@ -18,36 +18,14 @@
               <div class="position-relative">
 
               </div>
-              <router-link class="text-endless" href="#" to="/cart"><i class="fas fa-shipping-fast fa-2x">
+              <router-link class="text-endless" href="#" to="/cart"><i class="fas fa-shipping-fast">
                 <span class="badge badge-pill badge-danger">{{cart.carts.length}}</span>
               </i></router-link>
-              <router-link class="text-endless" href="#" to="/login"><i class="fas fa-user-cog fa-2x"></i></router-link>
+              <router-link class="text-endless" href="#" to="/login"><i class="fas fa-user-cog"></i></router-link>
             </div>
           </div>
         </nav>
       </div>
-      <div class="height-box"></div>
-      <!-- <div class="d-flex justify-content-center banner-bg">
-      <img src="../image/banner.jpg" class="img-fluid p-1" alt="">
-      </div>
-      <div class="bg-endless">
-        <div id="nav">
-          <div class="row justify-content-center pb-1 mt-3">
-            <div class="col-md-12 d-flex justify-content-center">
-              <nav class="navbar navbar-expand-lg navbar-light">
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                  <div class="navbar-nav">
-                    <router-link class="nav-item nav-link mx-2" to="/">關於我們</span></router-link>
-                    <router-link class="nav-item nav-link mx-2" to="/productList"><span class="underline ">冒險行頭</span></router-link>
-                    <router-link class="nav-item nav-link mx-2" to="/customList"><span class="underline">客製行程</span></router-link>
-                    <router-link class="nav-item nav-link mx-2" to="/blog"><span class="underline">記憶行旅</span></router-link>
-                  </div>
-                </div>
-              </nav>
-            </div>
-          </div>
-        </div>
-      </div> -->
       <Loading :active.sync="isLoading"></Loading>
       <router-view/>
       <footer class="bg-endless py-4">
@@ -125,10 +103,15 @@ export default{
 #app .logo-text{
   display: inline-block;
   text-decoration: none;
-  font-family:'Kaushan Script',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
-  font-size: 30px;
-  padding: 5px 15px;
-  background: -webkit-linear-gradient(45deg,#F3E1AA,#66698D);
+  font-family:'Brush Script MT',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
+  font-size: 40px;
+  background: -webkit-linear-gradient(45deg,#03738C,#D9B5A0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+#app .logo-text:hover{
+  background: -webkit-linear-gradient(45deg,#D9B5A0,#03738C);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -148,6 +131,9 @@ export default{
 .badge{
   font-size:9px;
   margin-right:10px;
+}
+.fas{
+  font-size: 24px;
 }
 i{
   color:rgba(255, 255, 255, 0.5);

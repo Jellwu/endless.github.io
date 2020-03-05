@@ -4,7 +4,7 @@
     <table class="table ml-auto mt-4 text-endless">
       <thead class="thead-dark">
         <tr>
-          <th>訂單時間</th>
+          <th width="175px">訂單時間</th>
           <th>訂單編號</th>
           <th>訂購人</th>
           <th>產品資訊</th>
@@ -28,21 +28,24 @@
           <td v-else> -- </td>
           <td v-if="items.is_paid" class="text-success"> 完成付款</td>
           <td v-else class="text-danger">尚未付款</td>
-          <!-- <td>
-            <button class="btn text-warning
-            " @click="openCouponModal(false, items)">
-              <i class="fas fa-edit"></i>
-            </button>
-          </td> -->
-          <!-- <td>
-            <button class="btn text-danger" @click="opendropCoupon(items)">
-              <i class="fas fa-trash"></i>
-            </button>
-          </td> -->
         </tr>
       </tbody>
     </table>
+
+    <!-- 預設10筆頁數 -->
+      <div class="row justify-content-center">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item" v-for="pages in pages.total_pages"
+            :class="{'active': pages.current_page == pages }"
+            @click.prevent = "getOrderList(pages)">
+              <a class="page-link" href="#">{{pages}}</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
   </div>
+  <!--  -->
 </template>
 
 <script>
@@ -57,7 +60,7 @@ export default{
     };
   },
   computed: {
-    ...mapGetters('orderModules',['Orders']),
+    ...mapGetters('orderModules',['Orders','pages']),
   },
   methods: {
     getOrderList(page = 1){

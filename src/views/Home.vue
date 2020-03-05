@@ -1,8 +1,10 @@
 <template>
   <div>
     <div class="home-bg">
-      <div class="home-text-box">
-        <p class="text-white home-text-bg">不敗的，是經典</p>
+      <div class="home-text-box d-flex align-items-center">
+        <div>
+          <p class="text-endless">不敗的，是經典</p>
+        </div>
       </div>
     </div>
     <section id='sectionAbout'>
@@ -14,7 +16,7 @@
             </div>
             <!-- <div class="col-md-12 rounded-left d-flex align-content-end"> -->
             <div class="col-md-11 vertical-content d-flex justify-content-end">
-              <div class="rightArea pt-4 pb-1 py-md-7 ml-auto mr-md-0 text-endless">
+              <div class="leftArea pt-4 pb-1 py-md-7 ml-auto mr-md-0 text-endless">
                 <div class="ml-4" style="letter-spacing:5px;">
                   <h2>黑膠——</h2>
                   <h2 style="text-indent:4rem">是一種生活態度</h2>
@@ -36,7 +38,7 @@
       </div>
       <div class="">
         <div class="container">
-          <hr class="p-3">
+          <hr class="p-3 rightArea">
           <div class="row no-gutters endless-block my-5">
             <div class="col-md-6 vertical-content-l d-flex justify-content-start">
               <div class="leftArea pt-4 pb-1 py-md-7 mr-md-0 text-endless">
@@ -63,7 +65,7 @@
       </div>
     </section>
 
-    <section id="sectionLink" class="bg-section" >
+    <!-- <section id="sectionLink" class="bg-section" >
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-6 mt-5">
@@ -85,22 +87,39 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
-    <section id="sectionNews" class="bg-News">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-md-6">
-            <div class="bg-products">
-              1234
-            </div>
+    <section id="sectionLink" class="bg-News">
+      <div class="row d-flex justify-content-center bg-underText align-items-center p-3">
+        <div class="col-md-6">
+          <div class="h2 mb-3 text-endless">
+            <i class="fas fa-compact-disc text-white fa-2x"></i>
+            開啟你的膠旅！
           </div>
-          <div class="col-md-6">
-            <div class="bg-products">
-              12344
-            </div>
+          <div class="text-Link mb-2 mt-1">輸入優惠代碼「<span class="text-warning">FRD2020</span>」即刻享有8折優惠！</div>
+          <div class="text-Link mb-2 mt-1">更多特惠請關注最新消息，<span class="text-warning">記得按訂閱！</span></div>
+          <div class="text-right">
+            <router-link class="btn btn-outline-warning my-1 mr-3" to="/productList">逛黑膠</router-link>
           </div>
         </div>
+        <div class="col-md-6">
+          <div>
+            <div class="h2 mb-3 text-endless">
+              <i class="fas fa-paper-plane text-white fa-2x"></i>
+            膠個朋友吧！
+            </div>
+            <form class="">
+              <div class="form-group mb-2 mr-3">
+                <label for="userMail" class="sr-only">Mail</label>
+                <input type="email" class="form-control" id="userMail" placeholder="輸入你的Email，收到最新消息">
+              </div>
+              <div class="text-right">
+                <button type="submit" class="btn btn-outline-warning my-1 mr-3">訂閱</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -175,7 +194,7 @@ hr{
     -webkit-animation-name: fadeInLeft;
   }
   .bg-section{
-    background-color: #EDE8CB;
+    background-color: rgba(89, 77, 67,0.8);
 
   }
   .endless-block{
@@ -215,7 +234,7 @@ hr{
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-    height:600px;
+    height:500px;
   }
   .home-box{
     position: absolute;
@@ -239,38 +258,29 @@ hr{
     justify-content: center;
     align-items: center;
   }
-  .home-text-bg{
-    // background-color: rgba(0, 0, 0, 0.7);
-    padding:10px 50px;
-    border-radius: 20px;
-  }
 #sectionProduct{
   margin-bottom: 100px;
 }
 #sectionLink .box-link{
   background-color:rgba(255, 255, 255, 0.7);
-  height:450px;
 }
-#sectionLink .link-product{
-  background-image: url('https://images.unsplash.com/photo-1578416489575-d90958228a5f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80');
-  background-position: center center;
-  background-size: cover;
-  padding:20px;
+#sectionLink .text-Link{
+  color:#F2E3D5;
+  font-weight: bold;
+  font-size: 22px;
 }
-#sectionLink .link-coupon{
-  background-image: url('https://images.unsplash.com/photo-1534445817031-c529c7186f30?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80');
-  background-position: center center;
-  background-size: cover;
-  padding:20px;
+#sectionLink .bg-underText{
+  background-color: rgba(0,0,0,0.4);
+  height:280px;
 }
-.bg-News{
+ .bg-News{
     // background-image: url("https://images.unsplash.com/photo-1558125986-abf7f3428420?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1360&q=80");
     background-image: url('https://images.unsplash.com/photo-1496293455970-f8581aae0e3b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1601&q=80');
     background-size: cover;
     background-position: center bottom;
     background-attachment: fixed;
     margin: 0px;
-    padding: 200px;
+    padding: 100px 200px ;
     border-radius: 5px;
 }
 </style>

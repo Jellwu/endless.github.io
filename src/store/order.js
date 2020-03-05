@@ -9,6 +9,7 @@ export default {
       user:{},
     },
     orders:{},
+    page:{}
   },
   mutations: {
     ORDERID(state, payload){
@@ -20,7 +21,10 @@ export default {
     },
     GETORDERLIST(state,payload){
       state.orders = payload;
-      console.log(state.orders)
+    },
+    GETPAGE(state,payload){
+      state.page = payload;
+      console.log(state.page);
     }
   },
   actions: {
@@ -63,6 +67,7 @@ export default {
       axios.get(url).then((response) =>{
         if(response.data.success){
           context.commit('GETORDERLIST',response.data.orders);
+          context.commit('GETPAGE',response.data.pagination);
         }
       })
     }
@@ -73,6 +78,9 @@ export default {
     },
     Orders(state){
       return state.orders;
+    },
+    pages(state){
+      return state.page;
     }
   }
 }

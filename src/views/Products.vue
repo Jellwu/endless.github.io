@@ -3,10 +3,10 @@
   <Loading :active.sync="isLoading"></Loading>
   <div class="product-banner d-flex align-items-center justify-content-center">
     <div class="">
-      <h1 class="text-white">黑膠專區</h1>
+      <h1 class="text-endless">黑膠專區</h1>
     </div>
   </div>
-  <div class="about container my-5">
+  <div class="about container-fluid ml-5 my-5">
     <div class="row no-gutters">
       <!-- sideBar -->
       <div class="col-md-3">
@@ -37,7 +37,7 @@
             <span class="badge badge-warning">{{cart.carts.length}}</span>
             <i class="pl-1 fas fa-sort-down fa-x"></i>
           </div>
-          <div class="row flex-md-column pl-2 no-gutters justify-content-center">
+          <div class="row flex-md-column pl-4 no-gutters justify-content-center">
             <div class="row py-2 h6 mr-md-0 no-gutters" v-for="items in cart.carts" :key="items.id">
               <img class="col-md-4 cart-img" :src="items.product.imageUrl"></img>
               <ul class="ml-2 col-md-5 d-flex flex-column justify-content-center">
@@ -69,13 +69,15 @@
       <div class="col-md-9 pl-4">
         <div class="row">
           <!-- 全產品顯示 -->
-          <div class="card-deck col-md-6 mb-4" v-if="searchText === ''"
+          <div class="card-deck col-md-4 mb-4" v-if="searchText === ''"
             v-for="(item) in products.slice(pagination.pageStart, pagination.pageStart + pagination.num_page)" :key="item.id">
             <div class="card product-card text-center" @click.prevent="getproductId(item.id)">
               <div class="card-img-top card-img-bg" :style="{backgroundImage: 'url(' + item.imageUrl + ')' }">
               </div>
               <div class="card-body product-card-body">
-                <p class="card-title py-2 m-0">{{ item.title }}</p>
+                <p class="card-title py-2 m-0" style="height:70px">
+                  {{ item.title }}
+                </p>
                 <div class="row">
                   <div class="col-md-6">
                     <span class="badge badge-warning mt-3 px-3 py-1">
@@ -83,18 +85,21 @@
                     </span>
                   </div>
                   <div class="col-md-6">
-                    <p class="text-secondary text-right pr-3 mb-0"><small><del class="endless-text">{{item.origin_price}}</del></small></p>
+                    <p class="text-secondary text-right pr-3 mb-0"><small><del class="text-white">{{item.origin_price}}</del></small></p>
                     <p class="card-text text-right">{{item.price}}</p>
                   </div>
                 </div>
                 <div class="card-text">
-                  More <i class="fas fa-angle-double-right"></i>
+                  <span class="p-2">
+                    More<i class="fas fa-angle-double-right"></i>
+                  </span>
                 </div>
               </div>
+
             </div>
           </div>
           <!-- 過濾產品顯示 -->
-          <div class="card-deck col-md-6 mb-4"
+          <div class="card-deck col-md-4 mb-4"
             v-for="(item) in filterData" :key="item.id" v-if="searchText !== ''">
             <div class="card product-card text-center" @click.prevent="getproductId(item.id)">
               <div class="card-img-top card-img-bg" :style="{backgroundImage: 'url(' + item.imageUrl + ')' }">
@@ -108,7 +113,7 @@
                     </span>
                   </div>
                   <div class="col-md-6">
-                    <p class="text-secondary text-right pr-3 mb-0"><small><del class="endless-text">{{item.origin_price}}</del></small></p>
+                    <p class="text-secondary text-right pr-3 mb-0"><small><del class="text-white">{{item.origin_price}}</del></small></p>
                     <p class="card-text text-right">{{item.price}}</p>
                   </div>
                 </div>
@@ -119,21 +124,20 @@
             </div>
           </div>
         </div>
-
-        <!-- 產品分頁 -->
         <div class="row justify-content-center">
           <nav aria-label="Page navigation example">
             <ul class="pagination">
               <li class="page-item" v-for="pages in pagination.total_pages"
               v-if="searchText === ''"
               :class="{'active':pagination.current_page === pages}"
-              @click.prevent = getProducts(pages);>
+              @click.prevent = getProducts(pages)>
                 <a class="page-link" href="#">{{pages}}</a>
               </li>
             </ul>
           </nav>
         </div>
       </div>
+      <!-- 產品分頁 -->
     </div>
 
   </div>
@@ -214,7 +218,7 @@ export default {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  height: 250px;
+  height:300px;
 
 }
 .card-body {
