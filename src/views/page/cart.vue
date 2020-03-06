@@ -1,10 +1,27 @@
 <template>
-  <div class="about container my-5">
-      <div class="text-center">
-        <h3 class="text-warning my-4">購物車列表</h3>
+
+  <div class="about">
+    <div class="product-banner d-flex align-items-center justify-content-center">
+      <div class="">
+        <h1 class="text-endless">購物車列表</h1>
       </div>
+    </div>
+    <div v-if="cart.carts.length === 0" class="no-carts">
+      <div>
+        <p class="text-endless">目前沒有選購任何商品</p>
+        <div class="text-center">
+          <router-link class="btn btn-outline-warning" to="/productList">
+            <span class="underline">
+              來去逛逛 <i class="fas fa-shipping-fast"></i>
+            </span>
+          </router-link>
+        </div>
+      </div>
+    </div>
+    <div v-else="cart.carts.length !== 0">
+    <div class="container my-5">
       <div class="row d-flex justify-content-center">
-        <div class="col-md-7">
+        <div class="col-md-10 mt-5">
           <table class="table table-sm text-endless">
             <thead>
               <tr>
@@ -42,94 +59,64 @@
                     <p class="h6 text-right pt-2">{{cart.total | currency}}</p>
                 </td>
               </tr>
-              <tr v-if="cart.final_total !== cart.total">
-                <td  class="py-2 text-success" colspan="4" style="vertical-align: middle;">
-                    <p class="h6 text-right pt-2">折扣金額：</p>
-                </td>
-                <td class="py-3"  style="vertical-align: middle;">
-                    <p class="h6 text-right pt-2">{{cart.final_total | currency}}</p>
-                </td>
-              </tr>
-              <tr>
-                  <td colspan="4" class="text-right" style="vertical-align: middle;">
-                    <form class="form-inline my-3 d-flex justify-content-end">
-                      <div class="form-group mx-sm-3">
-                        <input type="text" class="form-control"
-                        v-model="couponCode" placeholder="輸入優惠券號碼">
-                      </div>
-                      <button type="button" class="btn btn-warning"
-                      @click="getCoupon">
-                        <i class="fas fa-ticket-alt"></i> 使用優惠券
-                      </button>
-                    </form>
-                  </td>
-                  <td class="text-center" style="vertical-align: middle;">
-                    <button class="btn btn-secondary" type="button" name="button">
-                      取消
-                    </button>
-                  </td>
-              </tr>
             </tfoot>
           </table>
         </div>
       </div>
-
-      <div class="text-center">
-        <h3 class="text-warning my-4">訂單資料</h3>
-      </div>
-      <ValidationObserver ref="observer" v-slot="{ invalid }" tag="form">
-      <div class="row justify-content-center text-warning">
-        <form class="col-md-7">
-        <ValidationProvider rules="required" name="收件人姓名" v-slot="{ errors }">
-          <div class="form-group">
-            <label for="username">收件人姓名：</label>
-            <input class="form-control" type="text" name="name" id="username"
-            v-model="form.user.name" placeholder="請輸入姓名"
-            :class="{'is-invalid':errors[0]}">
-            <span class="text-danger" v-if="errors[0]">{{ errors[0] }}</span>
+        <div class="row d-flex justify-content-center no-gutters p-3">
+          <div class="col-md-6 bg-cart-box d-flex align-items-center">
+              <ul class="text-endless mt-3">
+                <h4 class="pb-2"><i class="far fa-hand-point-right mr-2"></i>注意事項</h4>
+                <li>確認所填寫的資料是否正確，若因資料不全而退貨，需負擔運費。</li>
+                <li>收到商品後請確認本體(含外盒)是否有破損，於七天內提出瑕疵申請。</li>
+                <li>本商品目前只供應台灣地區，只提供宅配到府。</li>
+                <li>目前支援貨到付款、超商付款、ATM付款。</li>
+              </ul>
           </div>
-        </ValidationProvider>
-        <ValidationProvider rules="required|email" name="e-mail" v-slot="{ valid, errors }" ref="emailField">
-          <div class="form-group">
-            <label for="useremail">收件人信箱：</label>
-            <input class="form-control" type="email" name="name" id="useremail"
-            v-model="form.user.email" placeholder="請輸入 Email"
-            :class="{'is-invalid':errors[0]}">
-            <span class="text-danger" v-if="errors[0]">{{errors[0]}}</span>
-          </div>
-        </ValidationProvider>
+          <div class="col-md-4 bg-cart-box">
+            <div class="text-endless mt-4">
+              <!-- 結帳資訊區 -->
+              <div class="text-right">
+                <p class="pt-3 pr-2">共計 <span class="text-warning">{{cart.carts.length}}</span> 項商品</p>
+                <p class="pr-2" v-if="cart.final_total !== cart.total">
+                  <span class="badge badge-pill badge-warning">已輸入優惠券</span>
+                  <br>
+                  結帳金額：<span class="text-warning">{{cart.final_total | currency}}</span>
+                </p>
+                <p class="pr-2" v-else="cart.final_total === cart.total">
+                  結帳金額：<span class="text-warning">{{cart.final_total | currency}}</span>
+                </p>
 
-        <ValidationProvider rules="required|numeric|digits:10" name="電話" v-slot="{ errors }">
-          <div class="form-group">
-            <label for="usertel">收件人電話：</label>
-            <input class="form-control" type="tel" name="name" id="usertel"
-            placeholder="請輸入電話" v-model="form.user.tel"
-            :class="{'is-invalid':errors[0]}">
-            <span class="text-danger" v-if="errors[0]">{{ errors[0] }}</span>
+                <!-- 優惠券按鈕區 -->
+                <div class="pb-2">
+                  <div class="input-group ml-auto" v-if="cart.final_total !== cart.total">
+                    <input type="text" class="form-control" placeholder="輸入優惠券號碼" v-model="couponCode"
+                   aria-label="Recipient's username" aria-describedby="button-addon2" disabled>
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-warning" @click="getCoupon"
+                      type="button" id="button-addon2" disabled>優惠券</button>
+                    </div>
+                  </div>
+                  <div class="input-group ml-auto" v-else="cart.final_total === cart.total">
+                    <input type="text" class="form-control" placeholder="輸入優惠券號碼" v-model="couponCode"
+                   aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-warning" @click="getCoupon"
+                      type="button" id="button-addon2">優惠券</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </ValidationProvider>
-
-        <ValidationProvider rules="required" name="地址" v-slot="{ errors }">
-        <div class="form-group">
-            <label for="useraddr">收件人地址：</label>
-            <input class="form-control" type="text" name="name" id="useraddr"
-            placeholder="請輸入地址" v-model="form.user.address"
-            :class="{'is-invalid':errors[0]}">
-          <span class="text-danger" v-if="errors[0]">{{ errors[0] }}</span>
         </div>
-        </ValidationProvider>
-
-            <div class="form-group">
-                <label for="comment">留言</label>
-                <textarea name="" id="comment" class="form-control" cols="30" rows="10"></textarea>
-            </div>
-            <div class="form-group text-right">
-                <button class="btn btn-warning" :disabled="invalid"
-                @click.prevent = "cartCheckout">送出訂單</button>
-            </div>
-        </form>
+        <div class="row text-right d-flex justify-content-center">
+          <div class="col-md-10">
+            <router-link class="btn btn-outline-warning mx-2" to="/cart_info">下一步</router-link>
+          </div>
+        </div>
       </div>
-    </ValidationObserver>
+    </div>
   </div>
 </template>
 
@@ -172,6 +159,9 @@ export default{
       const order = this.form;
       this.$store.dispatch('orderModules/cartCheckout',order);
     },
+    cancelCoupon(){
+      this.$store.dispatch('cartModules/cancelCoupon');
+    }
 
   },
   created(){
@@ -181,5 +171,27 @@ export default{
 
 </script>
 <style scpoed>
+.product-banner{
+  background-image: url('https://images.unsplash.com/photo-1580112646171-13522164ead4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  height:300px;
+}
+.about .bg-cart-box{
+  width:100%;
+  background-color: rgba(0, 0, 0,0.1);
+}
+.bg-cart-box .input-group{
+  margin:10px;
+  width:90%;
+}
+.no-carts{
+  height:400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size:50px;
+}
 
 </style>

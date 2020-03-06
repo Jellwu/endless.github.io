@@ -213,7 +213,4 @@ p{
   padding:0px;
   margin:0px;
 }
-ul,li{
-  list-style: none;
-}
 </style>

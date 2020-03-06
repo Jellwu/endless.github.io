@@ -50,6 +50,14 @@ const routes = [
     component: () => import(/* webpackChunkName: "Custom" */ '../views/page/cart.vue')
   },
   {
+    path: '/cart_info',
+    name: 'CartInfo',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "Custom" */ '../views/page/cart_info.vue')
+  },
+  {
     path: '/cart_checkout/:orderID',
     name: 'cart_checkout',
     // route level code-splitting

@@ -71,7 +71,7 @@ export default {
           alert(response.data.message);
         }
       })
-    }
+    },
   },
   getters:{
     cart(state){

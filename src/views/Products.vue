@@ -219,7 +219,6 @@ export default {
   background-position: center;
   background-size: cover;
   height:300px;
-
 }
 .card-body {
   height: 170px;

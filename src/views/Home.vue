@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="home-bg">
-      <div class="home-text-box d-flex align-items-center">
+      <div class="home-text-box">
         <div>
           <p class="text-endless">不敗的，是經典</p>
         </div>
@@ -230,7 +230,7 @@ hr{
     font-family:Microsoft JhengHei;
   }
   .home-bg{
-    background-image: url("https://images.unsplash.com/photo-1491421722235-b556e8f64dab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1280&q=80");
+    background-image: url("https://images.unsplash.com/flagged/photo-1574134299924-c9f3d4196de2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1280&q=80");
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -253,7 +253,7 @@ hr{
   .home-text-box{
     font-size: 60px;
     width:100%;
-    height:400px;
+    height:600px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -270,8 +270,8 @@ hr{
   font-size: 22px;
 }
 #sectionLink .bg-underText{
-  background-color: rgba(0,0,0,0.4);
-  height:280px;
+  background-color: rgba(0,0,0,0.5);
+  height:350px;
 }
  .bg-News{
     // background-image: url("https://images.unsplash.com/photo-1558125986-abf7f3428420?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1360&q=80");
