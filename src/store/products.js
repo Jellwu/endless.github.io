@@ -71,6 +71,7 @@ export default{
     // 單一產品寫入
     PRODUCTDETAIL(state, payload){
       state.product = payload;
+      console.log(state.product);
     },
     // 單一產品更新
     UPDATEPRODUCT(state,payload){

@@ -36,7 +36,7 @@
         </nav>
 
         <!-- 內容區 -->
-        <div class="col-md-10">
+        <div class="col-md-10 my-5">
           <router-view/>
         </div>
       </div>

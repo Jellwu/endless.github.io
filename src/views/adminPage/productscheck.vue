@@ -1,6 +1,6 @@
 <template>
   <div class="container my-5">
-    <div class="text-right mb-4">
+    <div class="text-right my-4">
       <button type="button" class="btn btn-warning" @click="openPdcModal(true)">
         新增產品
         </button>

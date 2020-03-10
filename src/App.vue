@@ -26,7 +26,7 @@
           </div>
         </nav>
       </div>
-      <Loading :active.sync="isLoading"></Loading>
+      <Loading loader="bars" color="#C4A670" :active.sync="isLoading"></Loading>
       <router-view/>
       <footer class="bg-endless py-4">
         <div class="container">
@@ -105,13 +105,13 @@ export default{
   text-decoration: none;
   font-family:'Brush Script MT',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
   font-size: 40px;
-  background: -webkit-linear-gradient(45deg,#03738C,#D9B5A0);
+  background: -webkit-linear-gradient(60deg,white,#1B72BF);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 #app .logo-text:hover{
-  background: -webkit-linear-gradient(45deg,#D9B5A0,#03738C);
+  background: -webkit-linear-gradient(30deg,#1B72BF,white);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;

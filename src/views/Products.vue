@@ -1,6 +1,6 @@
 <template>
 <div class="product-bg-color">
-  <Loading :active.sync="isLoading"></Loading>
+  <!-- <Loading loader="dots" :active.sync="isLoading"></Loading> -->
   <div class="product-banner d-flex align-items-center justify-content-center">
     <div class="">
       <h1 class="text-endless">黑膠專區</h1>
@@ -213,6 +213,9 @@ export default {
 /* .product-bg-color{
     background-color: #262626;
   } */
+ul,li{
+  list-style: none;
+}
 .product-banner{
   background-image: url('https://images.unsplash.com/photo-1530288782965-fbad40327074?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80');
   background-repeat: no-repeat;
@@ -284,5 +287,9 @@ export default {
 
 .cursor{
   cursor:pointer;
+}
+.position-absolute .box{
+  z-index: 5;
+  background-color: rgba(0,0,0,0.3);
 }
 </style>

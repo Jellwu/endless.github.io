@@ -1,5 +1,6 @@
 <template>
 <div class="about container my-5">
+  <div class="box"></div>
   <div class="row">
     <div class="col-md-6 d-flex justify-content-center">
       <img class="img-fluid" :src="productDetail.imageUrl" alt="">
@@ -45,7 +46,7 @@
           <div>
             <p class="text-warning font-weight-bolder" v-if="subtotal">小計：{{subtotal}}</p>
             <select class="custom-select border border-white bg-warning text-dark rounded" v-model="productDetail.num">
-              <option selected="selected" disabled>請選購數量</option>
+              <option selected disabled >請選購數量</option>
               <option v-for="num in 10" :value="num">
                 選購 {{num}} {{productDetail.unit}}
               </option>
@@ -106,6 +107,10 @@ export default {
 }
 </script>
 <style scpoed>
+.box{
+  height: 100px;
+  width: 100%;
+}
 .custom-select {
   width: 260px;
   margin-left: 20px

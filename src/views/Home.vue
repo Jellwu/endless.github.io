@@ -227,7 +227,7 @@ hr{
     padding: 22px 0px 0px 0px;
     line-height:35px;
     color:#F2E3D5;
-    font-family:Microsoft JhengHei;
+    font-family:'Apple LiGothic Medium',Microsoft JhengHei;
   }
   .home-bg{
     background-image: url("https://images.unsplash.com/flagged/photo-1574134299924-c9f3d4196de2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1280&q=80");

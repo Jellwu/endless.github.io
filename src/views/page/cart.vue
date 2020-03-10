@@ -42,7 +42,7 @@
                 </td>
                 <td style="width:80px;"><img class="img-fluid" :src="items.product.imageUrl"></td>
                 <td style="vertical-align: middle;">{{items.product.title}}
-                  <p class="text-success" v-if="items.coupon">
+                  <p class="text-success" v-if="items.final_total !== items.total">
                     已套用優惠券
                   </p>
                 </td>
@@ -64,7 +64,7 @@
         </div>
       </div>
         <div class="row d-flex justify-content-center no-gutters p-3">
-          <div class="col-md-6 bg-cart-box d-flex align-items-center">
+          <div class="col-md-7 bg-cart-box d-flex align-items-center">
               <ul class="text-endless mt-3">
                 <h4 class="pb-2"><i class="far fa-hand-point-right mr-2"></i>注意事項</h4>
                 <li>確認所填寫的資料是否正確，若因資料不全而退貨，需負擔運費。</li>
@@ -95,6 +95,8 @@
                     <div class="input-group-append">
                       <button class="btn btn-outline-warning" @click="getCoupon"
                       type="button" id="button-addon2" disabled>優惠券</button>
+                      <button  class="btn btn-secondary" @click="cancelCoupon"
+                      type="button" id="button-addon2">取消</button>
                     </div>
                   </div>
                   <div class="input-group ml-auto" v-else="cart.final_total === cart.total">
@@ -112,7 +114,7 @@
         </div>
         <div class="row text-right d-flex justify-content-center">
           <div class="col-md-10">
-            <router-link class="btn btn-outline-warning mx-2" to="/cart_info">下一步</router-link>
+            <router-link class="btn btn-outline-warning" to="/cart_info">下一步</router-link>
           </div>
         </div>
       </div>
@@ -160,8 +162,8 @@ export default{
       this.$store.dispatch('orderModules/cartCheckout',order);
     },
     cancelCoupon(){
-      this.$store.dispatch('cartModules/cancelCoupon');
-    }
+      this.$store.dispatch('cartModules/cancelCoupon','ORIGINP0');
+    },
 
   },
   created(){
