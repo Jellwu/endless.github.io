@@ -11,13 +11,13 @@
       <div class="pt-5">
         <div class="container">
           <div class="row no-gutters my-5">
-            <div class="col-md-6 left-position" style="z-index: 10">
+            <div class="col-md-7 left-position" style="z-index: 10">
               <img src="https://images.unsplash.com/photo-1513746469853-a03fc9a0d6ec?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80" class="img-fluid rounded" alt="">
             </div>
             <!-- <div class="col-md-12 rounded-left d-flex align-content-end"> -->
-            <div class="col-md-6 vertical-content d-flex justify-content-end">
+            <div class="col-md-5 vertical-content d-flex justify-content-end">
               <div class="leftArea pt-4 pb-1 py-md-7 ml-auto mr-md-0 text-endless">
-                <div class="ml-4" style="letter-spacing:5px;">
+                <div class="ml-4 textArea" style="letter-spacing:5px;">
                   <h2>黑膠——</h2>
                   <h2 style="text-indent:4rem">是一種生活態度</h2>
                 </div>
@@ -48,9 +48,9 @@
       <div class="">
         <div class="container">
           <div class="row no-gutters my-5">
-            <div class="col-md-6 vertical-content-l d-flex justify-content-start">
-              <div class="leftArea pt-4 pb-1 py-md-7 mr-md-0 text-endless">
-                <div class="ml-4" style="letter-spacing:5px;">
+            <div class="col-md-5 vertical-content-l d-flex justify-content-start">
+              <div class="leftArea pt-md-5 text-endless fadeInLeft">
+                <div class="ml-4 textArea" style="letter-spacing:5px;">
                   <h2>堅持——</h2>
                   <h2 style="text-indent:4rem">專屬於你的聲音</h2>
                 </div>
@@ -65,7 +65,7 @@
                 </p>
               </div>
             </div>
-            <div class="col-md-6 right-position" style="z-index: 10" border->
+            <div class="col-md-7 right-position">
               <img src="https://images.unsplash.com/photo-1522258079018-a20492fa3b7b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80" class="img-fluid rounded" alt="">
             </div>
           </div>
@@ -205,9 +205,9 @@ hr{
     background-color: rgba(89, 77, 67,0.8);
 
   }
-  .endless-block{
-    position: relative;
+  .textArea{
     height: 400px;
+
   }
   .left-position{
     left:0px;
@@ -216,8 +216,8 @@ hr{
   }
   .right-position{
     right:0px;
-    top:-20px;
-    height: 95%;
+    top:20px;
+    height: 100%;
   }
   .vertical-content{
     -webkit-writing-mode: vertical-rl;
@@ -277,7 +277,6 @@ hr{
 }
 #sectionLink .bg-underText{
   background-color: rgba(0,0,0,0.5);
-  height:350px;
 }
  .bg-News{
     // background-image: url("https://images.unsplash.com/photo-1558125986-abf7f3428420?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1360&q=80");

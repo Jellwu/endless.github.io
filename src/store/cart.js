@@ -12,6 +12,7 @@ export default {
   mutations: {
     LOADING(state, payload){
       state.isLoading = payload;
+      console.log(state.isLoading);
     },
     CART(state,payload){
       state.cart = payload;
@@ -22,12 +23,12 @@ export default {
     }
   },
   actions: {
-    updateLoading(context ,payload){
+    updateLoading(context){
       context.commit('LOADING', payload);
     },
     getCart(context) {
-      // let payload = true;
-      // context.commit('LOADING',payload);
+      let payload = true;
+      context.commit('LOADING',payload);
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`;
       axios.get(url).then((response) => {
         context.commit('CART',response.data.data)

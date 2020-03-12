@@ -78,7 +78,7 @@ export default{
     ...mapActions('cartModules', ['getCart']),
   },
   computed:{
-    ...mapGetters('cartModules',['isLoading'],{root:true}),
+    ...mapGetters('cartModules',['isLoading']),
     ...mapGetters('cartModules', ['cart']),
   },
   created(){
