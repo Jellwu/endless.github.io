@@ -10,12 +10,12 @@
     <section id='sectionAbout'>
       <div class="pt-5">
         <div class="container">
-          <div class="row no-gutters endless-block my-5">
-            <div class="col-md-6 left-position" style="z-index: 10" border->
+          <div class="row no-gutters my-5">
+            <div class="col-md-6 left-position" style="z-index: 10">
               <img src="https://images.unsplash.com/photo-1513746469853-a03fc9a0d6ec?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80" class="img-fluid rounded" alt="">
             </div>
             <!-- <div class="col-md-12 rounded-left d-flex align-content-end"> -->
-            <div class="col-md-11 vertical-content d-flex justify-content-end">
+            <div class="col-md-6 vertical-content d-flex justify-content-end">
               <div class="leftArea pt-4 pb-1 py-md-7 ml-auto mr-md-0 text-endless">
                 <div class="ml-4" style="letter-spacing:5px;">
                   <h2>黑膠——</h2>
@@ -36,10 +36,18 @@
           </div>
         </div>
       </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <hr class="p-3 rightArea">
+          </div>
+        </div>
+      </div>
+
       <div class="">
         <div class="container">
-          <hr class="p-3 rightArea">
-          <div class="row no-gutters endless-block my-5">
+          <div class="row no-gutters my-5">
             <div class="col-md-6 vertical-content-l d-flex justify-content-start">
               <div class="leftArea pt-4 pb-1 py-md-7 mr-md-0 text-endless">
                 <div class="ml-4" style="letter-spacing:5px;">
@@ -202,13 +210,11 @@ hr{
     height: 400px;
   }
   .left-position{
-    position: absolute;
     left:0px;
     top:-20px;
     height: 95%;
   }
   .right-position{
-    position: absolute;
     right:0px;
     top:-20px;
     height: 95%;

@@ -26,7 +26,8 @@ export default {
       context.commit('LOADING', payload);
     },
     getCart(context) {
-      context.commit('LOADING',true);
+      let payload = true;
+      context.commit('LOADING',payload);
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`;
       axios.get(url).then((response) => {
         context.commit('CART',response.data.data)

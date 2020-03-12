@@ -31,7 +31,9 @@
               </span>
             </div>
           </div>
-          <hr class="mx-4" v-if="cart.carts.length !== 0">
+          <div class="row">
+            <hr class="mx-4" v-if="cart.carts.length !== 0">
+          </div>
           <div class="px-3 py-2 h6 pt-2 mr-2" v-if="cart.carts.length !== 0">
             購物清單
             <span class="badge badge-warning">{{cart.carts.length}}</span>
@@ -74,15 +76,17 @@
             <div class="card product-card text-center" @click.prevent="getproductId(item.id)">
               <div class="card-img-top card-img-bg" :style="{backgroundImage: 'url(' + item.imageUrl + ')' }">
               </div>
-              <div class="card-body product-card-body">
-                <p class="card-title py-2 m-0" style="height:70px">
+              <div class="card-body">
+                <p class="card-title py-2 m-0">
                   {{ item.title }}
                 </p>
                 <div class="row">
                   <div class="col-md-6">
-                    <span class="badge badge-warning mt-3 px-3 py-1">
-                      <i class="fas fa-tag mr-2"></i>{{item.category}}
-                    </span>
+                    <div>
+                      <span class="badge badge-warning mt-3 px-3 py-1">
+                        <i class="fas fa-tag mr-2"></i>{{item.category}}
+                      </span>
+                    </div>
                   </div>
                   <div class="col-md-6">
                     <p class="text-secondary text-right pr-3 mb-0"><small><del class="text-white">{{item.origin_price}}</del></small></p>
