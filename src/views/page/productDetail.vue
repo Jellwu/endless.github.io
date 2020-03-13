@@ -6,61 +6,64 @@
       <img class="img-fluid" :src="productDetail.imageUrl" alt="">
     </div>
     <div class="col-md-6">
-      <div class="row">
-        <table class="table table-sm text-endless table-borderless">
-          <thead>
-            <tr>
-              <td width="120px">產品名稱：</td>
-              <td>{{productDetail.title}}</td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>單位：</td>
-              <td>{{productDetail.unit}}</td>
-            </tr>
-            <tr>
-              <td>價格：</td>
-              <td>{{productDetail.price}}</td>
-            </tr>
-            <tr>
-              <td>付款方式：</td>
-              <td>
-                <h4>
-                  <span class="badge badge-success mx-2 p-2">信用卡</span>
-                  <span class="badge badge-info mx-2 p-2">貨到付款</span>
-                </h4>
-              </td>
-            </tr>
-            <tr>
-              <td>關於專輯：</td>
-              <td>
-                <p>{{productDetail.content}}</p>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="row no-gutters">
-        <div class="col-md-6 d-flex align-items-end justify-content-end text-right">
+      <div class="text-endless">
+        <h2 class="my-3">
+          <span><i class="fas fa-crown text-warning"></i></span>
+          {{productDetail.title}}
+        </h2>
+        <p class="mb-2" style="text-indent : 2em;">{{productDetail.content}}</p>
+        <div class="row d-flex justify-content-end pr-3">
           <div>
-            <p class="text-warning font-weight-bolder" v-if="subtotal">小計：{{subtotal}}</p>
-            <select class="custom-select border border-white bg-warning text-dark rounded" v-model="productDetail.num">
-              <option selected disabled >請選購數量</option>
-              <option v-for="num in 10" :value="num">
-                選購 {{num}} {{productDetail.unit}}
-              </option>
-            </select>
+            <del class="font-weight-lighter"><span class="my-2">原價：{{productDetail.origin_price | currency}}</span></del><br>
+            <span class="h4 text-warning font-weight-bolder">特價:{{productDetail.price | currency}}</span>
           </div>
         </div>
-        <div class="col-md-6 text-right">
-          <div class="my-2">
-            <del class="text-secondary font-weight-lighter mx-2"><span>原價：{{productDetail.origin_price}}</span></del>
-            <span class="h4 text-warning font-weight-bolder">特價:{{productDetail.price}}</span>
+        <hr class="px-5">
+      </div>
+      <div class="bg-box-endless rounded py-4 px-2">
+        <div class="text-endless mb-3">
+          <div class="text-center h4 mb-3"> 加入購物車
+              <i class="fas fa-sort-down"></i>
           </div>
-          <button class="btn btn-warning px-5" type="button" name="button" @click.prevent="addtoCart(productDetail.id, productDetail.num)">加入購物車</button>
+          <ul class="pl-2 text-center">
+            <li class="mb-1">
+              <span class="badge badge-pill badge-info mr-1">線上刷卡</span>
+              <span class="badge badge-pill badge-success mr-1">貨到付款</span>
+              <span class="badge badge-pill badge-light">轉帳付費</span>
+            </li>
+            <li>
+              <span class="badge badge-pill badge-success mr-1">超商取貨</span>
+              <span class="badge badge-pill badge-info">黑貓宅配</span>
+            </li>
+          </ul>
+        </div>
+        <div class="row no-gutters d-flex align-items-end justify-content-around">
+          <div class="col-md-8">
+            <div>
+              <div class="text-warning font-weight-bolder ml-4 mb-1" v-if="subtotal">
+                小計：{{subtotal |currency}}
+              </div>
+              <div class="input-group">
+                <select class="custom-select border border-warning text-dark"
+                id="inputGroupSelect04" v-model="productNum">
+                  <option v-for="num in 10" :value="num">
+                    選購 {{num}} {{productDetail.unit}}
+                  </option>
+                </select>
+                <div class="input-group-append">
+                  <button class="btn btn-outline-warning" type="button">
+                    <i class="fas fa-plus-circle"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 text-right">
+            <button class="btn btn-outline-warning" type="button" name="button">回產品頁</button>
+          </div>
         </div>
       </div>
+
     </div>
   </div>
 </div>
@@ -77,14 +80,14 @@ export default {
   name: 'Product',
   data() {
     return {
-
+      productNum:1,
     };
   },
   computed: {
     // 抓productsModules中的state.product
     ...mapGetters('productsModules', ['productDetail']),
     subtotal() {
-      const data = this.$store.state.productsModules.product.price * this.productDetail.num;
+      const data = this.$store.state.productsModules.product.price * this.productNum;
       return data;
     },
   },
@@ -114,5 +117,9 @@ export default {
 .custom-select {
   width: 260px;
   margin-left: 20px
+}
+.bg-box-endless{
+  width:100%;
+  background-color: rgba(0, 0, 0,0.1);
 }
 </style>

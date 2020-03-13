@@ -31,19 +31,6 @@ export default{
       });
       state.categories = Array.from(categories);
     },
-    // 過濾資料寫入
-    // FILTERDATA(state, payload){
-    //  state.searchText = payload;
-    //  let products = state.production.products;
-    //  if(state.searchText !== ''){
-    //   state.filterProduct.products = products.filter((item) =>{
-    //     const data = item.category.toLowerCase().includes(state.searchText.toLowerCase());
-    //     return data;
-    //   })
-    //  }else{
-    //    state.filterProduct.products = products;
-    //  }
-   // },
     // 分頁資料寫入
     PAGES(state, payload){
       // 計算頁面總數

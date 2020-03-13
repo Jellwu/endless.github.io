@@ -23,11 +23,11 @@ export default {
     }
   },
   actions: {
-    updateLoading(context){
+    updateLoading(context,payload){
       context.commit('LOADING', payload);
     },
     getCart(context,payload) {
-      context.commit('LOADING',payload);
+      context.commit('LOADING',true);
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`;
       axios.get(url).then((response) => {
         context.commit('CART',response.data.data)
@@ -54,6 +54,7 @@ export default {
       context.commit('LOADING',true);
       axios.post(url, { data: item }).then((response) => {
         context.dispatch('getCart');
+        alert('已加入購物車')
         context.commit('LOADING',false);
       });
     },
