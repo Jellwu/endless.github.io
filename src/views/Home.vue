@@ -73,37 +73,38 @@
       </div>
     </section>
 
-    <section id="sectionLink" class="bg-News">
-      <div class="row d-flex justify-content-center bg-underText align-items-center p-3">
-        <div class="col-md-6">
-          <div class="h2 mb-3 text-endless">
-            <i class="fas fa-compact-disc text-white fa-2x"></i>
-            開啟你的膠旅！
-          </div>
-          <div class="text-Link mb-2 mt-1">輸入優惠代碼「<span class="text-warning">FRD2020</span>」即刻享有8折優惠！</div>
-          <div class="text-Link mb-2 mt-1">更多特惠請關注最新消息，<span class="text-warning">記得按訂閱！</span></div>
-          <div class="text-right">
-            <router-link class="btn btn-outline-warning my-1 mr-3" to="/productList">逛黑膠</router-link>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div>
+    <section id="sectionLink">
+      <div class="bg-News">
+        <div class="row d-flex justify-content-center bg-underText align-items-center p-3">
+          <div class="col-md-6">
             <div class="h2 mb-3 text-endless">
-              <i class="fas fa-paper-plane text-white fa-2x"></i>
-            膠個朋友吧！
+              <i class="fas fa-compact-disc text-white fa-2x"></i>
+              開啟你的膠旅！
             </div>
-            <form class="">
-              <div class="form-group mb-2 mr-3">
-                <label for="userMail" class="sr-only">Mail</label>
-                <input type="email" class="form-control" id="userMail" placeholder="輸入你的Email，收到最新消息">
+            <div class="text-Link mb-2 mt-1">輸入優惠代碼「<span class="text-warning">FRD2020</span>」即刻享有8折優惠！</div>
+            <div class="text-Link mb-2 mt-1">更多特惠請關注最新消息，<span class="text-warning">記得按訂閱！</span></div>
+            <div class="text-right">
+              <router-link class="btn btn-outline-warning my-1 mr-3" to="/productList">逛黑膠</router-link>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div>
+              <div class="h2 mb-3 text-endless">
+                <i class="fas fa-paper-plane text-white fa-2x"></i>
+              膠個朋友吧！
               </div>
-              <div class="text-right">
-                <button type="submit" class="btn btn-outline-warning my-1 mr-3">訂閱</button>
-              </div>
-            </form>
+              <form class="">
+                <div class="form-group mb-2 mr-3">
+                  <label for="userMail" class="sr-only">Mail</label>
+                  <input type="email" class="form-control" id="userMail" placeholder="輸入你的Email，收到最新消息">
+                </div>
+                <div class="text-right">
+                  <button type="submit" class="btn btn-outline-warning my-1 mr-3">訂閱</button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
-
       </div>
     </section>
 
@@ -261,7 +262,7 @@ hr{
     background-position: center bottom;
     background-attachment: fixed;
     margin: 0px;
-    padding: 100px 200px ;
+    padding: 100px 100px ;
     border-radius: 5px;
 }
 </style>

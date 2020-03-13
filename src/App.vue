@@ -1,11 +1,15 @@
 <template>
     <div id="app">
       <div id="nav">
-        <nav class="navbar navbar-expand-lg navbar-dark nav-bg p-0 fixed-top"  id="mainNav">
+        <div class="container">
+          <nav class="navbar navbar-expand-lg navbar-dark nav-bg p-0 fixed-top"  id="mainNav">
           <div class="container">
+            <button class="navbar-toggler ml-3"  type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <router-link class="navbar-brand logo-text p-0" to="/">Endless</router-link>
-            <div class="collapse navbar-collapse " id="navbarResponsive">
-              <ul class="navbar-nav text-uppercase">
+            <div class="collapse navbar-collapse" id="navbarContent">
+              <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                   <router-link class="nav-item nav-link mx-2" to="/"><span class="underline">關於黑膠</span></router-link>
                 </li>
@@ -14,20 +18,26 @@
                 </li>
               </ul>
             </div>
-            <div class="adminArea">
-              <div class="position-relative">
-
-              </div>
-              <router-link class="text-endless" href="#" to="/cart"><i class="fas fa-shipping-fast">
-                <span class="badge badge-pill badge-danger">{{cart.carts.length}}</span>
-              </i></router-link>
-              <router-link class="text-endless" href="#" to="/login"><i class="fas fa-user-cog"></i></router-link>
+            <div class="adminArea collapse navbar-collapse" id="navbarContent">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item py-1 pl-2">
+                  <router-link class="text-endless" href="#" to="/cart"><i class="fas fa-shipping-fast">
+                    <span class="badge badge-pill badge-danger">{{cart.carts.length}}</span>
+                  </i></router-link>
+                </li>
+                <li class="nav-item py-1 pl-2">
+                  <router-link class="text-endless" href="#" to="/login"><i class="fas fa-user-cog"></i></router-link>
+                </li>
+              </ul>
             </div>
           </div>
-        </nav>
+          </nav>
+        </div>
       </div>
+
       <Loading loader="bars" color="#C4A670" :active.sync="isLoading"></Loading>
       <router-view/>
+
       <footer class="bg-endless py-4">
         <div class="container">
           <div class="row no-gutters">
