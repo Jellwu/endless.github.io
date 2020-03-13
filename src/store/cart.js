@@ -27,11 +27,11 @@ export default {
       context.commit('LOADING', payload);
     },
     getCart(context,payload) {
-      context.commit('LOADING',true);
+      context.commit('cartModules/LOADING',true, {root:true});
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`;
       axios.get(url).then((response) => {
         context.commit('CART',response.data.data)
-        context.commit('LOADING',false);
+        context.commit('cartModules/LOADING',false, {root:true});
         // console.log('取得購物車', response.data.data);
       });
     },

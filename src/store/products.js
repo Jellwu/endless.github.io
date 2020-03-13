@@ -80,11 +80,6 @@ export default{
         context.commit('PAGES',pages);
       });
     },
-    // 抓過濾的產品資料
-    // getFilter(context, tag){
-    //   // context.dispatch('getProducts');
-    //   context.commit('FILTERDATA',tag);
-    // },
     // 抓單一產品id(要丟給明細頁面用的)
     getproductId(context, id){
       context.commit('PRODUCTID',id);

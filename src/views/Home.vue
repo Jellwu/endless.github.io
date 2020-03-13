@@ -73,30 +73,6 @@
       </div>
     </section>
 
-    <!-- <section id="sectionLink" class="bg-section" >
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-6 mt-5">
-            <div class="link-product">
-              <div class="box-link p-5 d-flex align-items-center">
-                <h2> <i class="fas fa-compact-disc fa-2x"></i> 收藏你的黑膠</h2>
-                <a href="#"></a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 mb-5">
-            <div class="link-coupon">
-              <div class="box-link">
-                <div>
-                  <h2>膠友們，交個朋友吧！</h2>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section> -->
-
     <section id="sectionLink" class="bg-News">
       <div class="row d-flex justify-content-center bg-underText align-items-center p-3">
         <div class="col-md-6">
