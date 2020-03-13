@@ -75,14 +75,17 @@ export default{
     };
   },
   methods:{
-    ...mapActions('cartModules', ['getCart']),
+    // ...mapActions('cartModules', ['getCart']),
+    getCart(payload){
+      this.$store.dispatch('cartModules/getCart',payload);
+    }
   },
   computed:{
     ...mapGetters('cartModules',['isLoading']),
     ...mapGetters('cartModules', ['cart']),
   },
   created(){
-    this.getCart();
+    this.getCart(true);
   }
 }
 

@@ -75,7 +75,7 @@
           </div>
         </div>
       </div>
-      
+
       <!-- 產品列表 -->
       <div class="col-md-8 ml-4">
         <div class="row d-flex justify-content-start">
@@ -198,7 +198,9 @@ export default {
       // this.pages = this.$store.state.productsModules.pages;
       // console.log(this.pages);
     },
-    ...mapActions('cartModules', ['getCart']),
+    getCart(payload){
+      this.$store.dispatch('cartModules/getCart',payload);
+    },
     removeCart(id) {
       this.$store.dispatch('cartModules/removeCart', id);
     },
@@ -218,7 +220,7 @@ export default {
   },
   created() {
     this.getProducts();
-    this.getCart();
+    this.getCart(true);
   }
 }
 </script>

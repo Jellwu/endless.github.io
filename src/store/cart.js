@@ -16,7 +16,7 @@ export default {
     },
     CART(state,payload){
       state.cart = payload;
-      console.log(state.cart);
+      // console.log(state.cart);
     },
     COUPONCODE(state, payload){
       state.couponCode = payload;
@@ -26,8 +26,7 @@ export default {
     updateLoading(context){
       context.commit('LOADING', payload);
     },
-    getCart(context) {
-      let payload = true;
+    getCart(context,payload) {
       context.commit('LOADING',payload);
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`;
       axios.get(url).then((response) => {
