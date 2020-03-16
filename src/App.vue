@@ -41,10 +41,10 @@
       <footer class="bg-endless py-4">
         <div class="container">
           <div class="row no-gutters">
-            <div class="col-md-4">
-              <p class="badge badge-pill badge-warning p-2">此網站僅供教學使用，無其他商業用途</p>
+            <div class="col-md-4 text-center mb-2">
+              <p class="badge badge-pill badge-warning px-3 py-2">此網站僅供教學使用，無其他商業用途</p>
             </div>
-            <div class="col-md-4 ">
+            <div class="col-md-4 mb-2">
               <div class="row d-flex justify-content-center">
                 <li class="list-inline-item">
                   <a class="text-endless" href="#">
@@ -57,13 +57,13 @@
                   </a>
                 </li>
                 <li class="list-inline-item">
-                  <a class="text-endless" href="#">
+                  <a class="text-endless"href="#">
                     <i class="fab fa-twitter fa-2x text-endless" aria-hidden="true"></i>
                   </a>
                 </li>
               </div>
             </div>
-            <div class="col-md-4 d-flex justify-content-end">
+            <div class="col-md-4 d-flex justify-content-center mb-2">
               <p class="text-word">Copyright © Jell's Website 2020</p>
             </div>
           </div>
@@ -225,5 +225,8 @@ h1,h2,h3,h4,h5,h6{
 p{
   padding:0px;
   margin:0px;
+}
+ul,li{
+  list-style: none;
 }
 </style>

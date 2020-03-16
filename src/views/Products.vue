@@ -6,7 +6,7 @@
       <h1 class="text-endless">黑膠專區</h1>
     </div>
   </div>
-  <div class="container-fluid my-5">
+  <div class="container-fluid mt-5">
     <div class="row no-gutters d-flex justify-content-center">
       <!-- sideBar -->
       <div class="col-md-3 mb-5">
@@ -86,10 +86,15 @@
               <div class="card-img-top card-img-bg" :style="{backgroundImage: 'url(' + item.imageUrl + ')' }">
               </div>
               <div class="card-body">
-                <p class="card-title py-2 m-0">
-                  {{ item.title }}
-                </p>
-                <div class="row">
+                <div class="row d-flex justify-context-center">
+                  <div class="col-md-12 card-title m-0">
+                    <p>
+                      {{ item.title }}
+                    </p>
+                  </div>
+                </div>
+
+                <div class="row mt-1">
                   <div class="col-md-6">
                     <div>
                       <span class="badge badge-warning mt-3 px-3 py-1">
@@ -98,13 +103,15 @@
                     </div>
                   </div>
                   <div class="col-md-6">
-                    <p class="text-secondary text-right pr-3 mb-0"><small><del class="text-white">{{item.origin_price}}</del></small></p>
-                    <p class="card-text text-right">{{item.price}}</p>
+                    <p class="text-secondary text-right pr-3 mb-0"><small><del class="text-white">{{item.origin_price |currency}}</del></small></p>
+                    <p class="card-text text-right">{{item.price |currency}}</p>
                   </div>
                 </div>
-                <div class="card-text">
-                  <span class="p-2">
-                    More<i class="fas fa-angle-double-right"></i>
+              </div>
+              <div class="card-foot">
+                <div class="card-text pb-2">
+                  <span>
+                    More <i class="fas fa-angle-double-right"></i>
                   </span>
                 </div>
               </div>
@@ -126,8 +133,8 @@
                     </span>
                   </div>
                   <div class="col-md-6">
-                    <p class="text-secondary text-right pr-3 mb-0"><small><del class="text-white">{{item.origin_price}}</del></small></p>
-                    <p class="card-text text-right">{{item.price}}</p>
+                    <p class="text-secondary text-right pr-3 mb-0"><small><del class="text-white">{{item.origin_price |currency}}</del></small></p>
+                    <p class="card-text text-right">{{item.price |currency}}</p>
                   </div>
                 </div>
                 <div class="card-text">
@@ -137,24 +144,27 @@
             </div>
           </div>
         </div>
-        <div class="row justify-content-center">
-          <nav aria-label="Page navigation example">
-            <ul class="pagination">
-              <li class="page-item" v-for="pages in pagination.total_pages"
-              v-if="searchText === ''"
-              :class="{'active':pagination.current_page === pages}"
-              @click.prevent = getProducts(pages)>
-                <a class="page-link" href="#">{{pages}}</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
       </div>
-      <!-- 產品分頁 -->
-    </div>
 
+    </div>
   </div>
-</div>
+        <!-- 產品分頁 -->
+        <div class="row d-flex justify-content-center mb-2">
+          <div class="col-md-12">
+            <div class="row justify-content-center">
+              <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                  <li class="page-item" v-for="pages in pagination.total_pages"
+                  v-if="searchText === ''"
+                  :class="{'active':pagination.current_page === pages}"
+                  @click.prevent = getProducts(pages)>
+                    <a class="page-link" href="#">{{pages}}</a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
 </div>
 </template>
 
@@ -293,6 +303,11 @@ ul,li{
 }
 
 .card-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height:60px;
+  min-width:240px;
   font-weight: bold;
   font-size: 18px;
   background-color: rgba(38, 38, 38, 0.8);

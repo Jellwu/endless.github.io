@@ -93,7 +93,7 @@
                     <input type="text" class="form-control" placeholder="輸入優惠券號碼" v-model="couponCode"
                    aria-label="Recipient's username" aria-describedby="button-addon2" disabled>
                     <div class="input-group-append">
-                      <button  class="btn btn-secondary" @click="cancelCoupon"
+                      <button  class="btn btn-outline-secondary" @click="cancelCoupon"
                       type="button" id="button-addon2">取消</button>
                     </div>
                   </div>

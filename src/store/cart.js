@@ -12,7 +12,6 @@ export default {
   mutations: {
     LOADING(state, payload){
       state.isLoading = payload;
-      console.log(state.isLoading);
     },
     CART(state,payload){
       state.cart = payload;

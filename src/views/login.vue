@@ -1,9 +1,9 @@
 <template>
   <div>
     <Loading :active.sync="isLoading"></Loading>
-    <div class="container text-endless">
+    <div class="container text-endless mt-5">
       <form class="form-signin my-5 p-3 ml-auto mr-auto border border-1" @submit.prevent="singin">
-        <h1 class="h3 mb-5 mt-2 font-weight-normal text-warning text-center">登入頁面</h1>
+        <h1 class="h3 mb-5 mt-2 font-weight-normal text-warning text-center">管理者 登入</h1>
         <label class="text-left" for="inputEmail">Email address</label>
         <input v-model="user.username" type="email" id="inputEmail" class="form-control"
         placeholder="Email address" required autofocus>
@@ -51,6 +51,12 @@ computed:{
 <style lang="scss" scoped>
 input{
     margin-bottom: 15px;
+}
+.container{
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .form-signin {
   width: 100%;

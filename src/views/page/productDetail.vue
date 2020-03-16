@@ -51,7 +51,7 @@
                   </option>
                 </select>
                 <div class="input-group-append">
-                  <button class="btn btn-outline-warning" type="button">
+                  <button class="btn btn-outline-warning" type="button" @click.prevent = addtoCart(productDetail.id,productNum)>
                     <i class="fas fa-plus-circle"></i>
                   </button>
                 </div>
@@ -59,7 +59,8 @@
             </div>
           </div>
           <div class="col-md-4 text-right">
-            <button class="btn btn-outline-warning" type="button" name="button">回產品頁</button>
+            <router-link to="/" class="btn btn-outline-warning" type="button" name="button">
+              回產品頁</router-link>
           </div>
         </div>
       </div>
