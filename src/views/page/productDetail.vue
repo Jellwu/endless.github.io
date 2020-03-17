@@ -18,55 +18,58 @@
             <span class="h4 text-warning font-weight-bolder">特價:{{productDetail.price | currency}}</span>
           </div>
         </div>
-        <hr class="px-5">
       </div>
-      <div class="bg-box-endless rounded py-4 px-2">
-        <div class="text-endless mb-3">
-          <div class="text-center h4 mb-3"> 加入購物車
-              <i class="fas fa-sort-down"></i>
-          </div>
-          <ul class="pl-2 text-center">
-            <li class="mb-1">
-              <span class="badge badge-pill badge-info mr-1">線上刷卡</span>
-              <span class="badge badge-pill badge-success mr-1">貨到付款</span>
-              <span class="badge badge-pill badge-light">轉帳付費</span>
-            </li>
-            <li>
-              <span class="badge badge-pill badge-success mr-1">超商取貨</span>
-              <span class="badge badge-pill badge-info">黑貓宅配</span>
-            </li>
-          </ul>
-        </div>
-        <div class="row no-gutters d-flex align-items-end justify-content-around">
-          <div class="col-md-8">
-            <div>
-              <div class="text-warning font-weight-bolder ml-4 mb-1" v-if="subtotal">
-                小計：{{subtotal |currency}}
+    </div>
+  </div>
+      <hr class="px-5">
+      <div class="row">
+        <div class="col-md-12 d-flex justify-content-center">
+          <div class="bg-box-endless rounded py-4 px-2">
+            <div class="text-endless mb-3">
+              <div class="text-center h4 mb-3"> 加入購物車
+                  <i class="fas fa-sort-down"></i>
               </div>
-              <div class="input-group">
-                <select class="custom-select border border-warning text-dark"
-                id="inputGroupSelect04" v-model="productNum">
-                  <option v-for="num in 10" :value="num">
-                    選購 {{num}} {{productDetail.unit}}
-                  </option>
-                </select>
-                <div class="input-group-append">
-                  <button class="btn btn-outline-warning" type="button" @click.prevent = addtoCart(productDetail.id,productNum)>
-                    <i class="fas fa-plus-circle"></i>
-                  </button>
+              <ul class="pl-2 text-center">
+                <li class="mb-1">
+                  <span class="badge badge-pill badge-info mr-1">線上刷卡</span>
+                  <span class="badge badge-pill badge-success mr-1">貨到付款</span>
+                  <span class="badge badge-pill badge-light">轉帳付費</span>
+                </li>
+                <li>
+                  <span class="badge badge-pill badge-success mr-1">超商取貨</span>
+                  <span class="badge badge-pill badge-info">黑貓宅配</span>
+                </li>
+              </ul>
+            </div>
+            <div class="row no-gutters d-flex align-items-center justify-content-around">
+              <div class="col-md-8">
+                <div>
+                  <div class="input-group">
+                    <select class="custom-select border border-warning text-dark"
+                    id="inputGroupSelect04" v-model="productNum">
+                      <option v-for="num in 10" :value="num">
+                        選購 {{num}} {{productDetail.unit}}
+                      </option>
+                    </select>
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-warning" type="button" @click.prevent = 'addtoCart(productDetail.id,productNum)'>
+                        <i class="fas fa-plus-circle"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="text-warning font-weight-bolder ml-4 mb-1" v-if="subtotal">
+                    小計：{{subtotal |currency}}
+                  </div>
                 </div>
+              </div>
+              <div class="col-md-2">
+                  <router-link to="/productList" class="btn btn-outline-warning" type="button" name="button">
+                    回產品頁</router-link>
               </div>
             </div>
           </div>
-          <div class="col-md-4 text-right">
-            <router-link to="/" class="btn btn-outline-warning" type="button" name="button">
-              回產品頁</router-link>
-          </div>
         </div>
       </div>
-
-    </div>
-  </div>
 </div>
 </template>
 

@@ -3,17 +3,7 @@ import axios from 'axios';
 export default{
   namespaced:true,
   state: {
-    production:{
       products:[],
-      pagination:{
-        current_page:1,
-        total_pages:1,
-        has_pre:false,
-        has_next:false,
-        num_page:6,
-        pageStart:1,
-      },
-    },
       categories:[],
       productId:'',
       product:{},
@@ -21,7 +11,7 @@ export default{
   mutations: {
     // 全產品寫入
     PRODUCTS(state, payload){
-      state.production.products = payload;
+      state.products = payload;
         },
     // 分類資料寫入
     CATEGORIES(state, payload){
@@ -32,17 +22,17 @@ export default{
       state.categories = Array.from(categories);
     },
     // 分頁資料寫入
-    PAGES(state, payload){
-      // 計算頁面總數
-      let totoalPage = Math.ceil(state.production.products.length / state.production.pagination.num_page);
-      state.production.pagination.total_pages = totoalPage;
-
-      // 計算產品顯示筆數(給產品跑迴圈 -> data.slice(start,end)
-      let pagestart = (payload - 1) * state.production.pagination.num_page;
-      state.production.pagination.pageStart = pagestart;
-
-      // 跳頁資料寫入(修改現在頁數)
-      state.production.pagination.current_page = payload;
+    // PAGES(state, payload){
+    //   // 計算頁面總數
+    //   let totoalPage = Math.ceil(state.production.products.length / state.production.pagination.num_page);
+    //   state.production.pagination.total_pages = totoalPage;
+    //
+    //   // 計算產品顯示筆數(給產品跑迴圈 -> data.slice(start,end)
+    //   let pagestart = (payload - 1) * state.production.pagination.num_page;
+    //   state.production.pagination.pageStart = pagestart;
+    //
+    //   // 跳頁資料寫入(修改現在頁數)
+    //   state.production.pagination.current_page = payload;
 
       // 修改上下頁狀態
       // if(payload > 1){
@@ -50,7 +40,6 @@ export default{
       // }else if (payload < totoalPage){
       //   state.production.pagination.has_next = true;
       // }
-    },
     // 單一產品的ID
     PRODUCTID(state, payload){
       state.productId = payload;
@@ -64,8 +53,7 @@ export default{
     UPDATEPRODUCT(state,payload){
       state.product = payload;
       console.log(state.product);
-    }
-
+    },
   },
   actions: {
     // 抓全產品資料
@@ -144,16 +132,10 @@ export default{
       return state.categories;
     },
     products(state){
-      return state.production.products;
+      return state.products;
     },
     productDetail(state){
       return state.product;
     },
-    pagination(state){
-      return state.production.pagination;
-    },
-    filterProducts(state){
-      return  state.filterProduct.products;
-    }
   }
 }

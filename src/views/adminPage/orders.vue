@@ -4,12 +4,12 @@
     <table class="table ml-auto mt-4 text-endless">
       <thead class="thead-dark">
         <tr>
-          <th width="175px">訂單時間</th>
+          <th width="110px">訂單時間</th>
           <th>訂單編號</th>
           <th>訂購人</th>
           <th>產品資訊</th>
           <th>價格</th>
-          <th>付款時間</th>
+          <th width="110px">付款時間</th>
           <th>付款狀態</th>
         </tr>
       </thead>

@@ -137,8 +137,6 @@ export default {
     },
     getProducts(pages = 1) {
       this.$store.dispatch('productsModules/getProducts',pages);
-      // this.pages = this.$store.state.productsModules.pages;
-      // console.log(this.pages);
     },
   },
   created(){
@@ -147,7 +145,7 @@ export default {
   mounted() {
     window.addEventListener('scroll', this.handleScroll);
     // carousel autoplay do not stop on flag change
-    $('.carousel').carousel('cycle');
+
     },
   destroyed() {
     window.removeEventListener('scroll', this.handleScroll);

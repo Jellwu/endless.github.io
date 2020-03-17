@@ -17,8 +17,7 @@
             <i class="pl-1 fas fa-sort-down fa-x"></i>
           </div>
           <div class="pl-md-4">
-            <div class="badge badge-pill badge-warning mx-2 my-1 py-md-2"
-                v-for="items in categories" :key="items">
+            <div class="badge badge-pill badge-warning mx-2 my-1 py-md-2" v-for="items in categories" :key="items">
               <i class="fas fa-tag mx-1 fa" style="font-size:13px"></i>
               <span class="cursor px-1 h6" @click.prevent="searchText = items">
                 {{items}}
@@ -79,9 +78,7 @@
       <!-- 產品列表 -->
       <div class="col-md-8 ml-4">
         <div class="row d-flex justify-content-start">
-          <!-- 全產品顯示 -->
-          <div class="card-deck col-md-4 mb-4" v-if="searchText === ''"
-            v-for="(item) in products.slice(pagination.pageStart, pagination.pageStart + pagination.num_page)" :key="item.id">
+          <div class="card-deck col-md-4 mb-4" v-for="(item) in filterData[currentPage]" :key="item.id">
             <div class="card product-card text-center" @click.prevent="getproductId(item.id)">
               <div class="card-img-top card-img-bg" :style="{backgroundImage: 'url(' + item.imageUrl + ')' }">
               </div>
@@ -115,56 +112,26 @@
                   </span>
                 </div>
               </div>
-
-            </div>
-          </div>
-          <!-- 過濾產品顯示 -->
-          <div class="card-deck col-md-4 mb-4"
-            v-for="(item) in filterData" :key="item.id" v-if="searchText !== ''">
-            <div class="card product-card text-center" @click.prevent="getproductId(item.id)">
-              <div class="card-img-top card-img-bg" :style="{backgroundImage: 'url(' + item.imageUrl + ')' }">
-              </div>
-              <div class="card-body product-card-body">
-                <p class="card-title py-2 m-0">{{ item.title }}</p>
-                <div class="row">
-                  <div class="col-md-6">
-                    <span class="badge badge-warning mt-3 px-3 py-1">
-                      <i class="fas fa-tag mr-2"></i>{{item.category}}
-                    </span>
-                  </div>
-                  <div class="col-md-6">
-                    <p class="text-secondary text-right pr-3 mb-0"><small><del class="text-white">{{item.origin_price |currency}}</del></small></p>
-                    <p class="card-text text-right">{{item.price |currency}}</p>
-                  </div>
-                </div>
-                <div class="card-text">
-                  More <i class="fas fa-angle-double-right"></i>
-                </div>
-              </div>
             </div>
           </div>
         </div>
       </div>
-
     </div>
   </div>
-        <!-- 產品分頁 -->
-        <div class="row d-flex justify-content-center mb-2">
-          <div class="col-md-12">
-            <div class="row justify-content-center">
-              <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                  <li class="page-item" v-for="pages in pagination.total_pages"
-                  v-if="searchText === ''"
-                  :class="{'active':pagination.current_page === pages}"
-                  @click.prevent = getProducts(pages)>
-                    <a class="page-link" href="#">{{pages}}</a>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-          </div>
-        </div>
+  <!-- 產品分頁 -->
+  <div class="row d-flex justify-content-center mb-2">
+    <div class="col-md-12">
+      <div class="row justify-content-center">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item" v-for="pages in filterData.length" @click.prevent='currentPage = pages - 1' :class="{active: currentPage === pages - 1}">
+              <a class="page-link" href="#">{{pages}}</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
 </div>
 </template>
 
@@ -182,34 +149,48 @@ export default {
     return {
       searchText: '',
       ishover: true,
+      currentPage: 0,
+      pageNum: 6,
     };
   },
   computed: {
     filterData() {
       const vm = this;
+      const newData = [];
       // 重新抓一次產品資料做過濾
-      let products = this.$store.state.productsModules.production.products;
-      if(vm.searchText){
-        return products.filter((item) =>{
+      let products = this.$store.state.productsModules.products;
+      // 針對全產品第一次過濾
+      if (vm.searchText) {
+        vm.currentPage = 0;
+        products = products.filter((item) => {
           const data = item.category.toLowerCase().includes(vm.searchText.toLowerCase());
           return data;
         })
       }
-      return products;
+      // 分頁過濾(6筆/1頁)
+      products.forEach((item, i) => {
+        // 取餘數建立頁數
+        if (i % vm.pageNum === 0) {
+          newData.push([])
+        }
+        const page = parseInt(i / vm.pageNum)
+        newData[page].push(item)
+      });
+      return newData;
     },
-    ...mapGetters('productsModules', ['products','categories','pagination']),
-    ...mapGetters('cartModules', ['cart','isLoading']),
+    ...mapGetters('productsModules', ['products', 'categories']),
+    ...mapGetters('cartModules', ['cart', 'isLoading']),
 
   },
   methods: {
     // 抓全產品資料
     getProducts(pages = 1) {
-      this.$store.dispatch('productsModules/getProducts',pages);
+      this.$store.dispatch('productsModules/getProducts', pages);
       // this.pages = this.$store.state.productsModules.pages;
       // console.log(this.pages);
     },
-    getCart(payload){
-      this.$store.dispatch('cartModules/getCart',payload);
+    getCart(payload) {
+      this.$store.dispatch('cartModules/getCart', payload);
     },
     removeCart(id) {
       this.$store.dispatch('cartModules/removeCart', id);
@@ -224,9 +205,6 @@ export default {
     gocart() {
       this.$router.push(`/cart`);
     },
-    setPage(page){
-      this.$store.dispatch('productsModules/setPage', page);
-    },
   },
   created() {
     this.getProducts();
@@ -238,18 +216,21 @@ export default {
 /* .product-bg-color{
     background-color: #262626;
   } */
-ul,li{
+ul,
+li {
   list-style: none;
-  margin:0px;
-  padding:0px;
+  margin: 0px;
+  padding: 0px;
 }
-.product-banner{
+
+.product-banner {
   background-image: url('https://images.unsplash.com/photo-1530288782965-fbad40327074?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  height:300px;
+  height: 300px;
 }
+
 .card-body {
   height: 170px;
 }
@@ -265,7 +246,8 @@ ul,li{
   background-color: #594539;
   color: #F3F6E0;
 }
-.product-menu .title{
+
+.product-menu .title {
   font-size: 20px;
   font-weight: bold;
   text-indent: 15px;
@@ -306,8 +288,8 @@ ul,li{
   display: flex;
   align-items: center;
   justify-content: center;
-  height:60px;
-  min-width:240px;
+  height: 60px;
+  min-width: 240px;
   font-weight: bold;
   font-size: 18px;
   background-color: rgba(38, 38, 38, 0.8);
@@ -325,11 +307,12 @@ ul,li{
   font-weight: bold;
 }
 
-.cursor{
-  cursor:pointer;
+.cursor {
+  cursor: pointer;
 }
-.position-absolute .box{
+
+.position-absolute .box {
   z-index: 5;
-  background-color: rgba(0,0,0,0.3);
+  background-color: rgba(0, 0, 0, 0.3);
 }
 </style>

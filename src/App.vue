@@ -1,16 +1,27 @@
 <template>
     <div id="app">
       <div id="nav">
-        <div class="container">
-          <nav class="navbar navbar-expand-lg navbar-dark nav-bg p-0 fixed-top"  id="mainNav">
-          <div class="container">
-            <button class="navbar-toggler ml-3"  type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+        <nav class="navbar navbar-expand-lg navbar-dark nav-bg p-0 fixed-top">
+          <div class="container-md p-0" style="max-width:1200px">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
             </button>
-            <router-link class="navbar-brand logo-text p-0" to="/">Endless</router-link>
-            <div class="collapse navbar-collapse" id="navbarContent">
-              <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
+            <router-link class="logo-text mr-5" to="/">Endless</router-link>
+            <ul class="navbar-nav order-md-1" style="display:inline">
+              <li class="nav-item py-1 pl-2" style="display:inline">
+                <router-link class="text-endless" href="#" to="/cart">
+                  <i class="fas fa-shipping-fast">
+                    <span class="badge badge-pill badge-danger">{{cart.carts.length}}</span>
+                  </i>
+                </router-link>
+              </li>
+              <li class="nav-item py-1 pl-2" style="display:inline">
+                <router-link class="text-endless" href="#" to="/login"><i class="fas fa-user-cog"></i></router-link>
+              </li>
+            </ul>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item active">
                   <router-link class="nav-item nav-link mx-2" to="/"><span class="underline">關於黑膠</span></router-link>
                 </li>
                 <li class="nav-item">
@@ -18,34 +29,22 @@
                 </li>
               </ul>
             </div>
-            <div class="adminArea collapse navbar-collapse" id="navbarContent">
-              <ul class="navbar-nav ml-auto">
-                <li class="nav-item py-1 pl-2">
-                  <router-link class="text-endless" href="#" to="/cart"><i class="fas fa-shipping-fast">
-                    <span class="badge badge-pill badge-danger">{{cart.carts.length}}</span>
-                  </i></router-link>
-                </li>
-                <li class="nav-item py-1 pl-2">
-                  <router-link class="text-endless" href="#" to="/login"><i class="fas fa-user-cog"></i></router-link>
-                </li>
-              </ul>
-            </div>
           </div>
-          </nav>
-        </div>
+        </nav>
       </div>
-
       <Loading loader="bars" color="#C4A670" :active.sync="isLoading"></Loading>
       <router-view/>
-
-      <footer class="bg-endless py-4">
-        <div class="container">
-          <div class="row no-gutters">
-            <div class="col-md-4 text-center mb-2">
-              <p class="badge badge-pill badge-warning px-3 py-2">此網站僅供教學使用，無其他商業用途</p>
+      <footer class="bg-footer">
+        <div class="container-md" style="max-width: 1210px;">
+          <div class="row no-gutters py-1">
+            <div class="col-md-10  d-flex justify-content-center align-items-end">
+              <div>
+                <p class="text-word">Copyright © Jell's Website 2020</p>
+                <p class="badge badge-pill badge-warning px-3 py-2">此網站僅供教學使用，無其他商業用途</p>
+              </div>
             </div>
-            <div class="col-md-4 mb-2">
-              <div class="row d-flex justify-content-center">
+            <div class="col-md-2 d-flex justify-content-end align-items-center content-center">
+              <div>
                 <li class="list-inline-item">
                   <a class="text-endless" href="#">
                     <i class="fab fa-instagram fa-2x text-endless" aria-hidden="true"></i>
@@ -62,9 +61,6 @@
                   </a>
                 </li>
               </div>
-            </div>
-            <div class="col-md-4 d-flex justify-content-center mb-2">
-              <p class="text-word">Copyright © Jell's Website 2020</p>
             </div>
           </div>
         </div>
@@ -114,20 +110,28 @@ export default{
 }
 
 #app .logo-text{
-  display: inline-block;
   text-decoration: none;
   font-family:'Brush Script MT',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
-  font-size: 40px;
-  background: -webkit-linear-gradient(60deg,white,#1B72BF);
+  font-size: 38px;
+  font-weight: bold;
+  background: -webkit-linear-gradient(-30deg,#321c13,#cbb484);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding:0px;
+  margin:0px;
+}
+#app .logo-text:hover{
+  background: -webkit-linear-gradient(45deg,#482c1d,#321c13);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-#app .logo-text:hover{
-  background: -webkit-linear-gradient(30deg,#1B72BF,white);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+#app .navbar-size{
+  width: 100%;
+  position: relative;
+  max-width: 1180px;
+  margin: auto;
 }
 
 #nav {
@@ -176,7 +180,18 @@ i:hover{
   color:#F3F6E0;
 }
 .nav-bg{
-  background-color: #594539;
+  width:100%;
+  background-color: rgba(0,0,0,0);
+  background-image: url('assets/bg-nav.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.bg-footer{
+  background-image: url('assets/bg-footer.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .text-endless{
   color:#F3F6E0;
@@ -196,24 +211,17 @@ footer .text-word{
   font-weight: bold;
 }
 footer .text-endless{
-  color:#F3F6E0;
+  color:#321c13;
   font-weight: bold;
 }
 footer .text-endless:hover{
   color:#BF8F65;
 }
+footer .content-center{
+  display: flex;
+  justify-content: flex-end;
+}
 
-// .cartspace{
-//   color:black;
-//   text-align: center;
-//   position: fixed;
-//   padding:10px;
-//   right:15px;
-//   top:10px;
-//   z-index:10px;
-//   border:1px solid black;
-//   border-radius: 50%;
-// }
 h1,h2,h3,h4,h5,h6{
   padding:0px;
   margin:0px;
@@ -228,5 +236,22 @@ p{
 }
 ul,li{
   list-style: none;
+}
+
+@media (min-width: 768px){
+.order-md-1 {
+    -webkit-box-ordinal-group: 2;
+    -ms-flex-order: 1;
+    order: 1;
+}
+}
+@media (max-width: 768px){
+footer .content-center{
+  justify-content: center;
+  padding:10px 0px 0px 0px;
+}
+footer .text-endless{
+    color:#F3F6E0;
+}
 }
 </style>
