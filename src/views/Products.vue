@@ -35,11 +35,12 @@
           <hr class="text-white px-3">
           <div v-if="cart.carts.length !== 0">
             <div>
-              <span class="mt-5 mb-3 title pl-4">
-                購物清單
+              <span class="title">
+                <i class="fas fa-tags mt-5 mb-3"></i>
+                <span class="px-2">Order List</span>
               </span>
-              <span class="badge badge-warning">{{cart.carts.length}}</span>
-              <i class="pl-1 fas fa-sort-down fa-x"></i>
+              <span class="badge badge-warning px-1">{{cart.carts.length}}</span>
+              <i class="fas fa-sort-down fa-x ml-1"></i>
             </div>
             <ul class="d-flex flex-column mb-2">
               <li class="row no-gutters px-3 py-2" v-for="items in cart.carts" :key="items.id">
@@ -78,7 +79,7 @@
       <!-- 產品列表 -->
       <div class="col-md-8 ml-4">
         <div class="row d-flex justify-content-start">
-          <div class="card-deck col-md-4 mb-4" v-for="(item) in filterData[currentPage]" :key="item.id">
+          <div class="card-deck col-md-4 mb-4" v-for="(item) in filterData[itemPage]" :key="item.id">
             <div class="card product-card text-center" @click.prevent="getproductId(item.id)">
               <div class="card-img-top card-img-bg" :style="{backgroundImage: 'url(' + item.imageUrl + ')' }">
               </div>
@@ -121,12 +122,26 @@
   <!-- 產品分頁 -->
   <div class="row d-flex justify-content-center mb-2">
     <div class="col-md-12">
+      <div class="text-white">
+      {{currentPage}}
+      </div>
       <div class="row justify-content-center">
         <nav aria-label="Page navigation example">
           <ul class="pagination">
-            <li class="page-item" v-for="pages in filterData.length" @click.prevent='currentPage = pages - 1' :class="{active: currentPage === pages - 1}">
+            <!-- <li class="page-item" >
+              <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li> -->
+            <li class="page-item" v-for="pages in filterData.length" @click.prevent='itemPage = pages - 1'
+            :class="{active: itemPage === pages - 1}">
               <a class="page-link" href="#">{{pages}}</a>
             </li>
+            <!-- <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li> -->
           </ul>
         </nav>
       </div>
@@ -149,7 +164,8 @@ export default {
     return {
       searchText: '',
       ishover: true,
-      currentPage: 0,
+      currentPage: 1,
+      itemPage:0,
       pageNum: 6,
     };
   },
@@ -161,7 +177,7 @@ export default {
       let products = this.$store.state.productsModules.products;
       // 針對全產品第一次過濾
       if (vm.searchText) {
-        vm.currentPage = 0;
+        vm.itemPage = 0;
         products = products.filter((item) => {
           const data = item.category.toLowerCase().includes(vm.searchText.toLowerCase());
           return data;

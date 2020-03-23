@@ -43,7 +43,7 @@
                 <p class="badge badge-pill badge-warning px-3 py-2">此網站僅供教學使用，無其他商業用途</p>
               </div>
             </div>
-            <div class="col-md-2 d-flex justify-content-end align-items-center content-center">
+            <div class="col-md-2 d-flex align-items-center content-center">
               <div>
                 <li class="list-inline-item">
                   <a class="text-endless" href="#">
@@ -56,9 +56,9 @@
                   </a>
                 </li>
                 <li class="list-inline-item">
-                  <a class="text-endless"href="#">
-                    <i class="fab fa-twitter fa-2x text-endless" aria-hidden="true"></i>
-                  </a>
+                  <router-link to="/profile">
+                    <i class="far fa-address-card fa-2x text-endless"></i>
+                  </router-link>
                 </li>
               </div>
             </div>
@@ -182,13 +182,13 @@ i:hover{
 .nav-bg{
   width:100%;
   background-color: rgba(0,0,0,0);
-  background-image: url('assets/bg-nav.png');
+  background-image: url('assets/images/bg-nav.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 .bg-footer{
-  background-image: url('assets/bg-footer.png');
+  background-image: url('assets/images/bg-footer.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

@@ -21,25 +21,6 @@ export default{
       });
       state.categories = Array.from(categories);
     },
-    // 分頁資料寫入
-    // PAGES(state, payload){
-    //   // 計算頁面總數
-    //   let totoalPage = Math.ceil(state.production.products.length / state.production.pagination.num_page);
-    //   state.production.pagination.total_pages = totoalPage;
-    //
-    //   // 計算產品顯示筆數(給產品跑迴圈 -> data.slice(start,end)
-    //   let pagestart = (payload - 1) * state.production.pagination.num_page;
-    //   state.production.pagination.pageStart = pagestart;
-    //
-    //   // 跳頁資料寫入(修改現在頁數)
-    //   state.production.pagination.current_page = payload;
-
-      // 修改上下頁狀態
-      // if(payload > 1){
-      //   state.production.pagination.has_pre = true;
-      // }else if (payload < totoalPage){
-      //   state.production.pagination.has_next = true;
-      // }
     // 單一產品的ID
     PRODUCTID(state, payload){
       state.productId = payload;
@@ -57,15 +38,12 @@ export default{
   },
   actions: {
     // 抓全產品資料
-    getProducts(context ,pages) {
-      // const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products?page=${pages}`;
+    getProducts(context) {
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`;
-      // vm.$store.state.isLoading = true;
       axios.get(url).then((response) => {
         // 將api取到的資料抓出來，準備給mutation改寫
         context.commit('PRODUCTS',response.data.products);
         context.commit('CATEGORIES',response.data.products);
-        context.commit('PAGES',pages);
       });
     },
     // 抓單一產品id(要丟給明細頁面用的)
@@ -122,9 +100,6 @@ export default{
         })
       });
     },
-    setPage(context,page){
-      context.commit('SETPAGE',page);
-    }
   },
   // 給computed的mapGetters使用
   getters:{

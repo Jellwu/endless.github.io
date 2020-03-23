@@ -3,23 +3,25 @@
   <div class="box"></div>
   <div class="row">
     <div class="col-md-6 d-flex justify-content-center">
-      <img class="img-fluid" :src="productDetail.imageUrl" alt="">
+      <img class="img-fluid rounded" :src="productDetail.imageUrl" alt="">
     </div>
-    <div class="col-md-6">
-      <div class="text-endless">
-        <h2 class="my-3">
-          <span><i class="fas fa-crown text-warning"></i></span>
-          {{productDetail.title}}
-        </h2>
-        <p class="mb-2" style="text-indent : 2em;">{{productDetail.content}}</p>
-        <div class="row d-flex justify-content-end pr-3">
-          <div>
+      <div class="col-md-6 d-flex flex-column justify-content-around">
+        <div class="text-endless">
+          <h2 class="my-3">
+            <span><i class="fas fa-crown text-warning"></i></span>
+            {{productDetail.title}}
+          </h2>
+          <p class="mb-2" style="text-indent : 2em;">{{productDetail.content}}</p>
+          <p style="text-indent : 2em;">{{productDetail.description}}</p>
+          <div class="text-right">
             <del class="font-weight-lighter"><span class="my-2">原價：{{productDetail.origin_price | currency}}</span></del><br>
             <span class="h4 text-warning font-weight-bolder">特價:{{productDetail.price | currency}}</span>
           </div>
         </div>
+        <div class="text-right">
+            <router-link to="/productList" class="btn btn-outline-warning" type="button" name="button">回產品頁</router-link>
+        </div>
       </div>
-    </div>
   </div>
       <hr class="px-5">
       <div class="row">
@@ -41,30 +43,27 @@
                 </li>
               </ul>
             </div>
-            <div class="row no-gutters d-flex align-items-center justify-content-around">
-              <div class="col-md-8">
+            <div class="row no-gutters d-flex align-items-center justify-content-center">
+              <div class="col-md-6">
                 <div>
-                  <div class="input-group">
-                    <select class="custom-select border border-warning text-dark"
-                    id="inputGroupSelect04" v-model="productNum">
-                      <option v-for="num in 10" :value="num">
-                        選購 {{num}} {{productDetail.unit}}
-                      </option>
-                    </select>
-                    <div class="input-group-append">
-                      <button class="btn btn-outline-warning" type="button" @click.prevent = 'addtoCart(productDetail.id,productNum)'>
-                        <i class="fas fa-plus-circle"></i>
-                      </button>
-                    </div>
-                  </div>
                   <div class="text-warning font-weight-bolder ml-4 mb-1" v-if="subtotal">
                     小計：{{subtotal |currency}}
                   </div>
+                  <div class="input-group">
+                    <select class="custom-select border border-warning text-dark"
+                    id="inputGroupSelect04" v-model="productNum">
+                      <option :value="0" selected disabled>--請選購數量--</option>
+                      <option :value="num" v-for="num in 10">
+                        選購 {{num}} {{productDetail.unit}}
+                      </option>
+                    </select>
+                    <div class="input-group-append text-right">
+                      <button class="btn btn-outline-warning" type="button" @click.prevent = 'addtoCart(productDetail.id,productNum)'>
+                        購物車 <i class="fas fa-plus-circle"></i>
+                      </button>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div class="col-md-2">
-                  <router-link to="/productList" class="btn btn-outline-warning" type="button" name="button">
-                    回產品頁</router-link>
               </div>
             </div>
           </div>
@@ -84,7 +83,7 @@ export default {
   name: 'Product',
   data() {
     return {
-      productNum:1,
+      productNum:0,
     };
   },
   computed: {
