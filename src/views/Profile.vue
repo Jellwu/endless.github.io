@@ -5,18 +5,19 @@
         <h1 class="text-endless">關於作者</h1>
       </div>
     </div>
-    <div class="container bg-opacity mt-5" style="width:1180px;">
+    <div class="container bg-opacity my-5" style="width:1180px;">
+      <Loading loader="bars" color="#C4A670" :active.sync="isLoading"></Loading>
       <!-- header -->
       <div class="header d-flex justify-content-center">
-        <div class="col-md-7 text-endless d-flex flex-column justify-content-end align-items-center" style="bottom:-45px;">
+        <div class="col-md-7 text-endless d-flex flex-column justify-content-end align-items-center" style="bottom:-65px;">
           <div class="profil-img d-flex flex-column align-items-center">
             <img src="./view-img/profileImg.jpg" alt="...">
             <h5 class="pt-3">吳哲宇</h5>
             <span class="text-warning pt-1">Web developer</span>
           </div>
         </div>
-        <div class="col-md-5 text-endless d-flex flex-column justify-content-center">
-          <ul>
+        <div class="col-md-4 text-endless d-flex flex-column justify-content-center">
+          <ul class="p-0">
             <li>
               <i class="fas fa-map-marker-alt"></i>
               <span>Kaohsiung</span>
@@ -25,12 +26,18 @@
               <i class="far fa-envelope"></i>
               <span>Jell9916@gmail.com</span>
             </li>
+            <li>
+              <i class="fab fa-github"></i>
+              <span>Jellwu</span>
+            </li>
           </ul>
         </div>
       </div>
        <!-- content-skill -->
       <div class="skill rounded">
-        <h3 class="text-center pt-5 text-endless">Morden Web Skill</h3>
+        <h3 class="pt-5 text-endless border-skill ml-3">
+          <span class="bg-skill-text">Morden Web Skill</span>
+        </h3>
         <div class="row text-white py-5 justify-content-around">
           <div class="col-md-3 d-flex justify-content-center shadow-1 my-4">
             <div class="mt-3">
@@ -76,16 +83,20 @@
 
       <!-- content works -->
       <div class="works rounded text-endless my-5">
-        <h3 class="text-center pt-2 text-endless">Works 作品集</h3>
+        <div class="d-flex justify-content-end mr-3">
+          <h3 class="text-right pt-2 text-endless border-works">
+            <span class="bg-work-text">Core skills Learning</span>
+          </h3>
+        </div>
         <div class="row d-flex flex-column align-items-center">
-          <div class="col-11 my-5">
-            <div class="row d-flex">
+          <div class="col-11 my-5 bg-opacity shadow">
+            <div class="row d-flex works-1 p-2">
               <div class="col-5">
                 <div class="pic-1">
                 </div>
               </div>
               <div class="col-7 textArea">
-                <p>HTML/CSS+FLEX 網頁排版</p>
+                  <p>HTML/CSS+FLEX 網頁排版</p>
                 <span>
                   完成六角學院「HTML / CSS」、「Flex」排版的相關課程，Flex排版的精神時光屋也提交任務，熟稔基礎HTML架構與CSS相關排版，
                   對於Flex的排版方式也不斷的精進，針對此技能有一定的程度，期望碰到夥伴能彼此切磋更多不同的經驗。
@@ -93,8 +104,8 @@
               </div>
             </div>
           </div>
-          <div class="col-11 my-3">
-            <div class="row d-flex flex-row-reverse">
+          <div class="col-11 my-3 shadow p-2">
+            <div class="row d-flex flex-row-reverse works-2">
               <div class="col-5">
                 <div class="pic-2">
                 </div>
@@ -108,8 +119,8 @@
               </div>
             </div>
           </div>
-          <div class="col-11 mt-3 mb-5">
-            <div class="row d-flex">
+          <div class="col-11 mt-3 mb-5 shadow p-2">
+            <div class="row d-flex works-3">
               <div class="col-5">
                 <div class="pic-3">
                 </div>
@@ -117,7 +128,7 @@
               <div class="col-7 textArea">
                 <p>Vue.js / VueCli3 / Vuex</p>
                 <span>
-                  完成六角學院「Vue出一個電商」、「Vuex架構撰寫電商網頁」架站的相關課程，此網站即是以Vuex框架作為開發架構，針對此塊內容
+                  完成六角學院「Vue出一個電商」、「Vuex架構撰寫電商網頁」架站的相關課程，此網站即是以Vuex框架作為開發架構，針對此塊內容還在
                   持續精進；希望能更了解前端最新的知識，由於前端相關技術的版本不斷更新，在撰寫此網站時已經很習慣用google或相關技術論壇去
                   解決問題，持續吸收更多新知。
                 </span>
@@ -129,9 +140,13 @@
 
       <!-- content About -->
       <div class="about">
-        <h3 class="text-center text-endless">About 吳哲宇</h3>
-        <div class="row d-flex justify-content-around text-endless py-5">
-          <div class="col-md-4">
+        <div class="d-flex justify-content-center mr-3">
+          <h3 class="text-center pt-2 text-endless border-about">
+            <span class="bg-about-text">About 吳哲宇 / Jell</span>
+          </h3>
+        </div>
+        <div class="row d-flex justify-content-center text-endless py-5">
+          <div class="col-md-4 mr-5">
             <img src="https://i.imgur.com/3w2Ae46.jpg" alt="..." style="height:450px;">
           </div>
           <div class="col-md-6">
@@ -188,7 +203,7 @@ computed:{
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  height: 350px;
+  height: 300px;
 }
 .bg-opacity{
   background-color:rgba(0,0,0,0.1);
@@ -218,6 +233,16 @@ font-size:18px;
   list-style: circle;
   padding:0px;
 }
+.bg-skill-text{
+  padding:8px 12px 0px 12px;
+  background-color: #9BB5BF;
+  color:#262626;
+  border-radius: 5px 5px 0px 0px;
+}
+.border-skill{
+  border-bottom: 4px solid #9BB5BF;
+  width:85%;
+}
 .skill .shadow-1{
   box-shadow:.5rem .7rem 0.4rem rgba(245,141,35, .35)
 }
@@ -233,6 +258,17 @@ font-size:18px;
   background-repeat: no-repeat;
   background-size: cover;
   height:250px;
+  margin:20px 0px;
+}
+.bg-work-text{
+  padding:8px 12px 0px 12px;
+  background-color: #8FB18C;
+  color:#262626;
+  border-radius: 5px 5px 0px 0px;
+}
+.border-works{
+  border-bottom: 4px solid #8FB18C;
+  width:85%;
 }
 .works .pic-1{
   background-image: url('https://i.imgur.com/oIwYp6l.png');
@@ -246,15 +282,55 @@ font-size:18px;
 .works .textArea p{
   font-size:24px;
   font-weight: bold;
-  padding-bottom: 20px;
+  margin-bottom: 20px;
+  padding-left: 10px;
+}
+.works-1 .textArea p:after{
+  content: "";
+  width: 50%;
+  height: 10px;
+  position: absolute;
+  top: 22px;
+  left: 30px;
+  background-color: rgba(242, 202, 82,.6);
+}
+.works-2 .textArea p:after{
+  content: "";
+  width: 58%;
+  height: 10px;
+  position: absolute;
+  top: 22px;
+  left: 32px;
+  background-color: rgba(242, 202, 82,.6);
+}
+.works-3 .textArea p:after{
+  content: "";
+  width: 42%;
+  height: 10px;
+  position: absolute;
+  top: 22px;
+  left: 32px;
+  background-color: rgba(242, 202, 82,.6);
 }
 .works .textArea span{
-  text-indent: 4em;
   font-size:18px;
   font-weight: bold;
+  padding-left: 10px;
+  margin: 0px 15px;
 }
 .about img{
   border-radius: 5px;
 }
+.bg-about-text{
+  padding:8px 12px 0px 12px;
+  background-color: #CAC34E;
+  color:#262626;
+  border-radius: 5px 5px 0px 0px;
+}
+.border-about{
+  border-bottom: 4px solid #CAC34E;
+  width:85%;
+}
+
 
 </style>
