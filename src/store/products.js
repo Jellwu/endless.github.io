@@ -1,4 +1,5 @@
 import axios from 'axios';
+import router from '../router'
 
 export default{
   namespaced:true,
@@ -7,6 +8,7 @@ export default{
       categories:[],
       productId:'',
       product:{},
+      favorite:[],
     },
   mutations: {
     // 全產品寫入
@@ -24,17 +26,31 @@ export default{
     // 單一產品的ID
     PRODUCTID(state, payload){
       state.productId = payload;
+      router.push(`/productList/${payload}`);
     },
     // 單一產品寫入
     PRODUCTDETAIL(state, payload){
       state.product = payload;
-      console.log(state.product);
     },
     // 單一產品更新
     UPDATEPRODUCT(state,payload){
       state.product = payload;
-      console.log(state.product);
     },
+    // 加入我的最愛
+    FAVORITE(state,payload){
+      if(state.favorite.indexOf(payload) === -1){
+        state.favorite.push(payload);
+      }else{
+        return
+      }
+    },
+    DROPFAVORITE(state,payload){
+      state.favorite.forEach((item,key) =>{
+        if(item.id === payload){
+          state.favorite.splice(key,1);
+        }
+      })
+    }
   },
   actions: {
     // 抓全產品資料
@@ -100,6 +116,12 @@ export default{
         })
       });
     },
+    favorite(context,item){
+      context.commit('FAVORITE',item);
+    },
+    dropfavorite(context,item){
+      context.commit('DROPFAVORITE',item);
+    }
   },
   // 給computed的mapGetters使用
   getters:{
@@ -112,5 +134,8 @@ export default{
     productDetail(state){
       return state.product;
     },
+    favorite(state){
+      return state.favorite;
+    }
   }
 }

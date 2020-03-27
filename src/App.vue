@@ -7,7 +7,42 @@
               <span class="navbar-toggler-icon"></span>
             </button>
             <router-link class="logo-text mr-5" to="/">Endless</router-link>
-            <ul class="navbar-nav order-md-1" style="display:inline">
+            <ul class="navbar-nav order-md-1">
+              <li class="nav-item py-1 pl-4" style="display:inline-block">
+                <div class="btn-group dropleft">
+                  <button type="button" class="btn m-0 p-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-heart" aria-haspopup="true" aria-expanded="false">
+                      <span class="badge badge-pill badge-danger">{{favorite.length}}</span>
+                    </i>
+                  </button>
+                    <div class="dropdown-menu bg-dark">
+                        <h6 class="text-center m-0 py-2 text-warning">我的最愛清單</h6>
+                      <hr class="my-2">
+                      <div class="row justify-content-center my-1" v-for="items in favorite" :key="items.id" style="width:400px;">
+                        <div class="col-1" @click="dropfavorite(items.id)">
+                          <i class="fas fa-eraser" style="font-size:16px"></i>
+                        </div>
+                        <div class="col-9 text-warning text-left">
+                          <span class="bg-box-pop" style="display:block" @click.prevent="getproductId(items.id)">
+                            {{items.title}}
+                          </span>
+                        </div>
+                      </div>
+                      <div class="row" style="width:400px;">
+                        <div class="col-12 text-warning text-center" v-if="favorite.length === 0">
+                          <p>目前沒有追蹤的清單，快追起來吧！</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <!-- <button type="button" name="button"></button>
+
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                  </div> -->
+              </li>
               <li class="nav-item py-1 pl-2" style="display:inline">
                 <router-link class="text-endless" href="#" to="/cart">
                   <i class="fas fa-shipping-fast">
@@ -85,10 +120,20 @@ export default{
     // getCart(payload){
     //   this.$store.dispatch('cartModules/getCart',payload)
     // }
+    dropfavorite(id){
+      this.$store.dispatch('productsModules/dropfavorite',id);
+    },
+    getproductId(id) {
+      // 帶入此產品的id給action抓api的資料
+      this.$store.dispatch('productsModules/getproductId', id);
+      // 完成後轉跳頁面
+      this.$router.push(`/productList/${id}`);
+    },
   },
   computed:{
     ...mapGetters('cartModules',['isLoading']),
     ...mapGetters('cartModules', ['cart']),
+    ...mapGetters('productsModules', ['favorite']),
   },
   created(){
     this.getCart();
@@ -220,6 +265,10 @@ footer .text-endless:hover{
 footer .content-center{
   display: flex;
   justify-content: flex-end;
+}
+.bg-box-pop:hover{
+  background-color: rgba(0,0,0,0.3);
+  box-shadow: 0px 0px 5px black;
 }
 
 h1,h2,h3,h4,h5,h6{

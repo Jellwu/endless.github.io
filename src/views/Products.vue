@@ -2,7 +2,7 @@
 <div class="product-bg-color">
   <!-- <Loading loader="dots" :active.sync="isLoading"></Loading> -->
   <div class="product-banner d-flex align-items-center justify-content-center">
-    <div class="">
+    <div>
       <h1 class="text-endless">黑膠專區</h1>
     </div>
   </div>
@@ -79,8 +79,9 @@
       <!-- 產品列表 -->
       <div class="col-md-8 ml-4">
         <div class="row d-flex justify-content-start">
-          <div class="card-deck col-md-4 mb-4" v-for="(item) in filterData[itemPage]" :key="item.id">
-            <div class="card product-card text-center" @click.prevent="getproductId(item.id)">
+          <div class="card-deck col-md-4 mb-4" v-for="(item) in filterData[itemPage]":key="item.id">
+            <div class="card product-card text-center position-relative" @mouseover="showFooter(item.id)"
+            @mouseleave="hiddenFooter">
               <div class="card-img-top card-img-bg" :style="{backgroundImage: 'url(' + item.imageUrl + ')' }">
               </div>
               <div class="card-body">
@@ -106,13 +107,17 @@
                   </div>
                 </div>
               </div>
-              <div class="card-foot">
-                <div class="card-text pb-2">
-                  <span>
-                    More <i class="fas fa-angle-double-right"></i>
-                  </span>
+              <vue-slide-up-down :active="active" :duration="1000"
+               v-if="item.id === isActiveid" class="card-foot position-absolute">
+                <div class="card-footer-text d-flex justify-content-between">
+                  <div class="footer-hover cursor p-2" style="width:50%" @click="addfavorite(item)">
+                    加入最愛 <i class="fas fa-heart"></i>
+                  </div>
+                  <div class="footer-hover cursor p-2" @click.prevent="getproductId(item.id)" style="width:50%;">
+                    看更多 <i class="fas fa-angle-double-right"></i>
+                  </div>
                 </div>
-              </div>
+              </vue-slide-up-down>
             </div>
           </div>
         </div>
@@ -157,16 +162,18 @@ import {
   mapActions
 } from 'vuex';
 import 'vue-loading-overlay/dist/vue-loading.css';
+import $ from 'jquery';
 
 export default {
   name: 'Products',
   data() {
     return {
       searchText: '',
-      ishover: true,
       currentPage: 1,
       itemPage:0,
       pageNum: 6,
+      isActiveid:'',
+      active:false,
     };
   },
   computed: {
@@ -221,6 +228,16 @@ export default {
     gocart() {
       this.$router.push(`/cart`);
     },
+    addfavorite(item){
+      this.$store.dispatch('productsModules/favorite',item);
+    },
+    showFooter(id){
+      this.isActiveid = id;
+      this.active = true;
+    },
+    hiddenFooter(){
+      this.active = false;
+    }
   },
   created() {
     this.getProducts();
@@ -283,15 +300,6 @@ li {
   transition: all .2s;
 }
 
-.card-hover {
-  height: 20px;
-  background-image: url(./view-img/cardHoverw.jpg);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  transition: all 2s;
-}
-
 .cart-bg {
   height: 80px;
   width: 80px;
@@ -318,6 +326,19 @@ li {
   font-size: 20px;
   font-weight: bold;
 }
+.card-footer-text{
+  background-color: rgba(0,0,0,0.3);
+  text-align: center;
+  color:#ffc107;
+  font-size: 15px;
+}
+.footer-hover:hover{
+  background-color: #ffc107;
+  color:black;
+}
+.footer-absolute{
+  bottom:0px;
+}
 
 .text-title {
   font-weight: bold;
@@ -327,8 +348,10 @@ li {
   cursor: pointer;
 }
 
-.position-absolute .box {
+.position-absolute {
   z-index: 5;
   background-color: rgba(0, 0, 0, 0.3);
+  width:100%;
+  bottom:0px;
 }
 </style>

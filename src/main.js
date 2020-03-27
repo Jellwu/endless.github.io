@@ -24,6 +24,9 @@ import * as rules from "vee-validate/dist/rules";
 //加入vee-validate的語系
 import tw from "vee-validate/dist/locale/zh_TW.json";
 
+// slideDown and up
+import VueSlideUpDown from 'vue-slide-up-down';
+
 Vue.config.productionTip = false;
 Vue.use(VueAxios, axios);
 Vue.component('Loading', Loading);
@@ -44,7 +47,8 @@ localize("zh_TW", tw);
 Vue.component("ValidationProvider", ValidationProvider);
 Vue.component("ValidationObserver", ValidationObserver);
 
-
+// 註冊slide
+Vue.component('vue-slide-up-down', VueSlideUpDown);
 
 new Vue({
   router,

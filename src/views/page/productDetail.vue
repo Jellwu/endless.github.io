@@ -18,8 +18,8 @@
             <span class="h4 text-warning font-weight-bolder">特價:{{productDetail.price | currency}}</span>
           </div>
         </div>
-        <div class="text-right">
-            <router-link to="/productList" class="btn btn-outline-warning" type="button" name="button">回產品頁</router-link>
+        <div class="d-flex justify-content-end">
+          <router-link to="/productList" class="btn btn-outline-warning" type="button" name="button">回產品頁</router-link>
         </div>
       </div>
   </div>
