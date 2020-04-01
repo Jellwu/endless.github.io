@@ -49,7 +49,7 @@
             </ul>
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav">
-                <li class="nav-item active">
+                <li class="nav-item">
                   <router-link class="nav-item nav-link mx-2" to="/">
                     <span class="underline">關於黑膠</span>
                   </router-link>

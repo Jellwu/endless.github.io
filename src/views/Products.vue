@@ -124,26 +124,17 @@
       </div>
     </div>
   </div>
+
   <!-- 產品分頁 -->
   <div class="row d-flex justify-content-center mb-2">
     <div class="col-md-12">
       <div class="row justify-content-center">
         <nav aria-label="Page navigation example">
           <ul class="pagination">
-            <!-- <li class="page-item" >
-              <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li> -->
             <li class="page-item" v-for="pages in filterData.length" @click.prevent='itemPage = pages - 1'
             :class="{active: itemPage === pages - 1}">
               <a class="page-link" href="#">{{pages}}</a>
             </li>
-            <!-- <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
-            </li> -->
           </ul>
         </nav>
       </div>
