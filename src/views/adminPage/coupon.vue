@@ -121,7 +121,10 @@ export default{
     ...mapGetters('couponModules',['coupon','isLoading']),
   },
   methods: {
-    ...mapActions('couponModules',['getCoupon']),
+    // ...mapActions('couponModules',['getCoupon']),
+    getCoupon(page = 1){
+      this.$store.dispatch('couponModules/getCoupon',page);
+    },
     openCouponModal(isNew ,item) {
       if(isNew){
         this.modelTitle = "新增";

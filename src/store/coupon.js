@@ -14,16 +14,19 @@ export default {
     },
     COUPON(state, payload){
       state.coupon = payload;
+      console.log(state.coupon);
     },
   },
   actions: {
     updateLoading(context ,payload){
       context.commit('LOADING', payload);
     },
-    getCoupon(context){
-      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupons`;
+    getCoupon(context,page){
+      console.log(page)
+      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupons?page=${page}`;
       context.commit('LOADING',true);
       axios.get(url).then((response) =>{
+        console.log(response);
         context.commit('COUPON',response.data.coupons);
         context.commit('LOADING',false);
       })

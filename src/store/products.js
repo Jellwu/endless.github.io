@@ -38,16 +38,29 @@ export default{
     },
     // 加入我的最愛
     FAVORITE(state,payload){
-      if(state.favorite.indexOf(payload) === -1){
+      // 抓目前localstorage有的資料，轉成陣列
+      const getLocalarray = JSON.parse(localStorage.getItem('favorite'));
+      // 比較陣列中沒有回傳值id的資料
+      let result = getLocalarray.map((item) =>{
+        return item.id;}).indexOf(`${payload.id}`);
+      // 結果不是'-1'的話就不寫入(表示Localstorage中已有資料)
+      if(result === -1)
+      {
+        // 先暫存到state.favorite，把favorite的資料轉成文字丟到localStorage
         state.favorite.push(payload);
+        localStorage.setItem('favorite',JSON.stringify(state.favorite));
       }else{
-        return
+        return;
       }
     },
     DROPFAVORITE(state,payload){
-      state.favorite.forEach((item,key) =>{
+      const getLocalarray = JSON.parse(localStorage.getItem('favorite'));
+      getLocalarray.forEach((item,key) =>{
         if(item.id === payload){
-          state.favorite.splice(key,1);
+          getLocalarray.splice(key,1);
+          localStorage.setItem('favorite',JSON.stringify(getLocalarray));
+        }else{
+          return
         }
       })
     }
@@ -135,7 +148,8 @@ export default{
       return state.product;
     },
     favorite(state){
+      state.favorite = JSON.parse(localStorage.getItem('favorite'));
       return state.favorite;
-    }
-  }
+    },
+  },
 }

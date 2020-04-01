@@ -19,7 +19,7 @@
                         <h6 class="text-center m-0 py-2 text-warning">我的最愛清單</h6>
                       <hr class="my-2">
                       <div class="row justify-content-center my-1" v-for="items in favorite" :key="items.id" style="width:400px;">
-                        <div class="col-1" @click="dropfavorite(items.id)">
+                        <div class="col-1" @click.prevent="dropfavorite(items.id)">
                           <i class="fas fa-eraser" style="font-size:16px"></i>
                         </div>
                         <div class="col-9 text-warning text-left">
@@ -35,15 +35,8 @@
                       </div>
                     </div>
                   </div>
-                <!-- <button type="button" name="button"></button>
-
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                  </div> -->
               </li>
-              <li class="nav-item py-1 pl-2" style="display:inline">
+              <li class="nav-item py-1" style="display:inline">
                 <router-link class="text-endless" href="#" to="/cart">
                   <i class="fas fa-shipping-fast">
                     <span class="badge badge-pill badge-danger">{{cart.carts.length}}</span>
@@ -57,10 +50,19 @@
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav">
                 <li class="nav-item active">
-                  <router-link class="nav-item nav-link mx-2" to="/"><span class="underline">關於黑膠</span></router-link>
+                  <router-link class="nav-item nav-link mx-2" to="/">
+                    <span class="underline">關於黑膠</span>
+                  </router-link>
                 </li>
                 <li class="nav-item">
-                  <router-link class="nav-item nav-link mx-2 " to="/productList"><span class="underline">唱盤列表</span></router-link>
+                  <router-link class="nav-item nav-link mx-2 " to="/productList">
+                    <span class="underline">唱盤列表</span>
+                  </router-link>
+                </li>
+                <li class="nav-item">
+                  <router-link class="nav-item nav-link mx-2 " to="/couponpage">
+                    <span class="underline">我要酷碰</span>
+                  </router-link>
                 </li>
               </ul>
             </div>
@@ -106,6 +108,8 @@
 <script>
 import $ from 'jquery';
 import { mapGetters,mapActions } from 'vuex';
+// 抓localstorage資料用
+import {mapMutations} from 'vuex';
 // Import stylesheet
 import 'vue-loading-overlay/dist/vue-loading.css';
 
@@ -117,17 +121,14 @@ export default{
   },
   methods:{
     ...mapActions('cartModules', ['getCart']),
-    // getCart(payload){
-    //   this.$store.dispatch('cartModules/getCart',payload)
-    // }
+    // ...mapActions('productsModules', ['favorite']),
     dropfavorite(id){
       this.$store.dispatch('productsModules/dropfavorite',id);
     },
+    // this.SETIMGINFO(this.favorite);
     getproductId(id) {
       // 帶入此產品的id給action抓api的資料
       this.$store.dispatch('productsModules/getproductId', id);
-      // 完成後轉跳頁面
-      this.$router.push(`/productList/${id}`);
     },
   },
   computed:{

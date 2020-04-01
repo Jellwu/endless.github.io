@@ -127,9 +127,6 @@
   <!-- 產品分頁 -->
   <div class="row d-flex justify-content-center mb-2">
     <div class="col-md-12">
-      <div class="text-white">
-      {{currentPage}}
-      </div>
       <div class="row justify-content-center">
         <nav aria-label="Page navigation example">
           <ul class="pagination">
@@ -221,9 +218,6 @@ export default {
     getproductId(id) {
       // 帶入此產品的id給action抓api的資料
       this.$store.dispatch('productsModules/getproductId', id);
-      // 完成後轉跳頁面
-      this.$router.push(`/productList/${id}`);
-      // console.log(this.$store.state.productsModules.product);
     },
     gocart() {
       this.$router.push(`/cart`);
