@@ -4,7 +4,10 @@ import Home from '../views/Home.vue';
 // import Parallax from '../components/Parallax.vue';
 
 Vue.use(VueRouter);
-
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
 
 const routes = [
   //若使用者在網站隨意輸入不存在的分頁，會直接導向首頁

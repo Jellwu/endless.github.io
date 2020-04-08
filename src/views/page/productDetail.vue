@@ -69,7 +69,73 @@
           </div>
         </div>
       </div>
+      <hr class="px-5">
+        <h2 class="my-5 text-endless">
+          <span><i class="fas fa-store text-warning mr-3"></i>你可能也喜歡</span>
+        </h2>
+      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner text-white">
+          <div class="carousel-item active ">
+            <div class="row text-endless box-advice">
+              <div class="col-3 mb-4" v-for="items in adviePdc.slice(0,5)" :key="items.id"
+              v-if="items.id !== productDetail.id" @click="getproductId(items.id)">
+                <div class="card text-endless">
+                  <img :src="items.imageUrl" class="card-img" alt="...">
+                  <div class="card-img-overlay">
+                    <h5 class="card-title">{{items.title}}</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item" v-if="adviePdc.length > 4">
+            <div class="row text-endless box-advice">
+              <div class="col-3 mb-4" v-for="items in adviePdc.slice(5,10)" :key="items.id"
+              v-if="items.id !== productDetail.id" @click="getproductId(items.id)">
+                <div class="card text-endless">
+                  <img :src="items.imageUrl" class="card-img" alt="...">
+                  <div class="card-img-overlay">
+                    <h5 class="card-title">{{items.title}}</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item" v-if="adviePdc.length > 8">
+            <div class="row text-endless box-advice">
+              <div class="col-3 mb-4" v-for="items in adviePdc.slice(10,15)" :key="items.id"
+              v-if="items.id !== productDetail.id" @click="getproductId(items.id)">
+                <div class="card text-endless">
+                  <img :src="items.imageUrl" class="card-img" alt="...">
+                  <div class="card-img-overlay">
+                    <h5 class="card-title">{{items.title}}</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span v-if="adviePdc.length > 4" class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span v-if="adviePdc.length > 4" class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
 </div>
+<!-- <div class="row text-endless box-advice">
+<div class="col-3 mb-4" v-for="items in adviePdc" :key="items.id"
+v-if="items.id !== productDetail.id" @click="getproductId(items.id)">
+  <div class="card text-endless">
+    <img :src="items.imageUrl" class="card-img" alt="...">
+    <div class="card-img-overlay">
+      <h5 class="card-title box-opacity">{{items.title}}</h5>
+    </div>
+  </div>
+</div>
+</div> -->
 </template>
 
 <script>
@@ -87,6 +153,15 @@ export default {
     };
   },
   computed: {
+    adviePdc(){
+      let products = this.$store.state.productsModules.products;
+      let product = this.$store.state.productsModules.product;
+       products = products.filter((item) =>{
+         const data = item.category.toLowerCase().includes(product.category.toLowerCase());
+         return data;
+       });
+       return products;
+    },
     // 抓productsModules中的state.product
     ...mapGetters('productsModules', ['productDetail']),
     subtotal() {
@@ -95,8 +170,15 @@ export default {
     },
   },
   methods: {
+    getProducts(pages = 1) {
+      this.$store.dispatch('productsModules/getProducts', pages);
+    },
     getproductDetail(id) {
       this.$store.dispatch('productsModules/getproductDetail', id);
+    },
+    getproductId(id) {
+      // 帶入此產品的id給action抓api的資料
+      this.$store.dispatch('productsModules/getproductId', id);
     },
     addtoCart(id, qty) {
       this.$store.dispatch('cartModules/addtoCart', {
@@ -107,6 +189,7 @@ export default {
     // ...mapActions('productsModules',['getproductDetail'], id),
   },
   created() {
+    this.getProducts();
     let productId = this.$route.params.productID;
     this.getproductDetail(productId);
   },
@@ -117,6 +200,17 @@ export default {
   height: 100px;
   width: 100%;
 }
+.card-title{
+  background-color: rgba(0, 0, 0, 0);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  max-width: 200px;
+}
+.card-title:hover{
+  background-color: rgba(0,0,0,0.6);
+  border-radius: 10px;
+}
 .custom-select {
   width: 260px;
   margin-left: 20px
@@ -124,5 +218,8 @@ export default {
 .bg-box-endless{
   width:100%;
   background-color: rgba(0, 0, 0,0.1);
+}
+.box-advice .card{
+  max-height:300px;
 }
 </style>

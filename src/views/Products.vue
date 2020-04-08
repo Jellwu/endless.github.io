@@ -110,7 +110,7 @@
               <vue-slide-up-down :active="active" :duration="1000"
                v-if="item.id === isActiveid" class="card-foot position-absolute">
                 <div class="card-footer-text d-flex justify-content-between">
-                  <div class="footer-hover cursor p-2" style="width:50%" @click="addfavorite(item)">
+                  <div class="footer-hover cursor p-2" style="width:50%" @click="addfavorite(item.id,item.title)">
                     加入最愛 <i class="fas fa-heart"></i>
                   </div>
                   <div class="footer-hover cursor p-2" @click.prevent="getproductId(item.id)" style="width:50%;">
@@ -209,12 +209,13 @@ export default {
     getproductId(id) {
       // 帶入此產品的id給action抓api的資料
       this.$store.dispatch('productsModules/getproductId', id);
+      self.$router.push(`/productList/${id}`);
     },
     gocart() {
       this.$router.push(`/cart`);
     },
-    addfavorite(item){
-      this.$store.dispatch('productsModules/favorite',item);
+    addfavorite(id,title){
+      this.$store.dispatch('productsModules/addfavorite',{id,title});
     },
     showFooter(id){
       this.isActiveid = id;

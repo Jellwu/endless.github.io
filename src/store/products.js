@@ -36,8 +36,19 @@ export default{
     UPDATEPRODUCT(state,payload){
       state.product = payload;
     },
+    // 取得我的最愛初始值
+    GETFAVORITE(state,payload){
+      let getLocalarray = JSON.parse(localStorage.getItem('favorite'));
+      // console.log(getLocalarray);
+      // if判斷：給localstorage一個初始值
+      if(getLocalarray === null){
+        localStorage.setItem('favorite',JSON.stringify(state.favorite));
+      }else{
+        localStorage.setItem('favorite',JSON.stringify(getLocalarray));
+      }
+    },
     // 加入我的最愛
-    FAVORITE(state,payload){
+    ADDFAVORITE(state,payload){
       // 抓目前localstorage有的資料，轉成陣列
       const getLocalarray = JSON.parse(localStorage.getItem('favorite'));
       // 比較陣列中沒有回傳值id的資料
@@ -129,11 +140,15 @@ export default{
         })
       });
     },
-    favorite(context,item){
-      context.commit('FAVORITE',item);
+    getfavorite(context){
+      context.commit('GETFAVORITE');
     },
-    dropfavorite(context,item){
-      context.commit('DROPFAVORITE',item);
+    addfavorite(context,item){
+      context.commit('ADDFAVORITE',item);
+    },
+    dropfavorite(context,id){
+      context.commit('DROPFAVORITE',id);
+      context.commit('GETFAVORITE');
     }
   },
   // 給computed的mapGetters使用
@@ -150,6 +165,7 @@ export default{
     favorite(state){
       state.favorite = JSON.parse(localStorage.getItem('favorite'));
       return state.favorite;
+      // return JSON.parse(localStorage.getItem('favorite'));
     },
   },
 }

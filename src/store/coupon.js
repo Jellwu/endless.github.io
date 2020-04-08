@@ -22,7 +22,6 @@ export default {
       context.commit('LOADING', payload);
     },
     getCoupon(context,page){
-      console.log(page)
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupons?page=${page}`;
       context.commit('LOADING',true);
       axios.get(url).then((response) =>{

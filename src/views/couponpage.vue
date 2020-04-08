@@ -2,7 +2,7 @@
   <div>
     <div class="box-top"></div>
     <vue-slide-up-down :active="active" :duration="1000" class="coverImg position-absolute">
-      <img src="https://i.imgur.com/52PcPX7.jpg" alt="">
+      <img src="https://i.imgur.com/BQ9FP8q.jpg" alt="">
     </vue-slide-up-down>
     <div class="container d-flex flex-column align-items-center text-white">
       <h2 class="my-3 text-white">試著完成酷碰圖片吧！</h2>
@@ -18,9 +18,9 @@
           <p class="text-warning mb-3">提示：觀察蛛絲馬跡！不用完整拼出來也可以猜到拉！</p>
           <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="驗證Coupon Code" v-model="couponCode">
-            <div class="input-group-append">
+            <div class="input-group-append" v-if="active === false">
               <button class="btn btn-outline-warning" @click.prevent = ansCheck()
-              type="button" id="button-addon2" v-if="active === false">
+              type="button" id="button-addon2">
                 送出
               </button>
             </div>
@@ -62,13 +62,13 @@ methods:{
         puzzleArr.push('https://i.imgur.com/2LGgHSH.jpg')
         break;
         case 3:
-        puzzleArr.push('https://i.imgur.com/zrS98rN.jpg')
+        puzzleArr.push('https://i.imgur.com/dp23WtP.jpg')
         break;
         case 4:
-        puzzleArr.push('https://i.imgur.com/uah3Zwn.jpg')
+        puzzleArr.push('https://i.imgur.com/2zbH58Z.jpg')
         break;
         case 5:
-        puzzleArr.push('https://i.imgur.com/1dfdFku.jpg')
+        puzzleArr.push('https://i.imgur.com/HiR3bJj.jpg')
         break;
         case 6:
         puzzleArr.push('https://i.imgur.com/TcF1tXS.png')
@@ -107,7 +107,7 @@ methods:{
   },
   ansCheck(){
     const vm = this
-    if(vm.couponCode === 'FRD2020'){
+    if(vm.couponCode === '776803'){
       vm.active = true;
       this.ansMsg = '正確答案，折扣起來！'
     }else{

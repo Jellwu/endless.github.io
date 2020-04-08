@@ -1,5 +1,5 @@
 <template>
-  <div class="about container my-5">
+  <div class="my-5">
     <!-- <loading :active.sync="isLoading"></loading> -->
     <table class="table ml-auto mt-4 text-endless">
       <thead class="thead-dark">
@@ -74,5 +74,7 @@ export default{
 
 </script>
 <style scpoed>
-
+tr,td{
+  padding:0px;
+}
 </style>

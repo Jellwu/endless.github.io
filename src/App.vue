@@ -121,7 +121,10 @@ export default{
   },
   methods:{
     ...mapActions('cartModules', ['getCart']),
-    // ...mapActions('productsModules', ['favorite']),
+    // ...mapActions('productsModules', ['getfavorite']),
+    getfavorite(){
+      this.$store.dispatch('productsModules/getfavorite');
+    },
     dropfavorite(id){
       this.$store.dispatch('productsModules/dropfavorite',id);
     },
@@ -130,6 +133,7 @@ export default{
       // 帶入此產品的id給action抓api的資料
       this.$store.dispatch('productsModules/getproductId', id);
     },
+
   },
   computed:{
     ...mapGetters('cartModules',['isLoading']),
@@ -137,6 +141,7 @@ export default{
     ...mapGetters('productsModules', ['favorite']),
   },
   created(){
+    this.getfavorite();
     this.getCart();
   }
 }
