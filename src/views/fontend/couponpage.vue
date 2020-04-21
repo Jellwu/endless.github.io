@@ -8,8 +8,8 @@
       <h2 class="my-3 text-white">試著完成酷碰圖片吧！</h2>
       <p class="text-warning mb-2">遊戲規則：點選圖片時會向空白處移動，試著拼出完整的圖片吧！</p>
         <div class="LottoArea my-5">
-          <img class="img-fluid" v-for="(item,index) in rePuzzles" :src="item"
-          v-if="active !== true" @click.prevent = moveSquare(index);
+          <img class="img-fluid" v-for="(item,index) in rePuzzles" :key="index"
+          :src="item" @click.prevent = moveSquare(index);
           alt="...">
           <img alt="">
         </div>
@@ -25,7 +25,7 @@
               </button>
             </div>
           </div>
-          <span v-if="ansMsg !== ''" class="text-white">{{ansMsg}}</span>
+          <span v-if="ansMsg !== ''" class="text-white">{{ ansMsg }}</span>
         </div>
 
 

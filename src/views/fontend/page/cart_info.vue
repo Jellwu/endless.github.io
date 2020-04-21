@@ -23,7 +23,7 @@
             <input class="form-control" type="email" name="name" id="useremail"
             v-model="form.user.email" placeholder="請輸入 Email"
             :class="{'is-invalid':errors[0]}">
-            <span class="text-danger" v-if="errors[0]">{{errors[0]}}</span>
+            <span class="text-danger" v-if="errors[0]">{{ errors[0] }}</span>
           </div>
         </ValidationProvider>
 

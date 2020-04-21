@@ -11,18 +11,53 @@ import orderModules from './order';
 
 Vue.use(Vuex);
 
+// Loading放在最外層
 export default new Vuex.Store({
-  actions:{
-    removeCart(context, id) {
-      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${id}`;
-      // context.commit('LOADING',true);
-      axios.delete(url).then((response) => {
-        // 刪除後重新抓getCart的資料
-        context.dispatch('getCart');
-        // console.log('刪除購物車項目', response);
-        // context.commit('LOADING',false);
-      });
+  state:{
+    isLoading: false,
+    isCartmessage: {
+      state:false,
+      msg:''
+    }
+  },
+  mutations:{
+    LOADING(state, payload){
+      // 若以CartMsg表示的就不再重新跑一次Laoder
+      if(state.isCartmessage.state === true){
+        return
+      }else{
+        state.isLoading = payload;
+      }
     },
+    CARTMESSAGE(state,payload){
+      state.isCartmessage = payload;
+    },
+    // 在1500毫秒後把false塞回isCartmessage
+    REMOVEMSG(state,payload){
+      state.isCartmessage = payload;
+    }
+  },
+  actions:{
+    updateLoading(context,payload){
+      context.commit('LOADING', payload);
+    },
+    cartMessage(context,payload){
+      context.commit('CARTMESSAGE', payload);
+      context.dispatch('removeMsg', {state:false,msg:''});
+    },
+    removeMsg(context,payload){
+      setTimeout(() => {
+        context.commit('REMOVEMSG', payload);
+      }, 1500);
+    }
+  },
+  getters:{
+    isLoading(state) {
+      return state.isLoading;
+    },
+    isCartmessage(state){
+      return state.isCartmessage;
+    }
   },
   modules:{
     productsModules,

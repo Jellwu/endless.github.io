@@ -1,5 +1,6 @@
 <template>
 <div class="about my-5">
+  <Loading loader="bars" color="#C4A670" :active.sync="isLoading"></Loading>
       <div class="customform-banner d-flex align-items-center justify-content-center mb-5">
         <div class="">
           <h1 class="text-endless">訂單資料確認</h1>
@@ -31,7 +32,7 @@
                 </tr>
               </tfoot>
           </table>
-  ]
+
           <table class="table text-endless">
             <thead class="thead-dark">
               <th colspan="2">客戶資料</th>
@@ -87,6 +88,7 @@ export default {
   },
   computed: {
     ...mapGetters('orderModules',['Order']),
+    ...mapGetters(['isLoading']),
   },
   methods: {
     getOrder(){
@@ -101,7 +103,6 @@ export default {
   created() {
     this.orderId = this.$route.params.orderID;
     this.getOrder();
-    // console.log(this.$store.state.orderModules.order.user);
   },
 }
 </script>

@@ -27,9 +27,6 @@ import tw from "vee-validate/dist/locale/zh_TW.json";
 // slideDown and up
 import VueSlideUpDown from 'vue-slide-up-down';
 
-// 解決路由無法轉跳到其他路由分頁的方法
-window.router=router;
-
 Vue.config.productionTip = false;
 Vue.use(VueAxios, axios);
 Vue.component('Loading', Loading);

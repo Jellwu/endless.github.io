@@ -1,5 +1,4 @@
 import axios from 'axios';
-import router from '../router'
 
 export default {
   namespaced:true,
@@ -14,7 +13,6 @@ export default {
     },
     COUPON(state, payload){
       state.coupon = payload;
-      console.log(state.coupon);
     },
   },
   actions: {
@@ -25,7 +23,6 @@ export default {
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupons?page=${page}`;
       context.commit('LOADING',true);
       axios.get(url).then((response) =>{
-        console.log(response);
         context.commit('COUPON',response.data.coupons);
         context.commit('LOADING',false);
       })

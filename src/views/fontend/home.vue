@@ -14,7 +14,6 @@
             <div class="col-md-7 left-position" style="z-index: 10">
               <img src="https://images.unsplash.com/photo-1513746469853-a03fc9a0d6ec?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80" class="img-fluid rounded" alt="">
             </div>
-            <!-- <div class="col-md-12 rounded-left d-flex align-content-end"> -->
             <div class="col-md-5 vertical-content d-flex justify-content-end">
               <div class="leftArea pt-4 pb-1 py-md-7 ml-auto mr-md-0 text-endless">
                 <div class="ml-4 textArea" style="letter-spacing:5px;">
@@ -109,17 +108,14 @@
     </section>
 
     </div>
-  </div>
 </template>
 
 <script>
-// @ is an alias to /src
 import $ from 'jquery';
 import {
   mapGetters,
   mapActions
 } from 'vuex';
-// import Parallax from '../components/Parallax.vue';
 export default {
   name: 'Home',
   computed:{

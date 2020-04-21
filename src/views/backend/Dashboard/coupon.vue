@@ -18,12 +18,11 @@
       </thead>
       <tbody v-for="(items) in coupon" :key="items.id">
         <tr>
-          <td>{{items.title}}</td>
-          <td>{{items.percent}}</td>
-          <td>{{items.code}}</td>
+          <td>{{ items.title }}</td>
+          <td>{{ items.percent }}</td>
+          <td>{{ items.code }}</td>
           <td>
-            <button class="btn text-warning
-            " @click="openCouponModal(false, items)">
+            <button class="btn text-warning" @click="openCouponModal(false, items)">
               <i class="fas fa-edit"></i>
             </button>
           </td>
@@ -41,7 +40,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">{{ modelTitle }}優惠券</h5>
+            <h5 class="modal-title" id="exampleModalLabel">{{  modelTitle  }}優惠券</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -147,7 +146,6 @@ export default{
         $('#CouponModal').modal('hide');
         this.$store.dispatch('couponModules/getCoupon');
       }else{
-        // console.log(this.isNew,this.tempCoupon);
         this.$store.dispatch('couponModules/editCoupon',this.tempCoupon);
         $('#CouponModal').modal('hide');
       }

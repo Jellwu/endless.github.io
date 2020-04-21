@@ -1,5 +1,6 @@
 <template>
 <div class="about container my-5">
+  <cartMessage></cartMessage>
   <div class="box"></div>
   <div class="row">
     <div class="col-md-6 d-flex justify-content-center">
@@ -53,7 +54,7 @@
                     <select class="custom-select border border-warning text-dark"
                     id="inputGroupSelect04" v-model="productNum">
                       <option :value="0" selected disabled>--請選購數量--</option>
-                      <option :value="num" v-for="num in 10">
+                      <option :value="num" v-for="num in 10" :key='num'>
                         選購 {{num}} {{productDetail.unit}}
                       </option>
                     </select>
@@ -125,17 +126,7 @@
         </div>
       </div>
 </div>
-<!-- <div class="row text-endless box-advice">
-<div class="col-3 mb-4" v-for="items in adviePdc" :key="items.id"
-v-if="items.id !== productDetail.id" @click="getproductId(items.id)">
-  <div class="card text-endless">
-    <img :src="items.imageUrl" class="card-img" alt="...">
-    <div class="card-img-overlay">
-      <h5 class="card-title box-opacity">{{items.title}}</h5>
-    </div>
-  </div>
-</div>
-</div> -->
+
 </template>
 
 <script>
@@ -144,6 +135,7 @@ import {
   mapGetters,
   mapActions
 } from 'vuex';
+import cartMessage from '@/components/CartMessage.vue';
 
 export default {
   name: 'Product',
@@ -187,6 +179,9 @@ export default {
       });
     },
     // ...mapActions('productsModules',['getproductDetail'], id),
+  },
+  components: {
+    cartMessage,
   },
   created() {
     this.getProducts();

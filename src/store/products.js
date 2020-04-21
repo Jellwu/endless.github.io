@@ -1,7 +1,7 @@
 import axios from 'axios';
 import router from '../router'
 
-export default{
+export default {
   namespaced:true,
   state: {
       products:[],
@@ -39,7 +39,6 @@ export default{
     // 取得我的最愛初始值
     GETFAVORITE(state,payload){
       let getLocalarray = JSON.parse(localStorage.getItem('favorite'));
-      // console.log(getLocalarray);
       // if判斷：給localstorage一個初始值
       if(getLocalarray === null){
         localStorage.setItem('favorite',JSON.stringify(state.favorite));
@@ -49,32 +48,14 @@ export default{
     },
     // 加入我的最愛
     ADDFAVORITE(state,payload){
-      // 抓目前localstorage有的資料，轉成陣列
-      const getLocalarray = JSON.parse(localStorage.getItem('favorite'));
-      // 比較陣列中沒有回傳值id的資料
-      let result = getLocalarray.map((item) =>{
-        return item.id;}).indexOf(`${payload.id}`);
-      // 結果不是'-1'的話就不寫入(表示Localstorage中已有資料)
-      if(result === -1)
-      {
-        // 先暫存到state.favorite，把favorite的資料轉成文字丟到localStorage
-        state.favorite.push(payload);
-        localStorage.setItem('favorite',JSON.stringify(state.favorite));
-      }else{
-        return;
-      }
+      state.favorite.push(payload);
+      localStorage.setItem('favorite',JSON.stringify(state.favorite));
     },
+    // 移除我的最愛
     DROPFAVORITE(state,payload){
-      const getLocalarray = JSON.parse(localStorage.getItem('favorite'));
-      getLocalarray.forEach((item,key) =>{
-        if(item.id === payload){
-          getLocalarray.splice(key,1);
-          localStorage.setItem('favorite',JSON.stringify(getLocalarray));
-        }else{
-          return
-        }
-      })
-    }
+      state.favorite.splice(payload,1);
+      localStorage.setItem('favorite',JSON.stringify(state.favorite));
+    },
   },
   actions: {
     // 抓全產品資料
@@ -99,7 +80,6 @@ export default{
     },
     // 更新單一產品內容(接收tempProduct的資料)
     updateProduct(context,item){
-      // console.log({data:item},`${item.id}`);
       let url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/product/${item.id}`;
       axios.put(url,{data:item}).then((response =>{
         if(response.data.success){
@@ -112,7 +92,6 @@ export default{
     },
     addProduct(context,item){
       let url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/product/`;
-      console.log({data:item});
       axios.post(url,{data:item}).then((response) =>{
         if(response.data.success){
           alert(response.data.message);
@@ -128,7 +107,6 @@ export default{
       })
     },
     dropProduct(context,item){
-    // console.log(item);
         let url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/product/${item.id}`;
         axios.delete(url).then((response) =>{
           alert(response.data.message);
@@ -143,12 +121,50 @@ export default{
     getfavorite(context){
       context.commit('GETFAVORITE');
     },
-    addfavorite(context,item){
-      context.commit('ADDFAVORITE',item);
+    addfavorite(context,payload){
+      // 抓目前localstorage有的資料，轉成陣列
+      const getLocalarray = JSON.parse(localStorage.getItem('favorite'));
+      // 比較陣列中沒有回傳值id的資料
+      let result = getLocalarray.map((item) =>{
+        return item.id;}).indexOf(`${payload.id}`);
+      // 結果不是'-1'的話就不寫入(表示Localstorage中已有資料)
+      if(result === -1)
+      {
+        context.dispatch('cartMessage',
+            {
+              state:true,
+              msg:'加入我的最愛'
+            },
+        { root:true });
+        context.commit('ADDFAVORITE',payload);
+      }else if(result !== - 1){
+        context.dispatch('cartMessage',
+            {
+              state:true,
+              msg:'已在我的最愛清單'
+            },
+        { root:true });
+        return
+      }
     },
-    dropfavorite(context,id){
-      context.commit('DROPFAVORITE',id);
-      context.commit('GETFAVORITE');
+    dropfavorite(context,payload){
+      const getLocalarray = JSON.parse(localStorage.getItem('favorite'));
+      getLocalarray.forEach((item,key) => {
+        if(item.id === payload){
+          {
+            context.dispatch('cartMessage',
+                {
+                  state:true,
+                  msg:'已刪除我的最愛'
+                },
+            { root:true });
+          context.commit('DROPFAVORITE',key);
+          context.commit('GETFAVORITE');
+          }
+        }else{
+          return
+        }
+      })
     }
   },
   // 給computed的mapGetters使用

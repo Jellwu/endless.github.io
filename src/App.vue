@@ -1,5 +1,7 @@
 <template>
     <div id="app">
+      <Loading loader="bars" color="#C4A670" :active.sync="isLoading"></Loading>
+      <cartMessage></cartMessage>
       <div id="nav">
         <nav class="navbar navbar-expand-lg navbar-dark nav-bg p-0 fixed-top">
           <div class="container-md p-0" style="max-width:1200px">
@@ -69,7 +71,6 @@
           </div>
         </nav>
       </div>
-      <Loading loader="bars" color="#C4A670" :active.sync="isLoading"></Loading>
       <router-view/>
       <footer class="bg-footer">
         <div class="container-md" style="max-width: 1210px;">
@@ -112,6 +113,7 @@ import { mapGetters,mapActions } from 'vuex';
 import {mapMutations} from 'vuex';
 // Import stylesheet
 import 'vue-loading-overlay/dist/vue-loading.css';
+import cartMessage from '@/components/CartMessage.vue';
 
 export default{
   data(){
@@ -121,14 +123,12 @@ export default{
   },
   methods:{
     ...mapActions('cartModules', ['getCart']),
-    // ...mapActions('productsModules', ['getfavorite']),
     getfavorite(){
       this.$store.dispatch('productsModules/getfavorite');
     },
     dropfavorite(id){
       this.$store.dispatch('productsModules/dropfavorite',id);
     },
-    // this.SETIMGINFO(this.favorite);
     getproductId(id) {
       // 帶入此產品的id給action抓api的資料
       this.$store.dispatch('productsModules/getproductId', id);
@@ -136,9 +136,12 @@ export default{
 
   },
   computed:{
-    ...mapGetters('cartModules',['isLoading']),
+    ...mapGetters(['isLoading']),
     ...mapGetters('cartModules', ['cart']),
     ...mapGetters('productsModules', ['favorite']),
+  },
+  components: {
+    cartMessage,
   },
   created(){
     this.getfavorite();
@@ -150,8 +153,7 @@ export default{
 
 <style lang="scss">
 @import "~bootstrap/scss/bootstrap";
-@import "./assets/all";
-@import "~@nextindex/next-scss/next-scss";
+@import "./assets/scss/all.scss";
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -209,7 +211,6 @@ i{
 i:hover{
   color:#F2CA52;
 }
-
 }
 .height-box{
   height:55px;

@@ -3,58 +3,57 @@ import axios from 'axios';
 export default {
   namespaced:true,
   state: {
-    isLoading: false,
     cart: {
       carts: [],
     },
     couponCode:{},
   },
   mutations: {
-    LOADING(state, payload){
-      state.isLoading = payload;
-    },
     CART(state,payload){
       state.cart = payload;
-      // console.log(state.cart);
     },
     COUPONCODE(state, payload){
       state.couponCode = payload;
     }
   },
   actions: {
-    updateLoading(context,payload){
-      context.commit('LOADING', payload);
-    },
     getCart(context,payload) {
-      context.commit('cartModules/LOADING',true, {root:true});
+      context.dispatch('updateLoading',true,{root:true});
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`;
       axios.get(url).then((response) => {
         context.commit('CART',response.data.data)
-        context.commit('cartModules/LOADING',false, {root:true});
-        // console.log('取得購物車', response.data.data);
+        context.dispatch('updateLoading',false,{ root:true });
       });
     },
     removeCart(context, id) {
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${id}`;
-      context.commit('LOADING',true);
       axios.delete(url).then((response) => {
+        context.dispatch('cartMessage',
+            {
+              state:true,
+              msg:response.data.message
+            },
+            { root:true });
         // 刪除後重新抓getCart的資料
         context.dispatch('getCart');
-        context.commit('LOADING',false);
       });
     },
     addtoCart(context , { id, qty }) {
-      // console.log(context , id, qty);
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`;
       const item = {
         product_id: id,
         qty,
       };
-      context.commit('LOADING',true);
       axios.post(url, { data: item }).then((response) => {
+        // 動態抓response.data.message的資料，整個物件寫回CartMessage
+        context.dispatch('cartMessage',
+            {
+              state:true,
+              msg:response.data.message
+            },
+            { root:true });
+
         context.dispatch('getCart');
-        alert('已加入購物車')
-        context.commit('LOADING',false);
       });
     },
     applyCounpon(context,code){
@@ -62,11 +61,15 @@ export default {
       const cupon = {
         code:code
       }
-      // console.log({data:{"code":code}});
       axios.post(url,{ data:cupon }).then((response) =>{
         if(response.data.success){
           context.commit('COUPONCODE',cupon);
-          alert(response.data.message);
+          context.dispatch('cartMessage',
+              {
+                state:true,
+                msg:response.data.message
+              },
+          { root:true });
           context.dispatch('getCart');
         }else{
           context.commit('COUPONCODE',{});
@@ -79,11 +82,15 @@ export default {
       const cupon = {
         code:code
       };
-      // console.log({data:{"code":code}});
       axios.post(url,{ data:cupon }).then((response) =>{
           if(response.data.success){
+            context.dispatch('cartMessage',
+                {
+                  state:true,
+                  msg:'已取消'
+                },
+            { root:true });
             context.commit('COUPONCODE',cupon);
-            alert('已取消');
             context.dispatch('getCart');
           }else{
             context.commit('COUPONCODE',{});
@@ -95,9 +102,6 @@ export default {
   getters:{
     cart(state){
       return state.cart;
-    },
-    isLoading(state) {
-      return state.isLoading;
-    },
+    }
   }
 }

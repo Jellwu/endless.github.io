@@ -1,6 +1,7 @@
 <template>
 
   <div class="about">
+    <cartMessage></cartMessage>
     <div class="product-banner d-flex align-items-center justify-content-center">
       <div class="">
         <h1 class="text-endless">購物車列表</h1>
@@ -41,13 +42,13 @@
                   </button>
                 </td>
                 <td style="width:80px;"><img class="img-fluid" :src="items.product.imageUrl"></td>
-                <td style="vertical-align: middle;">{{items.product.title}}
+                <td style="vertical-align: middle;">{{ items.product.title }}
                   <p class="text-success" v-if="items.final_total !== items.total">
                     已套用優惠券
                   </p>
                 </td>
-                <td class="text-center" style="width:80px; vertical-align: middle;">{{items.qty}}</td>
-                <td class="text-right" style="width:100px; vertical-align: middle;">{{items.product.price | currency}}</td>
+                <td class="text-center" style="width:80px; vertical-align: middle;">{{ items.qty }}</td>
+                <td class="text-right" style="width:100px; vertical-align: middle;">{{ items.product.price | currency }}</td>
               </tr>
             </tbody>
             <tfoot>
@@ -56,7 +57,7 @@
                     <p class="h6 text-right pt-2">總計金額：</p>
                 </td>
                 <td class="py-3"  style="vertical-align: middle;">
-                    <p class="h6 text-right pt-2">{{cart.total | currency}}</p>
+                    <p class="h6 text-right pt-2">{{ cart.total | currency }}</p>
                 </td>
               </tr>
             </tfoot>
@@ -77,14 +78,14 @@
             <div class="text-endless mt-4">
               <!-- 結帳資訊區 -->
               <div class="text-right">
-                <p class="pt-3 pr-2">共計 <span class="text-warning">{{cart.carts.length}}</span> 項商品</p>
+                <p class="pt-3 pr-2">共計 <span class="text-warning">{{ cart.carts.length }}</span> 項商品</p>
                 <p class="pr-2" v-if="cart.final_total !== cart.total">
                   <span class="badge badge-pill badge-warning">已輸入優惠券</span>
                   <br>
-                  結帳金額：<span class="text-warning">{{cart.final_total | currency}}</span>
+                  結帳金額：<span class="text-warning">{{ cart.final_total | currency }}</span>
                 </p>
-                <p class="pr-2" v-else="cart.final_total === cart.total">
-                  結帳金額：<span class="text-warning">{{cart.final_total | currency}}</span>
+                <p class="pr-2" v-else-if="cart.final_total === cart.total">
+                  結帳金額：<span class="text-warning">{{ cart.final_total | currency }}</span>
                 </p>
 
                 <!-- 優惠券按鈕區 -->
@@ -97,7 +98,7 @@
                       type="button" id="button-addon2">取消</button>
                     </div>
                   </div>
-                  <div class="input-group ml-auto" v-else="cart.final_total === cart.total">
+                  <div class="input-group ml-auto" v-else-if="cart.final_total === cart.total">
                     <input type="text" class="form-control" placeholder="輸入優惠券號碼" v-model="couponCode"
                    aria-label="Recipient's username" aria-describedby="button-addon2">
                     <div class="input-group-append">
@@ -126,8 +127,9 @@ import { mapGetters, mapActions } from 'vuex';
 import $ from 'jquery';
 import { ValidationObserver } from 'vee-validate';
 import { ValidationProvider } from 'vee-validate';
+import cartMessage from '@/components/CartMessage.vue';
 
-export default{
+export default {
   name: 'Cart',
   data() {
     return {
@@ -155,14 +157,16 @@ export default{
     getCoupon(){
       this.$store.dispatch('cartModules/applyCounpon',this.couponCode);
     },
+    cancelCoupon(){
+      this.$store.dispatch('cartModules/cancelCoupon','ORIGINP0');
+    },
     cartCheckout(){
       const order = this.form;
       this.$store.dispatch('orderModules/cartCheckout',order);
     },
-    cancelCoupon(){
-      this.$store.dispatch('cartModules/cancelCoupon','ORIGINP0');
-    },
-
+  },
+  components: {
+    cartMessage,
   },
   created(){
     this.getCart();

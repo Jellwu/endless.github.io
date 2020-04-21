@@ -27,8 +27,7 @@
               </li>
             </ul>
             <div class="text-right">
-              <button class="btn btn-outline-warning mb-2"type="button" name="button"
-              @click.prevent="logout">
+              <button class="btn btn-outline-warning mb-2" type="button" name="button" @click.prevent="logout">
                 管理者登出
               </button>
             </div>

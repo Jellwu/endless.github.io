@@ -17,13 +17,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(item) in products" :key="products.id">
-          <td>{{item.category}}</td>
-          <td>{{item.title}}</td>
-          <td class="text-right">{{item.price | currency}}</td>
-          <td class="text-right">{{item.origin_price | currency}}</td>
+        <tr v-for="(item) in products" :key="item.id">
+          <td>{{ item.category }}</td>
+          <td>{{ item.title }}</td>
+          <td class="text-right">{{ item.price | currency }}</td>
+          <td class="text-right">{{ item.origin_price | currency }}</td>
           <td v-if="item.is_enabled" class="text-success">啟用</td>
-          <td v-else="item.is_enabled" class="text-danger">未啟用</td>
+          <td v-else-if="item.is_enabled" class="text-danger">未啟用</td>
           <td>
             <button class="btn btn-outline-warning mr-2" @click.prevent="openPdcModal(false,item)">編輯</button>
             <button class="btn btn-outline-danger" @click.prevent="opendropModal(item)">刪除</button>
@@ -142,7 +142,7 @@
               </div>
               <div class="modal-body">
                 <div class="p-2" v-model="tempProduct.title">
-                    <p>是否刪除產品：<span class="text-danger font-weight-bold">{{tempProduct.title}}?</span></p>
+                    <p>是否刪除產品：<span class="text-danger font-weight-bold">{{ tempProduct.title }}?</span></p>
                 </div>
               </div>
               <div class="modal-footer">

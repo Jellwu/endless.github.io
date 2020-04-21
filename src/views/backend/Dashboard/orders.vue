@@ -15,19 +15,19 @@
       </thead>
       <tbody>
         <tr v-for="(items) in Orders" :key="items.id">
-          <td>{{items.create_at | timeTranse}}</td>
-          <td>{{items.id}}</td>
-          <td>{{items.user.name}}</td>
+          <td>{{ items.create_at | timeTranse }}</td>
+          <td>{{ items.id }}</td>
+          <td>{{ items.user.name }}</td>
           <td>
             <div v-for ="items in items.products" :key="items.id">
-              {{items.product.title}} / {{items.product.num}} {{items.product.unit}}
+              {{ items.product.title }} / {{ items.product.num }} {{ items.product.unit }}
             </div>
           </td>
-          <td>{{ items.total| currency }}</td>
-          <td v-if="items.is_paid">{{items.paid_date | timeTranse}}</td>
-          <td v-else> -- </td>
+          <td>{{  items.total| currency  }}</td>
+          <td v-if="items.is_paid">{{ items.paid_date | timeTranse }}</td>
+          <td v-else-if> -- </td>
           <td v-if="items.is_paid" class="text-success"> 完成付款</td>
-          <td v-else class="text-danger">尚未付款</td>
+          <td v-else-if class="text-danger">尚未付款</td>
         </tr>
       </tbody>
     </table>
@@ -36,16 +36,15 @@
       <div class="row justify-content-center">
         <nav aria-label="Page navigation example">
           <ul class="pagination">
-            <li class="page-item" v-for="pages in pages.total_pages"
+            <li class="page-item" v-for="pages in pages.total_pages" :key="pages.current_page"
             :class="{'active': pages.current_page == pages }"
             @click.prevent = "getOrderList(pages)">
-              <a class="page-link" href="#">{{pages}}</a>
+              <a class="page-link" href="#">{{ pages }}</a>
             </li>
           </ul>
         </nav>
       </div>
   </div>
-  <!--  -->
 </template>
 
 <script>

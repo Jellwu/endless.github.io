@@ -17,10 +17,11 @@
             <i class="pl-1 fas fa-sort-down fa-x"></i>
           </div>
           <div class="pl-md-4">
-            <div class="badge badge-pill badge-warning mx-2 my-1 py-md-2" v-for="items in categories" :key="items">
+            <div class="badge badge-pill badge-warning mx-2 my-1 py-md-2"
+            v-for="items in categories" :key="items">
               <i class="fas fa-tag mx-1 fa" style="font-size:13px"></i>
               <span class="cursor px-1 h6" @click.prevent="searchText = items">
-                {{items}}
+                {{ items }}
               </span>
             </div>
             <div class="mx-2">
@@ -39,7 +40,7 @@
                 <i class="fas fa-tags mt-5 mb-3"></i>
                 <span class="px-2">Order List</span>
               </span>
-              <span class="badge badge-warning px-1">{{cart.carts.length}}</span>
+              <span class="badge badge-warning px-1">{{ cart.carts.length }}</span>
               <i class="fas fa-sort-down fa-x ml-1"></i>
             </div>
             <ul class="d-flex flex-column mb-2">
@@ -47,9 +48,9 @@
                 <div class="col-3 cart-bg" :style="{backgroundImage: 'url(' + items.product.imageUrl + ')' }"></div>
                 <div class="col-8 d-flex align-items-center">
                   <div class="pl-3">
-                    <div class="text-title mb-2">{{items.product.title}}</div>
+                    <div class="text-title mb-2">{{ items.product.title }}</div>
                     <div class="d-flex justify-content-start">
-                      <div>價格：{{items.total}} / {{items.qty }}{{items.product.unit}}</div>
+                      <div>價格：{{ items.total }} / {{ items.qty }}{{ items.product.unit }}</div>
                     </div>
                   </div>
                 </div>
@@ -64,10 +65,10 @@
             </ul>
             <div class="row no-gutters pb-3">
               <div class="col-8 text-right text-warning">
-                <h5 style="line-height:38px">總金額: {{cart.final_total |currency }}</h5>
+                <h5 style="line-height:38px">總金額: {{ cart.final_total |currency }}</h5>
               </div>
               <div class="col-4 text-center">
-                <button class="btn bg-warning" type="button" name="button" @click.prevnet="gocart()">
+                <button class="btn bg-warning" type="button" name="button" @click.prevent="gocart()">
                   結帳
                 </button>
               </div>
@@ -79,7 +80,7 @@
       <!-- 產品列表 -->
       <div class="col-md-8 ml-4">
         <div class="row d-flex justify-content-start">
-          <div class="card-deck col-md-4 mb-4" v-for="(item) in filterData[itemPage]":key="item.id">
+          <div class="card-deck col-md-4 mb-4" v-for="(item) in filterData[itemPage]" :key="item.id">
             <div class="card product-card text-center position-relative" @mouseover="showFooter(item.id)"
             @mouseleave="hiddenFooter">
               <div class="card-img-top card-img-bg" :style="{backgroundImage: 'url(' + item.imageUrl + ')' }">
@@ -97,13 +98,13 @@
                   <div class="col-md-6">
                     <div>
                       <span class="badge badge-warning mt-3 px-3 py-1">
-                        <i class="fas fa-tag mr-2"></i>{{item.category}}
+                        <i class="fas fa-tag mr-2"></i>{{ item.category }}
                       </span>
                     </div>
                   </div>
                   <div class="col-md-6">
-                    <p class="text-secondary text-right pr-3 mb-0"><small><del class="text-white">{{item.origin_price |currency}}</del></small></p>
-                    <p class="card-text text-right">{{item.price |currency}}</p>
+                    <p class="text-secondary text-right pr-3 mb-0"><small><del class="text-white">{{ item.origin_price |currency }}</del></small></p>
+                    <p class="card-text text-right">{{ item.price |currency }}</p>
                   </div>
                 </div>
               </div>
@@ -131,9 +132,10 @@
       <div class="row justify-content-center">
         <nav aria-label="Page navigation example">
           <ul class="pagination">
-            <li class="page-item" v-for="pages in filterData.length" @click.prevent='itemPage = pages - 1'
+            <li class="page-item" v-for="pages in filterData.length" :key="pages"
+            @click.prevent='itemPage = pages - 1'
             :class="{active: itemPage === pages - 1}">
-              <a class="page-link" href="#">{{pages}}</a>
+              <a class="page-link" href="#">{{ pages }}</a>
             </li>
           </ul>
         </nav>
@@ -190,15 +192,13 @@ export default {
       return newData;
     },
     ...mapGetters('productsModules', ['products', 'categories']),
-    ...mapGetters('cartModules', ['cart', 'isLoading']),
+    ...mapGetters('cartModules', ['cart']),
 
   },
   methods: {
     // 抓全產品資料
     getProducts(pages = 1) {
       this.$store.dispatch('productsModules/getProducts', pages);
-      // this.pages = this.$store.state.productsModules.pages;
-      // console.log(this.pages);
     },
     getCart(payload) {
       this.$store.dispatch('cartModules/getCart', payload);

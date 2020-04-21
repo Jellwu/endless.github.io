@@ -11,7 +11,7 @@
       <div class="header d-flex justify-content-center">
         <div class="col-md-7 text-endless d-flex flex-column justify-content-end align-items-center" style="bottom:-65px;">
           <div class="profil-img d-flex flex-column align-items-center">
-            <img src="./view-img/profileImg.jpg" alt="...">
+            <img src="../../assets/images/profileImg.jpg" alt="...">
             <h5 class="pt-3">吳哲宇</h5>
             <span class="text-warning pt-1">Web developer</span>
           </div>
@@ -33,6 +33,7 @@
           </ul>
         </div>
       </div>
+
        <!-- content-skill -->
       <div class="skill rounded">
         <h3 class="pt-5 text-endless border-skill ml-3">
@@ -42,7 +43,7 @@
           <div class="col-md-3 d-flex justify-content-center shadow-1 my-4">
             <div class="mt-3">
               <div class="d-flex justify-content-center mb-4">
-                <img src="./view-img/img-skill-icon-1.png" alt="..." style="width:100px;">
+                <img src="../../assets/images/img-skill-icon-1.png" alt="..." style="width:100px;">
               </div>
               <h4 class="text-center">Web Layout Design</h4>
               <ul class="text-endless mt-3">
@@ -55,7 +56,7 @@
           <div class="col-md-3 d-flex justify-content-center shadow-2 my-4">
             <div class="mt-3">
               <div class="d-flex justify-content-center mb-4">
-                <img src="./view-img/img-skill-icon-3.png" alt="..." style="width:100px;">
+                <img src="../../assets/images/img-skill-icon-3.png" alt="..." style="width:100px;">
               </div>
               <h4 class="text-center">Web developer</h4>
               <ul class="text-endless mt-3">
@@ -68,7 +69,7 @@
           <div class="col-md-3 d-flex justify-content-center shadow-3 my-4">
             <div class="mt-3">
               <div class="d-flex justify-content-center mb-4">
-                <img src="./view-img/img-skill-icon-2.png" alt="..." style="width:100px;">
+                <img src="../../assets/images/img-skill-icon-2.png" alt="..." style="width:100px;">
               </div>
               <h4 class="text-center">Dev Helper</h4>
               <ul class="text-endless mt-3">
@@ -178,7 +179,6 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-// @ is an alias to /src
 export default {
   name: 'LOGIN',
 data(){
@@ -191,9 +191,6 @@ methods:{
 },
 computed:{
   ...mapGetters('loginModules',['isLoading']),
-  // cart(){
-  //   return this.$store.state.cart;
-  // }
 },
 }
 </script>
