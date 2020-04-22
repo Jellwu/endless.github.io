@@ -1,17 +1,17 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
+import Vue from 'vue'
+import VueRouter from 'vue-router'
 
-Vue.use(VueRouter);
+Vue.use(VueRouter)
 const originalPush = VueRouter.prototype.push
-VueRouter.prototype.push = function push(location) {
+VueRouter.prototype.push = function push (location) {
   return originalPush.call(this, location).catch(err => err)
 }
 
 const routes = [
-  //若使用者在網站隨意輸入不存在的分頁，會直接導向首頁
+  // 若使用者在網站隨意輸入不存在的分頁，會直接導向首頁
   {
-    path:'*',
-    redirect:'/',
+    path: '*',
+    redirect: '/'
   },
   // 前台
   {
@@ -92,7 +92,7 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "login" */ '../views/backend/admin.vue'),
     meta: { requiresAuth: true },
-    children:[
+    children: [
       {
         path: 'productscheck',
         name: 'Productscheck',
@@ -110,9 +110,9 @@ const routes = [
         name: 'coupon',
         component: () => import(/* webpackChunkName: "login" */ '../views/backend/Dashboard/coupon.vue'),
         meta: { requiresAuth: true }
-      },
+      }
     ]
-  },
+  }
 ]
 
 const router = new VueRouter({

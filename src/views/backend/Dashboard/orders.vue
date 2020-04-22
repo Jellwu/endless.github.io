@@ -48,27 +48,27 @@
 </template>
 
 <script>
-//import mapGetter與mapActions的方法
-import { mapGetters, mapActions } from 'vuex';
-import $ from 'jquery';
+// import mapGetter與mapActions的方法
+import { mapGetters, mapActions } from 'vuex'
+import $ from 'jquery'
 
-export default{
+export default {
   name: 'Order',
-  data() {
+  data () {
     return {
-    };
-  },
-  computed: {
-    ...mapGetters('orderModules',['Orders','pages']),
-  },
-  methods: {
-    getOrderList(page = 1){
-      this.$store.dispatch('orderModules/getOrderList',page);
     }
   },
-  created(){
-    this.getOrderList();
+  computed: {
+    ...mapGetters('orderModules', ['Orders', 'pages'])
   },
+  methods: {
+    getOrderList (page = 1) {
+      this.$store.dispatch('orderModules/getOrderList', page)
+    }
+  },
+  created () {
+    this.getOrderList()
+  }
 }
 
 </script>

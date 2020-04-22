@@ -146,38 +146,38 @@
 </template>
 
 <script>
-//import mapGetter與mapActions的方法
+// import mapGetter與mapActions的方法
 import {
   mapGetters,
   mapActions
-} from 'vuex';
-import 'vue-loading-overlay/dist/vue-loading.css';
-import $ from 'jquery';
+} from 'vuex'
+import 'vue-loading-overlay/dist/vue-loading.css'
+import $ from 'jquery'
 
 export default {
   name: 'Products',
-  data() {
+  data () {
     return {
       searchText: '',
       currentPage: 1,
-      itemPage:0,
+      itemPage: 0,
       pageNum: 6,
-      isActiveid:'',
-      active:false,
-    };
+      isActiveid: '',
+      active: false
+    }
   },
   computed: {
-    filterData() {
-      const vm = this;
-      const newData = [];
+    filterData () {
+      const vm = this
+      const newData = []
       // 重新抓一次產品資料做過濾
-      let products = this.$store.state.productsModules.products;
+      let products = this.$store.state.productsModules.products
       // 針對全產品第一次過濾
       if (vm.searchText) {
-        vm.itemPage = 0;
+        vm.itemPage = 0
         products = products.filter((item) => {
-          const data = item.category.toLowerCase().includes(vm.searchText.toLowerCase());
-          return data;
+          const data = item.category.toLowerCase().includes(vm.searchText.toLowerCase())
+          return data
         })
       }
       // 分頁過濾(6筆/1頁)
@@ -188,46 +188,46 @@ export default {
         }
         const page = parseInt(i / vm.pageNum)
         newData[page].push(item)
-      });
-      return newData;
+      })
+      return newData
     },
     ...mapGetters('productsModules', ['products', 'categories']),
-    ...mapGetters('cartModules', ['cart']),
+    ...mapGetters('cartModules', ['cart'])
 
   },
   methods: {
     // 抓全產品資料
-    getProducts(pages = 1) {
-      this.$store.dispatch('productsModules/getProducts', pages);
+    getProducts (pages = 1) {
+      this.$store.dispatch('productsModules/getProducts', pages)
     },
-    getCart(payload) {
-      this.$store.dispatch('cartModules/getCart', payload);
+    getCart (payload) {
+      this.$store.dispatch('cartModules/getCart', payload)
     },
-    removeCart(id) {
-      this.$store.dispatch('cartModules/removeCart', id);
+    removeCart (id) {
+      this.$store.dispatch('cartModules/removeCart', id)
     },
-    getproductId(id) {
+    getproductId (id) {
       // 帶入此產品的id給action抓api的資料
-      this.$store.dispatch('productsModules/getproductId', id);
-      self.$router.push(`/productList/${id}`);
+      this.$store.dispatch('productsModules/getproductId', id)
+      self.$router.push(`/productList/${id}`)
     },
-    gocart() {
-      this.$router.push(`/cart`);
+    gocart () {
+      this.$router.push('/cart')
     },
-    addfavorite(id,title){
-      this.$store.dispatch('productsModules/addfavorite',{id,title});
+    addfavorite (id, title) {
+      this.$store.dispatch('productsModules/addfavorite', { id, title })
     },
-    showFooter(id){
-      this.isActiveid = id;
-      this.active = true;
+    showFooter (id) {
+      this.isActiveid = id
+      this.active = true
     },
-    hiddenFooter(){
-      this.active = false;
+    hiddenFooter () {
+      this.active = false
     }
   },
-  created() {
-    this.getProducts();
-    this.getCart(true);
+  created () {
+    this.getProducts()
+    this.getCart(true)
   }
 }
 </script>

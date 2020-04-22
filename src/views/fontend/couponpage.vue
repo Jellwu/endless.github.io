@@ -28,101 +28,99 @@
           <span v-if="ansMsg !== ''" class="text-white">{{ ansMsg }}</span>
         </div>
 
-
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
-import $ from 'jquery';
+import { mapGetters, mapActions } from 'vuex'
+import $ from 'jquery'
 // @ is an alias to /src
 export default {
   name: 'COUPON',
-data(){
-  return{
-    puzzles:[],
-    couponCode:'',
-    active:false,
-    ansMsg:'',
-  }
-},
-methods:{
+  data () {
+    return {
+      puzzles: [],
+      couponCode: '',
+      active: false,
+      ansMsg: ''
+    }
+  },
+  methods: {
   // 建立puzzleArr 等等用來sort()亂數排序
-  render(){
-    const vm = this;
-    let puzzleArr = [];
-    for (let i = 1; i <= 6; i++)
-      {
-      switch(i){
-        case 1:
-        puzzleArr.push('https://i.imgur.com/wj8cZJu.jpg')
-        break;
-        case 2:
-        puzzleArr.push('https://i.imgur.com/2LGgHSH.jpg')
-        break;
-        case 3:
-        puzzleArr.push('https://i.imgur.com/dp23WtP.jpg')
-        break;
-        case 4:
-        puzzleArr.push('https://i.imgur.com/2zbH58Z.jpg')
-        break;
-        case 5:
-        puzzleArr.push('https://i.imgur.com/HiR3bJj.jpg')
-        break;
-        case 6:
-        puzzleArr.push('https://i.imgur.com/TcF1tXS.png')
-        break;
+    render () {
+      const vm = this
+      let puzzleArr = []
+      for (let i = 1; i <= 6; i++) {
+        switch (i) {
+          case 1:
+            puzzleArr.push('https://i.imgur.com/wj8cZJu.jpg')
+            break
+          case 2:
+            puzzleArr.push('https://i.imgur.com/2LGgHSH.jpg')
+            break
+          case 3:
+            puzzleArr.push('https://i.imgur.com/dp23WtP.jpg')
+            break
+          case 4:
+            puzzleArr.push('https://i.imgur.com/2zbH58Z.jpg')
+            break
+          case 5:
+            puzzleArr.push('https://i.imgur.com/HiR3bJj.jpg')
+            break
+          case 6:
+            puzzleArr.push('https://i.imgur.com/TcF1tXS.png')
+            break
+        }
+      }
+      // 亂數排序puzzleArr陣列
+      puzzleArr = puzzleArr.sort(() => {
+        return Math.random() - 0.5
+      })
+      vm.puzzles = puzzleArr
+    },
+    moveSquare (index) {
+      const vm = this
+      // 取得現在資料上下左右的值(照片連結)
+      const currentImg = this.puzzles[index]
+      const rightImg = this.puzzles[index + 1]
+      const leftImg = this.puzzles[index - 1]
+      const topImg = this.puzzles[index - 3]
+      const botImg = this.puzzles[index + 3]
+      const emptyImg = 'https://i.imgur.com/TcF1tXS.png'
+
+      if (rightImg === emptyImg) {
+        vm.$set(vm.puzzles, index + 1, currentImg)
+        vm.$set(vm.puzzles, index, emptyImg)
+      } else if (leftImg === emptyImg) {
+        vm.$set(vm.puzzles, index - 1, currentImg)
+        vm.$set(vm.puzzles, index, emptyImg)
+      } else if (topImg === emptyImg) {
+        vm.$set(vm.puzzles, index - 3, currentImg)
+        vm.$set(vm.puzzles, index, emptyImg)
+      } else if (botImg === emptyImg) {
+        vm.$set(vm.puzzles, index + 3, currentImg)
+        vm.$set(vm.puzzles, index, emptyImg)
+      }
+    },
+    ansCheck () {
+      const vm = this
+      if (vm.couponCode === '776803') {
+        vm.active = true
+        this.ansMsg = '正確答案，折扣起來！'
+      } else {
+        this.ansMsg = '答錯了，再試一次！'
       }
     }
-        // 亂數排序puzzleArr陣列
-        puzzleArr = puzzleArr.sort(() => {
-          return Math.random() - 0.5
-        });
-        vm.puzzles = puzzleArr;
   },
-  moveSquare(index){
-    const vm = this;
-    // 取得現在資料上下左右的值(照片連結)
-    let currentImg = this.puzzles[index];
-    let rightImg = this.puzzles[index + 1];
-    let leftImg = this.puzzles[index - 1];
-    let topImg = this.puzzles[index - 3];
-    let botImg = this.puzzles[index + 3];
-    const emptyImg = 'https://i.imgur.com/TcF1tXS.png'
-
-    if(rightImg === emptyImg){
-      vm.$set(vm.puzzles,index + 1,currentImg,);
-      vm.$set(vm.puzzles,index ,emptyImg);
-    }else if (leftImg === emptyImg){
-      vm.$set(vm.puzzles,index - 1,currentImg,);
-      vm.$set(vm.puzzles,index ,emptyImg);
-    }else if (topImg === emptyImg){
-      vm.$set(vm.puzzles,index - 3,currentImg,);
-      vm.$set(vm.puzzles,index ,emptyImg);
-    }else if (botImg === emptyImg){
-      vm.$set(vm.puzzles,index + 3,currentImg,);
-      vm.$set(vm.puzzles,index ,emptyImg);
+  computed: {
+    rePuzzles () {
+      return this.puzzles
     }
   },
-  ansCheck(){
-    const vm = this
-    if(vm.couponCode === '776803'){
-      vm.active = true;
-      this.ansMsg = '正確答案，折扣起來！'
-    }else{
-      this.ansMsg = '答錯了，再試一次！'
-    }
+  created () {
+    this.render()
   }
-},
-computed:{
-  rePuzzles(){
-    return this.puzzles;
-  }
-},
-created (){
-  this.render()
-}
 }
 </script>
 <style scope>

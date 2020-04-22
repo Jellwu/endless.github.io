@@ -130,64 +130,64 @@
 </template>
 
 <script>
-//import mapGetter與mapActions的方法
+// import mapGetter與mapActions的方法
 import {
   mapGetters,
   mapActions
-} from 'vuex';
-import cartMessage from '@/components/CartMessage.vue';
+} from 'vuex'
+import cartMessage from '@/components/CartMessage.vue'
 
 export default {
   name: 'Product',
-  data() {
+  data () {
     return {
-      productNum:0,
-    };
+      productNum: 0
+    }
   },
   computed: {
-    adviePdc(){
-      let products = this.$store.state.productsModules.products;
-      let product = this.$store.state.productsModules.product;
-       products = products.filter((item) =>{
-         const data = item.category.toLowerCase().includes(product.category.toLowerCase());
-         return data;
-       });
-       return products;
+    adviePdc () {
+      let products = this.$store.state.productsModules.products
+      const product = this.$store.state.productsModules.product
+      products = products.filter((item) => {
+        const data = item.category.toLowerCase().includes(product.category.toLowerCase())
+        return data
+      })
+      return products
     },
     // 抓productsModules中的state.product
     ...mapGetters('productsModules', ['productDetail']),
-    subtotal() {
-      const data = this.$store.state.productsModules.product.price * this.productNum;
-      return data;
-    },
+    subtotal () {
+      const data = this.$store.state.productsModules.product.price * this.productNum
+      return data
+    }
   },
   methods: {
-    getProducts(pages = 1) {
-      this.$store.dispatch('productsModules/getProducts', pages);
+    getProducts (pages = 1) {
+      this.$store.dispatch('productsModules/getProducts', pages)
     },
-    getproductDetail(id) {
-      this.$store.dispatch('productsModules/getproductDetail', id);
+    getproductDetail (id) {
+      this.$store.dispatch('productsModules/getproductDetail', id)
     },
-    getproductId(id) {
+    getproductId (id) {
       // 帶入此產品的id給action抓api的資料
-      this.$store.dispatch('productsModules/getproductId', id);
+      this.$store.dispatch('productsModules/getproductId', id)
     },
-    addtoCart(id, qty) {
+    addtoCart (id, qty) {
       this.$store.dispatch('cartModules/addtoCart', {
         id,
         qty
-      });
-    },
+      })
+    }
     // ...mapActions('productsModules',['getproductDetail'], id),
   },
   components: {
-    cartMessage,
+    cartMessage
   },
-  created() {
-    this.getProducts();
-    let productId = this.$route.params.productID;
-    this.getproductDetail(productId);
-  },
+  created () {
+    this.getProducts()
+    const productId = this.$route.params.productID
+    this.getproductDetail(productId)
+  }
 }
 </script>
 <style scpoed>

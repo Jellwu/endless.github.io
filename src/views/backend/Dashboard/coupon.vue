@@ -103,61 +103,61 @@
 </template>
 
 <script>
-//import mapGetter與mapActions的方法
-import { mapGetters, mapActions } from 'vuex';
-import $ from 'jquery';
+// import mapGetter與mapActions的方法
+import { mapGetters, mapActions } from 'vuex'
+import $ from 'jquery'
 
-export default{
+export default {
   name: 'Coupon',
-  data() {
+  data () {
     return {
-      tempCoupon:{},
-      modelTitle:'',
-      isNew:true,
-    };
+      tempCoupon: {},
+      modelTitle: '',
+      isNew: true
+    }
   },
   computed: {
-    ...mapGetters('couponModules',['coupon','isLoading']),
+    ...mapGetters('couponModules', ['coupon', 'isLoading'])
   },
   methods: {
     // ...mapActions('couponModules',['getCoupon']),
-    getCoupon(page = 1){
-      this.$store.dispatch('couponModules/getCoupon',page);
+    getCoupon (page = 1) {
+      this.$store.dispatch('couponModules/getCoupon', page)
     },
-    openCouponModal(isNew ,item) {
-      if(isNew){
-        this.modelTitle = "新增";
-        this.tempCoupon = {};
-        this.isNew = true;
-      }else{
-        this.modelTitle = "編輯";
-        this.tempCoupon = Object.assign({},item);
-        this.isNew = false;
+    openCouponModal (isNew, item) {
+      if (isNew) {
+        this.modelTitle = '新增'
+        this.tempCoupon = {}
+        this.isNew = true
+      } else {
+        this.modelTitle = '編輯'
+        this.tempCoupon = Object.assign({}, item)
+        this.isNew = false
       }
-      $('#CouponModal').modal('show');
+      $('#CouponModal').modal('show')
     },
-    opendropCoupon(item){
-      $('#coupondropModal').modal('show');
-      this.tempCoupon = item;
+    opendropCoupon (item) {
+      $('#coupondropModal').modal('show')
+      this.tempCoupon = item
     },
-    addCoupon(){
-      if(this.isNew){
-        this.$store.dispatch('couponModules/addCoupon',this.tempCoupon);
-        $('#CouponModal').modal('hide');
-        this.$store.dispatch('couponModules/getCoupon');
-      }else{
-        this.$store.dispatch('couponModules/editCoupon',this.tempCoupon);
-        $('#CouponModal').modal('hide');
+    addCoupon () {
+      if (this.isNew) {
+        this.$store.dispatch('couponModules/addCoupon', this.tempCoupon)
+        $('#CouponModal').modal('hide')
+        this.$store.dispatch('couponModules/getCoupon')
+      } else {
+        this.$store.dispatch('couponModules/editCoupon', this.tempCoupon)
+        $('#CouponModal').modal('hide')
       }
     },
-    dropCoupon(){
-      this.$store.dispatch('couponModules/dropCoupon',this.tempCoupon);
-      $('#coupondropModal').modal('hide');
+    dropCoupon () {
+      this.$store.dispatch('couponModules/dropCoupon', this.tempCoupon)
+      $('#coupondropModal').modal('hide')
     }
   },
-  created(){
-    this.getCoupon();
-  },
+  created () {
+    this.getCoupon()
+  }
 }
 
 </script>

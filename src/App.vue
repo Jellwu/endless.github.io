@@ -107,45 +107,45 @@
 </template>
 
 <script>
-import $ from 'jquery';
-import { mapGetters,mapActions } from 'vuex';
+import $ from 'jquery'
+import { mapGetters, mapActions } from 'vuex'
 // 抓localstorage資料用
-import {mapMutations} from 'vuex';
+import { mapMutations } from 'vuex'
 // Import stylesheet
-import 'vue-loading-overlay/dist/vue-loading.css';
-import cartMessage from '@/components/CartMessage.vue';
+import 'vue-loading-overlay/dist/vue-loading.css'
+import cartMessage from '@/components/CartMessage.vue'
 
-export default{
-  data(){
-    return{
+export default {
+  data () {
+    return {
 
-    };
+    }
   },
-  methods:{
+  methods: {
     ...mapActions('cartModules', ['getCart']),
-    getfavorite(){
-      this.$store.dispatch('productsModules/getfavorite');
+    getfavorite () {
+      this.$store.dispatch('productsModules/getfavorite')
     },
-    dropfavorite(id){
-      this.$store.dispatch('productsModules/dropfavorite',id);
+    dropfavorite (id) {
+      this.$store.dispatch('productsModules/dropfavorite', id)
     },
-    getproductId(id) {
+    getproductId (id) {
       // 帶入此產品的id給action抓api的資料
-      this.$store.dispatch('productsModules/getproductId', id);
-    },
+      this.$store.dispatch('productsModules/getproductId', id)
+    }
 
   },
-  computed:{
+  computed: {
     ...mapGetters(['isLoading']),
     ...mapGetters('cartModules', ['cart']),
-    ...mapGetters('productsModules', ['favorite']),
+    ...mapGetters('productsModules', ['favorite'])
   },
   components: {
-    cartMessage,
+    cartMessage
   },
-  created(){
-    this.getfavorite();
-    this.getCart();
+  created () {
+    this.getfavorite()
+    this.getCart()
   }
 }
 

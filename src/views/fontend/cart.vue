@@ -122,55 +122,55 @@
 </template>
 
 <script>
-//import mapGetter與mapActions的方法
-import { mapGetters, mapActions } from 'vuex';
-import $ from 'jquery';
-import { ValidationObserver } from 'vee-validate';
-import { ValidationProvider } from 'vee-validate';
-import cartMessage from '@/components/CartMessage.vue';
+// import mapGetter與mapActions的方法
+import { mapGetters, mapActions } from 'vuex'
+import $ from 'jquery'
+import { ValidationObserver, ValidationProvider } from 'vee-validate'
+
+import cartMessage from '@/components/CartMessage.vue'
 
 export default {
   name: 'Cart',
-  data() {
+  data () {
     return {
-      couponCode:'',
-      form:{
-        user:{
-          name:'',
-          email:'',
-          tel:'',
-          address:'',
+      couponCode: '',
+      form: {
+        user: {
+          name: '',
+          email: '',
+          tel: '',
+          address: ''
         },
-        message:''
+        message: ''
       }
-    };
+    }
   },
   computed: {
     // 抓productsModules中的state.product
-    ...mapGetters('cartModules',['cart']),
+    ...mapGetters('cartModules', ['cart'])
   },
   methods: {
-    ...mapActions('cartModules',['getCart']),
-    removeCart(id){
-      this.$store.dispatch('cartModules/removeCart', id);
+    ...mapActions('cartModules', ['getCart']),
+    removeCart (id) {
+      this.$store.dispatch('cartModules/removeCart', id)
     },
-    getCoupon(){
-      this.$store.dispatch('cartModules/applyCounpon',this.couponCode);
+    getCoupon () {
+      this.$store.dispatch('cartModules/applyCounpon', this.couponCode)
     },
-    cancelCoupon(){
-      this.$store.dispatch('cartModules/cancelCoupon','ORIGINP0');
+    cancelCoupon () {
+      this.$store.dispatch('cartModules/cancelCoupon', 'ORIGINP0')
     },
-    cartCheckout(){
-      const order = this.form;
-      this.$store.dispatch('orderModules/cartCheckout',order);
-    },
+    cartCheckout () {
+      const order = this.form
+      this.$store.dispatch('orderModules/cartCheckout', order)
+    }
   },
   components: {
-    cartMessage,
+    cartMessage
   },
-  created(){
-    this.getCart();
-  },
+  created () {
+    this.getCart()
+  }
 }
 
 </script>

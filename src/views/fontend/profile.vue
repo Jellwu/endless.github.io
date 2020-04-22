@@ -181,17 +181,17 @@
 import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'LOGIN',
-data(){
-  return{
+  data () {
+    return {
 
+    }
+  },
+  methods: {
+
+  },
+  computed: {
+    ...mapGetters('loginModules', ['isLoading'])
   }
-},
-methods:{
-
-},
-computed:{
-  ...mapGetters('loginModules',['isLoading']),
-},
 }
 </script>
 <style scope>
@@ -328,6 +328,5 @@ font-size:18px;
   border-bottom: 4px solid #CAC34E;
   width:85%;
 }
-
 
 </style>

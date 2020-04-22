@@ -111,41 +111,40 @@
 </template>
 
 <script>
-import $ from 'jquery';
+import $ from 'jquery'
 import {
   mapGetters,
   mapActions
-} from 'vuex';
+} from 'vuex'
 export default {
   name: 'Home',
-  computed:{
-    ...mapGetters('productsModules', ['products']),
+  computed: {
+    ...mapGetters('productsModules', ['products'])
   },
-  methods:{
-    handleScroll(){
+  methods: {
+    handleScroll () {
       if ($(window).scrollTop() > $('#sectionAbout').offset().top - 400) {
-        $('.rightArea').addClass('fadeInRight');
-        $('.leftArea').addClass('fadeInLeft');
+        $('.rightArea').addClass('fadeInRight')
+        $('.leftArea').addClass('fadeInLeft')
       } else {
         $('.rightArea').removeClass('fadeInRight')
-        $('.leftArea').removeClass('fadeInLeft');
+        $('.leftArea').removeClass('fadeInLeft')
       }
     },
-    getProducts(pages = 1) {
-      this.$store.dispatch('productsModules/getProducts',pages);
-    },
+    getProducts (pages = 1) {
+      this.$store.dispatch('productsModules/getProducts', pages)
+    }
   },
-  created(){
-    this.getProducts();
+  created () {
+    this.getProducts()
   },
-  mounted() {
-    window.addEventListener('scroll', this.handleScroll);
+  mounted () {
+    window.addEventListener('scroll', this.handleScroll)
     // carousel autoplay do not stop on flag change
-
-    },
-  destroyed() {
-    window.removeEventListener('scroll', this.handleScroll);
   },
+  destroyed () {
+    window.removeEventListener('scroll', this.handleScroll)
+  }
 }
 </script>
 

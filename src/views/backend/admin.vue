@@ -46,12 +46,12 @@
 // @ is an alias to /src
 export default {
   name: 'Admin',
-  methods:{
-    logout(){
-      const api = `${process.env.VUE_APP_APIPATH}/logout`;
-      this.$http.post(api).then((response) =>{
-        alert(response.data.message);
-        this.$router.push('/login');
+  methods: {
+    logout () {
+      const api = `${process.env.VUE_APP_APIPATH}/logout`
+      this.$http.post(api).then((response) => {
+        alert(response.data.message)
+        this.$router.push('/login')
       })
     }
   }

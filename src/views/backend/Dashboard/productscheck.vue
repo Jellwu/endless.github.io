@@ -159,85 +159,85 @@
 </template>
 
 <script>
-//import mapGetter與mapActions的方法
-import { mapGetters, mapActions } from 'vuex';
-import $ from 'jquery';
+// import mapGetter與mapActions的方法
+import { mapGetters, mapActions } from 'vuex'
+import $ from 'jquery'
 
-export default{
+export default {
   name: 'ProductCheck',
-  data() {
+  data () {
     return {
-      tempProduct:{},
-      status:{
-        preuploadFile:false,
+      tempProduct: {},
+      status: {
+        preuploadFile: false
       },
-      fileDone:false,
-    };
+      fileDone: false
+    }
   },
   computed: {
-    ...mapGetters('productsModules',['products','categories']),
+    ...mapGetters('productsModules', ['products', 'categories'])
   },
   methods: {
-    ...mapActions('productsModules',['getProducts']),
-    openPdcModal(isNew,item){
-      if(isNew){
-        this.tempProduct = {};
-        this.isNew = true;
-      }else{
-        this.tempProduct = Object.assign({},item);
+    ...mapActions('productsModules', ['getProducts']),
+    openPdcModal (isNew, item) {
+      if (isNew) {
+        this.tempProduct = {}
+        this.isNew = true
+      } else {
+        this.tempProduct = Object.assign({}, item)
         this.isNew = false
       }
-      $('#pdcModal').modal('show');
+      $('#pdcModal').modal('show')
     },
-    opendropModal(item){
-      $('#dropModel').modal('show');
-      this.tempProduct = item;
+    opendropModal (item) {
+      $('#dropModel').modal('show')
+      this.tempProduct = item
     },
 
-    updateProduct(){
-      if(!this.isNew){
-        this.$store.dispatch('productsModules/updateProduct',this.tempProduct);
-        $('#pdcModal').modal('hide');
-      }else{
-        this.$store.dispatch('productsModules/addProduct',this.tempProduct);
-        $('#pdcModal').modal('hide');
+    updateProduct () {
+      if (!this.isNew) {
+        this.$store.dispatch('productsModules/updateProduct', this.tempProduct)
+        $('#pdcModal').modal('hide')
+      } else {
+        this.$store.dispatch('productsModules/addProduct', this.tempProduct)
+        $('#pdcModal').modal('hide')
       }
     },
     // 上傳圖片
-    uploadFile(){
-    const uploadedFile = this.$refs.files.files[0];
-    const vm = this;
-    const formData = new FormData();
-    formData.append('file-to-file',uploadedFile);
-    vm.status.preuploadFile = true;
+    uploadFile () {
+      const uploadedFile = this.$refs.files.files[0]
+      const vm = this
+      const formData = new FormData()
+      formData.append('file-to-file', uploadedFile)
+      vm.status.preuploadFile = true
 
-    const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/upload`;
-    this.$http.post(url, formData, {
-      headers:{
-        'Content-Type':'multipart/form-data'
-      }
-    }).then((response) =>{
-    vm.status.preuploadFile = false;
-    if(response.data.success){
-      // formData直接塞入值會無法雙向綁定(set,get方法未正常)，需要用$set強制寫入
-      // vm.tempProducts.imageUrl = response.data.imageUrl;
-      // vm.$set(要寫入的變數, 要寫入的欄位, 寫入的值)
-      vm.$set(vm.tempProduct,'imageUrl',response.data.imageUrl);
-      vm.fileDone = true;
-    }else{
-      response.data.message;
+      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/upload`
+      this.$http.post(url, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then((response) => {
+        vm.status.preuploadFile = false
+        if (response.data.success) {
+          // formData直接塞入值會無法雙向綁定(set,get方法未正常)，需要用$set強制寫入
+          // vm.tempProducts.imageUrl = response.data.imageUrl;
+          // vm.$set(要寫入的變數, 要寫入的欄位, 寫入的值)
+          vm.$set(vm.tempProduct, 'imageUrl', response.data.imageUrl)
+          vm.fileDone = true
+        } else {
+          response.data.message
         }
       })
     },
 
-    dropProduct(){
-      this.$store.dispatch('productsModules/dropProduct',this.tempProduct);
-      $('#dropModel').modal('hide');
+    dropProduct () {
+      this.$store.dispatch('productsModules/dropProduct', this.tempProduct)
+      $('#dropModel').modal('hide')
     }
   },
-  created(){
-    this.getProducts();
-  },
+  created () {
+    this.getProducts()
+  }
 }
 
 </script>

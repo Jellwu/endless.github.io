@@ -25,26 +25,26 @@ import { mapGetters, mapActions } from 'vuex'
 // @ is an alias to /src
 export default {
   name: 'LOGIN',
-data(){
-  return{
-    user:{
-      username:'',
-      password:''
+  data () {
+    return {
+      user: {
+        username: '',
+        password: ''
+      }
     }
-  }
-},
-methods:{
-  singin(){
-    let user = this.user;
-    this.$store.dispatch('loginModules/singin' ,user);
   },
-},
-computed:{
-  ...mapGetters('loginModules',['isLoading']),
+  methods: {
+    singin () {
+      const user = this.user
+      this.$store.dispatch('loginModules/singin', user)
+    }
+  },
+  computed: {
+    ...mapGetters('loginModules', ['isLoading'])
   // cart(){
   //   return this.$store.state.cart;
   // }
-},
+  }
 }
 </script>
 

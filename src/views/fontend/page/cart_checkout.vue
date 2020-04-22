@@ -73,37 +73,37 @@
 </template>
 
 <script>
-//import mapGetter與mapActions的方法
-import { mapGetters, mapActions } from 'vuex';
+// import mapGetter與mapActions的方法
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'Product',
-  data() {
+  data () {
     return {
-      orderId:'',
-      order:{
-        user:{},
-      },
-    };
-  },
-  computed: {
-    ...mapGetters('orderModules',['Order']),
-    ...mapGetters(['isLoading']),
-  },
-  methods: {
-    getOrder(){
-      let id = this.orderId;
-      this.$store.dispatch('orderModules/getOrder',id);
-    },
-    payOrder(){
-      let id = this.orderId
-      this.$store.dispatch('orderModules/payOrder',id);
+      orderId: '',
+      order: {
+        user: {}
+      }
     }
   },
-  created() {
-    this.orderId = this.$route.params.orderID;
-    this.getOrder();
+  computed: {
+    ...mapGetters('orderModules', ['Order']),
+    ...mapGetters(['isLoading'])
   },
+  methods: {
+    getOrder () {
+      const id = this.orderId
+      this.$store.dispatch('orderModules/getOrder', id)
+    },
+    payOrder () {
+      const id = this.orderId
+      this.$store.dispatch('orderModules/payOrder', id)
+    }
+  },
+  created () {
+    this.orderId = this.$route.params.orderID
+    this.getOrder()
+  }
 }
 </script>
 <style scpoed>
