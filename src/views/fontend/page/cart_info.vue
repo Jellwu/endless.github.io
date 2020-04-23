@@ -59,14 +59,11 @@
       </div>
     </ValidationObserver>
     </div>
-  </div>
 </template>
 
 <script>
 // import mapGetter與mapActions的方法
 import { mapGetters, mapActions } from 'vuex'
-import $ from 'jquery'
-import { ValidationObserver, ValidationProvider } from 'vee-validate'
 
 export default {
   name: 'Cart',

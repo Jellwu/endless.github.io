@@ -74,7 +74,7 @@
 
 <script>
 // import mapGetter與mapActions的方法
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'Product',

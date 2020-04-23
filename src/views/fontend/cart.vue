@@ -19,7 +19,7 @@
         </div>
       </div>
     </div>
-    <div v-else="cart.carts.length !== 0">
+    <div v-else-if="cart.carts.length !== 0">
     <div class="container my-5">
       <div class="row d-flex justify-content-center">
         <div class="col-md-10 mt-5">
@@ -124,9 +124,6 @@
 <script>
 // import mapGetter與mapActions的方法
 import { mapGetters, mapActions } from 'vuex'
-import $ from 'jquery'
-import { ValidationObserver, ValidationProvider } from 'vee-validate'
-
 import cartMessage from '@/components/CartMessage.vue'
 
 export default {

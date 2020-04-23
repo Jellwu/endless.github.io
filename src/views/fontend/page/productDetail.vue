@@ -71,71 +71,16 @@
         </div>
       </div>
       <hr class="px-5">
-        <h2 class="my-5 text-endless">
-          <span><i class="fas fa-store text-warning mr-3"></i>你可能也喜歡</span>
-        </h2>
-      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner text-white">
-          <div class="carousel-item active ">
-            <div class="row text-endless box-advice">
-              <div class="col-3 mb-4" v-for="items in adviePdc.slice(0,5)" :key="items.id"
-              v-if="items.id !== productDetail.id" @click="getproductId(items.id)">
-                <div class="card text-endless">
-                  <img :src="items.imageUrl" class="card-img" alt="...">
-                  <div class="card-img-overlay">
-                    <h5 class="card-title">{{items.title}}</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item" v-if="adviePdc.length > 4">
-            <div class="row text-endless box-advice">
-              <div class="col-3 mb-4" v-for="items in adviePdc.slice(5,10)" :key="items.id"
-              v-if="items.id !== productDetail.id" @click="getproductId(items.id)">
-                <div class="card text-endless">
-                  <img :src="items.imageUrl" class="card-img" alt="...">
-                  <div class="card-img-overlay">
-                    <h5 class="card-title">{{items.title}}</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item" v-if="adviePdc.length > 8">
-            <div class="row text-endless box-advice">
-              <div class="col-3 mb-4" v-for="items in adviePdc.slice(10,15)" :key="items.id"
-              v-if="items.id !== productDetail.id" @click="getproductId(items.id)">
-                <div class="card text-endless">
-                  <img :src="items.imageUrl" class="card-img" alt="...">
-                  <div class="card-img-overlay">
-                    <h5 class="card-title">{{items.title}}</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-            <span v-if="adviePdc.length > 4" class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-            <span v-if="adviePdc.length > 4" class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
-        </div>
-      </div>
+      <adList></adList>
 </div>
 
 </template>
 
 <script>
 // import mapGetter與mapActions的方法
-import {
-  mapGetters,
-  mapActions
-} from 'vuex'
+import { mapGetters } from 'vuex'
 import cartMessage from '@/components/CartMessage.vue'
+import adList from '@/components/adList.vue'
 
 export default {
   name: 'Product',
@@ -145,16 +90,6 @@ export default {
     }
   },
   computed: {
-    adviePdc () {
-      let products = this.$store.state.productsModules.products
-      const product = this.$store.state.productsModules.product
-      products = products.filter((item) => {
-        const data = item.category.toLowerCase().includes(product.category.toLowerCase())
-        return data
-      })
-      return products
-    },
-    // 抓productsModules中的state.product
     ...mapGetters('productsModules', ['productDetail']),
     subtotal () {
       const data = this.$store.state.productsModules.product.price * this.productNum
@@ -178,10 +113,10 @@ export default {
         qty
       })
     }
-    // ...mapActions('productsModules',['getproductDetail'], id),
   },
   components: {
-    cartMessage
+    cartMessage,
+    adList
   },
   created () {
     this.getProducts()

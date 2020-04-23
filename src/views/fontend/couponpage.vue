@@ -33,9 +33,6 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
-import $ from 'jquery'
-// @ is an alias to /src
 export default {
   name: 'COUPON',
   data () {

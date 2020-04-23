@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import axios from 'axios'
 
 // 將products模組輸入到index.js
 import productsModules from './products'

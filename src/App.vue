@@ -107,10 +107,8 @@
 </template>
 
 <script>
-import $ from 'jquery'
 import { mapGetters, mapActions } from 'vuex'
 // 抓localstorage資料用
-import { mapMutations } from 'vuex'
 // Import stylesheet
 import 'vue-loading-overlay/dist/vue-loading.css'
 import cartMessage from '@/components/CartMessage.vue'

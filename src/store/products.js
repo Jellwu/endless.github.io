@@ -148,18 +148,14 @@ export default {
       const getLocalarray = JSON.parse(localStorage.getItem('favorite'))
       getLocalarray.forEach((item, key) => {
         if (item.id === payload) {
-          {
-            context.dispatch('cartMessage',
-              {
-                state: true,
-                msg: '已刪除我的最愛'
-              },
-              { root: true })
-            context.commit('DROPFAVORITE', key)
-            context.commit('GETFAVORITE')
-          }
-        } else {
-
+          context.dispatch('cartMessage',
+            {
+              state: true,
+              msg: '已刪除我的最愛'
+            },
+            { root: true })
+          context.commit('DROPFAVORITE', key)
+          context.commit('GETFAVORITE')
         }
       })
     }

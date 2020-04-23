@@ -25,9 +25,9 @@
           </td>
           <td>{{  items.total| currency  }}</td>
           <td v-if="items.is_paid">{{ items.paid_date | timeTranse }}</td>
-          <td v-else-if> -- </td>
+          <td v-else-if="!items.is_paid"> -- </td>
           <td v-if="items.is_paid" class="text-success"> 完成付款</td>
-          <td v-else-if class="text-danger">尚未付款</td>
+          <td v-else-if="!items.is_paid" class="text-danger">尚未付款</td>
         </tr>
       </tbody>
     </table>
@@ -49,8 +49,7 @@
 
 <script>
 // import mapGetter與mapActions的方法
-import { mapGetters, mapActions } from 'vuex'
-import $ from 'jquery'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'Order',

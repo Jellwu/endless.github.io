@@ -146,13 +146,8 @@
 </template>
 
 <script>
-// import mapGetter與mapActions的方法
-import {
-  mapGetters,
-  mapActions
-} from 'vuex'
+import { mapGetters } from 'vuex'
 import 'vue-loading-overlay/dist/vue-loading.css'
-import $ from 'jquery'
 
 export default {
   name: 'Products',
@@ -209,7 +204,7 @@ export default {
     getproductId (id) {
       // 帶入此產品的id給action抓api的資料
       this.$store.dispatch('productsModules/getproductId', id)
-      self.$router.push(`/productList/${id}`)
+      this.$router.push(`/productList/${id}`)
     },
     gocart () {
       this.$router.push('/cart')

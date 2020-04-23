@@ -141,9 +141,9 @@
                 </button>
               </div>
               <div class="modal-body">
-                <div class="p-2" v-model="tempProduct.title">
+                <!-- <div class="p-2" v-model="tempProduct.title"> -->
                     <p>是否刪除產品：<span class="text-danger font-weight-bold">{{ tempProduct.title }}?</span></p>
-                </div>
+                <!-- </div> -->
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
@@ -155,8 +155,6 @@
 
     </div>
     </template>
-  </div>
-</template>
 
 <script>
 // import mapGetter與mapActions的方法
@@ -220,12 +218,9 @@ export default {
         vm.status.preuploadFile = false
         if (response.data.success) {
           // formData直接塞入值會無法雙向綁定(set,get方法未正常)，需要用$set強制寫入
-          // vm.tempProducts.imageUrl = response.data.imageUrl;
           // vm.$set(要寫入的變數, 要寫入的欄位, 寫入的值)
           vm.$set(vm.tempProduct, 'imageUrl', response.data.imageUrl)
           vm.fileDone = true
-        } else {
-          response.data.message
         }
       })
     },

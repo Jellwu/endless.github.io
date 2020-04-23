@@ -104,7 +104,7 @@
 
 <script>
 // import mapGetter與mapActions的方法
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 import $ from 'jquery'
 
 export default {
