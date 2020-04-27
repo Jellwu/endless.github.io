@@ -2,12 +2,11 @@
 <div class="about my-5">
   <Loading loader="bars" color="#C4A670" :active.sync="isLoading"></Loading>
       <div class="customform-banner d-flex align-items-center justify-content-center mb-5">
-        <div class="">
+        <div>
           <h1 class="text-endless">訂單資料確認</h1>
         </div>
       </div>
-    <div class="">
-      <div class="row justify-content-center">
+      <div class="row justify-content-center" v-if="Order.is_paid === false">
         <form class="col-md-6" @submit.prevent="payOrder">
           <table class="table text-endless my-5">
             <thead class="thead-dark">
@@ -64,11 +63,26 @@
             </tbody>
           </table>
           <div class="text-center" v-if="Order.is_paid === false">
-            <button class="btn btn-warning">確認付款去</button>
+            <button type="submit" class="btn btn-warning">確認付款去</button>
           </div>
         </form>
       </div>
-  </div>
+      <div v-else-if="Order.is_paid === true">
+        <div class="paid-msgBox d-flex flex-column justify-content-center align-items-around">
+          <div class="text-center">
+            <h2 class="text-endless mb-1">此筆訂單已完成付款</h2>
+            <h3 class="text-warning mb-1">訂單編號為：{{ orderId }}</h3>
+            <h3 class="text-endless mb-5">歡迎聯絡我們詢問出貨進度</h3>
+            <div class="text-center">
+          </div>
+            <router-link class="btn btn-outline-warning" to="/productList">
+              <span class="underline">
+                來去逛逛 <i class="fas fa-shipping-fast"></i>
+              </span>
+            </router-link>
+          </div>
+        </div>
+      </div>
 </div>
 </template>
 
@@ -95,7 +109,8 @@ export default {
       const id = this.orderId
       this.$store.dispatch('orderModules/getOrder', id)
     },
-    payOrder () {
+    payOrder (e) {
+      e.preventDefault()
       const id = this.orderId
       this.$store.dispatch('orderModules/payOrder', id)
     }
@@ -123,4 +138,12 @@ thead th{
   background-size: cover;
   height:300px;
 }
+.paid-msgBox{
+  background-color: rgba(0,0,0,0.3);
+  border-radius:10px;
+  width:700px;
+  margin:0px auto;
+  height:500px;
+}
+
 </style>

@@ -38,6 +38,30 @@ export default {
         context.dispatch('getCart')
       })
     },
+    updateCartQty (context, { originCartId, originProductId, newQty }) {
+      // 接收的變數名稱必須與回傳的變數名稱相同，在寫入item時改寫
+      const changeId = originCartId
+      const changeItem = {
+        product_id: originProductId,
+        qty: newQty
+      }
+      const delUrl = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${changeId}`
+      const addUrl = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
+      function addApi (item) {
+        axios.post(addUrl, { data: item }).then((response) => {
+          context.dispatch('cartMessage',
+            {
+              state: true,
+              msg: response.data.message
+            },
+            { root: true })
+        })
+      }
+      axios.all([axios.delete(delUrl), addApi(changeItem)])
+        .then(axios.spread(() => {
+          context.dispatch('getCart')
+        }))
+    },
     addtoCart (context, { id, qty }) {
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
       const item = {

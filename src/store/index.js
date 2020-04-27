@@ -23,7 +23,7 @@ export default new Vuex.Store({
     LOADING (state, payload) {
       // 若以CartMsg表示的就不再重新跑一次Laoder
       if (state.isCartmessage.state === true) {
-
+        state.isLoading = false
       } else {
         state.isLoading = payload
       }

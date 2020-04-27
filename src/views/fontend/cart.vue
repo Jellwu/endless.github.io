@@ -64,9 +64,9 @@
           </table>
         </div>
       </div>
-        <div class="row d-flex justify-content-center no-gutters p-3">
-          <div class="col-md-7 bg-cart-box d-flex align-items-center">
-              <ul class="text-endless mt-3">
+        <div class="row d-flex justify-content-around bg-cart-box no-gutters p-3">
+          <div class="col-md-7">
+              <ul class="text-endless mt-3 pl-4">
                 <h4 class="pb-2"><i class="far fa-hand-point-right mr-2"></i>注意事項</h4>
                 <li>確認所填寫的資料是否正確，若因資料不全而退貨，需負擔運費。</li>
                 <li>收到商品後請確認本體(含外盒)是否有破損，於七天內提出瑕疵申請。</li>
@@ -74,7 +74,7 @@
                 <li>目前支援貨到付款、超商付款、ATM付款。</li>
               </ul>
           </div>
-          <div class="col-md-4 bg-cart-box">
+          <div class="col-md-5 bg-cart-box">
             <div class="text-endless mt-4">
               <!-- 結帳資訊區 -->
               <div class="text-right">
@@ -139,11 +139,11 @@ export default {
           address: ''
         },
         message: ''
-      }
+      },
+      newCart: {}
     }
   },
   computed: {
-    // 抓productsModules中的state.product
     ...mapGetters('cartModules', ['cart'])
   },
   methods: {

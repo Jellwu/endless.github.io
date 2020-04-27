@@ -24,6 +24,9 @@
                         <div class="col-1" @click.prevent="dropfavorite(items.id)">
                           <i class="fas fa-eraser" style="font-size:16px"></i>
                         </div>
+                        <div class="col-1" @click.prevent="addtoCart(items.id,1)">
+                          <i class="fas fa-plus-circle" style="font-size:16px"></i>
+                        </div>
                         <div class="col-9 text-warning text-left">
                           <span class="bg-box-pop" style="display:block" @click.prevent="getproductId(items.id)">
                             {{items.title}}
@@ -124,6 +127,22 @@ export default {
     getfavorite () {
       this.$store.dispatch('productsModules/getfavorite')
     },
+    addtoCart (id, qty = 1) {
+      const vm = this
+      const duplicatdItem = vm.cart.carts.filter(items => items.product_id === id)
+      if (duplicatdItem.length > 0) {
+        const sameItem = duplicatdItem[0]
+        const originCartId = sameItem.id
+        const originProductId = sameItem.product.id
+        const newQty = sameItem.qty + qty
+        this.$store.dispatch('cartModules/updateCartQty', { originCartId, originProductId, newQty })
+      } else {
+        this.$store.dispatch('cartModules/addtoCart', {
+          id,
+          qty
+        })
+      }
+    },
     dropfavorite (id) {
       this.$store.dispatch('productsModules/dropfavorite', id)
     },
@@ -151,7 +170,7 @@ export default {
 
 <style lang="scss">
 @import "~bootstrap/scss/bootstrap";
-@import "./assets/scss/all.scss";
+@import "./assets/all.scss";
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

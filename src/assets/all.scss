@@ -1,0 +1,11 @@
+@import "~bootstrap/scss/functions";
+@import "./scss/helpers/_variables.scss";
+@import "./scss/helpers/_keyframes.scss";
+@import "~bootstrap/scss/bootstrap";
+
+// fontend/page
+@import "./scss/pages/home";
+@import "./scss/pages/products";
+
+// fontedn/component
+@import "./scss/components/adList"

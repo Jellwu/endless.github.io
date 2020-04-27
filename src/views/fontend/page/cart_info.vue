@@ -10,18 +10,9 @@
         <form class="col-md-7">
         <ValidationProvider rules="required" name="收件人姓名" v-slot="{ errors }">
           <div class="form-group">
-            <label for="username">收件人姓名：</label>
+            <label for="username">收件人姓名(*必填)：</label>
             <input class="form-control" type="text" name="name" id="username"
             v-model="form.user.name" placeholder="請輸入姓名"
-            :class="{'is-invalid':errors[0]}">
-            <span class="text-danger" v-if="errors[0]">{{ errors[0] }}</span>
-          </div>
-        </ValidationProvider>
-        <ValidationProvider rules="required|email" name="e-mail" v-slot="{ valid, errors }" ref="emailField">
-          <div class="form-group">
-            <label for="useremail">收件人信箱：</label>
-            <input class="form-control" type="email" name="name" id="useremail"
-            v-model="form.user.email" placeholder="請輸入 Email"
             :class="{'is-invalid':errors[0]}">
             <span class="text-danger" v-if="errors[0]">{{ errors[0] }}</span>
           </div>
@@ -29,7 +20,7 @@
 
         <ValidationProvider rules="required|numeric|digits:10" name="電話" v-slot="{ errors }">
           <div class="form-group">
-            <label for="usertel">收件人電話：</label>
+            <label for="usertel">收件人電話(*必填)：</label>
             <input class="form-control" type="tel" name="name" id="usertel"
             placeholder="請輸入電話" v-model="form.user.tel"
             :class="{'is-invalid':errors[0]}">
@@ -39,7 +30,7 @@
 
         <ValidationProvider rules="required" name="地址" v-slot="{ errors }">
         <div class="form-group">
-            <label for="useraddr">收件人地址：</label>
+            <label for="useraddr">收件人地址(*必填)：</label>
             <input class="form-control" type="text" name="name" id="useraddr"
             placeholder="請輸入地址" v-model="form.user.address"
             :class="{'is-invalid':errors[0]}">
@@ -47,9 +38,20 @@
         </div>
         </ValidationProvider>
 
+        <ValidationProvider rules="email" name="e-mail" v-slot="{ valid, errors }" ref="emailField">
+          <div class="form-group">
+            <label for="useremail">收到最新消息：</label>
+            <input class="form-control" type="email" name="name" id="useremail"
+            v-model="form.user.email" placeholder="請輸入Email取得優惠消息"
+            :class="{'is-invalid':errors[0]}">
+            <span class="text-danger" v-if="errors[0]">{{ errors[0] }}</span>
+          </div>
+        </ValidationProvider>
+
             <div class="form-group">
                 <label for="comment">留言</label>
-                <textarea name="" id="comment" class="form-control" cols="30" rows="10"></textarea>
+                <textarea name="" id="comment" class="form-control" cols="30" rows="10"
+                  placeholder="備註:產品分開裝...等資訊"></textarea>
             </div>
             <div class="form-group text-right">
                 <button class="btn btn-warning" :disabled="invalid"

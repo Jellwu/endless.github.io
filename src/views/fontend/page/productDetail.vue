@@ -24,7 +24,7 @@
         </div>
       </div>
   </div>
-      <hr class="px-5">
+      <div class="px-5 my-4"></div>
       <div class="row">
         <div class="col-md-12 d-flex justify-content-center">
           <div class="bg-box-endless rounded py-4 px-2">
@@ -59,7 +59,8 @@
                       </option>
                     </select>
                     <div class="input-group-append text-right">
-                      <button class="btn btn-outline-warning" type="button" @click.prevent = 'addtoCart(productDetail.id,productNum)'>
+                      <button class="btn btn-outline-warning" type="button" :class="{ disabled: productNum === 0}"
+                      @click.prevent = 'addtoCart(productDetail.id,productNum)'>
                         購物車 <i class="fas fa-plus-circle"></i>
                       </button>
                     </div>
@@ -70,7 +71,6 @@
           </div>
         </div>
       </div>
-      <hr class="px-5">
       <adList></adList>
 </div>
 
@@ -91,6 +91,7 @@ export default {
   },
   computed: {
     ...mapGetters('productsModules', ['productDetail']),
+    ...mapGetters('cartModules', ['cart']),
     subtotal () {
       const data = this.$store.state.productsModules.product.price * this.productNum
       return data
@@ -107,11 +108,28 @@ export default {
       // 帶入此產品的id給action抓api的資料
       this.$store.dispatch('productsModules/getproductId', id)
     },
-    addtoCart (id, qty) {
-      this.$store.dispatch('cartModules/addtoCart', {
-        id,
-        qty
-      })
+    addtoCart (id, qty = 1) {
+      // 判斷購物車是否有重複的資料:有的話重新給一個新的數量，無則直接新增一筆到購物車
+      const vm = this
+      const duplicatdItem = vm.cart.carts.filter(items => items.product_id === id)
+      if (duplicatdItem.length > 0) {
+        const sameItem = duplicatdItem[0]
+        const originCartId = sameItem.id
+        const originProductId = sameItem.product.id
+        const newQty = sameItem.qty + qty
+        this.$store.dispatch('cartModules/updateCartQty', { originCartId, originProductId, newQty })
+      } else {
+        this.$store.dispatch('cartModules/addtoCart', {
+          id,
+          qty
+        })
+      }
+    }
+  },
+  // 監控route的變化：當路徑有改變的時候，重新去渲染網頁的內容
+  watch: {
+    $route (to, from) {
+      this.getproductDetail(to.params.productID)
     }
   },
   components: {

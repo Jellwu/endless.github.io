@@ -1,0 +1,61 @@
+.bg-adList{
+  background-color: rgba(0,0,0,0.1);
+}
+.bg-adList span{
+  text-indent: 20px;
+}
+#carouselList .card{
+  background-color: rgba(0,0,0,0);
+  border:0px;
+}
+#carouselList .card-body{
+  background-position:center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 250px;
+  position: relative;
+  &::after, &::before {
+      content: '';
+      position: absolute;
+      top: 0rem;
+      bottom: 0rem;
+      right: 0rem;
+      left: 0rem;
+      transform: scale(0, 0);
+      transition: all .3s ease;
+      background-color: rgba($black, .45);
+    }
+}
+#carouselList .ad-card-title{
+  background-color: rgba(0,0,0,0.7);
+  padding:5px;
+  border-radius: 5px;
+  color:white;
+}
+#carouselList .ad-card-hover-title{
+    position: absolute;
+    opacity: 0;
+    top:50%;
+    right:34%;
+    visibility: hidden;
+    transition: all .3s ease;
+    z-index:5
+  }
+#carouselList .card:hover{
+  .card-body {
+      &::after {
+        content: '';
+        transform: scale(1, 1);
+        cursor: pointer;
+      }
+    }
+  .ad-card-title{
+    opacity: 0;
+    visibility: hidden;
+  }
+  .ad-card-hover-title{
+    color:white;
+    opacity: 1;
+    visibility: visible;
+  }
+}

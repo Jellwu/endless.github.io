@@ -7,25 +7,24 @@
     </div>
   </div>
   <div class="container-fluid mt-5">
-    <div class="row no-gutters d-flex justify-content-center">
+    <div class="row no-gutters d-flex justify-content-center ml-5">
       <!-- sideBar -->
-      <div class="col-md-3 mb-5">
+      <div class="col-md-3 mb-5 ml-5">
         <div class="rounded product-menu">
           <div class="title">
             <i class="fas fa-tags mt-5 mb-3"></i>
             <span class="pl-2">TAGS</span>
-            <i class="pl-1 fas fa-sort-down fa-x"></i>
           </div>
-          <div class="pl-md-4">
-            <div class="badge badge-pill badge-warning mx-2 my-1 py-md-2"
-            v-for="items in categories" :key="items">
+          <div class="pl-md-4 pb-3">
+            <div class="badge badge-pill badge-warning mx-2 mb-2 py-md-2"
+            v-for="items in categories" :key="items" :class="{ tagActive : searchText === items }">
               <i class="fas fa-tag mx-1 fa" style="font-size:13px"></i>
               <span class="cursor px-1 h6" @click.prevent="searchText = items">
                 {{ items }}
               </span>
             </div>
             <div class="mx-2">
-              <div class="badge badge-pill badge-warning my-1 py-md-2">
+              <div class="badge badge-pill badge-warning my-1 py-md-2" :class="{ tagActive : searchText == '' }">
                 <i class="fas fa-tag mx-1 fa" style="font-size:13px"></i>
                 <span class="cursor px-1 h6" @click.prevent="searchText = ''">
                   All Products
@@ -33,15 +32,14 @@
               </div>
             </div>
           </div>
-          <hr class="text-white px-3">
-          <div v-if="cart.carts.length !== 0">
+          <div class="d-flex flex-column justify-content-center">
+            <hr class="text-white px-5 mt-5">
             <div>
               <span class="title">
                 <i class="fas fa-tags mt-5 mb-3"></i>
                 <span class="px-2">Order List</span>
               </span>
               <span class="badge badge-warning px-1">{{ cart.carts.length }}</span>
-              <i class="fas fa-sort-down fa-x ml-1"></i>
             </div>
             <ul class="d-flex flex-column mb-2">
               <li class="row no-gutters px-3 py-2" v-for="items in cart.carts" :key="items.id">
@@ -63,7 +61,7 @@
                 </div>
               </li>
             </ul>
-            <div class="row no-gutters pb-3">
+            <div class="row no-gutters pb-3" v-if="cart.carts.length !== 0">
               <div class="col-8 text-right text-warning">
                 <h5 style="line-height:38px">總金額: {{ cart.final_total |currency }}</h5>
               </div>
@@ -71,6 +69,11 @@
                 <button class="btn bg-warning" type="button" name="button" @click.prevent="gocart()">
                   結帳
                 </button>
+              </div>
+            </div>
+            <div class="row no-gutters pb-3 justify-content-center" v-else-if="cart.carts.length === 0">
+              <div class="col-10 text-right text-endless">
+                <h5 style="line-height:38px">目前購物車是空的！歡迎選購！</h5>
               </div>
             </div>
           </div>
@@ -81,10 +84,12 @@
       <div class="col-md-8 ml-4">
         <div class="row d-flex justify-content-start">
           <div class="card-deck col-md-4 mb-4" v-for="(item) in filterData[itemPage]" :key="item.id">
-            <div class="card product-card text-center position-relative" @mouseover="showFooter(item.id)"
-            @mouseleave="hiddenFooter">
-              <div class="card-img-top card-img-bg" :style="{backgroundImage: 'url(' + item.imageUrl + ')' }">
+            <div class="card product-card text-center position-relative">
+            <a href="#" @click.prevent="getproductId(item.id)">
+              <div class="card-img" :style="{backgroundImage: 'url(' + item.imageUrl + ')' }">
+                  <span class="card-img-title">查看更多</span>
               </div>
+
               <div class="card-body">
                 <div class="row d-flex justify-context-center">
                   <div class="col-md-12 card-title m-0">
@@ -103,22 +108,26 @@
                     </div>
                   </div>
                   <div class="col-md-6">
-                    <p class="text-secondary text-right pr-3 mb-0"><small><del class="text-white">{{ item.origin_price |currency }}</del></small></p>
+                    <p class="text-secondary text-right pr-3 mb-0">
+                      <small>
+                        <del class="text-dark" style="font-weight:bold">
+                          {{ item.origin_price |currency }}
+                        </del>
+                      </small>
+                    </p>
                     <p class="card-text text-right">{{ item.price |currency }}</p>
                   </div>
                 </div>
               </div>
-              <vue-slide-up-down :active="active" :duration="1000"
-               v-if="item.id === isActiveid" class="card-foot position-absolute">
-                <div class="card-footer-text d-flex justify-content-between">
-                  <div class="footer-hover cursor p-2" style="width:50%" @click="addfavorite(item.id,item.title)">
-                    加入最愛 <i class="fas fa-heart"></i>
-                  </div>
-                  <div class="footer-hover cursor p-2" @click.prevent="getproductId(item.id)" style="width:50%;">
-                    看更多 <i class="fas fa-angle-double-right"></i>
-                  </div>
+              </a>
+              <div class="card-footer-text d-flex justify-content-between">
+                <div class="footer-btn p-2" @click="addfavorite(item.id,item.title)">
+                  加入最愛 <i class="fas fa-heart"></i>
                 </div>
-              </vue-slide-up-down>
+                <div class="footer-btn p-2" @click.prevent="addtoCart(item.id,1)" style="width:50%;">
+                  加入購物車 <i class="fab fa-shopify"></i>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -198,6 +207,22 @@ export default {
     getCart (payload) {
       this.$store.dispatch('cartModules/getCart', payload)
     },
+    addtoCart (id, qty = 1) {
+      const vm = this
+      const duplicatdItem = vm.cart.carts.filter(items => items.product_id === id)
+      if (duplicatdItem.length > 0) {
+        const sameItem = duplicatdItem[0]
+        const originCartId = sameItem.id
+        const originProductId = sameItem.product.id
+        const newQty = sameItem.qty + qty
+        this.$store.dispatch('cartModules/updateCartQty', { originCartId, originProductId, newQty })
+      } else {
+        this.$store.dispatch('cartModules/addtoCart', {
+          id,
+          qty
+        })
+      }
+    },
     removeCart (id) {
       this.$store.dispatch('cartModules/removeCart', id)
     },
@@ -211,13 +236,6 @@ export default {
     },
     addfavorite (id, title) {
       this.$store.dispatch('productsModules/addfavorite', { id, title })
-    },
-    showFooter (id) {
-      this.isActiveid = id
-      this.active = true
-    },
-    hiddenFooter () {
-      this.active = false
     }
   },
   created () {
@@ -226,113 +244,6 @@ export default {
   }
 }
 </script>
-<style scpoed>
-/* .product-bg-color{
-    background-color: #262626;
-  } */
-ul,
-li {
-  list-style: none;
-  margin: 0px;
-  padding: 0px;
-}
+<style>
 
-.product-banner {
-  background-image: url('https://images.unsplash.com/photo-1530288782965-fbad40327074?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  height: 300px;
-}
-
-.card-body {
-  height: 170px;
-}
-
-.card-img-bg {
-  height: 250px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.product-menu {
-  background-color: #594539;
-  color: #F3F6E0;
-}
-
-.product-menu .title {
-  font-size: 20px;
-  font-weight: bold;
-  text-indent: 15px;
-}
-
-.product-card {
-  border: 0px;
-  background-image: url(https://images.unsplash.com/photo-1473646590311-c48e1bc77b44?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80);
-  background-position: bottom;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.product-card:hover {
-  border: 1px solid #594539;
-  box-shadow: 1px 1px 5px #594539;
-  transition: all .2s;
-}
-
-.cart-bg {
-  height: 80px;
-  width: 80px;
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-.card-title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 60px;
-  min-width: 240px;
-  font-weight: bold;
-  font-size: 18px;
-  background-color: rgba(38, 38, 38, 0.8);
-  color: white;
-  border-radius: 20px;
-}
-
-.card-text {
-  color: #ffc107;
-  font-size: 20px;
-  font-weight: bold;
-}
-.card-footer-text{
-  background-color: rgba(0,0,0,0.3);
-  text-align: center;
-  color:#ffc107;
-  font-size: 15px;
-}
-.footer-hover:hover{
-  background-color: #ffc107;
-  color:black;
-}
-.footer-absolute{
-  bottom:0px;
-}
-
-.text-title {
-  font-weight: bold;
-}
-
-.cursor {
-  cursor: pointer;
-}
-
-.position-absolute {
-  z-index: 5;
-  background-color: rgba(0, 0, 0, 0.3);
-  width:100%;
-  bottom:0px;
-}
 </style>
