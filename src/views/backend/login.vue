@@ -1,7 +1,7 @@
 <template>
   <div>
     <Loading :active.sync="isLoading"></Loading>
-    <div class="container text-endless mt-5">
+    <div class="container text-endless">
       <form class="form-signin my-5 p-3 ml-auto mr-auto border border-1" @submit.prevent="singin">
         <h1 class="h3 mb-5 mt-2 font-weight-normal text-warning text-center">管理者 登入</h1>
         <label class="text-left" for="inputEmail">Email address</label>
@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import $ from 'jquery'
 import { mapGetters } from 'vuex'
 // @ is an alias to /src
 export default {
@@ -37,13 +38,26 @@ export default {
     singin () {
       const user = this.user
       this.$store.dispatch('loginModules/singin', user)
+    },
+    handleScroll () {
+      if ($(window).scrollTop() > $('.form-signin').offset().top) {
+        $('.nav-bg').addClass('nav-bg-visible')
+      } else {
+        $('.nav-bg').removeClass('nav-bg-visible')
+      }
     }
   },
   computed: {
     ...mapGetters('loginModules', ['isLoading'])
-  // cart(){
-  //   return this.$store.state.cart;
-  // }
+  },
+  mounted () {
+    window.addEventListener('scroll', this.handleScroll)
+  },
+  destroyed () {
+    window.removeEventListener('scroll', this.handleScroll)
+  },
+  created () {
+    window.addEventListener('scroll', this.handleScroll)
   }
 }
 </script>
@@ -57,12 +71,12 @@ input{
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 100px 0px 50px 0px;
 }
 .form-signin {
   width: 100%;
   max-width: 330px;
   padding: 15px;
-  margin: auto;
 }
 .form-signin .checkbox {
   font-weight: 400;

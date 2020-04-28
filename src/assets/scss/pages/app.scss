@@ -1,0 +1,157 @@
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 1);
+}
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color:#262626;
+  .logo-title h1{
+    color: white;
+    letter-spacing: 2px;
+    font-weight: 600px;
+  }
+  .logo-title span{
+    text-decoration: none;
+    font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 6px;
+    background: -webkit-linear-gradient(-30deg,#FFF0A5,#cbb484);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding:0px;
+    margin:0px;
+    letter-spacing: 2px;
+  }
+}
+#nav {
+.router-link-exact-active, .router-link-exact-active i{
+      color: #F2CA52;
+      font-weight: bold;
+      .underline {
+        border-bottom: 2px solid #F2CA52;
+      }
+}
+  .underline:hover{
+    color:#F2CA52;
+    font-weight: bold;
+    transition: all 0.2s;
+    }
+.nav-item{
+  color:white;
+  font-weight: bold;
+}
+.badge{
+  font-size:9px;
+  margin-right:10px;
+}
+
+.fas{
+  font-size: 24px;
+}
+i{
+  color:rgba(255, 255, 255, 0.5);
+}
+i:hover{
+  color:#F2CA52;
+}
+}
+.height-box{
+  height:55px;
+}
+.navbar-dark{
+  font-weight: bold;
+}
+.bg-endless{
+  background-color:#594539;
+}
+.bg-box{
+  background-color: #4679A6;
+  box-shadow: 3px 3px 5px #9FA6B6;
+  color:#F3F6E0;
+}
+.nav-bg{
+  background-color: rgba(255,255,255,0);
+  transition: all .5s ease;
+  h1  {
+  transition: all .5s ease;
+  }
+  &-visible {
+    background-color: rgba(115, 79, 36, 0.95);
+    transition: all .5s ease;
+    h1{
+      font-size: 20px;
+      transition: all .5s ease;
+    }
+  }
+}
+.bg-footer{
+  background-color: rgba(115, 79, 36, 0.95);
+}
+.text-endless{
+  color:#F3F6E0;
+  font-weight: bold;
+}
+.list-inline-item{
+  margin: 0px 10px;
+}
+.card-img-bg {
+  height: 250px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+footer .text-word{
+  color:#F3F6E0;
+  font-weight: bold;
+}
+footer .text-endless{
+  color:#F3F6E0;
+  font-weight: bold;
+}
+footer .text-endless:hover{
+  color:#BF8F65;
+}
+footer .content-center{
+  display: flex;
+  justify-content: flex-end;
+}
+.bg-box-pop:hover{
+  background-color: rgba(0,0,0,0.3);
+  box-shadow: 0px 0px 5px black;
+}
+
+h1,h2,h3,h4,h5,h6{
+  padding:0px;
+  margin:0px;
+}
+.h1,.h2,.h3,.h4,.h5,.h6{
+  padding:0px;
+  margin:0px;
+}
+p{
+  padding:0px;
+  margin:0px;
+}
+ul,li{
+  list-style: none;
+}
+
+@media (min-width: 768px){
+.order-md-1 {
+    -webkit-box-ordinal-group: 2;
+    -ms-flex-order: 1;
+    order: 1;
+}
+}
+@media (max-width: 768px){
+footer .content-center{
+  justify-content: center;
+  padding:10px 0px 0px 0px;
+}
+footer .text-endless{
+    color:#F3F6E0;
+}
+}

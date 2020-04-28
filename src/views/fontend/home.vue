@@ -2,15 +2,17 @@
   <div>
     <div class="home-bg">
       <div class="home-text-box">
-        <div class="text-center">
+        <div class="home-text-absolute text-center ">
           <p class="text-endless-title">Endless</p>
           <p class="text-endless">不敗的，是經典</p>
-          <router-link class="nav-item nav-link mx-2 " to="/productList">
-            <button class="btn-lg btn-warning" type="button" name="button">
-              <i class="fas fa-compact-disc"></i> 帶我去逛逛
-            </button>
-          </router-link>
         </div>
+        <router-link class="nav-item nav-link mx-2" to="/productList">
+          <div class="box-productLink">
+            <div class="bg-productLink">
+              New Arrival
+            </div>
+          </div>
+        </router-link>
       </div>
     </div>
     <section id='sectionAbout'>
@@ -130,7 +132,7 @@ export default {
   },
   methods: {
     handleScroll () {
-      if ($(window).scrollTop() > $('#sectionAbout').offset().top - 400) {
+      if ($(window).scrollTop() > $('#sectionAbout').offset().top - 600) {
         $('.rightArea').addClass('fadeInRight')
         $('.leftArea').addClass('fadeInLeft')
       } else {

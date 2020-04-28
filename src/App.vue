@@ -4,11 +4,13 @@
       <cartMessage></cartMessage>
       <div id="nav">
         <nav class="navbar navbar-expand-lg navbar-dark nav-bg p-0 fixed-top">
-          <div class="container-md p-0" style="max-width:1200px">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <router-link class="logo-text mr-5" to="/">Endless</router-link>
+          <div class="container my-1">
+            <a href="#" class="navbar-brand d-flex justify-content-center align-items-center router-link-exact-active active my-1 mx-2">
+              <div class="logo-title d-inline-block d-flex flex-column nav-title">
+                <h1 class="mb-0">黑膠時光</h1>
+                <span class="h6 align-self-center">Endless</span>
+              </div>
+            </a>
             <ul class="navbar-nav order-md-1">
               <li class="nav-item py-1 pl-4" style="display:inline-block">
                 <div class="btn-group dropleft">
@@ -55,17 +57,17 @@
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav">
                 <li class="nav-item">
-                  <router-link class="nav-item nav-link mx-2" to="/">
+                  <router-link class="nav-link mx-2" to="/">
                     <span class="underline">關於黑膠</span>
                   </router-link>
                 </li>
                 <li class="nav-item">
-                  <router-link class="nav-item nav-link mx-2 " to="/productList">
+                  <router-link class="nav-link mx-2 " to="/productList">
                     <span class="underline">唱盤列表</span>
                   </router-link>
                 </li>
                 <li class="nav-item">
-                  <router-link class="nav-item nav-link mx-2 " to="/couponpage">
+                  <router-link class="nav-link mx-2 " to="/couponpage">
                     <span class="underline">我要酷碰</span>
                   </router-link>
                 </li>
@@ -76,24 +78,35 @@
       </div>
       <router-view/>
       <footer class="bg-footer">
-        <div class="container-md" style="max-width: 1210px;">
-          <div class="row no-gutters py-1">
-            <div class="col-md-10  d-flex justify-content-center align-items-end">
+        <div class="container">
+          <div class="row no-gutters pb-2 d-flex pt-4 justify-content-end">
+            <div class="col-md-10 text-white">
               <div>
-                <p class="text-word">Copyright © Jell's Website 2020</p>
-                <p class="badge badge-pill badge-warning px-3 py-2">此網站僅供教學使用，無其他商業用途</p>
+                <p class="h3">About US</p>
+                <hr class="pl-5 mt-1 mb-3" style="width:25%">
+              </div>
+              <div style="width:25%">
+                <h1 class="ml-1">黑膠時光</h1>
+                <h6 class="ml-2 mb-5">Endless</h6>
+              </div>
+              <h3 class="ml-2">Light of your Life with Endless</h3>
+              <div class="ml-2 text-bold">
+                <i class="fas fa-envelope-open-text mr-1 mt-2"></i>
+                Jell9916@gmail.com
               </div>
             </div>
-            <div class="col-md-2 d-flex align-items-center content-center">
-              <div>
+            <div class="col-md-2">
+              <p class="h3 text-white">Follow US</p>
+              <hr class="pl-5 mt-1 mb-3 text-white">
+              <div class="d-flex align-items-center">
                 <li class="list-inline-item">
                   <a class="text-endless" href="#">
                     <i class="fab fa-instagram fa-2x text-endless" aria-hidden="true"></i>
                   </a>
                 </li>
                 <li class="list-inline-item">
-                  <a class="text-endless" href="#">
-                    <i class="fab fa-facebook fa-2x text-endless" aria-hidden="true"></i>
+                  <a class="text-endless" href="https://github.com/Jellwu/endless">
+                    <i class="fab fa-github fa-2x text-endless"></i>
                   </a>
                 </li>
                 <li class="list-inline-item">
@@ -104,6 +117,7 @@
               </div>
             </div>
           </div>
+          <p class="text-word text-center">Copyright © Jell's Website 2020</p>
         </div>
       </footer>
     </div>
@@ -111,8 +125,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-// 抓localstorage資料用
-// Import stylesheet
+import $ from 'jquery'
 import 'vue-loading-overlay/dist/vue-loading.css'
 import cartMessage from '@/components/CartMessage.vue'
 
@@ -124,6 +137,18 @@ export default {
   },
   methods: {
     ...mapActions('cartModules', ['getCart']),
+    handleScroll () {
+      const vm = this
+      const path = vm.$route.path
+      // 防止在別的頁面時也去判斷App.vue的拖拉視窗
+      if (path === '/') {
+        if ($(window).scrollTop() > $('.home-bg').offset().top + 150) {
+          $('.nav-bg').addClass('nav-bg-visible')
+        } else {
+          $('.nav-bg').removeClass('nav-bg-visible')
+        }
+      }
+    },
     getfavorite () {
       this.$store.dispatch('productsModules/getfavorite')
     },
@@ -160,7 +185,15 @@ export default {
   components: {
     cartMessage
   },
+  mounted () {
+    window.addEventListener('scroll', this.handleScroll)
+    // carousel autoplay do not stop on flag change
+  },
+  destroyed () {
+    window.removeEventListener('scroll', this.handleScroll)
+  },
   created () {
+    window.addEventListener('scroll', this.handleScroll)
     this.getfavorite()
     this.getCart()
   }
@@ -171,160 +204,4 @@ export default {
 <style lang="scss">
 @import "~bootstrap/scss/bootstrap";
 @import "./assets/all.scss";
-
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color:#262626;
-}
-
-#app .logo-text{
-  text-decoration: none;
-  font-family:'Brush Script MT',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
-  font-size: 38px;
-  font-weight: bold;
-  background: -webkit-linear-gradient(-30deg,#321c13,#cbb484);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  padding:0px;
-  margin:0px;
-}
-#app .logo-text:hover{
-  background: -webkit-linear-gradient(45deg,#482c1d,#321c13);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-#app .navbar-size{
-  width: 100%;
-  position: relative;
-  max-width: 1180px;
-  margin: auto;
-}
-
-#nav {
-.router-link-exact-active {
-      color: #F2CA52;
-      font-weight: bold;
-}
-  .underline:hover{
-    border-bottom: 2px solid #F2CA52;
-    color:#F2CA52;
-    font-weight: bold;
-    transition: all 0.2s;
-    }
-.badge{
-  font-size:9px;
-  margin-right:10px;
-}
-.fas{
-  font-size: 24px;
-}
-i{
-  color:rgba(255, 255, 255, 0.5);
-}
-i:hover{
-  color:#F2CA52;
-}
-}
-.height-box{
-  height:55px;
-}
-.navbar-dark{
-  font-weight: bold;
-}
-.bg-endless{
-  background-color:#594539;
-}
-.banner-bg{
-  background-image: url('https://images.unsplash.com/photo-1543433983-d79d332dd7a9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80');
-  background-position: bottom;
-  background-size: contain;
-}
-.bg-box{
-  background-color: #4679A6;
-  box-shadow: 3px 3px 5px #9FA6B6;
-  color:#F3F6E0;
-}
-.nav-bg{
-  width:100%;
-  background-color: rgba(0,0,0,0);
-  background-image: url('assets/images/bg-nav.png');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.bg-footer{
-  background-image: url('assets/images/bg-footer.png');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.text-endless{
-  color:#F3F6E0;
-  font-weight: bold;
-}
-.list-inline-item{
-  margin: 0px 10px;
-}
-.card-img-bg {
-  height: 250px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-footer .text-word{
-  color:#F3F6E0;
-  font-weight: bold;
-}
-footer .text-endless{
-  color:#321c13;
-  font-weight: bold;
-}
-footer .text-endless:hover{
-  color:#BF8F65;
-}
-footer .content-center{
-  display: flex;
-  justify-content: flex-end;
-}
-.bg-box-pop:hover{
-  background-color: rgba(0,0,0,0.3);
-  box-shadow: 0px 0px 5px black;
-}
-
-h1,h2,h3,h4,h5,h6{
-  padding:0px;
-  margin:0px;
-}
-.h1,.h2,.h3,.h4,.h5,.h6{
-  padding:0px;
-  margin:0px;
-}
-p{
-  padding:0px;
-  margin:0px;
-}
-ul,li{
-  list-style: none;
-}
-
-@media (min-width: 768px){
-.order-md-1 {
-    -webkit-box-ordinal-group: 2;
-    -ms-flex-order: 1;
-    order: 1;
-}
-}
-@media (max-width: 768px){
-footer .content-center{
-  justify-content: center;
-  padding:10px 0px 0px 0px;
-}
-footer .text-endless{
-    color:#F3F6E0;
-}
-}
 </style>

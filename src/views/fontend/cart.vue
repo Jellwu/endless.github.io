@@ -122,6 +122,7 @@
 </template>
 
 <script>
+import $ from 'jquery'
 // import mapGetter與mapActions的方法
 import { mapGetters, mapActions } from 'vuex'
 import cartMessage from '@/components/CartMessage.vue'
@@ -148,6 +149,13 @@ export default {
   },
   methods: {
     ...mapActions('cartModules', ['getCart']),
+    handleScroll () {
+      if ($(window).scrollTop() > $('.product-banner').offset().top + 150) {
+        $('.nav-bg').addClass('nav-bg-visible')
+      } else {
+        $('.nav-bg').removeClass('nav-bg-visible')
+      }
+    },
     removeCart (id) {
       this.$store.dispatch('cartModules/removeCart', id)
     },
@@ -164,6 +172,13 @@ export default {
   },
   components: {
     cartMessage
+  },
+  mounted () {
+    window.addEventListener('scroll', this.handleScroll)
+    // carousel autoplay do not stop on flag change
+  },
+  destroyed () {
+    window.removeEventListener('scroll', this.handleScroll)
   },
   created () {
     this.getCart()

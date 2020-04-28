@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import $ from 'jquery'
 export default {
   name: 'COUPON',
   data () {
@@ -44,7 +45,14 @@ export default {
     }
   },
   methods: {
-  // 建立puzzleArr 等等用來sort()亂數排序
+    handleScroll () {
+      if ($(window).scrollTop() > $('.box-top').offset().top + 60) {
+        $('.nav-bg').addClass('nav-bg-visible')
+      } else {
+        $('.nav-bg').removeClass('nav-bg-visible')
+      }
+    },
+    // 建立puzzleArr 等等用來sort()亂數排序
     render () {
       const vm = this
       let puzzleArr = []
@@ -115,6 +123,13 @@ export default {
       return this.puzzles
     }
   },
+  mounted () {
+    window.addEventListener('scroll', this.handleScroll)
+    // carousel autoplay do not stop on flag change
+  },
+  destroyed () {
+    window.removeEventListener('scroll', this.handleScroll)
+  },
   created () {
     this.render()
   }
@@ -145,6 +160,7 @@ export default {
   left:79px;
 }
 .coverImg{
+  background-color: rgba(0,0,0,0);
   z-index: 10;
 }
 

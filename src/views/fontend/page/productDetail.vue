@@ -1,5 +1,5 @@
 <template>
-<div class="about container my-5">
+<div class="container">
   <cartMessage></cartMessage>
   <div class="box"></div>
   <div class="row">
@@ -77,6 +77,7 @@
 </template>
 
 <script>
+import $ from 'jquery'
 // import mapGetter與mapActions的方法
 import { mapGetters } from 'vuex'
 import cartMessage from '@/components/CartMessage.vue'
@@ -98,6 +99,13 @@ export default {
     }
   },
   methods: {
+    handleScroll () {
+      if ($(window).scrollTop() > $('.box').offset().top + 150) {
+        $('.nav-bg').addClass('nav-bg-visible')
+      } else {
+        $('.nav-bg').removeClass('nav-bg-visible')
+      }
+    },
     getProducts (pages = 1) {
       this.$store.dispatch('productsModules/getProducts', pages)
     },
@@ -136,6 +144,13 @@ export default {
     cartMessage,
     adList
   },
+  mounted () {
+    window.addEventListener('scroll', this.handleScroll)
+    // carousel autoplay do not stop on flag change
+  },
+  destroyed () {
+    window.removeEventListener('scroll', this.handleScroll)
+  },
   created () {
     this.getProducts()
     const productId = this.$route.params.productID
@@ -145,7 +160,7 @@ export default {
 </script>
 <style scpoed>
 .box{
-  height: 100px;
+  height: 200px;
   width: 100%;
 }
 .card-title{

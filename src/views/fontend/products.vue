@@ -155,6 +155,7 @@
 </template>
 
 <script>
+import $ from 'jquery'
 import { mapGetters } from 'vuex'
 import 'vue-loading-overlay/dist/vue-loading.css'
 
@@ -200,6 +201,13 @@ export default {
 
   },
   methods: {
+    handleScroll () {
+      if ($(window).scrollTop() > $('.product-banner').offset().top + 150) {
+        $('.nav-bg').addClass('nav-bg-visible')
+      } else {
+        $('.nav-bg').removeClass('nav-bg-visible')
+      }
+    },
     // 抓全產品資料
     getProducts (pages = 1) {
       this.$store.dispatch('productsModules/getProducts', pages)
@@ -238,7 +246,15 @@ export default {
       this.$store.dispatch('productsModules/addfavorite', { id, title })
     }
   },
+  mounted () {
+    window.addEventListener('scroll', this.handleScroll)
+    // carousel autoplay do not stop on flag change
+  },
+  destroyed () {
+    window.removeEventListener('scroll', this.handleScroll)
+  },
   created () {
+    window.addEventListener('scroll', this.handleScroll)
     this.getProducts()
     this.getCart(true)
   }
