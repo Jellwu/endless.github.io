@@ -144,8 +144,9 @@ ul,li{
     -webkit-box-ordinal-group: 2;
     -ms-flex-order: 1;
     order: 1;
+  }
 }
-}
+
 @media (max-width: 768px){
 footer .content-center{
   justify-content: center;
@@ -153,5 +154,12 @@ footer .content-center{
 }
 footer .text-endless{
     color:#F3F6E0;
+}
+.order-md-1 .dropleft .dropdown-menu {
+    top: 100%;
+    right: -100%;
+    left: auto;
+    margin-top: 0;
+    margin-right: 0.125rem;
 }
 }

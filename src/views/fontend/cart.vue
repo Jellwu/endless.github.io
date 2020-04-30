@@ -42,7 +42,10 @@
                   </button>
                 </td>
                 <td style="width:80px;"><img class="img-fluid" :src="items.product.imageUrl"></td>
-                <td style="vertical-align: middle;">{{ items.product.title }}
+                <td style="vertical-align: middle;">
+                  <a href="#" @click.prevent='getproductId(items.product.id)'>
+                    {{ items.product.title }}
+                  </a>
                   <p class="text-success" v-if="items.final_total !== items.total">
                     已套用優惠券
                   </p>
@@ -155,6 +158,9 @@ export default {
         $('.nav-bg').removeClass('nav-bg-visible')
       }
     },
+    getproductId (id) {
+      this.$router.push(`/productList/${id}`)
+    },
     removeCart (id) {
       this.$store.dispatch('cartModules/removeCart', id)
     },
@@ -206,6 +212,15 @@ export default {
   justify-content: center;
   align-items: center;
   font-size:50px;
+}
+tbody a{
+  display: block;
+  text-decoration:none;
+  color:white;
+}
+tbody a:hover{
+    text-decoration:none;
+    color:#FFC107;
 }
 
 </style>

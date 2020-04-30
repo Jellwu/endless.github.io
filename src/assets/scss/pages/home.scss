@@ -43,8 +43,8 @@
     background-size: cover;
     position: absolute;
     border-radius: 10px;
-    height:250px;
-    width:800px;
+    height:40%;
+    width:50%;
     left:23.3%;
     bottom:-24%;
     z-index: 10;
@@ -117,28 +117,28 @@ hr{
 
   }
   .textArea{
-    max-height: 500px;
+    height:400px;
     position: relative;
     &::after{
       content:'';
       position:absolute;
-      bottom:-35px;
-      right:-40px;
-      width:580px;
+      bottom:-10%;
+      right:-4%;
+      width:150%;
       height: 460px;
       background-color: rgba(black,0.4) ;
       z-index: -20;
       box-shadow: 2px 2px 5px black;
     }
     &-b{
-      max-height: 500px;
+      height:400px;
       position: relative;
       &::after{
         content:'';
         position:absolute;
         top:-13px;
         right:-70px;
-        width:580px;
+        width:120%;
         height: 460px;
         background-color: rgba(orange,0.4) ;
         z-index: -20;
@@ -152,7 +152,7 @@ hr{
     height: 95%;
   }
   .right-position{
-    right:20px;
+    right:-2%;
     top:45px;
     height: 100%;
   }
@@ -207,4 +207,13 @@ hr{
     hegith:500px;
     margin: 0px;
     padding:75px 5px;
+}
+@media (max-width: 768px) {
+  .home-bg .box-productLink{
+    bottom:-12%;
+    height:20%;
+  }
+  .home-bg .bg-productLink{
+    font-size: 55px;
+  }
 }
