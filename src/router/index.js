@@ -17,98 +17,71 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: () => import(/* webpackChunkName: "about" */ '../views/fontend/home.vue')
+    component: () => import('../views/fontend/Home.vue')
   },
   {
-    path: '/Profile',
+    path: '/profile',
     name: 'profile',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/fontend/profile.vue')
+    component: () => import('../views/fontend/Profile.vue')
   },
   {
     path: '/productList',
     name: 'products',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "Products" */ '../views/fontend/products.vue')
+    component: () => import('../views/fontend/Products.vue')
   },
   {
     path: '/productList/:productID',
     name: 'Productsdetail',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "Products" */ '../views/fontend/page/productDetail.vue')
+    component: () => import('../views/fontend/page/ProductDetail.vue')
   },
   {
     path: '/cart',
     name: 'Cart',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "Custom" */ '../views/fontend/cart.vue')
+    component: () => import('../views/fontend/Cart.vue')
   },
   {
     path: '/cart_info',
     name: 'CartInfo',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "Custom" */ '../views/fontend/page/cart_info.vue')
+    component: () => import('../views/fontend/page/Cart_info.vue')
   },
   {
     path: '/cart_checkout/:orderID',
     name: 'cart_checkout',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "Custom" */ '../views/fontend/page/cart_checkout.vue')
+    component: () => import('../views/fontend/page/Cart_checkout.vue')
   },
   {
     path: '/couponpage',
     name: 'couponpage',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/fontend/couponpage.vue')
+    component: () => import('../views/fontend/Couponpage.vue')
   },
   // 後台管理
   {
     path: '/login',
     name: 'Login',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "login" */ '../views/backend/login.vue')
+    component: () => import('../views/backend/Login.vue')
   },
   {
     path: '/admin',
     name: 'Admin',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "login" */ '../views/backend/admin.vue'),
+    component: () => import('../views/backend/Admin.vue'),
     meta: { requiresAuth: true },
     children: [
       {
         path: 'productscheck',
         name: 'Productscheck',
-        component: () => import(/* webpackChunkName: "login" */ '../views/backend/Dashboard/productscheck.vue'),
+        component: () => import('../views/backend/Dashboard/Productscheck.vue'),
         meta: { requiresAuth: true }
       },
       {
         path: 'orders',
         name: 'orders',
-        component: () => import(/* webpackChunkName: "login" */ '../views/backend/Dashboard/orders.vue'),
+        component: () => import('../views/backend/Dashboard/Orders.vue'),
         meta: { requiresAuth: true }
       },
       {
         path: 'coupon',
         name: 'coupon',
-        component: () => import(/* webpackChunkName: "login" */ '../views/backend/Dashboard/coupon.vue'),
+        component: () => import('../views/backend/Dashboard/Coupon.vue'),
         meta: { requiresAuth: true }
       }
     ]

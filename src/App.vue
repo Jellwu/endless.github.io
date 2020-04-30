@@ -160,9 +160,9 @@ export default {
         const originCartId = sameItem.id
         const originProductId = sameItem.product.id
         const newQty = sameItem.qty + qty
-        this.$store.dispatch('cartModules/updateCartQty', { originCartId, originProductId, newQty })
+        vm.$store.dispatch('cartModules/updateCartQty', { originCartId, originProductId, newQty })
       } else {
-        this.$store.dispatch('cartModules/addtoCart', {
+        vm.$store.dispatch('cartModules/addtoCart', {
           id,
           qty
         })
@@ -172,7 +172,6 @@ export default {
       this.$store.dispatch('productsModules/dropfavorite', id)
     },
     getproductId (id) {
-      // 帶入此產品的id給action抓api的資料
       this.$store.dispatch('productsModules/getproductId', id)
     }
 
@@ -187,7 +186,6 @@ export default {
   },
   mounted () {
     window.addEventListener('scroll', this.handleScroll)
-    // carousel autoplay do not stop on flag change
   },
   destroyed () {
     window.removeEventListener('scroll', this.handleScroll)
@@ -203,5 +201,5 @@ export default {
 
 <style lang="scss">
 @import "~bootstrap/scss/bootstrap";
-@import "./assets/all.scss";
+@import "./assets/scss/all.scss";
 </style>

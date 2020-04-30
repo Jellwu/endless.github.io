@@ -1,6 +1,5 @@
 <template>
   <div class="my-5">
-    <!-- <loading :active.sync="isLoading"></loading> -->
     <table class="table ml-auto mt-4 text-endless">
       <thead class="thead-dark">
         <tr>
@@ -48,7 +47,6 @@
 </template>
 
 <script>
-// import mapGetter與mapActions的方法
 import { mapGetters } from 'vuex'
 
 export default {

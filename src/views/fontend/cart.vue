@@ -123,7 +123,6 @@
 
 <script>
 import $ from 'jquery'
-// import mapGetter與mapActions的方法
 import { mapGetters, mapActions } from 'vuex'
 import cartMessage from '@/components/CartMessage.vue'
 
@@ -175,7 +174,6 @@ export default {
   },
   mounted () {
     window.addEventListener('scroll', this.handleScroll)
-    // carousel autoplay do not stop on flag change
   },
   destroyed () {
     window.removeEventListener('scroll', this.handleScroll)

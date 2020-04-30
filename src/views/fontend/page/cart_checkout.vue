@@ -87,7 +87,6 @@
 </template>
 
 <script>
-// import mapGetter與mapActions的方法
 import { mapGetters } from 'vuex'
 
 export default {

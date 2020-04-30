@@ -64,7 +64,6 @@
 </template>
 
 <script>
-// import mapGetter與mapActions的方法
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
@@ -84,7 +83,6 @@ export default {
     }
   },
   computed: {
-    // 抓productsModules中的state.product
     ...mapGetters('cartModules', ['cart'])
   },
   methods: {

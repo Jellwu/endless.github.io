@@ -26,8 +26,7 @@
               <div class="leftArea pt-4 pb-1 py-md-7 ml-auto mr-md-0 text-endless">
                 <div class="ml-4 textArea" style="letter-spacing:5px;">
                   <h2>黑膠——</h2>
-                  <h2 style="text-indent:4rem">是一種生活態度</h2>
-                </div>
+                  <h2 style="text-indent:4rem;margin-left:28px">是一種生活態度</h2>
                 <p>
                   「流行總會被取代，經典會永久流傳」
                 </p>
@@ -37,12 +36,12 @@
                 <p>
                   享受這個過程：將唱片從盒子裡拿出來，放到唱盤上、擺上唱針，細細品味。
                 </p>
-
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
 
       <div class="container">
         <div class="row">
@@ -53,10 +52,10 @@
       </div>
 
       <div class="">
-        <div class="container">
+        <div class="container pb-5">
           <div class="row no-gutters my-5">
             <div class="col-md-5 vertical-content-l d-flex justify-content-start">
-              <div class="leftArea pt-md-5 text-endless fadeInLeft">
+              <div class="textArea-b pt-md-5 text-endless fadeInLeft">
                   <p>
                     盡情做自己：製作屬於你的黑膠播放器，讓黑膠融入你的生活，陪伴你。
                   </p>
@@ -66,7 +65,7 @@
                   <p>
                     「金窩銀窩，最愛的是自己的狗窩」
                   </p>
-                <div class="ml-4 textArea" style="letter-spacing:5px;">
+                <div class="ml-4" style="letter-spacing:5px;">
                   <h2 style="text-indent:4rem">專屬於你的聲音</h2>
                   <h2>堅持——</h2>
                 </div>
@@ -133,11 +132,11 @@ export default {
   methods: {
     handleScroll () {
       if ($(window).scrollTop() > $('#sectionAbout').offset().top - 600) {
-        $('.rightArea').addClass('fadeInRight')
-        $('.leftArea').addClass('fadeInLeft')
+        $('.textArea').addClass('fadeInRight')
+        $('.textArea-b').addClass('fadeInLeft')
       } else {
-        $('.rightArea').removeClass('fadeInRight')
-        $('.leftArea').removeClass('fadeInLeft')
+        $('.textArea').removeClass('fadeInRight')
+        $('.textArea-b').removeClass('fadeInLeft')
       }
     },
     getProducts (pages = 1) {
@@ -149,7 +148,6 @@ export default {
   },
   mounted () {
     window.addEventListener('scroll', this.handleScroll)
-    // carousel autoplay do not stop on flag change
   },
   destroyed () {
     window.removeEventListener('scroll', this.handleScroll)

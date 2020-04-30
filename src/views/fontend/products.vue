@@ -176,7 +176,7 @@ export default {
       const vm = this
       const newData = []
       // 重新抓一次產品資料做過濾
-      let products = this.$store.state.productsModules.products
+      let products = vm.products
       // 針對全產品第一次過濾
       if (vm.searchText) {
         vm.itemPage = 0
@@ -223,9 +223,9 @@ export default {
         const originCartId = sameItem.id
         const originProductId = sameItem.product.id
         const newQty = sameItem.qty + qty
-        this.$store.dispatch('cartModules/updateCartQty', { originCartId, originProductId, newQty })
+        vm.$store.dispatch('cartModules/updateCartQty', { originCartId, originProductId, newQty })
       } else {
-        this.$store.dispatch('cartModules/addtoCart', {
+        vm.$store.dispatch('cartModules/addtoCart', {
           id,
           qty
         })
@@ -248,7 +248,6 @@ export default {
   },
   mounted () {
     window.addEventListener('scroll', this.handleScroll)
-    // carousel autoplay do not stop on flag change
   },
   destroyed () {
     window.removeEventListener('scroll', this.handleScroll)

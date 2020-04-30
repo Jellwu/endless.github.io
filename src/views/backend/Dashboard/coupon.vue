@@ -103,7 +103,6 @@
 </template>
 
 <script>
-// import mapGetter與mapActions的方法
 import { mapGetters } from 'vuex'
 import $ from 'jquery'
 
@@ -120,7 +119,6 @@ export default {
     ...mapGetters('couponModules', ['coupon', 'isLoading'])
   },
   methods: {
-    // ...mapActions('couponModules',['getCoupon']),
     getCoupon (page = 1) {
       this.$store.dispatch('couponModules/getCoupon', page)
     },

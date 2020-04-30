@@ -117,8 +117,34 @@ hr{
 
   }
   .textArea{
-    height: 400px;
-
+    max-height: 500px;
+    position: relative;
+    &::after{
+      content:'';
+      position:absolute;
+      bottom:-35px;
+      right:-40px;
+      width:580px;
+      height: 460px;
+      background-color: rgba(black,0.4) ;
+      z-index: -20;
+      box-shadow: 2px 2px 5px black;
+    }
+    &-b{
+      max-height: 500px;
+      position: relative;
+      &::after{
+        content:'';
+        position:absolute;
+        top:-13px;
+        right:-70px;
+        width:580px;
+        height: 460px;
+        background-color: rgba(orange,0.4) ;
+        z-index: -20;
+        box-shadow: -2px 2px 8px orange;
+      }
+    }
   }
   .left-position{
     left:0px;
@@ -126,8 +152,8 @@ hr{
     height: 95%;
   }
   .right-position{
-    right:0px;
-    top:20px;
+    right:20px;
+    top:45px;
     height: 100%;
   }
   .vertical-content{
@@ -139,6 +165,7 @@ hr{
     writing-mode: vertical-lr ;
   }
   .vertical-content p, .vertical-content-l p{
+    letter-spacing: 3px;
     -webkit-writing-mode: vertical-rl;
     writing-mode: vertical-rl ;
     font-size: 18px;

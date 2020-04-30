@@ -23,7 +23,6 @@
 <script>
 import $ from 'jquery'
 import { mapGetters } from 'vuex'
-// @ is an alias to /src
 export default {
   name: 'LOGIN',
   data () {

@@ -78,7 +78,6 @@
 
 <script>
 import $ from 'jquery'
-// import mapGetter與mapActions的方法
 import { mapGetters } from 'vuex'
 import cartMessage from '@/components/CartMessage.vue'
 import adList from '@/components/adList.vue'
@@ -113,7 +112,6 @@ export default {
       this.$store.dispatch('productsModules/getproductDetail', id)
     },
     getproductId (id) {
-      // 帶入此產品的id給action抓api的資料
       this.$store.dispatch('productsModules/getproductId', id)
     },
     addtoCart (id, qty = 1) {
@@ -125,9 +123,9 @@ export default {
         const originCartId = sameItem.id
         const originProductId = sameItem.product.id
         const newQty = sameItem.qty + qty
-        this.$store.dispatch('cartModules/updateCartQty', { originCartId, originProductId, newQty })
+        vm.$store.dispatch('cartModules/updateCartQty', { originCartId, originProductId, newQty })
       } else {
-        this.$store.dispatch('cartModules/addtoCart', {
+        vm.$store.dispatch('cartModules/addtoCart', {
           id,
           qty
         })
@@ -146,7 +144,6 @@ export default {
   },
   mounted () {
     window.addEventListener('scroll', this.handleScroll)
-    // carousel autoplay do not stop on flag change
   },
   destroyed () {
     window.removeEventListener('scroll', this.handleScroll)

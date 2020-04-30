@@ -174,7 +174,6 @@ export default {
     favorite (state) {
       state.favorite = JSON.parse(localStorage.getItem('favorite'))
       return state.favorite
-      // return JSON.parse(localStorage.getItem('favorite'));
     }
   }
 }

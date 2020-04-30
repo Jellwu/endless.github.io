@@ -31,7 +31,6 @@ export default new Vuex.Store({
     CARTMESSAGE (state, payload) {
       state.isCartmessage = payload
     },
-    // 在1500毫秒後把false塞回isCartmessage
     REMOVEMSG (state, payload) {
       state.isCartmessage = payload
     }
@@ -45,6 +44,7 @@ export default new Vuex.Store({
       context.dispatch('removeMsg', { state: false, msg: '' })
     },
     removeMsg (context, payload) {
+      // 在1500毫秒後把false塞回isCartmessage
       setTimeout(() => {
         context.commit('REMOVEMSG', payload)
       }, 1500)

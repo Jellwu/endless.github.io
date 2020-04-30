@@ -87,11 +87,11 @@ export default {
     moveSquare (index) {
       const vm = this
       // 取得現在資料上下左右的值(照片連結)
-      const currentImg = this.puzzles[index]
-      const rightImg = this.puzzles[index + 1]
-      const leftImg = this.puzzles[index - 1]
-      const topImg = this.puzzles[index - 3]
-      const botImg = this.puzzles[index + 3]
+      const currentImg = vm.puzzles[index]
+      const rightImg = vm.puzzles[index + 1]
+      const leftImg = vm.puzzles[index - 1]
+      const topImg = vm.puzzles[index - 3]
+      const botImg = vm.puzzles[index + 3]
       const emptyImg = 'https://i.imgur.com/TcF1tXS.png'
 
       if (rightImg === emptyImg) {
@@ -112,9 +112,9 @@ export default {
       const vm = this
       if (vm.couponCode === '776803') {
         vm.active = true
-        this.ansMsg = '正確答案，折扣起來！'
+        vm.ansMsg = '正確答案，折扣起來！'
       } else {
-        this.ansMsg = '答錯了，再試一次！'
+        vm.ansMsg = '答錯了，再試一次！'
       }
     }
   },
@@ -125,7 +125,6 @@ export default {
   },
   mounted () {
     window.addEventListener('scroll', this.handleScroll)
-    // carousel autoplay do not stop on flag change
   },
   destroyed () {
     window.removeEventListener('scroll', this.handleScroll)

@@ -19,13 +19,9 @@ import {
   extend,
   localize
 } from 'vee-validate'
-// 加入vee-validate的規則
 import * as rules from 'vee-validate/dist/rules'
 // 加入vee-validate的語系
 import tw from 'vee-validate/dist/locale/zh_TW.json'
-
-// slideDown and up
-import VueSlideUpDown from 'vue-slide-up-down'
 
 Vue.config.productionTip = false
 Vue.use(VueAxios, axios)
@@ -47,9 +43,6 @@ localize('zh_TW', tw)
 Vue.component('ValidationProvider', ValidationProvider)
 Vue.component('ValidationObserver', ValidationObserver)
 
-// 註冊slide
-Vue.component('vue-slide-up-down', VueSlideUpDown)
-
 new Vue({
   router,
   store,
@@ -58,13 +51,11 @@ new Vue({
 
 // 導航守衛
 router.beforeEach((to, from, next) => {
-  // meta.requiresAuth是從index.js裡面去抓的參數(在vueRouter的文件有說明是判斷路由狀態的訊息)
-  // 在要去的頁面有設定meatAuthrequire時，就去驗證，反之就不需要
+  // meta.requiresAuth是從index.js裡面去抓的參數
   if (to.meta.requiresAuth) {
     const api = `${process.env.VUE_APP_APIPATH}/api/user/check`
     // this.$http是用在.vue的元件下，在entry這邊必須是直接改用axios
     axios.post(api).then((response) => {
-      // 驗證成功前往指定路徑
       if (response.data.success) {
         next()
       } else {
