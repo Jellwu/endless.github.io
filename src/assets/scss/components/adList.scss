@@ -1,60 +1,70 @@
-.bg-adList{
+.bg-adList {
   background-color: rgba(0,0,0,0.1);
 }
-.bg-adList span{
+
+.bg-adList span {
   text-indent: 20px;
 }
-#carouselList .card{
+
+.carousel .card {
   background-color: rgba(0,0,0,0);
-  border:0px;
+  border: 0;
 }
-#carouselList .card-body{
-  background-position:center;
+
+.carousel .card-body {
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   height: 250px;
   position: relative;
-  &::after, &::before {
-      content: '';
-      position: absolute;
-      top: 0rem;
-      bottom: 0rem;
-      right: 0rem;
-      left: 0rem;
-      transform: scale(0, 0);
-      transition: all .3s ease;
-      background-color: rgba($black, .45);
-    }
-}
-#carouselList .ad-card-title{
-  background-color: rgba(0,0,0,0.7);
-  padding:5px;
-  border-radius: 5px;
-  color:white;
-}
-#carouselList .ad-card-hover-title{
+
+  &::after,
+  &::before {
+    content: '';
     position: absolute;
-    opacity: 0;
-    top:50%;
-    right:34%;
-    visibility: hidden;
-    transition: all .3s ease;
-    z-index:5
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    transform: scale(0, 0);
+    transition: all 0.3s ease;
+    background-color: rgba($black, .45);
   }
-#carouselList .card:hover{
+}
+
+.carousel .ad-card-title {
+  background-color: rgba(0,0,0,0.7);
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+}
+
+.carousel .ad-card-hover-title {
+  position: absolute;
+  opacity: 0;
+  top: 50%;
+  right: 34%;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 5;
+}
+
+.carousel .card:hover {
   .card-body {
-      &::after {
-        content: '';
-        transform: scale(1, 1);
-        cursor: pointer;
-      }
+    &::after {
+      content: '';
+      transform: scale(1, 1);
+      cursor: pointer;
     }
-  .ad-card-title{
+  }
+
+  .ad-card-title {
     opacity: 0;
     visibility: hidden;
   }
-  .ad-card-hover-title{
-    color:white;
+
+  .ad-card-hover-title {
+    color: white;
     opacity: 1;
     visibility: visible;
   }

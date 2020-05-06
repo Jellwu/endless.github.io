@@ -1,6 +1,5 @@
 <template>
 <div class="product-bg-color">
-  <!-- <Loading loader="dots" :active.sync="isLoading"></Loading> -->
   <div class="product-banner d-flex align-items-center justify-content-center">
     <div>
       <h1 class="text-endless">黑膠專區</h1>
@@ -16,14 +15,14 @@
             <span class="pl-2">TAGS</span>
           </div>
           <div class="pl-md-4 pb-3">
-            <div class="badge badge-pill badge-warning mx-2 mb-2 py-md-2"
+            <div class="badge badge-pill badge-warning mr-2 mb-2 py-md-2"
             v-for="items in categories" :key="items" :class="{ tagActive : searchText === items }">
               <i class="fas fa-tag mx-1 fa" style="font-size:13px"></i>
               <span class="cursor px-1 h6" @click.prevent="searchText = items">
                 {{ items }}
               </span>
             </div>
-            <div class="mx-2">
+            <div class="mr-2">
               <div class="badge badge-pill badge-warning my-1 py-md-2" :class="{ tagActive : searchText == '' }">
                 <i class="fas fa-tag mx-1 fa" style="font-size:13px"></i>
                 <span class="cursor px-1 h6" @click.prevent="searchText = ''">
@@ -61,13 +60,16 @@
                 </div>
               </li>
             </ul>
-            <div class="row no-gutters pb-3" v-if="cart.carts.length !== 0">
-              <div class="col-8 text-right text-warning">
-                <h5 style="line-height:38px">總金額: {{ cart.final_total |currency }}</h5>
+            <div class="row no-gutters pb-3 d-flex flex-column"
+            v-if="cart.carts.length !== 0">
+              <div class="text-right text-warning mr-3">
+                <h5 style="line-height:38px">總金額: {{ cart.final_total | currency }}</h5>
               </div>
-              <div class="col-4 text-center">
+              <div class="text-right mr-3">
                 <button class="btn bg-warning" type="button" name="button" @click.prevent="gocart()">
-                  結帳
+                  <i class="fas fa-shopping-basket">
+                    <span class="ml-1">結帳</span>
+                  </i>
                 </button>
               </div>
             </div>
@@ -83,11 +85,11 @@
       <!-- 產品列表 -->
       <div class="col-md-8 ml-4">
         <div class="row d-flex justify-content-start">
-          <div class="card-deck col-md-4 mb-4" v-for="(item) in filterData[itemPage]" :key="item.id">
+          <div class="card-deck col-md-6 mb-4" v-for="(item) in filterData[itemPage]" :key="item.id">
             <div class="card product-card text-center position-relative">
             <a href="#" @click.prevent="getproductId(item.id)">
               <div class="card-img" :style="{backgroundImage: 'url(' + item.imageUrl + ')' }">
-                  <span class="card-img-title">查看更多</span>
+                  <span class="card-link-text">查看更多</span>
               </div>
 
               <div class="card-body">
@@ -100,32 +102,28 @@
                 </div>
 
                 <div class="row mt-1">
-                  <div class="col-md-6">
-                    <div>
-                      <span class="badge badge-warning mt-3 px-3 py-1">
-                        <i class="fas fa-tag mr-2"></i>{{ item.category }}
-                      </span>
-                    </div>
+                  <div class="col-md-6 d-flex align-items-center justify-content-center">
+                    <span class="badge badge-warning px-3 py-1">
+                      <i class="fas fa-tag mr-2"></i>{{ item.category }}
+                    </span>
                   </div>
                   <div class="col-md-6">
-                    <p class="text-secondary text-right pr-3 mb-0">
-                      <small>
-                        <del class="text-dark" style="font-weight:bold">
-                          {{ item.origin_price |currency }}
+                      <p class="text-center">
+                        <del class="text-white" style="font-weight:bold">
+                          {{ item.origin_price | currency }}
                         </del>
-                      </small>
-                    </p>
-                    <p class="card-text text-right">{{ item.price |currency }}</p>
+                      </p>
+                    <p class="card-text text-center">{{ item.price | currency }}</p>
                   </div>
                 </div>
               </div>
               </a>
               <div class="card-footer-text d-flex justify-content-between">
-                <div class="footer-btn p-2" @click="addfavorite(item.id,item.title)">
-                  加入最愛 <i class="fas fa-heart"></i>
+                <div class="footer-btn p-2 border-right" @click="addfavorite(item.id,item.title)">
+                  <i class="fas fa-heart"></i> 加入最愛
                 </div>
                 <div class="footer-btn p-2" @click.prevent="addtoCart(item.id,1)" style="width:50%;">
-                  加入購物車 <i class="fab fa-shopify"></i>
+                  <i class="fas fa-shipping-fast"></i> 加入購物車
                 </div>
               </div>
             </div>
@@ -136,9 +134,9 @@
   </div>
 
   <!-- 產品分頁 -->
-  <div class="row d-flex justify-content-center mb-2">
-    <div class="col-md-12">
-      <div class="row justify-content-center">
+  <div class="row d-flex mb-4">
+    <div class="col-md-11">
+      <div class="row d-flex justify-content-end mr-1">
         <nav aria-label="Page navigation example">
           <ul class="pagination">
             <li class="page-item" v-for="pages in filterData.length" :key="pages"

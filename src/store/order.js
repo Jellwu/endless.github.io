@@ -44,8 +44,6 @@ export default {
       axios.get(url).then((response) => {
         if (response.data.success) {
           context.commit('GETORDER', response.data.order)
-        } else {
-
         }
       })
     },
@@ -54,8 +52,6 @@ export default {
       axios.post(url).then((response) => {
         if (response.data.success) {
           router.push('/productList')
-        } else {
-
         }
       })
     },

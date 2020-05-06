@@ -1,0 +1,11 @@
+.creditform{
+  margin-right:0.75rem;
+  position: relative;
+  &::after{
+    position: absolute;
+    color:gray;
+    top:5%;
+    right:-7%;
+    content:'-';
+  }
+}

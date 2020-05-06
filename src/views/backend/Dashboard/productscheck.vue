@@ -141,9 +141,7 @@
                 </button>
               </div>
               <div class="modal-body">
-                <!-- <div class="p-2" v-model="tempProduct.title"> -->
                     <p>是否刪除產品：<span class="text-danger font-weight-bold">{{ tempProduct.title }}?</span></p>
-                <!-- </div> -->
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>

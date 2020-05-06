@@ -6,12 +6,12 @@
         <nav class="navbar navbar-expand-lg navbar-dark nav-bg p-0 fixed-top">
           <div class="container">
             <nav class="navbar navbar-expand-lg navbar-dark" style="rgba(0,0,0,0)">
-              <a href="#" class="navbar-brand d-flex justify-content-center align-items-center router-link-exact-active active my-1 mx-2">
+              <router-link href="#" to="/" class="navbar-brand d-flex justify-content-center align-items-center router-link-exact-active active my-1 mx-2">
                 <div class="logo-title d-inline-block d-flex flex-column nav-title">
                   <h1 class="mb-0">黑膠時光</h1>
                   <span class="h6 align-self-center">Endless</span>
                 </div>
-              </a>
+              </router-link>
             </nav>
             <ul class="order-md-1 d-flex">
               <li class="nav-item py-1 pl-4">
@@ -86,10 +86,6 @@
         <div class="container">
           <div class="row no-gutters pb-2 d-flex pt-4 justify-content-end">
             <div class="col-md-10 text-white">
-              <div>
-                <p class="h3">About US</p>
-                <hr class="pl-5 mt-1 mb-3" style="width:25%">
-              </div>
               <div style="width:33%">
                 <h1 class="ml-1">黑膠時光</h1>
                 <h6 class="ml-2 mb-5">Endless</h6>
@@ -100,9 +96,7 @@
                 Jell9916@gmail.com
               </div>
             </div>
-            <div class="col-md-2">
-              <p class="h3 text-white">Follow US</p>
-              <hr class="pl-5 mt-1 mb-3 text-white">
+            <div class="col-md-2 d-flex align-items-end">
               <div class="d-flex align-items-center">
                 <li class="list-inline-item">
                   <a class="text-endless" href="#">
@@ -137,7 +131,7 @@ import cartMessage from '@/components/CartMessage.vue'
 export default {
   data () {
     return {
-
+      active: false
     }
   },
   methods: {

@@ -1,12 +1,14 @@
 @import "~bootstrap/scss/functions";
-@import "./helpers/_variables.scss";
-@import "./helpers/_keyframes.scss";
+@import "./helpers/_variables";
+@import "./helpers/_keyframes";
 @import "~bootstrap/scss/bootstrap";
 
 @import "./pages/app";
 // fontend/page
 @import "./pages/home";
 @import "./pages/products";
+@import "./pages/cart";
+@import "./pages/cart_checkout";
 
 // fontedn/component
 @import "./components/adList"

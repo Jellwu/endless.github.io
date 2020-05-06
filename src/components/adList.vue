@@ -35,11 +35,13 @@
           </div>
         </div>
       </div>
-      <a class="carousel-control-prev" href="#carouselList" role="button" data-slide="prev">
+      <a class="carousel-control-prev" href="#carouselList" v-show="false"
+      role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
       </a>
-      <a class="carousel-control-next" href="#carouselList" role="button" data-slide="next">
+      <a class="carousel-control-next" href="#carouselList" v-if="carouselList.length > 4"
+      role="button" data-slide="next" style="width:4%;background-color:rgba(0,0,0,1)">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
       </a>

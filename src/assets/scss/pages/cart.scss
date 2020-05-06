@@ -1,0 +1,73 @@
+.pay-process{
+  color:#ffc107;
+}
+.pay-process-1,.pay-process-2,.pay-process-3{
+  position: relative;
+  border:1px solid #ffc107;
+  width:30px;
+  height:30px;
+  border-radius: 50%;
+}
+.pay-process-1::after,.pay-process-2::after{
+  text-align: center;
+  position: absolute;
+  content: '';
+  bottom:45%;
+  left:100%;
+  border-bottom:1px solid #ffc107;
+  width:460%;
+}
+.pay-process .complited-1{
+  position: relative;
+  &::after{
+    content:'別忘了優惠券'
+  }
+  &::before{
+    content:'';
+    position: absolute;
+    left:16.5%;
+    top:18.2%;
+    width:65%;
+    height:65%;
+    background-color: #ffc107;
+    adding:0px;
+    border-radius: 50%;
+  }
+}
+.pay-process .complited-2{
+  position: relative;
+  &::after{
+    content:'即將完成訂單'
+  }
+  &::before{
+    content:'';
+    position: absolute;
+    left:16.5%;
+    top:18.2%;
+    width:65%;
+    height:65%;
+    background-color: #ffc107;
+    padding:0px;
+    border-radius: 50%;
+  }
+}
+.pay-process .complited-3{
+  position: relative;
+  &::before{
+    content:'';
+    position: absolute;
+    left:16.5%;
+    top:18.2%;
+    width:65%;
+    height:65%;
+    background-color: #ffc107;
+    padding:0px;
+    border-radius: 50%;
+  }
+}
+
+.cartOrder-content{
+  font-size:20px;
+  padding:10px 50px;
+  font-weight: bold;
+}

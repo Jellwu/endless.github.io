@@ -10,13 +10,13 @@
         <div class="text-endless">
           <h2 class="my-3">
             <span><i class="fas fa-crown text-warning"></i></span>
-            {{productDetail.title}}
+            {{ productDetail.title }}
           </h2>
-          <p class="mb-2" style="text-indent : 2em;">{{productDetail.content}}</p>
-          <p style="text-indent : 2em;">{{productDetail.description}}</p>
+          <p class="mb-2" style="text-indent : 2em;">{{ productDetail.content }}</p>
+          <p style="text-indent : 2em;">{{ productDetail.description }}</p>
           <div class="text-right">
-            <del class="font-weight-lighter"><span class="my-2">原價：{{productDetail.origin_price | currency}}</span></del><br>
-            <span class="h4 text-warning font-weight-bolder">特價:{{productDetail.price | currency}}</span>
+            <del class="font-weight-lighter"><span class="my-2">原價：{{ productDetail.origin_price | currency }}</span></del><br>
+            <span class="h4 text-warning font-weight-bolder">特價:{{ productDetail.price | currency }}</span>
           </div>
         </div>
         <div class="d-flex justify-content-end">
@@ -55,7 +55,7 @@
                     id="inputGroupSelect04" v-model="productNum">
                       <option :value="0" selected disabled>--請選購數量--</option>
                       <option :value="num" v-for="num in 10" :key='num'>
-                        選購 {{num}} {{productDetail.unit}}
+                        選購 {{ num }} {{ productDetail.unit }}
                       </option>
                     </select>
                     <div class="input-group-append text-right">
@@ -80,7 +80,7 @@
 import $ from 'jquery'
 import { mapGetters } from 'vuex'
 import cartMessage from '@/components/CartMessage.vue'
-import adList from '@/components/adList.vue'
+import adList from '@/components/AdList.vue'
 
 export default {
   name: 'Product',

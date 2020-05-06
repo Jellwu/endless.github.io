@@ -21,8 +21,24 @@
     </div>
     <div v-else-if="cart.carts.length !== 0">
     <div class="container my-5">
+      <div class="row d-flex d-flex justify-content-between align-items-center">
+        <div class="col-md-6">
+          <h2 class="text-white carts-check-title">
+            Step 1. 確認商品
+          </h2>
+        </div>
+        <div class="col-md-4">
+          <div class="pay-process">
+            <ul class="d-flex justify-content-between">
+              <li class="pay-process-1 complited-1"></li>
+              <li class="pay-process-2"></li>
+              <li class="pay-process-3"></li>
+            </ul>
+          </div>
+        </div>
+      </div>
       <div class="row d-flex justify-content-center">
-        <div class="col-md-10 mt-5">
+        <div class="col-md-12 mt-5">
           <table class="table table-sm text-endless">
             <thead>
               <tr>
@@ -109,13 +125,11 @@
                       type="button" id="button-addon2">優惠券</button>
                     </div>
                   </div>
-                </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="row text-right d-flex justify-content-center">
-          <div class="col-md-10">
+          <div class="col-md-12 text-right mt-3">
             <router-link class="btn btn-outline-warning" to="/cart_info">下一步</router-link>
           </div>
         </div>

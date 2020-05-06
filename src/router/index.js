@@ -21,12 +21,12 @@ const routes = [
   },
   {
     path: '/profile',
-    name: 'profile',
+    name: 'Profile',
     component: () => import('../views/fontend/Profile.vue')
   },
   {
     path: '/productList',
-    name: 'products',
+    name: 'Products',
     component: () => import('../views/fontend/Products.vue')
   },
   {

@@ -81,20 +81,20 @@
 
     <section id="sectionLink">
       <div class="bg-News">
-        <div class="row d-flex justify-content-around align-items-center p-3">
-          <div class="col-md-6 bg-underText bg-underText-red text-Link text-Link-left p-5">
+        <div class="row d-flex justify-content-around align-items-center">
+          <div class="col-md-6 d-flex flex-column justify-content-center bg-underText bg-underText-red text-Link text-Link-left p-5">
             <div class="h2 mb-5 d-flex flex-column align-items-center">
               <i class="fas fa-ticket-alt fa-2x mb-2"></i>
               <span>入手優惠券</span>
             </div>
-            <div class="mb-2">前往連結玩個小遊戲吧！<br>挑戰成功即刻享有8折優惠！</div>
-            <div class="text-center">
-              <router-link class="btn btn-outline-light my-1 mr-3" to="/couponpage">
+            <div class="">前往連結玩個小遊戲吧！<br>挑戰成功即刻享有8折優惠！</div>
+            <div class="text-center mt-2">
+              <router-link class="btn btn-outline-light mr-3" to="/couponpage">
                 前往挑戰
               </router-link>
             </div>
           </div>
-          <div class="col-md-6 bg-underText bg-underText-blue p-5">
+          <div class="col-md-6  d-flex flex-column justify-content-center bg-underText bg-underText-blue p-5">
             <div class="text-Link text-Link-right">
               <div class="h2 mb-5 d-flex flex-column align-items-center">
                 <i class="fas fa-paper-plane fa-2x mb-2"></i>
