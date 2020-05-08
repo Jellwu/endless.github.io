@@ -52,7 +52,7 @@ export default {
           context.dispatch('cartMessage',
             {
               state: true,
-              msg: response.data.message
+              msg: '已更新購物車'
             },
             { root: true })
         })

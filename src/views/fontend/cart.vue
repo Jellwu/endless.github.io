@@ -39,25 +39,34 @@
       </div>
       <div class="row d-flex justify-content-center">
         <div class="col-md-12 mt-5">
-          <table class="table table-sm text-endless">
-            <thead>
+          <div class="h2 bg-warning text-dark text-center py-3">
+            購物車清單
+          </div>
+          <table class="table table-borderless table-striped text-endless">
+            <thead class="text-endless h5">
               <tr>
-                <td>功能</td>
+                <td class="text-center">功能</td>
                 <td valign="middle">項目</td>
                 <td valign="middle">產品名稱</td>
                 <td>購買數量</td>
                 <td class="text-right">產品單價</td>
               </tr>
             </thead>
-            <tbody>
-              <tr v-for="items in cart.carts" :key="items.id">
-                <td style="vertical-align: middle;">
+            <tbody class="cartOrder-content">
+              <tr v-for="items in alertCart.carts" :key="items.id">
+                <td class="text-center" style="vertical-align: middle;">
                   <button class="btn text-danger" type="button"
                   name="button" @click.prevent="removeCart(items.id)">
                     <i class="fas fa-trash"></i>
                   </button>
+                  <button class="btn text-info" type="button"
+                  name="button" @click.prevent="updateCartqty(items.id,items.qty)">
+                    <i class="fas fa-redo-alt"></i>
+                  </button>
                 </td>
-                <td style="width:80px;"><img class="img-fluid" :src="items.product.imageUrl"></td>
+                <td style="width:120px;">
+                  <img class="img-fluid" :src="items.product.imageUrl" style="width:80px">
+                </td>
                 <td style="vertical-align: middle;">
                   <a href="#" @click.prevent='getproductId(items.product.id)'>
                     {{ items.product.title }}
@@ -66,24 +75,27 @@
                     已套用優惠券
                   </p>
                 </td>
-                <td class="text-center" style="width:80px; vertical-align: middle;">{{ items.qty }}</td>
-                <td class="text-right" style="width:100px; vertical-align: middle;">{{ items.product.price | currency }}</td>
+                <td class="text-center" style="width:160px; vertical-align: middle;">
+                  <input type="number" aria-label="CartQty" class="form-control"
+                   :value="items.qty" @change="newQty = items.qty">
+                </td>
+                <td class="text-right" style="width:160px; vertical-align: middle;">{{ items.product.price * items.qty | currency }}</td>
               </tr>
             </tbody>
             <tfoot>
-              <tr>
+              <tr class="cartOrder-content">
                 <td  class="py-3" colspan="4" style="vertical-align: middle;">
-                    <p class="h6 text-right pt-2">總計金額：</p>
+                    <p class="text-right pt-2">總計金額：</p>
                 </td>
                 <td class="py-3"  style="vertical-align: middle;">
-                    <p class="h6 text-right pt-2">{{ cart.total | currency }}</p>
+                    <p class="text-right pt-2">{{ cart.total | currency }}</p>
                 </td>
               </tr>
             </tfoot>
           </table>
         </div>
       </div>
-        <div class="row d-flex justify-content-around bg-cart-box no-gutters p-3">
+        <div class="row d-flex justify-content-around bg-cart-box no-gutters p-3 mt-4">
           <div class="col-md-7">
               <ul class="text-endless mt-3 pl-4">
                 <h4 class="pb-2"><i class="far fa-hand-point-right mr-2"></i>注意事項</h4>
@@ -130,7 +142,9 @@
           </div>
         </div>
           <div class="col-md-12 text-right mt-3">
-            <router-link class="btn btn-outline-warning" to="/cart_info">下一步</router-link>
+            <router-link class="btn btn-outline-warning" to="/cart_info">
+              下一步
+            </router-link>
           </div>
         </div>
       </div>
@@ -148,16 +162,10 @@ export default {
   data () {
     return {
       couponCode: '',
-      form: {
-        user: {
-          name: '',
-          email: '',
-          tel: '',
-          address: ''
-        },
-        message: ''
-      },
-      newCart: {}
+      message: '',
+      newQty: 0,
+      newCarts: {},
+      changeStatus: false
     }
   },
   computed: {
@@ -183,23 +191,38 @@ export default {
     },
     cancelCoupon () {
       this.$store.dispatch('cartModules/cancelCoupon', 'ORIGINP0')
-    },
-    cartCheckout () {
-      const order = this.form
-      this.$store.dispatch('orderModules/cartCheckout', order)
     }
+    // updateCartqty (id, qty) {
+    //   const vm = this
+    //   // alterItem 裡面放的是數量有修正的資料
+    //   const alterItem = vm.cart.carts.filter((item) => {
+    //     return (item.id === id && item.qty !== qty)
+    //   })
+    //   if (alterItem.length > 0) {
+    //     // 有修改過的所有資料都重寫一次資料庫
+    //     alterItem.forEach((item, i) => {
+    //       const originCartId = item.id
+    //       const originProductId = item.product_id
+    //       const newQty = parseInt(qty)
+    //       vm.$store.dispatch('cartModules/updateCartQty', { originCartId, originProductId, newQty })
+    //     })
+    //     vm.getCart()
+    //   }
+    // }
   },
   components: {
     cartMessage
   },
   mounted () {
     window.addEventListener('scroll', this.handleScroll)
+    this.newCarts = this.cart
   },
   destroyed () {
     window.removeEventListener('scroll', this.handleScroll)
   },
   created () {
     this.getCart()
+    this.newCarts = this.cart
   }
 }
 

@@ -51,7 +51,7 @@ export default {
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/pay/${id}`
       axios.post(url).then((response) => {
         if (response.data.success) {
-          router.push('/productList')
+          router.push(`/cart_orderpay/${id}`)
         }
       })
     },

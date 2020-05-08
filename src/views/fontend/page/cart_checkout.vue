@@ -1,5 +1,5 @@
 <template>
-<div class="about">
+<div>
   <Loading loader="bars" color="#C4A670" :active.sync="isLoading"></Loading>
       <div class="customform-banner d-flex align-items-center justify-content-center mb-5">
         <div>
@@ -23,92 +23,139 @@
             </div>
           </div>
         </div>
-        <div class="row justify-content-center my-5" v-if="Order.is_paid === false">
-          <div class="col-md-10">
-            <div class="my-2">
+        <div class="row justify-content-center align-items-baseline my-5">
+          <div class="col-md-5">
+            <div class="col my-2">
               <div class="h2 bg-warning text-dark text-center py-3">
                 客戶資料確認
               </div>
-              <div class="bg-white text-dark cartOrder-content">
-                <p class="d-flex justify-content-between">
+              <div class="bg-orders text-endless cartOrder-content">
+                <p>
                   <span>收件人姓名:</span>
                   <span>{{ Order.user.name }}</span>
                 </p>
-                <p class="d-flex justify-content-between">
+                <p>
                   <span>收件人電郵:</span>
                   <span>{{ Order.user.email }}</span>
                 </p>
-                <p class="d-flex justify-content-between">
+                <p>
                   <span>聯絡電話:</span>
                   <span>{{ Order.user.tel }}</span>
                 </p>
-                <p class="d-flex justify-content-between">
+                <p>
                   <span>寄送地址:</span>
                   <span>{{ Order.user.address }}</span>
                 </p>
               </div>
             </div>
+            <div class="col">
+              <div class="my-2">
+                <div class="h3 bg-warning text-dark text-center py-3">
+                  訂單摘要
+                </div>
+                <div class="bg-orders text-endless cartOrder-content">
+                  <p class="d-flex justify-content-between">
+                    <span>費用:</span>
+                    <span>{{ cart.final_total | currency }}</span>
+                  </p>
+                  <p class="d-flex justify-content-between">
+                    <span>運費:</span>
+                    <span>{{ 0 | currency }}</span>
+                  </p>
+                  <p class="d-flex justify-content-between mt-2" style="font-size:26px;">
+                    <span>總計:</span>
+                    <span>{{ cart.final_total | currency }}</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            </div>
+            <div class="col-md-7">
+              <div class="h2 bg-warning text-dark text-center py-3">
+                輸入付款資訊
+              </div>
+              <div class="bg-orders text-endless cartOrder-content">
+                <ValidationObserver ref="observer" v-slot="{ invalid }" tag="form">
+                  <form class="my-4">
+                    <div class="form-row mb-2">
+                      <label for="creditNo" class="col-form-label">信用卡號:</label>
+                      <ValidationProvider class="col creditform" rules="required|numeric|digits:4" name="卡號" v-slot="{ errors }">
+                          <input type="text" class="form-control" name="creditNo" maxlength="4"
+                           v-model="order.credit.no1" :class="{'is-invalid':errors[0]}"
+                          placeholder="06xx">
+                          <span class="text-error" v-if="errors[0]">{{ errors[0] }}</span>
+                      </ValidationProvider>
+
+                      <ValidationProvider class="col creditform" rules="required|numeric|digits:4" name="" v-slot="{ errors }">
+                          <input type="text" class="form-control" v-model="order.credit.no2"
+                          :class="{'is-invalid':errors[0]}" maxlength="4"
+                          placeholder="xxxx">
+                      </ValidationProvider>
+
+                      <ValidationProvider class="col creditform" rules="required|numeric|digits:4" name="" v-slot="{ errors }">
+                          <input type="text" class="form-control" v-model="order.credit.no3"
+                          :class="{'is-invalid':errors[0]}" maxlength="4"
+                          placeholder="xxxx">
+                      </ValidationProvider>
+
+                      <ValidationProvider class="col" rules="required|numeric|digits:4" name="" v-slot="{ errors }">
+                          <input type="text" class="form-control" v-model="order.credit.no4"
+                          :class="{'is-invalid':errors[0]}" maxlength="4"
+                          placeholder="xxxx">
+                      </ValidationProvider>
+                  </div>
+
+                  <div class="form-row mb-2" id="creditNo">
+                  <label for="credit" class="col-form-label">卡片期限:</label>
+                  <ValidationProvider class="col-2" rules="required|numeric|digits:2" name="期限" v-slot="{ errors }">
+                      <input type="text" class="form-control" name="creditNo"
+                       v-model="order.credit.month" :class="{'is-invalid':errors[0]}"
+                      placeholder="06" maxlength="2">
+                  </ValidationProvider>
+                  <ValidationProvider class="col-2" rules="required|numeric|digits:2" name="期限" v-slot="{ errors }">
+                      <input type="text" class="form-control" v-model="order.credit.year"
+                      :class="{'is-invalid':errors[0]}" maxlength="2"
+                      placeholder="30">
+                    </ValidationProvider>
+                  </div>
+
+                    <div class="form-row mb-2">
+                    <label for="creditName" class="col-form-label">持卡人姓名:</label>
+                      <ValidationProvider class="col-2" rules="required" name="姓名" v-slot="{ errors }">
+                            <input type="text" class="form-control" v-model="order.credit.surname"
+                            :class="{'is-invalid':errors[0]}"
+                            placeholder="江" maxlength="1">
+                      </ValidationProvider>
+
+                      <ValidationProvider class="col-3" rules="required" name="姓名" v-slot="{ errors }">
+                          <input type="text" class="form-control" v-model="order.credit.name"
+                          :class="{'is-invalid':errors[0]}"
+                          placeholder="誌青" maxlength="2">
+                      </ValidationProvider>
+                    </div>
+
+                    <div class="form-row mb-2" id="creditNo">
+                    <label for="credit" class="col-form-label">安全碼:</label>
+                      <ValidationProvider class="col-2" rules="required|numeric|digits:3" name="安全碼" v-slot="{ errors }">
+                          <input type="text" class="form-control" v-model="order.credit.secureCode" :class="{'is-invalid':errors[0]}"
+                          placeholder="999" maxlength="3">
+                      </ValidationProvider>
+                    </div>
+                    <div class="form-row justify-content-center mt-4">
+                      <div class="col-11">
+                        <button type="button" name="button" :disabled="invalid" :class="{'discursor':invalid}"
+                        class="btn btn-block btn-warning btn-lg rounded-0 text-dark py-3" @click.prevent="payOrder">
+                          確認付款
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </ValidationObserver>
+            </div>
           </div>
-        </div>
-        <div class="row justify-content-center">
-          <div class="col-md-10">
-            <div class="h2 bg-warning text-dark text-center py-3">
-              輸入付款資訊
-            </div>
-            <div class="bg-white text-dark cartOrder-content">
-                <form class="my-4">
-                  <div class="form-row" id="creditNo">
-                  <label for="credit" class="col-2 col-form-label">信用卡號:</label>
-                    <div class="col-2 creditform">
-                      <input type="text" class="form-control" placeholder="xxxx">
-                    </div>
-                    <div class="col-2 creditform">
-                      <input type="text" class="form-control" placeholder="xxxx">
-                    </div>
-                    <div class="col-2 creditform">
-                      <input type="text" class="form-control" placeholder="xxxx">
-                    </div>
-                    <div class="col-2">
-                      <input type="text" class="form-control" placeholder="xxxx">
-                    </div>
-                  </div>
-                  <div class="form-row" id="creditNo">
-                  <label for="credit" class="col-2 col-form-label">持卡人姓名:</label>
-                    <div class="col-4">
-                      <input type="text" class="form-control" placeholder="江">
-                    </div>
-                    <div class="col-4">
-                      <input type="text" class="form-control" placeholder="誌青">
-                    </div>
-                  </div>
-                  <div class="form-row" id="creditNo">
-                  <label for="credit" class="col-2 col-form-label">卡片期限:</label>
-                    <div class="col-2 creditform">
-                      <input type="text" class="form-control" placeholder="09">
-                    </div>
-                    <div class="col-2">
-                      <input type="text" class="form-control" placeholder="36">
-                    </div>
-                  </div>
-                  <div class="form-row" id="creditNo">
-                  <label for="credit" class="col-2 col-form-label">安全碼:</label>
-                    <div class="col-3">
-                      <input type="text" class="form-control" placeholder="999">
-                    </div>
-                  </div>
-                  <div class="form-row justify-content-center mt-4">
-                    <div class="col-11">
-                      <button type="button" name="button" class="btn btn-block btn-warning btn-lg rounded-0 text-dark py-3">
-                        確認付款
-                      </button>
-                    </div>
-                  </div>
-                </form>
-            </div>
           </div>
         </div>
       </div>
-</div>
 </template>
 
 <script>
@@ -121,12 +168,24 @@ export default {
     return {
       orderId: '',
       order: {
-        user: {}
+        user: {},
+        credit: {
+          n1: '',
+          n2: '',
+          n3: '',
+          n4: '',
+          Surname: '',
+          name: '',
+          month: '',
+          year: '',
+          secureCode: ''
+        }
       }
     }
   },
   computed: {
     ...mapGetters('orderModules', ['Order']),
+    ...mapGetters('cartModules', ['cart']),
     ...mapGetters(['isLoading'])
   },
   methods: {
@@ -142,7 +201,6 @@ export default {
       this.$store.dispatch('orderModules/getOrder', id)
     },
     payOrder (e) {
-      e.preventDefault()
       const id = this.orderId
       this.$store.dispatch('orderModules/payOrder', id)
     }
@@ -183,5 +241,7 @@ thead th{
   margin:0px auto;
   height:500px;
 }
-
+.discursor{
+  cursor: not-allowed;
+}
 </style>

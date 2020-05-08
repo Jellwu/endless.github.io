@@ -26,13 +26,17 @@
         <div class="row align-items-baseline text-warning my-5 justify-content-center">
           <div class="col-md-4">
             <div class="my-2">
-              <div class="h2 bg-warning text-dark text-center py-3">
+              <div class="h3 bg-warning text-dark text-center py-3">
                 訂單摘要
               </div>
-              <div class="bg-white text-dark cartOrder-content">
+              <div class="bg-orders text-endless cartOrder-content">
                 <p class="d-flex justify-content-between">
-                  <span>費用:</span>
-                  <span>{{ cart.final_total | currency }}</span>
+                  <span>原價:</span>
+                  <span>{{ cart.total | currency }}</span>
+                </p>
+                <p class="d-flex justify-content-between" v-if=" cart.final_total !== cart.total">
+                  <span>折扣:</span>
+                  <span class="text-success">{{ cart.total - cart.final_total | currency }}</span>
                 </p>
                 <p class="d-flex justify-content-between">
                   <span>運費:</span>
@@ -48,7 +52,7 @@
               <div class="h2 bg-warning text-dark text-center py-3">
                 訂購明細
               </div>
-              <div class="bg-white text-dark">
+              <div class="bg-orders text-endless py-4">
                 <div class="row d-flex justify-content-center py-2" v-for="items in cart.carts" :key='items.id'>
                   <div class="col-4">
                     <img :src="items.product.imageUrl" class="img-fluid rounded" alt="...">
@@ -56,7 +60,16 @@
                   <div class="col-6" style="font-weight:bold;">
                     <p>{{ items.product.title }}</p>
                     <p>{{ items.qty }} {{ items.product.unit }}</p>
-                    <p>{{ items.total | currency }}</p>
+                    <p v-if="items.final_total === items.total">
+                      {{ items.product.price | currency }}
+                    </p>
+                    <p v-else-if="items.final_total !== items.total">
+                      <del>{{ items.product.price | currency }}</del><br>
+                      <span class="h5 text-success mr-2">{{ items.final_total | currency }}</span>
+                      <small class="text-white text-center shadow-none badge badge-success">
+                        折扣價
+                      </small>
+                    </p>
                   </div>
                 </div>
               </div>
@@ -67,7 +80,7 @@
             <div class="h2 bg-warning text-dark text-center py-3">
               寄送資料
             </div>
-            <div class="bg-white text-dark" style="padding:20px 25px;font-weight:bold;">
+            <div class="bg-orders text-endless" style="padding:20px 25px;font-weight:bold;">
             <ValidationObserver ref="observer" v-slot="{ invalid }" tag="form">
               <ValidationProvider rules="required" name="收件人姓名" v-slot="{ errors }">
                 <div class="form-group">
@@ -82,7 +95,7 @@
               <ValidationProvider rules="required|numeric|digits:10" name="電話" v-slot="{ errors }">
                 <div class="form-group">
                   <label for="usertel">收件人電話(*必填)：</label>
-                  <input class="form-control" type="tel" name="name" id="usertel"
+                  <input class="form-control" type="tel" name="tel" id="usertel"
                   placeholder="請輸入電話" v-model="form.user.tel"
                   :class="{'is-invalid':errors[0]}">
                   <span class="text-danger" v-if="errors[0]">{{ errors[0] }}</span>
@@ -108,7 +121,6 @@
                   <span class="text-danger" v-if="errors[0]">{{ errors[0] }}</span>
                 </div>
               </ValidationProvider>
-
                 <div class="form-group">
                     <label for="comment">留言</label>
                     <textarea name="" id="comment" class="form-control" cols="30" rows="10"
@@ -122,8 +134,7 @@
           </div>
         </form>
       </div>
-    </div>
-
+      </div>
     </div>
 
 </template>
@@ -136,7 +147,6 @@ export default {
   name: 'Cart',
   data () {
     return {
-      couponCode: '',
       form: {
         user: {
           name: '',
@@ -159,12 +169,6 @@ export default {
       } else {
         $('.nav-bg').removeClass('nav-bg-visible')
       }
-    },
-    removeCart (id) {
-      this.$store.dispatch('cartModules/removeCart', id)
-    },
-    getCoupon () {
-      this.$store.dispatch('cartModules/applyCounpon', this.couponCode)
     },
     cartCheckout () {
       const order = this.form
@@ -208,6 +212,9 @@ export default {
 }
 .discursor{
   cursor: not-allowed;
+}
+.badge-pill{
+  cursor:none;
 }
 
 </style>

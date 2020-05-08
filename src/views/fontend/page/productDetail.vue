@@ -48,7 +48,7 @@
               <div class="col-md-6">
                 <div>
                   <div class="text-warning font-weight-bolder ml-4 mb-1" v-if="subtotal">
-                    小計：{{subtotal |currency}}
+                    小計：{{ subtotal | currency }}
                   </div>
                   <div class="input-group">
                     <select class="custom-select border border-warning text-dark"
@@ -93,7 +93,7 @@ export default {
     ...mapGetters('productsModules', ['productDetail']),
     ...mapGetters('cartModules', ['cart']),
     subtotal () {
-      const data = this.$store.state.productsModules.product.price * this.productNum
+      const data = this.productDetail.price * this.productNum
       return data
     }
   },
@@ -122,7 +122,7 @@ export default {
         const sameItem = duplicatdItem[0]
         const originCartId = sameItem.id
         const originProductId = sameItem.product.id
-        const newQty = sameItem.qty + qty
+        const newQty = parseInt(sameItem.qty) + parseInt(qty)
         vm.$store.dispatch('cartModules/updateCartQty', { originCartId, originProductId, newQty })
       } else {
         vm.$store.dispatch('cartModules/addtoCart', {
