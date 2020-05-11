@@ -53,15 +53,11 @@
               </tr>
             </thead>
             <tbody class="cartOrder-content">
-              <tr v-for="items in alertCart.carts" :key="items.id">
+              <tr v-for="items in cart.carts" :key="items.id">
                 <td class="text-center" style="vertical-align: middle;">
                   <button class="btn text-danger" type="button"
                   name="button" @click.prevent="removeCart(items.id)">
                     <i class="fas fa-trash"></i>
-                  </button>
-                  <button class="btn text-info" type="button"
-                  name="button" @click.prevent="updateCartqty(items.id,items.qty)">
-                    <i class="fas fa-redo-alt"></i>
                   </button>
                 </td>
                 <td style="width:120px;">
@@ -76,8 +72,8 @@
                   </p>
                 </td>
                 <td class="text-center" style="width:160px; vertical-align: middle;">
-                  <input type="number" aria-label="CartQty" class="form-control"
-                   :value="items.qty" @change="newQty = items.qty">
+                  <input class="form-control" type="number" v-model="items.qty"
+                  @change="updateCartqty(items)">
                 </td>
                 <td class="text-right" style="width:160px; vertical-align: middle;">{{ items.product.price * items.qty | currency }}</td>
               </tr>
@@ -149,6 +145,7 @@
         </div>
       </div>
     </div>
+    <pre class="text-white">{{ cartSorting }}</pre>
   </div>
 </template>
 
@@ -162,14 +159,14 @@ export default {
   data () {
     return {
       couponCode: '',
-      message: '',
-      newQty: 0,
-      newCarts: {},
-      changeStatus: false
+      message: ''
     }
   },
   computed: {
-    ...mapGetters('cartModules', ['cart'])
+    ...mapGetters('cartModules', ['cart']),
+    cartSorting () {
+      return this.cart.carts[0].id
+    }
   },
   methods: {
     ...mapActions('cartModules', ['getCart']),
@@ -191,38 +188,32 @@ export default {
     },
     cancelCoupon () {
       this.$store.dispatch('cartModules/cancelCoupon', 'ORIGINP0')
+    },
+    updateCartqty (items) {
+      const vm = this
+      // alterItem 裡面放的是數量有修正的資料
+      const alterItem = vm.cart.carts.filter((item) => {
+        return (item.id === items.id)
+      })
+      if (alterItem.length > 0) {
+        const originCartId = items.id
+        const originProductId = items.product_id
+        const newQty = parseInt(items.qty)
+        vm.$store.dispatch('cartModules/updateCartQty', { originCartId, originProductId, newQty })
+      }
     }
-    // updateCartqty (id, qty) {
-    //   const vm = this
-    //   // alterItem 裡面放的是數量有修正的資料
-    //   const alterItem = vm.cart.carts.filter((item) => {
-    //     return (item.id === id && item.qty !== qty)
-    //   })
-    //   if (alterItem.length > 0) {
-    //     // 有修改過的所有資料都重寫一次資料庫
-    //     alterItem.forEach((item, i) => {
-    //       const originCartId = item.id
-    //       const originProductId = item.product_id
-    //       const newQty = parseInt(qty)
-    //       vm.$store.dispatch('cartModules/updateCartQty', { originCartId, originProductId, newQty })
-    //     })
-    //     vm.getCart()
-    //   }
-    // }
   },
   components: {
     cartMessage
   },
   mounted () {
     window.addEventListener('scroll', this.handleScroll)
-    this.newCarts = this.cart
   },
   destroyed () {
     window.removeEventListener('scroll', this.handleScroll)
   },
   created () {
     this.getCart()
-    this.newCarts = this.cart
   }
 }
 

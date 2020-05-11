@@ -59,7 +59,7 @@
                   訂購明細
                 </div>
                 <div class="bg-orders text-endless py-4">
-                  <div class="row d-flex justify-content-center py-2" v-for="items in cart.carts" :key='items.id'>
+                  <div class="row d-flex justify-content-center py-2" v-for="items in Order.products" :key='items.id'>
                     <div class="col-4">
                       <img :src="items.product.imageUrl" class="img-fluid rounded" alt="...">
                     </div>

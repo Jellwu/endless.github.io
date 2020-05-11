@@ -61,10 +61,10 @@
                     <p>{{ items.product.title }}</p>
                     <p>{{ items.qty }} {{ items.product.unit }}</p>
                     <p v-if="items.final_total === items.total">
-                      {{ items.product.price | currency }}
+                      {{ items.total | currency }}
                     </p>
                     <p v-else-if="items.final_total !== items.total">
-                      <del>{{ items.product.price | currency }}</del><br>
+                      <del>{{ items.total | currency }}</del><br>
                       <span class="h5 text-success mr-2">{{ items.final_total | currency }}</span>
                       <small class="text-white text-center shadow-none badge badge-success">
                         折扣價
@@ -74,7 +74,6 @@
                 </div>
               </div>
             </div>
-
           </div>
           <form class="col-md-7">
             <div class="h2 bg-warning text-dark text-center py-3">

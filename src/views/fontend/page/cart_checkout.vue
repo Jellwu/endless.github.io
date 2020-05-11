@@ -24,60 +24,109 @@
           </div>
         </div>
         <div class="row justify-content-center align-items-baseline my-5">
-          <div class="col-md-5">
-            <div class="col my-2">
-              <div class="h2 bg-warning text-dark text-center py-3">
-                客戶資料確認
-              </div>
-              <div class="bg-orders text-endless cartOrder-content">
-                <p>
-                  <span>收件人姓名:</span>
-                  <span>{{ Order.user.name }}</span>
-                </p>
-                <p>
-                  <span>收件人電郵:</span>
-                  <span>{{ Order.user.email }}</span>
-                </p>
-                <p>
-                  <span>聯絡電話:</span>
-                  <span>{{ Order.user.tel }}</span>
-                </p>
-                <p>
-                  <span>寄送地址:</span>
-                  <span>{{ Order.user.address }}</span>
-                </p>
-              </div>
-            </div>
-            <div class="col">
-              <div class="my-2">
-                <div class="h3 bg-warning text-dark text-center py-3">
-                  訂單摘要
+            <div class="col-md-5 sticky-top">
+                <div class="col my-2">
+                  <div class="h2 bg-warning text-dark text-center py-3">
+                    客戶資料確認
+                  </div>
+                  <div class="bg-orders text-endless cartOrder-content">
+                    <p class="d-flex justify-content-between">
+                      <span>收件人姓名:</span>
+                      <span>{{ Order.user.name }}</span>
+                    </p>
+                    <p class="d-flex justify-content-between">
+                      <span>收件人電郵:</span>
+                      <span>{{ Order.user.email }}</span>
+                    </p>
+                    <p class="d-flex justify-content-between">
+                      <span>聯絡電話:</span>
+                      <span>{{ Order.user.tel }}</span>
+                    </p>
+                    <p class="d-flex justify-content-between">
+                      <span>寄送地址:</span>
+                      <span>{{ Order.user.address }}</span>
+                    </p>
+                  </div>
                 </div>
-                <div class="bg-orders text-endless cartOrder-content">
-                  <p class="d-flex justify-content-between">
-                    <span>費用:</span>
-                    <span>{{ cart.final_total | currency }}</span>
-                  </p>
-                  <p class="d-flex justify-content-between">
-                    <span>運費:</span>
-                    <span>{{ 0 | currency }}</span>
-                  </p>
-                  <p class="d-flex justify-content-between mt-2" style="font-size:26px;">
-                    <span>總計:</span>
-                    <span>{{ cart.final_total | currency }}</span>
-                  </p>
+                <div class="col mt-4">
+                  <div>
+                    <div class="h3 bg-warning text-dark text-center py-3">
+                      訂單摘要
+                    </div>
+                    <div class="bg-orders text-endless cartOrder-content">
+                      <p class="d-flex justify-content-between">
+                        <span>費用:</span>
+                        <span>{{ Order.total | currency }}</span>
+                      </p>
+                      <p class="d-flex justify-content-between">
+                        <span>運費:</span>
+                        <span>{{ 0 | currency }}</span>
+                      </p>
+                      <p class="d-flex justify-content-between">
+                        <span>付款狀態:</span>
+                        <span class="text-success" v-if="Order.is_paid === true">已完成付款</span>
+                        <span class="text-danger" v-if="Order.is_paid === false">未完成付款</span>
+                      </p>
+                      <p class="d-flex justify-content-between mt-2" style="font-size:26px;">
+                        <span>總計:</span>
+                        <span>{{ Order.total | currency }}</span>
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-            </div>
             <div class="col-md-7">
+              <div class="h2 bg-warning text-dark text-center py-3">
+                訂單資料確認與修改
+              </div>
+              <div class="bg-orders pt-3">
+                <table class="table table-borderless table-striped text-endless mx-auto" style="width:590px">
+                  <thead class="text-endless h5">
+                    <tr>
+                      <td valign="middle">項目</td>
+                      <td valign="middle">產品名稱</td>
+                      <td style="width:75px">數量</td>
+                      <td class="text-right" style="width:75px">單價</td>
+                    </tr>
+                  </thead>
+                  <tbody class="cartOrder-content">
+                    <tr v-for="items in Order.products" :key="items.id">
+                      <td style="width:120px;">
+                        <img class="img-fluid" :src="items.product.imageUrl" style="width:80px">
+                      </td>
+                      <td style="vertical-align: middle;">
+                          {{ items.product.title }}
+                      </td>
+                      <td class="text-center" style="vertical-align: middle;">
+                        {{ items.qty }}
+                      </td>
+                      <td class="text-right" style="vertical-align: middle;">{{ items.product.price * items.qty | currency }}</td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr class="cartOrder-content">
+                      <td  class="py-3" colspan="3" style="vertical-align: middle;">
+                          <p class="text-right pt-2">總計金額：</p>
+                      </td>
+                      <td class="py-3"  style="vertical-align: middle;">
+                          <p class="text-right text-warning">{{ Order.total | currency }}</p>
+                      </td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+        </div>
+
+          <div class="row justify-content-center align-items-baseline my-5">
+            <div class="col-md-12">
               <div class="h2 bg-warning text-dark text-center py-3">
                 輸入付款資訊
               </div>
               <div class="bg-orders text-endless cartOrder-content">
                 <ValidationObserver ref="observer" v-slot="{ invalid }" tag="form">
                   <form class="my-4">
-                    <div class="form-row mb-2">
+                    <div class="form-row mb-2" style="widht:80%">
                       <label for="creditNo" class="col-form-label">信用卡號:</label>
                       <ValidationProvider class="col creditform" rules="required|numeric|digits:4" name="卡號" v-slot="{ errors }">
                           <input type="text" class="form-control" name="creditNo" maxlength="4"
@@ -152,10 +201,10 @@
                   </form>
                 </ValidationObserver>
             </div>
-          </div>
+            </div>
           </div>
         </div>
-      </div>
+  </div>
 </template>
 
 <script>
@@ -199,6 +248,10 @@ export default {
     getOrder () {
       const id = this.orderId
       this.$store.dispatch('orderModules/getOrder', id)
+    },
+    changeQty (item) {
+      const vm = this
+      vm.$store.dispatch('orderModules/updateOrder', item)
     },
     payOrder (e) {
       const id = this.orderId
