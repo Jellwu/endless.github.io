@@ -24,8 +24,9 @@
         </div>
 
         <div class="row align-items-baseline text-warning my-5 justify-content-center">
-          <div class="col-md-4">
-            <div class="my-2">
+          <div></div>
+          <div class="col-md-4 sticky-top">
+            <div class="">
               <div class="h3 bg-warning text-dark text-center py-3">
                 訂單摘要
               </div>

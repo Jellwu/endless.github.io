@@ -11,6 +11,15 @@ export default {
   mutations: {
     CART (state, payload) {
       state.cart = payload
+      // 將API抓到的原始資料先丟到localStorage
+      const originQty = []
+      payload.carts.forEach(items => {
+        originQty.push({
+          product_id: items.product_id,
+          qty: items.qty
+        })
+        localStorage.setItem('OrigincartQty', JSON.stringify(originQty))
+      })
     },
     COUPONCODE (state, payload) {
       state.couponCode = payload

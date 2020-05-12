@@ -72,10 +72,13 @@
                   </p>
                 </td>
                 <td class="text-center" style="width:160px; vertical-align: middle;">
-                  <input class="form-control" type="number" v-model="items.qty"
-                  @change="updateCartqty(items)">
+                  <p class="text-endless" v-if="items.final_total !== items.total">
+                    {{ items.qty }}
+                  </p>
+                  <input class="form-control" v-else-if = "items.final_total === items.total"
+                  type="number" v-model="items.qty" @change.prevent="changNum()">
                 </td>
-                <td class="text-right" style="width:160px; vertical-align: middle;">{{ items.product.price * items.qty | currency }}</td>
+                <td class="text-right" style="width:200px; vertical-align: middle;">{{ items.product.price * items.qty | currency }}</td>
               </tr>
             </tbody>
             <tfoot>
@@ -83,8 +86,12 @@
                 <td  class="py-3" colspan="4" style="vertical-align: middle;">
                     <p class="text-right pt-2">總計金額：</p>
                 </td>
-                <td class="py-3"  style="vertical-align: middle;">
-                    <p class="text-right pt-2">{{ cart.total | currency }}</p>
+                <td class="text-right py-3"  style="vertical-align: middle;">
+                  <button class="btn-sm btn-warning" @click.prevent="updateCartqty()"
+                    type="button" name="button">
+                      重新計算
+                  </button>
+                    <span class="ml-4 mr-0">{{ cart.total | currency }}</span>
                 </td>
               </tr>
             </tfoot>
@@ -93,12 +100,13 @@
       </div>
         <div class="row d-flex justify-content-around bg-cart-box no-gutters p-3 mt-4">
           <div class="col-md-7">
-              <ul class="text-endless mt-3 pl-4">
+              <ul class="noticed-item text-endless mt-3 pl-4">
                 <h4 class="pb-2"><i class="far fa-hand-point-right mr-2"></i>注意事項</h4>
+                <li class="text-warning">數量修改後需重新計算。</li>
+                <li class="text-warning">輸入優惠券後不可修改數量。</li>
                 <li>確認所填寫的資料是否正確，若因資料不全而退貨，需負擔運費。</li>
                 <li>收到商品後請確認本體(含外盒)是否有破損，於七天內提出瑕疵申請。</li>
                 <li>本商品目前只供應台灣地區，只提供宅配到府。</li>
-                <li>目前支援貨到付款、超商付款、ATM付款。</li>
               </ul>
           </div>
           <div class="col-md-5 bg-cart-box">
@@ -138,38 +146,41 @@
           </div>
         </div>
           <div class="col-md-12 text-right mt-3">
-            <router-link class="btn btn-outline-warning" to="/cart_info">
+            <router-link class="btn btn-outline-warning" :class="{ 'disabled':disnext }"
+            to="/cart_info">
               下一步
             </router-link>
           </div>
         </div>
       </div>
     </div>
-    <pre class="text-white">{{ cartSorting }}</pre>
   </div>
 </template>
 
 <script>
 import $ from 'jquery'
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 import cartMessage from '@/components/CartMessage.vue'
 
 export default {
   name: 'Cart',
   data () {
+    // altercart 購物車有修改時存放
     return {
       couponCode: '',
-      message: ''
+      message: '',
+      altercart: [],
+      disnext: false
     }
   },
   computed: {
-    ...mapGetters('cartModules', ['cart']),
-    cartSorting () {
-      return this.cart.carts[0].id
-    }
+    ...mapGetters('cartModules', ['cart'])
   },
   methods: {
-    ...mapActions('cartModules', ['getCart']),
+    getCart () {
+      const vm = this
+      vm.$store.dispatch('cartModules/getCart')
+    },
     handleScroll () {
       if ($(window).scrollTop() > $('.product-banner').offset().top + 150) {
         $('.nav-bg').addClass('nav-bg-visible')
@@ -189,22 +200,49 @@ export default {
     cancelCoupon () {
       this.$store.dispatch('cartModules/cancelCoupon', 'ORIGINP0')
     },
-    updateCartqty (items) {
+    // 用來判斷數值有沒有更改，若有不能進行下一步
+    changNum () {
       const vm = this
-      // alterItem 裡面放的是數量有修正的資料
-      const alterItem = vm.cart.carts.filter((item) => {
-        return (item.id === items.id)
+      // alterItem 結合所有數量有更改的資料(用一開始存放的localStorage比較)
+      let alterItem = []
+      const localQtyarray = JSON.parse(localStorage.getItem('OrigincartQty'))
+      localQtyarray.forEach((item, i) => {
+        const data = vm.cart.carts.filter((items) => {
+          return (items.product_id === item.product_id && items.qty !== parseInt(item.qty))
+        })
+        alterItem = alterItem.concat(data)
       })
-      if (alterItem.length > 0) {
-        const originCartId = items.id
-        const originProductId = items.product_id
-        const newQty = parseInt(items.qty)
-        vm.$store.dispatch('cartModules/updateCartQty', { originCartId, originProductId, newQty })
+      vm.altercart = alterItem
+      if (vm.altercart.length > 0) {
+        vm.disnext = true
+      }
+    },
+    updateCartqty () {
+      const vm = this
+      // 如果alterItem中有值去修改全部的資料
+      if (vm.altercart.length > 0) {
+        vm.altercart.forEach((item, i) => {
+          const originCartId = item.id
+          const originProductId = item.product_id
+          const newQty = parseInt(item.qty)
+          vm.$store.dispatch('cartModules/updateCartQty', { originCartId, originProductId, newQty })
+          // init 還原初始
+          vm.altercart = []
+          vm.getCart()
+        })
       }
     }
   },
   components: {
     cartMessage
+  },
+  watch: {
+    altercart: function () {
+      const vm = this
+      if (vm.altercart.length === 0) {
+        vm.disnext = false
+      }
+    }
   },
   mounted () {
     window.addEventListener('scroll', this.handleScroll)
@@ -214,6 +252,7 @@ export default {
   },
   created () {
     this.getCart()
+    // this.tolocalCart()
   }
 }
 

@@ -34,11 +34,11 @@
                     訂單摘要
                   </div>
                   <div class="bg-orders text-endless py-3">
-                    <p class="d-flex cartOrder-content">
+                    <p class="cartOrder-content">
                       <span>訂單編號:</span>
-                      <span>{{ Order.id }}</span>
+                      <span style="font-size:18px">{{ Order.id }}</span>
                     </p>
-                    <p class="d-flex cartOrder-content">
+                    <p class="cartOrder-content">
                       <span>付款狀態:</span>
                       <span class="text-success" v-if="Order.is_paid === true">
                         已完成付款
@@ -47,7 +47,7 @@
                         尚未完成付款
                       </span>
                     </p>
-                    <p class="d-flex cartOrder-content">
+                    <p class="cartOrder-content">
                       <span>訂單總價:</span>
                       <span>{{ Order.total | currency }}</span>
                     </p>
