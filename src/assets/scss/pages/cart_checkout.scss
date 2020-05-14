@@ -1,18 +1,20 @@
-.creditform{
+.creditform {
   position: relative;
-  &::after{
+
+  &::after {
     position: absolute;
-    color:gray;
-    top:5%;
-    right:-3%;
-    content:'-';
+    color: gray;
+    top: 5%;
+    right: -3%;
+    content: '-';
   }
 }
 
-.text-error{
+.text-error {
   font-size: 14px;
-  color:$warning;
+  color: $warning;
 }
-.form-row{
-  padding:0px;
+
+.form-row {
+  padding: 0;
 }

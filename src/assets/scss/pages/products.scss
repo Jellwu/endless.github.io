@@ -1,5 +1,4 @@
-li,
-ul {
+li,ul {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -47,8 +46,9 @@ ul {
   background-size: cover;
 }
 
-.card-deck a{
+.card-deck a {
   position: relative;
+
   &::after,
   &::before {
     content: '';
@@ -62,18 +62,19 @@ ul {
     background-color: rgba($black, .6);
   }
 }
-.card-deck .card-link-text{
-    position: absolute;
-    font-size: 26px;
-    font-weight: bold;
-    opacity: 0;
-    top: 70%;
-    right: 33%;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    z-index: 30;
-    color:white
-  }
+
+.card-deck .card-link-text {
+  position: absolute;
+  font-size: 26px;
+  font-weight: bold;
+  opacity: 0;
+  top: 70%;
+  right: 33%;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 30;
+  color: white;
+}
 
 .card-deck a {
   display: block;
@@ -86,11 +87,14 @@ ul {
       content: '';
       transform: scale(1, 1);
       cursor: pointer;
-    }& .card-link-text{
+    }
+
+    & .card-link-text {
       opacity: 1;
-      visibility:visible;
+      visibility: visible;
     }
   }
+
   .card-footer-text {
     opacity: 1;
     visibility: visible;

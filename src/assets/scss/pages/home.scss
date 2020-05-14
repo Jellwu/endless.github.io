@@ -1,3 +1,33 @@
+#sectionLink .box-link {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+#sectionLink .text-Link {
+  text-align: center;
+  font-weight: bold;
+  font-size: 22px;
+
+  &-left {
+    color: #F2AE2E;
+  }
+
+  &-right {
+    color: #333333;
+  }
+}
+
+#sectionLink .bg-underText {
+  height: 450px;
+
+  &-blue {
+    background-color: rgba(242, 174, 46 ,0.7);
+  }
+
+  &-red {
+    background-color: rgba(0,0,0, 0.7);
+  }
+}
+
 .home-bg {
   position: relative;
   background-image: url("https://images.unsplash.com/flagged/photo-1574134299924-c9f3d4196de2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1280&q=80");
@@ -130,6 +160,7 @@ hr {
 
 .textArea {
   height: 100%;
+
   &-b {
     height: 100%;
   }
@@ -168,36 +199,6 @@ hr {
   line-height: 35px;
   color: #F2E3D5;
   font-family: 'Apple LiGothic Medium',Microsoft JhengHei;
-}
-
-#sectionLink .box-link {
-  background-color: rgba(255, 255, 255, 0.7);
-}
-
-#sectionLink .text-Link {
-  text-align: center;
-  font-weight: bold;
-  font-size: 22px;
-
-  &-left {
-    color: #F2AE2E;
-  }
-
-  &-right {
-    color: #333333;
-  }
-}
-
-#sectionLink .bg-underText {
-  height: 450px;
-
-  &-blue {
-    background-color: rgba(242, 174, 46 ,0.7);
-  }
-
-  &-red {
-    background-color: rgba(0,0,0, 0.7);
-  }
 }
 
 .bg-News {
