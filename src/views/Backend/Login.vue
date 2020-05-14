@@ -14,7 +14,7 @@
             <input type="checkbox" value="remember-me"> Remember me
           </label>
         </div>
-        <button class="btn btn-lg btn-warning btn-block mt-5" type="submit">Sign in</button>
+        <button class="btn btn-warning btn-block" type="submit">Sign in</button>
       </form>
     </div>
   </div>
@@ -39,7 +39,7 @@ export default {
       this.$store.dispatch('loginModules/singin', user)
     },
     handleScroll () {
-      if ($(window).scrollTop() > $('.form-signin').offset().top) {
+      if ($(window).scrollTop() > $('.form-signin').offset().top - 250) {
         $('.nav-bg').addClass('nav-bg-visible')
       } else {
         $('.nav-bg').removeClass('nav-bg-visible')
@@ -66,11 +66,11 @@ input{
     margin-bottom: 15px;
 }
 .container{
-  min-height: 600px;
+  min-height: 800px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 100px 0px 50px 0px;
+  padding: 150px 0px 50px 0px;
 }
 .form-signin {
   width: 100%;
