@@ -18,7 +18,7 @@
                 <div class="btn-group dropleft">
                   <button type="button" class="btn m-0 p-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-heart" aria-haspopup="true" aria-expanded="false">
-                      <span class="badge badge-pill badge-danger">{{favorite.length}}</span>
+                      <span class="badge badge-pill badge-danger">{{ favorite.length }}</span>
                     </i>
                   </button>
                     <div class="dropdown-menu bg-dark dropdown-menu-left">
@@ -33,7 +33,7 @@
                         </div>
                         <div class="col-8 text-warning text-left">
                           <span class="bg-box-pop" style="display:block" @click.prevent="getproductId(items.id)">
-                            {{items.title}}
+                            {{ items.title }}
                           </span>
                         </div>
                       </div>
@@ -48,7 +48,7 @@
               <li class="nav-item py-1">
                 <router-link class="text-endless" href="#" to="/cart">
                   <i class="fas fa-shipping-fast">
-                    <span class="badge badge-pill badge-danger">{{cart.carts.length}}</span>
+                    <span class="badge badge-pill badge-danger">{{ cart.carts.length }}</span>
                   </i>
                 </router-link>
               </li>

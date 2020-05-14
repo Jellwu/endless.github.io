@@ -58,7 +58,7 @@
                     <div class="input-group-append text-right">
                       <button class="btn btn-outline-warning" type="button"
                       :disabled = "productNum === 0" :class= "{ 'discursor': productNum === 0 }"
-                      @click.prevent = 'addtoCart(productDetail.id,productNum)'>
+                      @click.prevent = 'addtoCart(productDetail.id, productNum)'>
                         購物車 <i class="fas fa-plus-circle"></i>
                       </button>
                     </div>
