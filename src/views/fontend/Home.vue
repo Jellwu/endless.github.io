@@ -23,7 +23,7 @@
               <img src="https://images.unsplash.com/photo-1513746469853-a03fc9a0d6ec?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80" class="img-fluid rounded" alt="">
             </div>
             <div class="col-md-5 vertical-content d-flex justify-content-end">
-              <div class="leftArea pt-4 pb-1 py-md-7 ml-auto mr-md-0 text-endless">
+              <div class="leftArea text-endless">
                 <div class="ml-4 textArea" style="letter-spacing:5px;">
                   <h2>黑膠——</h2>
                   <h2 style="text-indent:4rem;margin-left:28px">是一種生活態度</h2>
@@ -54,8 +54,8 @@
       <div class="">
         <div class="container pb-5">
           <div class="row no-gutters my-5">
-            <div class="col-md-5 vertical-content-l d-flex justify-content-start">
-              <div class="textArea-b pt-md-5 text-endless fadeInLeft">
+            <div class="col-md-5 vertical-content-l d-flex align-items-end">
+              <div class="textArea-b pt-md-2 text-endless fadeInLeft mr-4">
                   <p>
                     盡情做自己：製作屬於你的黑膠播放器，讓黑膠融入你的生活，陪伴你。
                   </p>

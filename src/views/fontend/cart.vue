@@ -53,7 +53,7 @@
               </tr>
             </thead>
             <tbody class="cartOrder-content">
-              <tr v-for="items in cart.carts" :key="items.id">
+              <tr v-for="items in sortedArray" :key="items.id">
                 <td class="text-center" style="vertical-align: middle;">
                   <button class="btn text-danger" type="button"
                   name="button" @click.prevent="removeCart(items.id)">
@@ -76,7 +76,7 @@
                     {{ items.qty }}
                   </p>
                   <input class="form-control" v-else-if = "items.final_total === items.total"
-                  type="number" v-model="items.qty" @change.prevent="changNum()">
+                  type="number" min="0" max="100" v-model="items.qty" @change.prevent="changNum()">
                 </td>
                 <td class="text-right" style="width:200px; vertical-align: middle;">{{ items.product.price * items.qty | currency }}</td>
               </tr>
@@ -88,7 +88,7 @@
                 </td>
                 <td class="text-right py-3"  style="vertical-align: middle;">
                   <button class="btn-sm btn-warning" @click.prevent="updateCartqty()"
-                    type="button" name="button">
+                    type="button" name="button" :disabled="isDisabled" :class="{ 'discursor':isDisabled }">
                       重新計算
                   </button>
                     <span class="ml-4 mr-0">{{ cart.total | currency }}</span>
@@ -146,7 +146,7 @@
           </div>
         </div>
           <div class="col-md-12 text-right mt-3">
-            <router-link class="btn btn-outline-warning" :class="{ 'disabled':disnext }"
+            <router-link class="btn btn-outline-warning" :class="{ 'disabled': disnext , 'discursor': disnext }"
             to="/cart_info">
               下一步
             </router-link>
@@ -154,6 +154,27 @@
         </div>
       </div>
     </div>
+    <!-- dropModal -->
+    <div class="modal fade" id="dropModal" tabindex="-1" role="dialog" aria-labelledby="dropModal" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-warning text-dark">
+            <h5 class="modal-title" id="exampleModalLabel">是否刪除</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" style="font-weight:bold">
+            <p class="text-dark">品項：{{ tempCart.product.title }}</p>
+            <p class="text-dark">單價：{{ tempCart.product.price }}</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+            <button type="button" class="btn btn-warning" @click.prevent="removeCart(tempCart.id)">刪除</button>
+          </div>
+        </div>
+      </div>
+</div>
   </div>
 </template>
 
@@ -170,16 +191,33 @@ export default {
       couponCode: '',
       message: '',
       altercart: [],
-      disnext: false
+      disnext: false,
+      isDisabled: true,
+      tempCart: {
+        product: {}
+      }
     }
   },
   computed: {
-    ...mapGetters('cartModules', ['cart'])
+    ...mapGetters('cartModules', ['cart']),
+
+    // 購物車產品排序(避免更新購物車時產生順序變動)
+    sortedArray: function () {
+      function compare (a, b) {
+        if (a.product.title < b.product.title) {
+          return -1
+        }
+        if (a.product.title > b.product.title) {
+          return 1
+        }
+        return 0
+      }
+      return this.cart.carts.slice(0).sort(compare)
+    }
   },
   methods: {
     getCart () {
-      const vm = this
-      vm.$store.dispatch('cartModules/getCart')
+      this.$store.dispatch('cartModules/getCart')
     },
     handleScroll () {
       if ($(window).scrollTop() > $('.product-banner').offset().top + 150) {
@@ -193,6 +231,9 @@ export default {
     },
     removeCart (id) {
       this.$store.dispatch('cartModules/removeCart', id)
+      $('#dropModal').modal('hide')
+      this.altercart = []
+      this.getCart()
     },
     getCoupon () {
       this.$store.dispatch('cartModules/applyCounpon', this.couponCode)
@@ -211,6 +252,7 @@ export default {
           return (items.product_id === item.product_id && items.qty !== parseInt(item.qty))
         })
         alterItem = alterItem.concat(data)
+        vm.isDisabled = true
       })
       vm.altercart = alterItem
       if (vm.altercart.length > 0) {
@@ -241,6 +283,16 @@ export default {
       const vm = this
       if (vm.altercart.length === 0) {
         vm.disnext = false
+        vm.isDisabled = true
+      }
+      if (vm.altercart.length > 0) {
+        vm.isDisabled = false
+        vm.altercart.forEach((item, i) => {
+          if (item.qty <= 0) {
+            vm.tempCart = item
+            $('#dropModal').modal('show')
+          }
+        })
       }
     }
   },

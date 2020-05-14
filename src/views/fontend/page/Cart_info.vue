@@ -114,7 +114,7 @@
 
               <ValidationProvider rules="email" name="e-mail" v-slot="{ valid, errors }" ref="emailField">
                 <div class="form-group">
-                  <label for="useremail">收到最新消息：</label>
+                  <label for="useremail">電子信箱：</label>
                   <input class="form-control" type="email" name="name" id="useremail"
                   v-model="form.user.email" placeholder="請輸入Email取得優惠消息"
                   :class="{'is-invalid':errors[0]}">
@@ -124,7 +124,7 @@
                 <div class="form-group">
                     <label for="comment">留言</label>
                     <textarea name="" id="comment" class="form-control" cols="30" rows="10"
-                      placeholder="備註:產品分開裝...等資訊"></textarea>
+                      v-model="form.message" placeholder="備註:產品分開裝...等資訊"></textarea>
                 </div>
                 <div class="form-group text-right">
                     <button class="btn btn-warning" :disabled="invalid" :class="{'discursor':invalid}"
@@ -209,9 +209,6 @@ export default {
   justify-content: center;
   align-items: center;
   font-size:50px;
-}
-.discursor{
-  cursor: not-allowed;
 }
 .badge-pill{
   cursor:none;

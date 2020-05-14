@@ -129,36 +129,9 @@ hr {
 }
 
 .textArea {
-  height: 400px;
-  position: relative;
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -10%;
-    right: -4%;
-    width: 150%;
-    height: 460px;
-    background-color: rgba(black,0.4);
-    z-index: -20;
-    box-shadow: 2px 2px 5px black;
-  }
-
+  height: 100%;
   &-b {
-    height: 400px;
-    position: relative;
-
-    &::after {
-      content: '';
-      position: absolute;
-      top: -13px;
-      right: -70px;
-      width: 120%;
-      height: 460px;
-      background-color: rgba(orange,0.4);
-      z-index: -20;
-      box-shadow: -2px 2px 8px orange;
-    }
+    height: 100%;
   }
 }
 
@@ -169,8 +142,8 @@ hr {
 }
 
 .right-position {
-  right: -2%;
-  top: 45px;
+  right: -3%;
+  top: -30px;
   height: 100%;
 }
 
@@ -189,7 +162,7 @@ hr {
   letter-spacing: 3px;
   -webkit-writing-mode: vertical-rl;
   writing-mode: vertical-rl;
-  font-size: 18px;
+  font-size: 20px;
   margin-left: 28px;
   padding: 22px 0 0;
   line-height: 35px;

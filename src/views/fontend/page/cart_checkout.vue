@@ -46,6 +46,10 @@
                       <span>寄送地址:</span>
                       <span>{{ Order.user.address }}</span>
                     </p>
+                    <p class="d-flex justify-content-between">
+                      <span>備註:</span><br>
+                      <span>{{ Order.message }}</span>
+                    </p>
                   </div>
                 </div>
                 <div class="col mt-4">
@@ -173,13 +177,13 @@
                       <ValidationProvider class="col-2" rules="required" name="姓名" v-slot="{ errors }">
                             <input type="text" class="form-control" v-model="order.credit.surname"
                             :class="{'is-invalid':errors[0]}"
-                            placeholder="江" maxlength="1">
+                            placeholder="cheng" maxlength="10">
                       </ValidationProvider>
 
                       <ValidationProvider class="col-3" rules="required" name="姓名" v-slot="{ errors }">
                           <input type="text" class="form-control" v-model="order.credit.name"
                           :class="{'is-invalid':errors[0]}"
-                          placeholder="誌青" maxlength="2">
+                          placeholder="Wei chin" maxlength="10">
                       </ValidationProvider>
                     </div>
 
@@ -193,7 +197,7 @@
                     <div class="form-row justify-content-center mt-4">
                       <div class="col-11">
                         <button type="button" name="button" :disabled="invalid" :class="{'discursor':invalid}"
-                        class="btn btn-block btn-warning btn-lg rounded-0 text-dark py-3" @click.prevent="payOrder">
+                        class="btn-block btn-warning text-dark py-3" @click.prevent="payOrder">
                           確認付款
                         </button>
                       </div>

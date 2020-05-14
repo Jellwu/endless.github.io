@@ -164,7 +164,7 @@ export default {
       searchText: '',
       currentPage: 1,
       itemPage: 0,
-      pageNum: 6,
+      pageNum: 4,
       isActiveid: '',
       active: false
     }

@@ -1,16 +1,25 @@
 <template>
   <div>
     <div class="box-top"></div>
-    <vue-slide-up-down :active="active" :duration="1000" class="coverImg position-absolute">
-      <img src="https://i.imgur.com/BQ9FP8q.jpg" class="img-fluid">
-    </vue-slide-up-down>
     <div class="container d-flex flex-column align-items-center text-white">
       <h2 class="my-3 text-white">試著完成酷碰圖片吧！</h2>
       <p class="text-warning mb-2">遊戲規則：點選圖片時會向空白處移動，試著拼出完整的圖片吧！</p>
         <div class="LottoArea my-5">
-          <img class="img-fluid" v-for="(item,index) in rePuzzles" :key="index"
+          <img class="img-fluid LottoPuzzle" :class="{ 'LottoPuzzle-hide':active }"
+          v-for="(item,index) in rePuzzles" :key="index"
           :src="item" @click.prevent = moveSquare(index);
           alt="..." style="width:33%">
+          <div class="coverImg" :class="{ 'coverImg-show': active }">
+            <div class="d-flex justify-content-center align-items-center" style="height:100%">
+              <div class="coverText text-center">
+                <router-link class="" to="/productList">
+                  <button class="btn-lg btn-outline-info" type="button" name="button">
+                    來去逛逛 <i class="fas fa-shipping-fast"></i>
+                  </button>
+                </router-link>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="col-md-11 bg-opacity  d-flex flex-column align-items-center mb-4 py-2">
           <h2 class="my-3 text-white">輸入你看到的數字吧！</h2>
@@ -134,33 +143,4 @@ export default {
 }
 </script>
 <style scope>
-.box-top{
-  height:100px;
-}
-.LottoArea{
-  width:104%;
-  height:100%;
-}
-.input-group{
-  width:50%;
-}
-.bg-opacity{
-  background-color: rgba(0,0,0,0.3);
-}
-.puzzle-empty {
-  display: inline-block;
-  width:425px;
-  height: 360px;
-  background: rgba(0,0,0,0);
-}
-.position-absolute{
-  top:35.0%;
-  right:10.6%;
-}
-.coverImg{
-  width:1150px;
-  background-color: rgba(0,0,0,0);
-  z-index: 10;
-}
-
 </style>

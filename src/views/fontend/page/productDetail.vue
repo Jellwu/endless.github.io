@@ -47,23 +47,24 @@
             <div class="row no-gutters d-flex align-items-center justify-content-center">
               <div class="col-md-6">
                 <div>
-                  <div class="text-warning font-weight-bolder ml-4 mb-1" v-if="subtotal">
-                    小計：{{ subtotal | currency }}
-                  </div>
-                  <div class="input-group">
-                    <select class="custom-select border border-warning text-dark"
+                  <div class="input-group" style="width:100%">
+                    <select class="custom-select border border-warning text-dark form-control"
                     id="inputGroupSelect04" v-model="productNum">
                       <option :value="0" selected disabled>--請選購數量--</option>
-                      <option :value="num" v-for="num in 10" :key='num'>
-                        選購 {{ num }} {{ productDetail.unit }}
+                      <option :value="Num" v-for="Num in 10" :key='Num'>
+                        選購 {{ Num }} {{ productDetail.unit }}
                       </option>
                     </select>
                     <div class="input-group-append text-right">
-                      <button class="btn btn-outline-warning" type="button" :class="{ disabled: productNum === 0}"
+                      <button class="btn btn-outline-warning" type="button"
+                      :disabled = "productNum === 0" :class= "{ 'discursor': productNum === 0 }"
                       @click.prevent = 'addtoCart(productDetail.id,productNum)'>
                         購物車 <i class="fas fa-plus-circle"></i>
                       </button>
                     </div>
+                  </div>
+                  <div class="text-warning font-weight-bolder ml-4 mb-1" v-if="subtotal">
+                    小計：{{ subtotal | currency }}
                   </div>
                 </div>
               </div>

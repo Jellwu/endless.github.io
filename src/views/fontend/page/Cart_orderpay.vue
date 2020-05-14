@@ -26,6 +26,10 @@
                       <span>聯絡方式:</span>
                       <span>{{ Order.user.tel }}</span>
                     </p>
+                    <p class="d-flex cartOrder-content">
+                      <span>備註:</span>
+                      <span>{{ Order.message }}</span>
+                    </p>
                   </div>
               </div>
 
@@ -81,7 +85,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-7">
               <div class="sticky-top">
                 <router-link class="order-link" href="#" to="/productList" v-if="Order.is_paid === true">
                   <div class="bg-orderpay d-flex justify-content-center align-items-center">
