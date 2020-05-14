@@ -93,7 +93,7 @@
               </div>
 
               <div class="card-body">
-                <div class="row d-flex justify-context-center">
+                <div class="row d-flex justify-content-center">
                   <div class="col-md-12 card-title m-0">
                     <p>
                       {{ item.title }}
