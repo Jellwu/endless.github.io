@@ -70,10 +70,10 @@
                     <div class="col-6" style="font-weight:bold;">
                       <p>{{ items.product.title }}</p>
                       <p>{{ items.qty }} {{ items.product.unit }}</p>
-                      <p v-if="items.coupon.code == ''">
+                      <p v-if="items.final_total === items.total">
                         {{ items.product.price | currency }}
                       </p>
-                      <p v-else-if="items.coupon.code != ''">
+                      <p v-else-if="items.final_total === items.total">
                         <del>{{ items.product.price | currency }}</del><br>
                         <span class="h5 text-success mr-2">{{ items.final_total | currency }}</span>
                         <small class="text-white text-center shadow-none badge badge-success">
