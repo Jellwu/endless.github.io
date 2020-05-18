@@ -14,64 +14,35 @@
           </h2>
           <p class="mb-2" style="text-indent : 2em;">{{ productDetail.content }}</p>
           <p style="text-indent : 2em;">{{ productDetail.description }}</p>
-          <div class="text-right">
+          <div class="text-right mb-4">
             <del class="font-weight-lighter"><span class="my-2">原價：{{ productDetail.origin_price | currency }}</span></del><br>
             <span class="h4 text-warning font-weight-bolder">特價:{{ productDetail.price | currency }}</span>
           </div>
         </div>
         <div class="d-flex justify-content-end">
-          <router-link to="/productList" class="btn btn-outline-warning" type="button" name="button">回產品頁</router-link>
+          <div class="input-group" style="width:100%">
+            <select class="custom-select border border-warning text-dark form-control"
+            id="inputGroupSelect04" v-model="productNum">
+              <option :value="0" selected disabled>--請選購數量--</option>
+              <option :value="Num" v-for="Num in 10" :key='Num'>
+                選購 {{ Num }} {{ productDetail.unit }}
+              </option>
+            </select>
+            <div class="input-group-append text-right">
+              <button class="btn btn-outline-warning" type="button"
+              :disabled = "productNum === 0" :class= "{ 'discursor': productNum === 0 }"
+              @click.prevent = 'addtoCart(productDetail.id, productNum)'>
+                購物車 <i class="fas fa-plus-circle"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="text-warning font-weight-bolder text-right" style="height:25px">
+          <span v-if="subtotal">小計：{{ subtotal | currency }}</span>
         </div>
       </div>
   </div>
       <div class="px-5 my-4"></div>
-      <div class="row">
-        <div class="col-md-12 d-flex justify-content-center">
-          <div class="bg-box-endless rounded py-4 px-2">
-            <div class="text-endless mb-3">
-              <div class="text-center h4 mb-3"> 加入購物車
-                  <i class="fas fa-sort-down"></i>
-              </div>
-              <ul class="pl-2 text-center">
-                <li class="mb-1">
-                  <span class="badge badge-pill badge-info mr-1">線上刷卡</span>
-                  <span class="badge badge-pill badge-success mr-1">貨到付款</span>
-                  <span class="badge badge-pill badge-light">轉帳付費</span>
-                </li>
-                <li>
-                  <span class="badge badge-pill badge-success mr-1">超商取貨</span>
-                  <span class="badge badge-pill badge-info">黑貓宅配</span>
-                </li>
-              </ul>
-            </div>
-            <div class="row no-gutters d-flex align-items-center justify-content-center">
-              <div class="col-md-6">
-                <div>
-                  <div class="input-group" style="width:100%">
-                    <select class="custom-select border border-warning text-dark form-control"
-                    id="inputGroupSelect04" v-model="productNum">
-                      <option :value="0" selected disabled>--請選購數量--</option>
-                      <option :value="Num" v-for="Num in 10" :key='Num'>
-                        選購 {{ Num }} {{ productDetail.unit }}
-                      </option>
-                    </select>
-                    <div class="input-group-append text-right">
-                      <button class="btn btn-outline-warning" type="button"
-                      :disabled = "productNum === 0" :class= "{ 'discursor': productNum === 0 }"
-                      @click.prevent = 'addtoCart(productDetail.id, productNum)'>
-                        購物車 <i class="fas fa-plus-circle"></i>
-                      </button>
-                    </div>
-                  </div>
-                  <div class="text-warning font-weight-bolder ml-4 mb-1" v-if="subtotal">
-                    小計：{{ subtotal | currency }}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       <adList></adList>
 </div>
 

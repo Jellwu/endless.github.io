@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-adList px-2 py-2 rounded">
+  <div class="bg-adList px-2 py-2 rounded mb-5">
     <h2 class="my-5 text-endless">
       <span v-if="carouselList.length !== 0">
         <i class="fas fa-store text-warning mr-3"></i>

@@ -326,7 +326,7 @@ export default {
   width:90%;
 }
 .no-carts{
-  height:400px;
+  height:700px;
   display: flex;
   justify-content: center;
   align-items: center;

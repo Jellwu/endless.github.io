@@ -2,7 +2,7 @@
   <div>
     <Loading :active.sync="isLoading"></Loading>
     <div class="container text-endless">
-      <form class="form-signin my-5 p-3 ml-auto mr-auto border border-1" @submit.prevent="singin">
+      <form class="form-signin my-5 ml-auto mr-auto border border-1" @submit.prevent="singin">
         <h1 class="h3 mb-5 mt-2 font-weight-normal text-warning text-center">管理者 登入</h1>
         <label class="text-left" for="inputEmail">Email address</label>
         <input v-model="user.username" type="email" id="inputEmail" class="form-control"
@@ -75,7 +75,7 @@ input{
 .form-signin {
   width: 100%;
   max-width: 330px;
-  padding: 15px;
+  padding: 50px 15px;
 }
 .form-signin .checkbox {
   font-weight: 400;
