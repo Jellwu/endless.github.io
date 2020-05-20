@@ -43,17 +43,9 @@
 </template>
 
 <script>
-import $ from 'jquery'
 export default {
   name: 'Admin',
   methods: {
-    handleScroll () {
-      if ($(window).scrollTop() > $('.row').offset().top - 1) {
-        $('.nav-bg').addClass('nav-bg-visible')
-      } else {
-        $('.nav-bg').removeClass('nav-bg-visible')
-      }
-    },
     logout () {
       const api = `${process.env.VUE_APP_APIPATH}/logout`
       this.$http.post(api).then((response) => {
@@ -61,12 +53,6 @@ export default {
         this.$router.push('/login')
       })
     }
-  },
-  mounted () {
-    window.addEventListener('scroll', this.handleScroll)
-  },
-  destroyed () {
-    window.removeEventListener('scroll', this.handleScroll)
   },
   created () {
     window.addEventListener('scroll', this.handleScroll)

@@ -15,8 +15,7 @@
             <span class="pl-2">TAGS</span>
           </div>
           <div class="pl-md-4 pb-3">
-            <div class="badge badge-pill badge-warning mr-2 mb-2 py-md-2"
-            v-for="items in categories" :key="items" :class="{ tagActive : searchText === items }">
+            <div class="badge badge-pill badge-warning mr-2 mb-2 py-md-2" v-for="items in categories" :key="items" :class="{ tagActive : searchText === items }">
               <i class="fas fa-tag mx-1 fa" style="font-size:13px"></i>
               <span class="cursor px-1 h6" @click.prevent="searchText = items">
                 {{ items }}
@@ -35,7 +34,7 @@
             <hr class="text-white px-5 mt-5">
             <div>
               <span class="title">
-                <i class="fas fa-tags mt-5 mb-3"></i>
+                <i class="fas fa-shipping-fast mt-5 mb-3"></i>
                 <span class="px-2">Order List</span>
               </span>
               <span class="badge badge-warning px-1">{{ cart.carts.length }}</span>
@@ -60,8 +59,7 @@
                 </div>
               </li>
             </ul>
-            <div class="row no-gutters pb-3 d-flex flex-column"
-            v-if="cart.carts.length !== 0">
+            <div class="row no-gutters pb-3 d-flex flex-column" v-if="cart.carts.length !== 0">
               <div class="text-right text-warning mr-3">
                 <h5 style="line-height:38px">總金額: {{ cart.final_total | currency }}</h5>
               </div>
@@ -87,36 +85,36 @@
         <div class="row d-flex justify-content-start">
           <div class="card-deck col-md-6 mb-4" v-for="(item) in filterData[itemPage]" :key="item.id">
             <div class="card product-card text-center position-relative">
-            <a href="#" @click.prevent="getproductId(item.id)">
-              <div class="card-img" :style="{backgroundImage: 'url(' + item.imageUrl + ')' }">
+              <a href="#" @click.prevent="getproductId(item.id)">
+                <div class="card-img" :style="{backgroundImage: 'url(' + item.imageUrl + ')' }">
                   <span class="card-link-text">查看更多</span>
-              </div>
-
-              <div class="card-body">
-                <div class="row d-flex justify-content-center">
-                  <div class="col-md-12 card-title m-0">
-                    <p>
-                      {{ item.title }}
-                    </p>
-                  </div>
                 </div>
 
-                <div class="row mt-1">
-                  <div class="col-md-6 d-flex align-items-center justify-content-center">
-                    <span class="badge badge-warning px-3 py-1">
-                      <i class="fas fa-tag mr-2"></i>{{ item.category }}
-                    </span>
+                <div class="card-body">
+                  <div class="row d-flex justify-content-center">
+                    <div class="col-md-12 card-title m-0">
+                      <p>
+                        {{ item.title }}
+                      </p>
+                    </div>
                   </div>
-                  <div class="col-md-6">
+
+                  <div class="row mt-1">
+                    <div class="col-md-6 d-flex align-items-center justify-content-center">
+                      <span class="badge badge-warning px-3 py-1">
+                        <i class="fas fa-tag mr-2"></i>{{ item.category }}
+                      </span>
+                    </div>
+                    <div class="col-md-6">
                       <p class="text-center">
                         <del class="text-white" style="font-weight:bold">
                           {{ item.origin_price | currency }}
                         </del>
                       </p>
-                    <p class="card-text text-center">{{ item.price | currency }}</p>
+                      <p class="card-text text-center">{{ item.price | currency }}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
               </a>
               <div class="card-footer-text d-flex justify-content-between">
                 <div class="footer-btn p-2 border-right" @click="addfavorite(item.id,item.title)">
@@ -131,21 +129,18 @@
         </div>
       </div>
     </div>
-  </div>
-
-  <!-- 產品分頁 -->
-  <div class="row d-flex mb-4">
-    <div class="col-md-11">
-      <div class="row d-flex justify-content-end mr-1">
-        <nav aria-label="Page navigation example">
-          <ul class="pagination">
-            <li class="page-item" v-for="pages in filterData.length" :key="pages"
-            @click.prevent='itemPage = pages - 1'
-            :class="{active: itemPage === pages - 1}">
-              <a class="page-link" href="#">{{ pages }}</a>
-            </li>
-          </ul>
-        </nav>
+    <!-- 產品分頁 -->
+    <div class="row mb-4 justify-content-end">
+      <div class="col-md-3">
+        <div class="row d-flex justify-content-center">
+          <nav aria-label="Page navigation example">
+            <ul class="pagination">
+              <li class="page-item" v-for="pages in filterData.length" :key="pages" @click.prevent='itemPage = pages - 1' :class="{active: itemPage === pages - 1}">
+                <a class="page-link" href="#">{{ pages }}</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </div>
     </div>
   </div>
@@ -153,8 +148,9 @@
 </template>
 
 <script>
-import $ from 'jquery'
-import { mapGetters } from 'vuex'
+import {
+  mapGetters
+} from 'vuex'
 import 'vue-loading-overlay/dist/vue-loading.css'
 
 export default {
@@ -199,13 +195,6 @@ export default {
 
   },
   methods: {
-    handleScroll () {
-      if ($(window).scrollTop() > $('.product-banner').offset().top + 150) {
-        $('.nav-bg').addClass('nav-bg-visible')
-      } else {
-        $('.nav-bg').removeClass('nav-bg-visible')
-      }
-    },
     // 抓全產品資料
     getProducts (pages = 1) {
       this.$store.dispatch('productsModules/getProducts', pages)
@@ -221,7 +210,11 @@ export default {
         const originCartId = sameItem.id
         const originProductId = sameItem.product.id
         const newQty = sameItem.qty + qty
-        vm.$store.dispatch('cartModules/updateCartQty', { originCartId, originProductId, newQty })
+        vm.$store.dispatch('cartModules/updateCartQty', {
+          originCartId,
+          originProductId,
+          newQty
+        })
       } else {
         vm.$store.dispatch('cartModules/addtoCart', {
           id,
@@ -241,14 +234,11 @@ export default {
       this.$router.push('/cart')
     },
     addfavorite (id, title) {
-      this.$store.dispatch('productsModules/addfavorite', { id, title })
+      this.$store.dispatch('productsModules/addfavorite', {
+        id,
+        title
+      })
     }
-  },
-  mounted () {
-    window.addEventListener('scroll', this.handleScroll)
-  },
-  destroyed () {
-    window.removeEventListener('scroll', this.handleScroll)
   },
   created () {
     window.addEventListener('scroll', this.handleScroll)

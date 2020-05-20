@@ -9,7 +9,7 @@
       <div class="container my-5">
         <div class="row d-flex d-flex justify-content-between align-items-center mt-5">
           <div class="col-md-6">
-            <h2 class="text-white carts-check-title">
+            <h2 class="text-white carts-check-title ml-2">
               Step 3. 輸入付款資訊
             </h2>
           </div>
@@ -24,7 +24,8 @@
           </div>
         </div>
         <div class="row justify-content-center align-items-baseline my-5">
-            <div class="col-md-5 sticky-top">
+          <div></div>
+            <div class="col-md-5">
                 <div class="col my-2">
                   <div class="h2 bg-warning text-dark text-center py-3">
                     客戶資料確認
@@ -78,52 +79,34 @@
                     </div>
                   </div>
                 </div>
+                <div class="col mt-4">
+                    <div class="h2 bg-warning text-dark text-center py-3">
+                      訂單明細
+                    </div>
+                    <div class="bg-orders text-endless py-4">
+                      <div class="row d-flex justify-content-center py-2 cartOrder-content" v-for="items in Order.products" :key='items.id'>
+                        <div class="col-5">
+                          <img :src="items.product.imageUrl" class="img-fluid rounded" alt="...">
+                        </div>
+                        <div class="col-7 d-flex flex-column justify-content-center" style="font-weight:bold;">
+                          <p>{{ items.product.title }}</p>
+                          <p>{{ items.qty }} {{ items.product.unit }}</p>
+                          <p v-if="items.final_total === items.total">
+                            {{ items.total | currency }}
+                          </p>
+                          <p v-else-if="items.final_total !== items.total">
+                            <del>{{ items.total | currency }}</del><br>
+                            <span class="h5 text-success mr-2">{{ items.final_total | currency }}</span>
+                            <small class="text-white text-center shadow-none badge badge-success">
+                              折扣價
+                            </small>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                </div>
               </div>
-            <div class="col-md-7">
-              <div class="h2 bg-warning text-dark text-center py-3">
-                訂單資料確認與修改
-              </div>
-              <div class="bg-orders pt-3">
-                <table class="table table-borderless table-striped text-endless mx-auto" style="width:590px">
-                  <thead class="text-endless h5">
-                    <tr>
-                      <td valign="middle">項目</td>
-                      <td valign="middle">產品名稱</td>
-                      <td style="width:75px">數量</td>
-                      <td class="text-right" style="width:75px">單價</td>
-                    </tr>
-                  </thead>
-                  <tbody class="cartOrder-content">
-                    <tr v-for="items in Order.products" :key="items.id">
-                      <td style="width:120px;">
-                        <img class="img-fluid" :src="items.product.imageUrl" style="width:80px">
-                      </td>
-                      <td style="vertical-align: middle;">
-                          {{ items.product.title }}
-                      </td>
-                      <td class="text-center" style="vertical-align: middle;">
-                        {{ items.qty }}
-                      </td>
-                      <td class="text-right" style="vertical-align: middle;">{{ items.product.price * items.qty | currency }}</td>
-                    </tr>
-                  </tbody>
-                  <tfoot>
-                    <tr class="cartOrder-content">
-                      <td  class="py-3" colspan="3" style="vertical-align: middle;">
-                          <p class="text-right pt-2">總計金額：</p>
-                      </td>
-                      <td class="py-3"  style="vertical-align: middle;">
-                          <p class="text-right text-warning">{{ Order.total | currency }}</p>
-                      </td>
-                    </tr>
-                  </tfoot>
-                </table>
-              </div>
-            </div>
-        </div>
-
-          <div class="row justify-content-center align-items-baseline my-5">
-            <div class="col-md-12">
+            <div class="col-md-7 sticky-top">
               <div class="h2 bg-warning text-dark text-center py-3">
                 輸入付款資訊
               </div>
@@ -175,7 +158,7 @@
                     <div class="form-row mb-2">
                     <label for="creditName" class="col-form-label">持卡人姓名:</label>
                       <ValidationProvider class="col-2" rules="required" name="姓名" v-slot="{ errors }">
-                            <input type="text" class="form-control" v-model="order.credit.surname"
+                            <input type="text" class="form-control" v-model="order.credit.surName"
                             :class="{'is-invalid':errors[0]}"
                             placeholder="cheng" maxlength="10">
                       </ValidationProvider>
@@ -206,13 +189,12 @@
                 </ValidationObserver>
             </div>
             </div>
-          </div>
+        </div>
         </div>
   </div>
 </template>
 
 <script>
-import $ from 'jquery'
 import { mapGetters } from 'vuex'
 export default {
   name: 'Product',
@@ -226,7 +208,7 @@ export default {
           n2: '',
           n3: '',
           n4: '',
-          Surname: '',
+          surName: '',
           name: '',
           month: '',
           year: '',
@@ -241,13 +223,6 @@ export default {
     ...mapGetters(['isLoading'])
   },
   methods: {
-    handleScroll () {
-      if ($(window).scrollTop() > $('.customform-banner').offset().top + 150) {
-        $('.nav-bg').addClass('nav-bg-visible')
-      } else {
-        $('.nav-bg').removeClass('nav-bg-visible')
-      }
-    },
     getOrder () {
       const id = this.orderId
       this.$store.dispatch('orderModules/getOrder', id)
@@ -260,12 +235,6 @@ export default {
       const id = this.orderId
       this.$store.dispatch('orderModules/payOrder', id)
     }
-  },
-  mounted () {
-    window.addEventListener('scroll', this.handleScroll)
-  },
-  destroyed () {
-    window.removeEventListener('scroll', this.handleScroll)
   },
   created () {
     this.orderId = this.$route.params.orderID
@@ -299,5 +268,17 @@ thead th{
 }
 .discursor{
   cursor: not-allowed;
+}
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+color: red;
+}
+input:-moz-placeholder, textarea:-moz-placeholder {
+color: red;
+}
+input::-moz-placeholder, textarea::-moz-placeholder {
+color: red;
+}
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+color: red;
 }
 </style>

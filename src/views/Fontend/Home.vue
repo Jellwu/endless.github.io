@@ -81,7 +81,7 @@
 
     <section id="sectionLink">
       <div class="bg-News">
-        <div class="row d-flex justify-content-around align-items-center">
+        <div class="row d-flex justify-content-around align-items-center no-gutters">
           <div class="col-md-6 d-flex flex-column justify-content-center bg-underText bg-underText-red text-Link text-Link-left p-5">
             <div class="h2 mb-5 d-flex flex-column align-items-center">
               <i class="fas fa-ticket-alt fa-2x mb-2"></i>

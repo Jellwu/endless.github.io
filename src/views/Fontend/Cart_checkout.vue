@@ -212,7 +212,6 @@
 </template>
 
 <script>
-import $ from 'jquery'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -242,13 +241,6 @@ export default {
     ...mapGetters(['isLoading'])
   },
   methods: {
-    handleScroll () {
-      if ($(window).scrollTop() > $('.customform-banner').offset().top + 150) {
-        $('.nav-bg').addClass('nav-bg-visible')
-      } else {
-        $('.nav-bg').removeClass('nav-bg-visible')
-      }
-    },
     getOrder () {
       const id = this.orderId
       this.$store.dispatch('orderModules/getOrder', id)
@@ -261,12 +253,6 @@ export default {
       const id = this.orderId
       this.$store.dispatch('orderModules/payOrder', id)
     }
-  },
-  mounted () {
-    window.addEventListener('scroll', this.handleScroll)
-  },
-  destroyed () {
-    window.removeEventListener('scroll', this.handleScroll)
   },
   created () {
     this.orderId = this.$route.params.orderID

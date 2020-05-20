@@ -41,7 +41,6 @@
 </template>
 
 <script>
-import $ from 'jquery'
 export default {
   name: 'COUPON',
   data () {
@@ -53,13 +52,6 @@ export default {
     }
   },
   methods: {
-    handleScroll () {
-      if ($(window).scrollTop() > $('.box-top').offset().top + 60) {
-        $('.nav-bg').addClass('nav-bg-visible')
-      } else {
-        $('.nav-bg').removeClass('nav-bg-visible')
-      }
-    },
     // 建立puzzleArr 等等用來sort()亂數排序
     render () {
       const vm = this
@@ -130,12 +122,6 @@ export default {
     rePuzzles () {
       return this.puzzles
     }
-  },
-  mounted () {
-    window.addEventListener('scroll', this.handleScroll)
-  },
-  destroyed () {
-    window.removeEventListener('scroll', this.handleScroll)
   },
   created () {
     this.render()

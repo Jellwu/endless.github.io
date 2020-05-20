@@ -7,6 +7,23 @@
         </div>
       </div>
       <div class="container my-5">
+        <div class="row d-flex d-flex justify-content-between align-items-center mt-5">
+          <div class="col-md-6">
+            <h2 class="text-white carts-check-title ml-2">
+              Step 4. 訂單查看
+            </h2>
+          </div>
+          <div class="col-md-4">
+            <div class="pay-process">
+              <ul class="d-flex justify-content-between">
+                <li class="pay-process-1 complited-1"></li>
+                <li class="pay-process-2 complited-2"></li>
+                <li class="pay-process-3 complited-3"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
           <div class="row d-flex justify-content-center my-5">
             <div class="col-md-5 d-flex flex-column">
               <div class="col mb-4">
@@ -87,22 +104,29 @@
             </div>
             <div class="col-md-7">
               <div class="sticky-top">
-                <router-link class="order-link" href="#" to="/productList" v-if="Order.is_paid === true">
-                  <div class="bg-orderpay d-flex justify-content-center align-items-center">
-                    <div class="text-center textArea-order">
-                      <p>我們正儘速出貨</p>
-                      <p>點擊這裡繼續逛逛吧</p>
+                <div class="col">
+                    <div class="bg-orderpay d-flex justify-content-center align-items-center">
+                      <div class="text-center textArea-order">
+                        <p>我們正儘速出貨</p>
+                        <p>點擊這裡繼續逛逛吧</p>
+                      </div>
                     </div>
-                  </div>
-                </router-link>
-                <a class="order-link" href="#" v-if="Order.is_paid === false" @click.prevent="gocheck()">
-                  <div class="d-flex justify-content-center align-items-center" :class="{ 'bg-nopay': !Order.is_paid }">
-                    <div class="text-center textArea-order">
-                      <p>歐喔！還沒付款呢！</p>
-                      <p>點擊這裡去付款吧！</p>
+                  <a class="order-link" href="#" v-if="Order.is_paid === false" @click.prevent="gocheck()">
+                    <div class="d-flex justify-content-center align-items-center" :class="{ 'bg-nopay': !Order.is_paid }">
+                      <div class="text-center textArea-order">
+                        <p>歐喔！還沒付款呢！</p>
+                        <p>點擊這裡去付款吧！</p>
+                      </div>
                     </div>
-                  </div>
-                </a>
+                  </a>
+                </div>
+                <div class="col mt-3">
+                  <button type="button" name="button" class="goProducts btn-block btn-warning h2 text-dark py-3">
+                    <router-link href="#" to="/productList">
+                      回到產品頁
+                    </router-link>
+                  </button>
+                </div>
               </div>
             </div>
         </div>
@@ -111,7 +135,6 @@
 </template>
 
 <script>
-import $ from 'jquery'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -127,13 +150,6 @@ export default {
     ...mapGetters(['isLoading'])
   },
   methods: {
-    handleScroll () {
-      if ($(window).scrollTop() > $('.customform-banner').offset().top + 150) {
-        $('.nav-bg').addClass('nav-bg-visible')
-      } else {
-        $('.nav-bg').removeClass('nav-bg-visible')
-      }
-    },
     getOrder () {
       const id = this.orderId
       this.$store.dispatch('orderModules/getOrder', id)
@@ -143,12 +159,6 @@ export default {
       this.$router.push(`/cart_checkout/${id}`)
     }
   },
-  mounted () {
-    window.addEventListener('scroll', this.handleScroll)
-  },
-  destroyed () {
-    window.removeEventListener('scroll', this.handleScroll)
-  },
   created () {
     this.orderId = this.$route.params.orderID
     this.getOrder()
@@ -156,6 +166,11 @@ export default {
 }
 </script>
 <style scpoed>
+.goProducts a{
+  display:block;
+  text-decoration: none;
+  color:#343a40
+}
 .customform-banner{
   background-image: url('https://images.unsplash.com/photo-1580112646171-13522164ead4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80');
   background-repeat: no-repeat;

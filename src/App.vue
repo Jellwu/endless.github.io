@@ -137,15 +137,11 @@ export default {
   methods: {
     ...mapActions('cartModules', ['getCart']),
     handleScroll () {
-      const vm = this
-      const path = vm.$route.path
       // 防止在別的頁面時也去判斷App.vue的拖拉視窗
-      if (path === '/') {
-        if ($(window).scrollTop() > $('.home-bg').offset().top + 150) {
-          $('.nav-bg').addClass('nav-bg-visible')
-        } else {
-          $('.nav-bg').removeClass('nav-bg-visible')
-        }
+      if ($(window).scrollTop() > $('#nav').offset().top + 50) {
+        $('.nav-bg').addClass('nav-bg-visible')
+      } else {
+        $('.nav-bg').removeClass('nav-bg-visible')
       }
     },
     getfavorite () {
@@ -199,6 +195,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~bootstrap/scss/bootstrap";
 @import "./assets/scss/all.scss";
 </style>

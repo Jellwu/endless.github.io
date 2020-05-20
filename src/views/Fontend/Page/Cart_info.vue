@@ -25,7 +25,7 @@
 
         <div class="row align-items-baseline text-warning my-5 justify-content-center">
           <div></div>
-          <div class="col-md-4 sticky-top">
+          <div class="col-md-5 sticky-top">
             <div class="">
               <div class="h3 bg-warning text-dark text-center py-3">
                 訂單摘要
@@ -54,11 +54,11 @@
                 訂購明細
               </div>
               <div class="bg-orders text-endless py-4">
-                <div class="row d-flex justify-content-center py-2" v-for="items in cart.carts" :key='items.id'>
-                  <div class="col-4">
+                <div class="row d-flex justify-content-center py-2 cartOrder-content" v-for="items in cart.carts" :key='items.id'>
+                  <div class="col-5">
                     <img :src="items.product.imageUrl" class="img-fluid rounded" alt="...">
                   </div>
-                  <div class="col-6" style="font-weight:bold;">
+                  <div class="col-6 d-flex flex-column justify-content-center" style="font-weight:bold;">
                     <p>{{ items.product.title }}</p>
                     <p>{{ items.qty }} {{ items.product.unit }}</p>
                     <p v-if="items.final_total === items.total">
@@ -140,7 +140,6 @@
 </template>
 
 <script>
-import $ from 'jquery'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
@@ -163,23 +162,10 @@ export default {
   },
   methods: {
     ...mapActions('cartModules', ['getCart']),
-    handleScroll () {
-      if ($(window).scrollTop() > $('.product-banner').offset().top + 150) {
-        $('.nav-bg').addClass('nav-bg-visible')
-      } else {
-        $('.nav-bg').removeClass('nav-bg-visible')
-      }
-    },
     cartCheckout () {
       const order = this.form
       this.$store.dispatch('orderModules/cartCheckout', order)
     }
-  },
-  mounted () {
-    window.addEventListener('scroll', this.handleScroll)
-  },
-  destroyed () {
-    window.removeEventListener('scroll', this.handleScroll)
   },
   created () {
     this.getCart()

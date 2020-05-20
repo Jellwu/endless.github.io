@@ -186,9 +186,6 @@ export default {
 
     }
   },
-  methods: {
-
-  },
   computed: {
     ...mapGetters('loginModules', ['isLoading'])
   }

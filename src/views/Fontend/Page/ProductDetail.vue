@@ -49,7 +49,6 @@
 </template>
 
 <script>
-import $ from 'jquery'
 import { mapGetters } from 'vuex'
 import cartMessage from '@/components/CartMessage.vue'
 import adList from '@/components/AdList.vue'
@@ -70,13 +69,6 @@ export default {
     }
   },
   methods: {
-    handleScroll () {
-      if ($(window).scrollTop() > $('.box').offset().top + 150) {
-        $('.nav-bg').addClass('nav-bg-visible')
-      } else {
-        $('.nav-bg').removeClass('nav-bg-visible')
-      }
-    },
     getProducts (pages = 1) {
       this.$store.dispatch('productsModules/getProducts', pages)
     },
@@ -113,12 +105,6 @@ export default {
   components: {
     cartMessage,
     adList
-  },
-  mounted () {
-    window.addEventListener('scroll', this.handleScroll)
-  },
-  destroyed () {
-    window.removeEventListener('scroll', this.handleScroll)
   },
   created () {
     this.getProducts()

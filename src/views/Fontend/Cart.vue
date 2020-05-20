@@ -71,7 +71,25 @@
                     已套用優惠券
                   </p>
                 </td>
-                <td class="text-center" style="width:160px; vertical-align: middle;">
+                <td class="text-center cancelAlter" style="width:160px; vertical-align: middle;">
+                  <div v-for = "(dropItem) in tempdropCart" :key='dropItem.id' class="cancelBox"
+                    :class="{'fadeInRight':dropItem.id === items.id, 'fadeOutRight':dropItem.qty > 0 }">
+                    <div class="text-white d-flex flex-column align-items-center justify-content-center" style="height:105px">
+                      <p class="text-dark h6 mb-1">刪除品項?</p>
+                      <div>
+                        <div class="input-group-prepend" id="button-addon3">
+                          <button class="btn btn-outline-dark" type="button"
+                          @click.prevent="removeCart(dropItem.id)">
+                            是
+                          </button>
+                          <button class="btn btn-outline-dark" type="button"
+                          @click.prevent="items.qty = 1">
+                            否
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <p class="text-endless" v-if="items.final_total !== items.total">
                     {{ items.qty }}
                   </p>
@@ -83,15 +101,15 @@
             </tbody>
             <tfoot>
               <tr class="cartOrder-content">
-                <td  class="py-3" colspan="4" style="vertical-align: middle;">
-                    <p class="text-right pt-2">總計金額：</p>
+                <td  class="text-right" colspan="4" style="vertical-align: bottom;">
+                  <p>總計金額：</p>
                 </td>
-                <td class="text-right py-3"  style="vertical-align: middle;">
-                  <button class="btn-sm btn-warning" @click.prevent="updateCartqty()"
+                <td class="text-right">
+                  <button class="btn btn-outline-warning mb-1" @click.prevent="updateCartqty()"
                     type="button" name="button" :disabled="isDisabled" :class="{ 'discursor':isDisabled }">
-                      重新計算
+                      更新購物車
                   </button>
-                    <span class="ml-4 mr-0">{{ cart.total | currency }}</span>
+                  <span class="ml-4 mr-0">{{ cart.total | currency }}</span>
                 </td>
               </tr>
             </tfoot>
@@ -109,7 +127,7 @@
                 <li>本商品目前只供應台灣地區，只提供宅配到府。</li>
               </ul>
           </div>
-          <div class="col-md-5 bg-cart-box">
+          <div class="col-md-5">
             <div class="text-endless mt-4">
               <!-- 結帳資訊區 -->
               <div class="text-right">
@@ -137,7 +155,7 @@
                     <input type="text" class="form-control" placeholder="輸入優惠券號碼" v-model="couponCode"
                    aria-label="Recipient's username" aria-describedby="button-addon2">
                     <div class="input-group-append">
-                      <button class="btn btn-outline-warning" @click="getCoupon"
+                      <button class="btn btn-sm btn-outline-warning" @click="getCoupon"
                       type="button" id="button-addon2">優惠券</button>
                     </div>
                   </div>
@@ -146,56 +164,37 @@
           </div>
         </div>
           <div class="col-md-12 text-right mt-3">
-            <router-link class="btn btn-outline-warning" :class="{ 'disabled': disnext , 'discursor': disnext }"
-            to="/cart_info">
-              下一步
-            </router-link>
+              <router-link to="/cart_info">
+                <button class="btn btn-warning" :class="{'discursor': disNext }"
+                type="button" name="button" :disabled="disNext">
+                  下一步
+                </button>
+              </router-link>
           </div>
         </div>
       </div>
     </div>
-    <!-- dropModal -->
-    <div class="modal fade" id="dropModal" tabindex="-1" role="dialog" aria-labelledby="dropModal" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header bg-warning text-dark">
-            <h5 class="modal-title" id="exampleModalLabel">是否刪除</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body" style="font-weight:bold">
-            <p class="text-dark">品項：{{ tempCart.product.title }}</p>
-            <p class="text-dark">單價：{{ tempCart.product.price }}</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
-            <button type="button" class="btn btn-warning" @click.prevent="removeCart(tempCart.id)">刪除</button>
-          </div>
-        </div>
-      </div>
-</div>
   </div>
 </template>
 
 <script>
-import $ from 'jquery'
 import { mapGetters } from 'vuex'
 import cartMessage from '@/components/CartMessage.vue'
 
 export default {
   name: 'Cart',
   data () {
-    // altercart 購物車有修改時存放
+    // alterCart 購物車有修改時存放
     return {
       couponCode: '',
       message: '',
-      altercart: [],
-      disnext: false,
+      alterCart: [],
+      disNext: false,
       isDisabled: true,
-      tempCart: {
+      tempdropCart: {
         product: {}
-      }
+      },
+      alertShow: false
     }
   },
   computed: {
@@ -219,20 +218,12 @@ export default {
     getCart () {
       this.$store.dispatch('cartModules/getCart')
     },
-    handleScroll () {
-      if ($(window).scrollTop() > $('.product-banner').offset().top + 150) {
-        $('.nav-bg').addClass('nav-bg-visible')
-      } else {
-        $('.nav-bg').removeClass('nav-bg-visible')
-      }
-    },
     getproductId (id) {
       this.$router.push(`/productList/${id}`)
     },
     removeCart (id) {
       this.$store.dispatch('cartModules/removeCart', id)
-      $('#dropModal').modal('hide')
-      this.altercart = []
+      this.alterCart = []
       this.getCart()
     },
     getCoupon () {
@@ -252,24 +243,20 @@ export default {
           return (items.product_id === item.product_id && items.qty !== parseInt(item.qty))
         })
         alterItem = alterItem.concat(data)
-        vm.isDisabled = true
       })
-      vm.altercart = alterItem
-      if (vm.altercart.length > 0) {
-        vm.disnext = true
-      }
+      vm.alterCart = alterItem
     },
     updateCartqty () {
       const vm = this
       // 如果alterItem中有值去修改全部的資料
-      if (vm.altercart.length > 0) {
-        vm.altercart.forEach((item, i) => {
+      if (vm.alterCart.length > 0) {
+        vm.alterCart.forEach((item, i) => {
           const originCartId = item.id
           const originProductId = item.product_id
           const newQty = parseInt(item.qty)
           vm.$store.dispatch('cartModules/updateCartQty', { originCartId, originProductId, newQty })
           // init 還原初始
-          vm.altercart = []
+          vm.alterCart = []
           vm.getCart()
         })
       }
@@ -279,32 +266,25 @@ export default {
     cartMessage
   },
   watch: {
-    altercart: function () {
+    alterCart: function () {
       const vm = this
-      if (vm.altercart.length === 0) {
-        vm.disnext = false
+      if (vm.alterCart.length === 0) {
+        vm.disNext = false
         vm.isDisabled = true
       }
-      if (vm.altercart.length > 0) {
+      if (vm.alterCart.length > 0) {
+        vm.disNext = true
         vm.isDisabled = false
-        vm.altercart.forEach((item, i) => {
-          if (item.qty <= 0) {
-            vm.tempCart = item
-            $('#dropModal').modal('show')
-          }
-        })
       }
+
+      // 將數量等於0的資料丟到tempdropCart
+      vm.tempdropCart = vm.alterCart.filter((item) => {
+        return parseInt(item.qty) === 0
+      })
     }
-  },
-  mounted () {
-    window.addEventListener('scroll', this.handleScroll)
-  },
-  destroyed () {
-    window.removeEventListener('scroll', this.handleScroll)
   },
   created () {
     this.getCart()
-    // this.tolocalCart()
   }
 }
 

@@ -21,7 +21,6 @@
 </template>
 
 <script>
-import $ from 'jquery'
 import { mapGetters } from 'vuex'
 export default {
   name: 'LOGIN',
@@ -37,23 +36,10 @@ export default {
     singin () {
       const user = this.user
       this.$store.dispatch('loginModules/singin', user)
-    },
-    handleScroll () {
-      if ($(window).scrollTop() > $('.form-signin').offset().top - 250) {
-        $('.nav-bg').addClass('nav-bg-visible')
-      } else {
-        $('.nav-bg').removeClass('nav-bg-visible')
-      }
     }
   },
   computed: {
     ...mapGetters('loginModules', ['isLoading'])
-  },
-  mounted () {
-    window.addEventListener('scroll', this.handleScroll)
-  },
-  destroyed () {
-    window.removeEventListener('scroll', this.handleScroll)
   },
   created () {
     window.addEventListener('scroll', this.handleScroll)

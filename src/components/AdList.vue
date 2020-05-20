@@ -80,7 +80,6 @@ export default {
     getproduct (id) {
       const vm = this
       vm.$store.dispatch('productsModules/getproductId', id)
-      vm.$router.push(`/productList/${id}`)
     }
   }
 }
