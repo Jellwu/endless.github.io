@@ -24,7 +24,7 @@
   bottom: 45%;
   left: 100%;
   border-bottom: 1px solid #ffc107;
-  width: 460%;
+  width: 131px;
 }
 
 .pay-process .complited-1 {
@@ -114,7 +114,7 @@
   z-index:10;
   transition: all 0.3s ease;
 }
-.fadeInRight {
+.fadeInRight-cart {
   right:0px;
   animation-duration: 0.3s;
   animation-fill-mode: both;
@@ -124,11 +124,31 @@
   -webkit-animation-name: cartfadeInright;
   transition: all 0.3s ease;
 }
-.fadeOutRight {
+.fadeOutRight-cart {
   animation-duration: 0.3s;
   animation-fill-mode: both;
   -webkit-animation-duration: 0.3s;
   -webkit-animation-fill-mode: both;
   animation-name: cartfadeOutright;
   -webkit-animation-name: cartfadeOutright;
+}
+
+@media (max-width: 768px) {
+  .pay-process .complited-1::after,  .pay-process .complited-2::after{
+    content:'';
+  }
+  .pay-process-1::after,
+  .pay-process-2::after {
+    width: 30px;
+  }
+
+  .input-group-sm{
+    width:114px !important;
+  }
+  .text-md-sm{
+    font-size:12px;
+  }
+  .md-spacing{
+    margin:50px 0px;
+  }
 }

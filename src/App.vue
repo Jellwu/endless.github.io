@@ -2,6 +2,7 @@
     <div id="app">
       <Loading loader="bars" color="#C4A670" :active.sync="isLoading"></Loading>
       <cartMessage></cartMessage>
+      <header>
       <div id="nav">
         <nav class="navbar navbar-expand-lg navbar-dark nav-bg p-0 fixed-top">
           <div class="container">
@@ -81,7 +82,10 @@
           </div>
         </nav>
       </div>
-      <router-view/>
+      </header>
+      <main>
+        <router-view/>
+      </main>
       <footer class="bg-footer">
         <div class="container">
           <div class="row no-gutters pb-2 d-flex pt-4 justify-content-end">

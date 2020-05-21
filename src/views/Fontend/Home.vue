@@ -22,8 +22,8 @@
             <div class="col-md-7 left-position" style="z-index: 10">
               <img src="https://images.unsplash.com/photo-1513746469853-a03fc9a0d6ec?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80" class="img-fluid rounded" alt="">
             </div>
-            <div class="col-md-5 vertical-content d-flex justify-content-end">
-              <div class="leftArea text-endless">
+            <div class="col-md-5">
+              <div class="vertical-content textArea text-endless">
                 <div class="ml-4 textArea" style="letter-spacing:5px;">
                   <h2>黑膠——</h2>
                   <h2 style="text-indent:4rem;margin-left:28px">是一種生活態度</h2>
@@ -44,7 +44,7 @@
     </div>
 
       <div class="container">
-        <div class="row">
+        <div class="row my-3">
           <div class="col-md-12">
             <hr class="p-3 rightArea">
           </div>
@@ -53,22 +53,22 @@
 
       <div class="">
         <div class="container pb-5">
-          <div class="row no-gutters my-5">
-            <div class="col-md-5 vertical-content-l d-flex align-items-end">
-              <div class="textArea-b pt-md-2 text-endless fadeInLeft mr-4">
-                  <p>
-                    盡情做自己：製作屬於你的黑膠播放器，讓黑膠融入你的生活，陪伴你。
-                  </p>
-                  <p>
-                    如此與眾不同的我們，從不妥協追求自己想要的，暫時脫離別人眼光中的自己，放首歌，好好做自己。
-                  </p>
-                  <p>
-                    「金窩銀窩，最愛的是自己的狗窩」
-                  </p>
+          <div class="row my-5">
+            <div class="col-md-5">
+              <div class="vertical-content textArea-b pt-md-2 text-endless mr-4">
                 <div class="ml-4" style="letter-spacing:5px;">
-                  <h2 style="text-indent:4rem">專屬於你的聲音</h2>
                   <h2>堅持——</h2>
+                  <h2 style="text-indent:4rem">專屬於你的聲音</h2>
                 </div>
+                <p>
+                  「金窩銀窩，最愛的是自己的狗窩」
+                </p>
+                <p>
+                  盡情做自己：製作屬於你的黑膠播放器，讓黑膠融入你的生活，陪伴你。
+                </p>
+                <p>
+                  如此與眾不同的我們，從不妥協追求自己想要的，暫時脫離別人眼光中的自己，放首歌，好好做自己。
+                </p>
               </div>
             </div>
             <div class="col-md-7 right-position">
@@ -131,12 +131,11 @@ export default {
   },
   methods: {
     handleScroll () {
-      if ($(window).scrollTop() > $('#sectionAbout').offset().top - 600) {
+      if ($(window).scrollTop() > $('.textArea').offset().top - 400) {
         $('.textArea').addClass('fadeInRight')
-        $('.textArea-b').addClass('fadeInLeft')
-      } else {
-        $('.textArea').removeClass('fadeInRight')
-        $('.textArea-b').removeClass('fadeInLeft')
+      }
+      if ($(window).scrollTop() > $('.textArea-b').offset().top - 400) {
+        $('.textArea-b').addClass('fadeInRight')
       }
     },
     getProducts (pages = 1) {

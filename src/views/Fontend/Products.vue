@@ -5,16 +5,16 @@
       <h1 class="text-endless">黑膠專區</h1>
     </div>
   </div>
-  <div class="container-fluid mt-5">
-    <div class="row no-gutters d-flex justify-content-center ml-5">
+  <div class="container mt-5">
+    <div class="row">
       <!-- sideBar -->
-      <div class="col-md-3 mb-5 ml-5">
-        <div class="rounded product-menu">
+      <div class="col-md-4 mb-5">
+        <div class="rounded product-menu sticky-top">
           <div class="title">
             <i class="fas fa-tags mt-5 mb-3"></i>
             <span class="pl-2">TAGS</span>
           </div>
-          <div class="pl-md-4 pb-3">
+          <div class="ml-3 p-3">
             <div class="badge badge-pill badge-warning mr-2 mb-2 py-md-2" v-for="items in categories" :key="items" :class="{ tagActive : searchText === items }">
               <i class="fas fa-tag mx-1 fa" style="font-size:13px"></i>
               <span class="cursor px-1 h6" @click.prevent="searchText = items">
@@ -81,9 +81,9 @@
       </div>
 
       <!-- 產品列表 -->
-      <div class="col-md-8 ml-4">
-        <div class="row d-flex justify-content-start">
-          <div class="card-deck col-md-6 mb-4" v-for="(item) in filterData[itemPage]" :key="item.id">
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col-md-6 mb-4" v-for="(item) in filterData[itemPage]" :key="item.id">
             <div class="card product-card text-center position-relative">
               <a href="#" @click.prevent="getproductId(item.id)">
                 <div class="card-img" :style="{backgroundImage: 'url(' + item.imageUrl + ')' }">
@@ -107,7 +107,7 @@
                     </div>
                     <div class="col-md-6">
                       <p class="text-center">
-                        <del class="text-white" style="font-weight:bold">
+                        <del class="text-danger" style="font-weight:bold">
                           {{ item.origin_price | currency }}
                         </del>
                       </p>
@@ -130,17 +130,15 @@
       </div>
     </div>
     <!-- 產品分頁 -->
-    <div class="row mb-4 justify-content-end">
-      <div class="col-md-3">
-        <div class="row d-flex justify-content-center">
-          <nav aria-label="Page navigation example">
-            <ul class="pagination">
-              <li class="page-item" v-for="pages in filterData.length" :key="pages" @click.prevent='itemPage = pages - 1' :class="{active: itemPage === pages - 1}">
-                <a class="page-link" href="#">{{ pages }}</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
+    <div class="row mb-4 d-flex justify-content-end">
+      <div class="col-md-4 d-flex justify-content-end">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item" v-for="pages in filterData.length" :key="pages" @click.prevent='itemPage = pages - 1' :class="{active: itemPage === pages - 1}">
+              <a class="page-link" href="#">{{ pages }}</a>
+            </li>
+          </ul>
+        </nav>
       </div>
     </div>
   </div>
@@ -160,7 +158,7 @@ export default {
       searchText: '',
       currentPage: 1,
       itemPage: 0,
-      pageNum: 4,
+      pageNum: 8,
       isActiveid: '',
       active: false
     }

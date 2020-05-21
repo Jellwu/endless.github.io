@@ -21,7 +21,7 @@
         <div class="carousel-item" v-for="(num,index) in listNum"
         :key="index" :class="{active: num === 1}">
           <div class="row">
-            <div class="card col-3"
+            <div class="card col-lg-3 col-md-6 col-sm-6 col-12 my-2"
               v-for="(item,index) in carouselList.slice((num - 1) * pageofList, pageofList * num)" :key="index"
               @click.prevent="getproduct(item.id)">
               <div class="card-body rounded" :style="`background-image:url(${ item.imageUrl })`">

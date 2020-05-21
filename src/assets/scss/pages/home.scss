@@ -137,18 +137,18 @@ hr {
 }
 
 .fadeInRight {
-  animation-duration: 2s;
+  animation-duration: 1.5s;
   animation-fill-mode: both;
-  -webkit-animation-duration: 2s;
+  -webkit-animation-duration: 1.5s;
   -webkit-animation-fill-mode: both;
   animation-name: fadeInRight;
   -webkit-animation-name: fadeInRight;
 }
 
 .fadeInLeft {
-  animation-duration: 2s;
+  animation-duration: 1.5s;
   animation-fill-mode: both;
-  -webkit-animation-duration: 2s;
+  -webkit-animation-duration: 1.5s;
   -webkit-animation-fill-mode: both;
   animation-name: fadeInLeft;
   -webkit-animation-name: fadeInLeft;
@@ -159,10 +159,12 @@ hr {
 }
 
 .textArea {
-  height: 100%;
+  opacity: 0;
+  max-height: 450px;
 
   &-b {
-    height: 100%;
+  opacity: 0;
+  max-height: 450px;
   }
 }
 
@@ -208,6 +210,10 @@ hr {
   background-attachment: fixed;
   margin: 0;
 }
+.sticky-top {
+  top:80px !important
+}
+
 @media (max-width: 768px) {
   .home-bg .box-productLink {
     bottom: -12%;
@@ -216,5 +222,24 @@ hr {
 
   .home-bg .bg-productLink {
     font-size: 55px;
+  }
+  .left-position, .right-position{
+    top:0;
+    left:0;
+  }
+
+  .vertical-content, .vertical-content-l, .vertical-content p{
+    -webkit-writing-mode: horizontal-tb;
+    writing-mode: horizontal-tb;
+  }
+  .vertical-content-l p {
+    -webkit-writing-mode: horizontal-tb;
+    writing-mode: horizontal-tb;
+  }
+  .textArea-b {
+    margin-bottom:40px;
+  }
+  .textArea {
+    margin-top:40px;
   }
 }
