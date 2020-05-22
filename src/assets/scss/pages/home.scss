@@ -175,7 +175,7 @@ hr {
 }
 
 .right-position {
-  right: -3%;
+  right: 0px;
   top: -30px;
   height: 100%;
 }
@@ -216,8 +216,12 @@ hr {
 
 @media (max-width: 768px) {
   .home-bg .box-productLink {
-    bottom: -12%;
-    height: 20%;
+    bottom: -20%;
+    left:15%;
+    height: 30%;
+  }
+  .home-text-box .box-productLink{
+    width:70%;
   }
 
   .home-bg .bg-productLink {

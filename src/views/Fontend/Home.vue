@@ -54,8 +54,8 @@
       <div class="">
         <div class="container pb-5">
           <div class="row my-5">
-            <div class="col-md-5">
-              <div class="vertical-content textArea-b pt-md-2 text-endless mr-4">
+            <div class="col-md-5  d-flex justify-content-end">
+              <div class="vertical-content textArea-b text-endless pr-4 pt-2">
                 <div class="ml-4" style="letter-spacing:5px;">
                   <h2>堅持——</h2>
                   <h2 style="text-indent:4rem">專屬於你的聲音</h2>
