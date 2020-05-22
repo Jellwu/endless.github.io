@@ -40,7 +40,7 @@
               <span class="badge badge-warning px-1">{{ cart.carts.length }}</span>
             </div>
             <ul class="d-flex flex-column mb-2">
-              <li class="row no-gutters px-3 py-2" v-for="items in cart.carts" :key="items.id">
+              <li class="row no-gutters px-3 py-2" v-for="items in sortedArray" :key="items.id">
                 <div class="col-3 cart-bg" :style="{backgroundImage: 'url(' + items.product.imageUrl + ')' }"></div>
                 <div class="col-8 d-flex align-items-center">
                   <div class="pl-3">
@@ -187,6 +187,18 @@ export default {
         newData[page].push(item)
       })
       return newData
+    },
+    sortedArray: function () {
+      function compare (a, b) {
+        if (a.product.title < b.product.title) {
+          return -1
+        }
+        if (a.product.title > b.product.title) {
+          return 1
+        }
+        return 0
+      }
+      return this.cart.carts.slice(0).sort(compare)
     },
     ...mapGetters('productsModules', ['products', 'categories']),
     ...mapGetters('cartModules', ['cart'])
