@@ -10,7 +10,7 @@
     <div class="row d-flex d-flex justify-content-between align-items-center mt-5">
       <div class="col-8">
         <h2 class="text-white carts-check-title ml-2">
-          Final Step. 訂單確認
+          Final Step. 訂單查詢
         </h2>
       </div>
       <div class="col-4">
@@ -30,21 +30,25 @@
           <div class="h2 bg-warning text-dark text-center py-3">
             貨運明細
           </div>
-          <div class="bg-orders text-endless py-3">
-            <p class="d-flex cartOrder-content">
-              <span>收件者姓名:</span>
+          <div class="bg-orders text-endless cartOrder-content">
+            <p>
+              <span class="pr-2">收件人姓名:</span>
               <span>{{ Order.user.name }}</span>
             </p>
-            <p class="d-flex cartOrder-content">
-              <span>收件地址:</span>
-              <span>{{ Order.user.address }}</span>
+            <p>
+              <span class="pr-2">收件人電郵:</span>
+              <span>{{ Order.user.email }}</span>
             </p>
-            <p class="d-flex cartOrder-content">
-              <span>聯絡方式:</span>
+            <p>
+              <span class="pr-2">聯絡電話:</span>
               <span>{{ Order.user.tel }}</span>
             </p>
-            <p class="d-flex cartOrder-content">
-              <span>備註:</span>
+            <p>
+              <span class="pr-2">寄送地址:</span>
+              <span>{{ Order.user.address }}</span>
+            </p>
+            <p>
+              <span>備註:</span><br>
               <span>{{ Order.message }}</span>
             </p>
           </div>
@@ -80,18 +84,18 @@
             訂購明細
           </div>
           <div class="bg-orders text-endless py-4">
-            <div class="row d-flex justify-content-center py-2" v-for="items in Order.products" :key='items.id'>
-              <div class="col-4">
+            <div class="row d-flex justify-content-center py-2 cartOrder-content" v-for="items in Order.products" :key='items.id'>
+              <div class="col-5">
                 <img :src="items.product.imageUrl" class="img-fluid rounded" alt="...">
               </div>
-              <div class="col-6" style="font-weight:bold;">
+              <div class="col-7 d-flex flex-column justify-content-center" style="font-weight:bold;">
                 <p>{{ items.product.title }}</p>
                 <p>{{ items.qty }} {{ items.product.unit }}</p>
                 <p v-if="items.final_total === items.total">
-                  {{ items.product.price | currency }}
+                  {{ items.total | currency }}
                 </p>
-                <p v-else-if="items.final_total === items.total">
-                  <del>{{ items.product.price | currency }}</del><br>
+                <p v-else-if="items.final_total !== items.total">
+                  <del>{{ items.total | currency }}</del><br>
                   <span class="h5 text-success mr-2">{{ items.final_total | currency }}</span>
                   <small class="text-white text-center shadow-none badge badge-success">
                     折扣價

@@ -119,7 +119,7 @@ export default {
     getfavorite (context) {
       context.commit('GETFAVORITE')
     },
-    addfavorite (context, payload) {
+    addFavorite (context, payload) {
       // 抓目前localstorage有的資料，轉成陣列
       const getLocalarray = JSON.parse(localStorage.getItem('favorite'))
       // 比較陣列中沒有回傳值id的資料

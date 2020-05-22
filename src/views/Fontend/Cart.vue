@@ -125,8 +125,8 @@
         <div class="col-md-7">
           <ul class="noticed-item text-endless mt-3 pl-4">
             <h4 class="pb-2"><i class="far fa-hand-point-right mr-2"></i>注意事項</h4>
-            <li class="text-warning">數量修改後需重新計算。</li>
-            <li class="text-warning">輸入優惠券後不可修改數量。</li>
+            <li class="text-warning">數量修改後需更新購物車才能執行下一步。</li>
+            <li class="text-warning">輸入優惠券後不可修改數量，取消優惠券後即可修改。</li>
             <li>確認所填寫的資料是否正確，若因資料不全而退貨，需負擔運費。</li>
             <li>收到商品後請確認本體(含外盒)是否有破損，於七天內提出瑕疵申請。</li>
             <li>本商品目前只供應台灣地區，只提供宅配到府。</li>

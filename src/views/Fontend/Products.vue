@@ -117,7 +117,7 @@
                 </div>
               </a>
               <div class="card-footer-text d-flex justify-content-between">
-                <div class="footer-btn p-2 border-right" @click="addfavorite(item.id,item.title)">
+                <div class="footer-btn p-2 border-right" @click="addFavorite(item.id,item.title)">
                   <i class="fas fa-heart"></i> 加入最愛
                 </div>
                 <div class="footer-btn p-2" @click.prevent="addtoCart(item.id,1)" style="width:50%;">
@@ -243,8 +243,8 @@ export default {
     gocart () {
       this.$router.push('/cart')
     },
-    addfavorite (id, title) {
-      this.$store.dispatch('productsModules/addfavorite', {
+    addFavorite (id, title) {
+      this.$store.dispatch('productsModules/addFavorite', {
         id,
         title
       })

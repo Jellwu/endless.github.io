@@ -28,26 +28,26 @@
       <div class="col-md-5">
         <div class="col my-2">
           <div class="h2 bg-warning text-dark text-center py-3">
-            客戶資料確認
+            寄送資料確認
           </div>
           <div class="bg-orders text-endless cartOrder-content">
-            <p class="d-flex justify-content-between">
-              <span>收件人姓名:</span>
+            <p>
+              <span class="pr-2">收件人姓名:</span>
               <span>{{ Order.user.name }}</span>
             </p>
-            <p class="d-flex justify-content-between">
-              <span>收件人電郵:</span>
+            <p>
+              <span class="pr-2">收件人電郵:</span>
               <span>{{ Order.user.email }}</span>
             </p>
-            <p class="d-flex justify-content-between">
-              <span>聯絡電話:</span>
+            <p>
+              <span class="pr-2">聯絡電話:</span>
               <span>{{ Order.user.tel }}</span>
             </p>
-            <p class="d-flex justify-content-between">
-              <span>寄送地址:</span>
+            <p>
+              <span class="pr-2">寄送地址:</span>
               <span>{{ Order.user.address }}</span>
             </p>
-            <p class="d-flex justify-content-between">
+            <p>
               <span>備註:</span><br>
               <span>{{ Order.message }}</span>
             </p>

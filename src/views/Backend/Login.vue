@@ -2,10 +2,10 @@
   <div>
     <Loading :active.sync="isLoading"></Loading>
     <div class="container text-endless">
-      <form class="form-signin my-5 ml-auto mr-auto border border-1" @submit.prevent="singin">
+      <form class="form-signin my-5 ml-auto mr-auto border border-1" @submit.prevent="singIn">
         <h1 class="h3 mb-5 mt-2 font-weight-normal text-warning text-center">管理者 登入</h1>
         <label class="text-left" for="inputEmail">Email address</label>
-        <input v-model="user.username" type="email" id="inputEmail" class="form-control"
+        <input v-model="user.userName" type="email" id="inputEmail" class="form-control"
         placeholder="Email address" required autofocus>
         <label class="text-left" for="inputPassword">Password</label>
         <input v-model="user.password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
@@ -27,13 +27,13 @@ export default {
   data () {
     return {
       user: {
-        username: '',
+        userName: '',
         password: ''
       }
     }
   },
   methods: {
-    singin () {
+    singIn () {
       const user = this.user
       this.$store.dispatch('loginModules/singin', user)
     }
