@@ -1,88 +1,193 @@
 <template>
   <div>
-    <div class="home-bg">
-      <div class="home-text-box">
-        <div class="home-text-absolute text-center ">
-          <p class="text-endless-title">Endless</p>
-          <p class="text-endless">不敗的，是經典</p>
+    <Carouse></Carouse>
+    <section id = "intro" class="d-flex flex-column justify-content-center">
+      <div class="text-endless text-center">
+        <div class="h3">
+          <p style="font-family:sans-serif;">
+            Endless
+          </p>
+          <span>經典是無可取代的</span>
         </div>
-        <router-link class="nav-item nav-link mx-2" to="/productList">
-          <div class="box-productLink">
-            <div class="bg-productLink">
-              New Arrival
-            </div>
-          </div>
+        <p class="h4 mt-3">有溫度的聲音，是我們追求的品質</p>
+        <router-link href="#" to="/productList">
+          <button class="btn btn-outline-light" type="button" name="button">
+            <i class="fas fa-compact-disc mr-2"></i>瀏覽產品
+          </button>
         </router-link>
       </div>
-    </div>
-    <section id='sectionAbout'>
-      <div class="pt-5">
-        <div class="container">
-          <div class="row no-gutters my-5">
-            <div class="col-md-7 left-position" style="z-index: 10">
-              <img src="https://images.unsplash.com/photo-1513746469853-a03fc9a0d6ec?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80" class="img-fluid rounded" alt="">
+    </section>
+    <section id="active">
+      <div class="row bg-active">
+          <div class="col-md-6 py-5 active-info d-flex flex-column justify-content-between pl-4">
+            <p class="h2 font-weight-bold text-dark pb-2"><i class="fas fa-headphones-alt"></i>
+              Pop-up shop of Vinyl Record
+            </p>
+            <p class="h5 text-endless mb-3">2020年快閃店出爐囉！想來感受黑膠唱片的魔力，別錯過！</p>
+            <div class="popShop">
+              <p class="font-weight-bold">
+                <i class="fas fa-map-marker-alt"></i>
+                高雄三多大遠百B1
+              </p>
+              <p><i class="far fa-clock"></i>
+                2020/06/15 ~ 2020/08/15 10:00 A.M - 10:00 P.M
+              </p>
             </div>
-            <div class="col-md-5">
-              <div class="vertical-content textArea text-endless">
-                <div class="ml-4 textArea" style="letter-spacing:5px;">
-                  <h2>黑膠——</h2>
-                  <h2 style="text-indent:4rem;margin-left:28px">是一種生活態度</h2>
-                <p>
-                  「流行總會被取代，經典會永久流傳」
-                </p>
-                <p>
-                  黑膠唱盤獨特又溫暖的聲音，是數位音樂無法取代的；以新技術傳承經典，體現了無法取代的聲音。
-                </p>
-                <p>
-                  享受這個過程：將唱片從盒子裡拿出來，放到唱盤上、擺上唱針，細細品味。
-                </p>
-              </div>
+
+            <div class="popShop">
+              <p class="font-weight-bold">
+                <i class="fas fa-map-marker-alt"></i>
+                台北信義區微風廣場
+              </p>
+              <p><i class="far fa-clock"></i>
+                2020/06/15 ~ 2020/12/15 10:00 A.M - 10:00 P.M
+              </p>
+            </div>
+
+            <div class="popShop font-weight-bold">
+              <i class="fas fa-exclamation-circle"></i>
+              來店參觀即享有優惠折扣碼，不要錯過我們這次的快閃活動囉！
             </div>
           </div>
-        </div>
       </div>
-    </div>
+    </section>
+    <div class="spacing"></div>
 
-      <div class="container">
-        <div class="row my-3">
-          <div class="col-md-12">
-            <hr class="p-3 rightArea">
-          </div>
-        </div>
-      </div>
+    <section id="collection">
+      <p class="h2 text-endless text-center">
+        <span class="border-collection">
+          PRODUCTS
+        </span>
+      </p>
 
-      <div class="">
-        <div class="container pb-5">
-          <div class="row my-5">
-            <div class="col-md-5  d-flex justify-content-end">
-              <div class="vertical-content textArea-b text-endless pr-4 pt-2">
-                <div class="ml-4" style="letter-spacing:5px;">
-                  <h2>堅持——</h2>
-                  <h2 style="text-indent:4rem">專屬於你的聲音</h2>
-                </div>
-                <p>
-                  「金窩銀窩，最愛的是自己的狗窩」
-                </p>
-                <p>
-                  盡情做自己：製作屬於你的黑膠播放器，讓黑膠融入你的生活，陪伴你。
-                </p>
-                <p>
-                  如此與眾不同的我們，從不妥協追求自己想要的，暫時脫離別人眼光中的自己，放首歌，好好做自己。
-                </p>
-              </div>
+      <div class="container mt-5">
+        <div class="row d-flex justify-content-around mt-5">
+          <div class="col-md-4 d-flex flex-column align-items-center flow-hidden">
+            <div class="h3 text-center text-light mb-5">
+              <i class="fas fa-headphones mr-3"></i>
+              <span class="text-endless text-endless-spacing">聽嘻哈</span>
             </div>
-            <div class="col-md-7 right-position">
-              <img src="https://images.unsplash.com/photo-1522258079018-a20492fa3b7b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80" class="img-fluid rounded" alt="">
+            <div class="bg-collection cursor" @click.prevent = "goPage('Hip Hop')">
+              <div class="bg-hiphop hvr-hang"></div>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex flex-column align-items-center flow-hidden">
+            <div class="h3 text-center text-light mb-5">
+              <i class="fas fa-headphones mr-3"></i>
+              <span class="text-endless text-endless-spacing">聽搖滾</span>
+            </div>
+            <div class="bg-collection" @click.prevent = "goPage('Independent')">
+              <div class="bg-rock hvr-hang"></div>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex flex-column align-items-center flow-hidden">
+            <div class="h3 text-center text-light mb-5">
+              <i class="fas fa-headphones mr-3"></i>
+              <span class="text-endless text-endless-spacing">聽浪漫</span>
+            </div>
+            <div class="bg-collection" @click.prevent = "goPage('Popular')">
+              <div class="bg-popular hvr-hang"></div>
             </div>
           </div>
         </div>
       </div>
     </section>
+    <div class="spacing"></div>
 
+    <section id="feature">
+      <p class="h2 text-endless text-center mb-5">
+        <span class="border-collection">
+          FEATURE
+        </span>
+      </p>
+    <div class="container">
+      <a data-toggle="collapse" href="#multiCollapseFeature" role="button" aria-expanded="false" aria-controls="multiCollapseFeature">
+        <div class="row bg-feature d-flex justify-content-around py-3 hvr-float-shadow">
+          <div class="col-md-3">
+            <p class="text-title">
+              <i class="fas fa-compact-disc"></i>
+              黑膠癮
+            </p>
+            <div class="d-flex flex-column justify-content-around" style="height:75%;">
+              <div class="text-endless text-content h4 text-endless-spacing">
+                <p>黑膠獨特的魅力</p>
+                <p style="text-indent: 20px;">不禁讓人想一探究竟</p>
+              </div>
+              <div class="text-endless text-content-r h4 text-endless-spacing">
+                <p>數位結合經典</p>
+                <p style="text-indent: 20px;">創造充滿質感的聲音</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="git-speaker"></div>
+          </div>
+        </div>
+      </a>
+      <div class="mt-2">
+          <div class="collapse multi-collapse collapse-content show" id="multiCollapseFeature">
+              <div class="row p-md-4 m-md-3 d-flex justify-content-around align-items-center bg-underText-yellow hvr-grow-shadow">
+                <img class="col-md-4 img-fluid" src="https://images.unsplash.com/photo-1584679109597-c656b19974c9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=350&q=80" alt="">
+                <div class="col-md-8 text-endless">
+                  <p class="h2 text-center">黑膠是什麼</p>
+                  <span class="mt-2">
+                    從黑膠的製程開始講起，黑膠唱片是用刻片機刻在空白的唱片上面製成母片，刻完之後的母片再經過電鍍、翻模變成母板（分成上下兩片），再注入聚氯乙烯壓制夾成黑膠唱片。
+                    因為母片需要一邊播放盤帶一邊刻片，磁帶播放久了音質也會越差，刻出來的唱片音質也就不會如初回那樣好，而母板用久了也會逐漸損毀，也就是為什麼原廠的初版唱片總是被爭相收藏的原因了。
+                  </span>
+                </div>
+              </div>
+              <div class="row p-md-4 m-md-3 d-flex justify-content-around align-items-center bg-underText-black hvr-grow-shadow">
+                <div class="col-md-8 text-endless">
+                  <p class="h2 text-center">獨特的我們</p>
+                  <span class="d-flex pr-2 text-icon justify-content-center">
+                    <i class="fas fa-compact-disc"></i>
+                    <i class="fas fa-plus"></i>
+                    <i class="fas fa-chalkboard"></i>
+                    <i class="fas fa-equals"></i>
+                    <i class="fab fa-napster"></i>
+                  </span>
+                  <span class="text-endless">
+                    利用了現今的數位科技與黑膠結合，呈現了輕巧又獨特的黑膠唱盤機，將黑膠音質與數位介面結合；目前已將兩萬多張 78 轉速百年老黑膠唱片數位化，
+                    轉為數位格式並放在網路上供使用者或研究人員線上聆聽。
+                  </span>
+                </div>
+                <img class="col-md-4 img-fluid" src="https://images.unsplash.com/photo-1584696401562-f9dbc7ff939f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=350&q=80" alt="">
+              </div>
+              <div class="row p-md-4 m-md-3 d-flex justify-content-around align-items-center bg-underText-yellow hvr-grow-shadow">
+                <img class="col-md-4 img-fluid" src="https://images.unsplash.com/photo-1535953472862-9cc610a70f8a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=350&q=80" alt="">
+                <div class="col-md-8 text-endless">
+                  <p class="h2 text-center">我對黑膠唱盤機有興趣</p>
+                  <span class="d-flex pr-2 text-icon justify-content-center">
+                    <i class="fas fa-heart"></i>
+                    <i class="fas fa-plus"></i>
+                    <i class="fas fa-envelope-open-text"></i>
+                    <i class="fas fa-equals"></i>
+                    <i class="fab fa-replyd"></i>
+                  </span>
+                  <span class="text-endless">
+                    在下方留下你的Mail，我們將會有專人聯絡，與您討論獨特的黑膠唱盤機
+                  </span>
+                  <div class="input-group mt-3 mr-auto ml-auto">
+                    <input type="text" class="form-control" placeholder="輸入Mail">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-dark" type="button" id="button-addon2">
+                        送出
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+      </div>
+    </div>
+
+    </section>
+
+    <div class="spacing"></div>
     <section id="sectionLink">
       <div class="bg-News">
         <div class="row d-flex justify-content-around align-items-center no-gutters">
-          <div class="col-md-6 d-flex flex-column justify-content-center bg-underText bg-underText-red text-Link text-Link-left p-5">
+          <div class="col-md-6 d-flex flex-column justify-content-center bg-underText bg-underText-black text-Link text-Link-left p-5">
             <div class="h2 mb-5 d-flex flex-column align-items-center">
               <i class="fas fa-ticket-alt fa-2x mb-2"></i>
               <span>入手優惠券</span>
@@ -94,7 +199,7 @@
               </router-link>
             </div>
           </div>
-          <div class="col-md-6  d-flex flex-column justify-content-center bg-underText bg-underText-blue p-5">
+          <div class="col-md-6  d-flex flex-column justify-content-center bg-underText bg-underText-yellow p-5">
             <div class="text-Link text-Link-right">
               <div class="h2 mb-5 d-flex flex-column align-items-center">
                 <i class="fas fa-paper-plane fa-2x mb-2"></i>
@@ -122,7 +227,8 @@
 </template>
 
 <script>
-import $ from 'jquery'
+import Carouse from '@/components/Carouse.vue'
+// import $ from 'jquery'
 import { mapGetters } from 'vuex'
 export default {
   name: 'Home',
@@ -130,26 +236,14 @@ export default {
     ...mapGetters('productsModules', ['products'])
   },
   methods: {
-    handleScroll () {
-      if ($(window).scrollTop() > $('.textArea').offset().top - 400) {
-        $('.textArea').addClass('fadeInRight')
-      }
-      if ($(window).scrollTop() > $('.textArea-b').offset().top - 400) {
-        $('.textArea-b').addClass('fadeInRight')
-      }
-    },
-    getProducts (pages = 1) {
-      this.$store.dispatch('productsModules/getProducts', pages)
+    goPage (Category) {
+      const vm = this
+      vm.$store.dispatch('productsModules/changeCategory', Category)
+      vm.$router.push('/productList')
     }
   },
-  created () {
-    this.getProducts()
-  },
-  mounted () {
-    window.addEventListener('scroll', this.handleScroll)
-  },
-  destroyed () {
-    window.removeEventListener('scroll', this.handleScroll)
+  components: {
+    Carouse
   }
 }
 </script>

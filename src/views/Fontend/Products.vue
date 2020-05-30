@@ -15,16 +15,16 @@
             <span class="pl-2">TAGS</span>
           </div>
           <div class="ml-3 p-3">
-            <div class="badge badge-pill badge-warning mr-2 mb-2 py-md-2" v-for="items in categories" :key="items" :class="{ tagActive : searchText === items }">
+            <div class="badge badge-pill badge-warning mr-2 mb-2 py-md-2" v-for="items in categories" :key="items" :class="{ tagActive : category === items }">
               <i class="fas fa-tag mx-1 fa" style="font-size:13px"></i>
-              <span class="cursor px-1 h6" @click.prevent="searchText = items">
+              <span class="cursor px-1 h6" @click.prevent="changeCategory(items)">
                 {{ items }}
               </span>
             </div>
             <div class="mr-2">
-              <div class="badge badge-pill badge-warning my-1 py-md-2" :class="{ tagActive : searchText == '' }">
+              <div class="badge badge-pill badge-warning my-1 py-md-2" :class="{ tagActive : category == '' }">
                 <i class="fas fa-tag mx-1 fa" style="font-size:13px"></i>
-                <span class="cursor px-1 h6" @click.prevent="searchText = ''">
+                <span class="cursor px-1 h6" @click.prevent="changeCategory('')">
                   All Products
                 </span>
               </div>
@@ -155,7 +155,6 @@ export default {
   name: 'Products',
   data () {
     return {
-      searchText: '',
       currentPage: 1,
       itemPage: 0,
       pageNum: 8,
@@ -170,10 +169,10 @@ export default {
       // 重新抓一次產品資料做過濾
       let products = vm.products
       // 針對全產品第一次過濾
-      if (vm.searchText) {
+      if (vm.category) {
         vm.itemPage = 0
         products = products.filter((item) => {
-          const data = item.category.toLowerCase().includes(vm.searchText.toLowerCase())
+          const data = item.category.toLowerCase().includes(vm.category.toLowerCase())
           return data
         })
       }
@@ -200,7 +199,7 @@ export default {
       }
       return this.cart.carts.slice(0).sort(compare)
     },
-    ...mapGetters('productsModules', ['products', 'categories']),
+    ...mapGetters('productsModules', ['products', 'categories', 'category']),
     ...mapGetters('cartModules', ['cart'])
 
   },
@@ -211,6 +210,9 @@ export default {
     },
     getCart (payload) {
       this.$store.dispatch('cartModules/getCart', payload)
+    },
+    changeCategory (Category) {
+      this.$store.dispatch('productsModules/changeCategory', Category)
     },
     addtoCart (id, qty = 1) {
       const vm = this

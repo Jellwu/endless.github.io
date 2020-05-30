@@ -89,7 +89,7 @@
 }
 
 .nav-bg {
-  background-color: rgba(255,255,255,0);
+  background-color: rgba(115, 79, 36, 0.45);
   transition: all 0.5s ease;
 
   h1 {
@@ -97,7 +97,7 @@
   }
 
   &-visible {
-    background-color: rgba(115, 79, 36, 0.95);
+    background-color: rgba(115, 79, 36, 1);
     transition: all 0.5s ease;
 
     h1 {
@@ -112,6 +112,7 @@
 }
 
 .text-endless {
+  font-family: "Helvetica", "Arial", sans-serif, "LiHei Pro", "黑體-繁", "微軟正黑體";
   color: #F3F6E0;
   font-weight: bold;
 }
@@ -180,14 +181,15 @@ li,
 ul {
   list-style: none;
 }
-@media (min-width: 768px) {
-  .order-md-1 {
-    -webkit-box-ordinal-group: 2;
-    -ms-flex-order: 1;
-    order: 1;
+
+@media (max-width: 767px) {
+  .nav-bg h1{
+    font-size: 20px;
   }
-}
-@media (max-width: 768px) {
+  .order-md-3 .moblieHide{
+    display: none;
+  }
+
   footer .content-center {
     justify-content: center;
     padding: 10px 0 0;

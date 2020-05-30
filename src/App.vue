@@ -4,20 +4,23 @@
       <cartMessage></cartMessage>
       <header>
       <div id="nav">
-        <nav class="navbar navbar-expand-lg navbar-dark nav-bg p-0 fixed-top">
-          <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-dark" style="rgba(0,0,0,0)">
-              <router-link href="#" to="/" class="navbar-brand d-flex justify-content-center align-items-center router-link-exact-active active my-1 mx-2">
+        <nav class="navbar navbar-expand-lg navbar-dark nav-bg p-0 fixed-top shadow-sm text-dark">
+            <button class="navbar-toggler order-md-3" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+              <router-link href="#" to="/" style="rgba(0,0,0,0);"
+              class="order-md-1 navbar-brand d-flex justify-content-center align-items-center router-link-exact-active active ml-md-6">
                 <div class="logo-title d-inline-block d-flex flex-column nav-title">
-                  <h1 class="mb-0">黑膠時光</h1>
+                  <h1 class="mb-0 navbar-color">黑膠時光</h1>
                   <span class="h6 align-self-center">Endless</span>
                 </div>
               </router-link>
-            </nav>
-            <ul class="order-md-1 d-flex">
-              <li class="nav-item py-1 pl-4">
+
+            <ul class="order-md-3 d-flex mr-md-6">
+              <li class="nav-item py-1 pl-xl-4">
                 <div class="btn-group dropleft">
-                  <button type="button" class="btn m-0 p-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <button type="button" class="btn m-0 p-0 moblieHide" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-heart" aria-haspopup="true" aria-expanded="false">
                       <span class="badge badge-pill badge-danger">{{ favorite.length }}</span>
                     </i>
@@ -53,34 +56,33 @@
                   </i>
                 </router-link>
               </li>
-              <li class="nav-item py-1 pl-2">
+              <li class="nav-item py-1 pl-xl-2 moblieHide">
                 <router-link class="text-endless" href="#" to="/login"><i class="fas fa-user-cog"></i></router-link>
               </li>
             </ul>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav">
-                <li class="nav-item">
-                  <router-link class="nav-link mx-2" to="/">
-                    <span class="underline">關於黑膠</span>
-                  </router-link>
-                </li>
-                <li class="nav-item">
-                  <router-link class="nav-link mx-2" to="/productList">
-                    <span class="underline">唱盤列表</span>
-                  </router-link>
-                </li>
-                <li class="nav-item">
-                  <router-link class="nav-link mx-2" to="/couponpage">
-                    <span class="underline">我要酷碰</span>
-                  </router-link>
-                </li>
-              </ul>
+
+            <div class="collapse navbar-collapse order-md-1" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <router-link class="nav-link mx-2" to="/">
+                      <span class="underline">關於黑膠</span>
+                    </router-link>
+                  </li>
+                  <li class="nav-item">
+                    <router-link class="nav-link mx-2" to="/productList">
+                      <span class="underline">唱盤列表</span>
+                    </router-link>
+                  </li>
+                  <li class="nav-item">
+                    <router-link class="nav-link mx-2" to="/couponpage">
+                      <span class="underline">我要酷碰</span>
+                    </router-link>
+                  </li>
+                </ul>
             </div>
-          </div>
+
         </nav>
+
       </div>
       </header>
       <main>
@@ -89,7 +91,7 @@
       <footer class="bg-footer">
         <div class="container">
           <div class="row no-gutters pb-2 d-flex pt-4 justify-content-end">
-            <div class="col-md-10 text-white">
+            <div class="col-md-8 text-white">
               <div style="width:33%">
                 <h1 class="ml-1">黑膠時光</h1>
                 <h6 class="ml-2 mb-5">Endless</h6>
@@ -100,24 +102,25 @@
                 Jell9916@gmail.com
               </div>
             </div>
-            <div class="col-md-2 d-flex align-items-end">
-              <div class="d-flex align-items-center">
+            <div class="col-md-4 d-flex flex-column justify-content-end">
+              <div class="d-flex justify-content-end">
                 <li class="list-inline-item">
                   <a class="text-endless" href="#">
-                    <i class="fab fa-instagram fa-2x text-endless" aria-hidden="true"></i>
+                    <i class="fab fa-instagram fa-3x" aria-hidden="true"></i>
                   </a>
                 </li>
                 <li class="list-inline-item">
                   <a class="text-endless" href="https://github.com/Jellwu/endless">
-                    <i class="fab fa-github fa-2x text-endless"></i>
+                    <i class="fab fa-github fa-3x"></i>
                   </a>
                 </li>
                 <li class="list-inline-item">
-                  <router-link to="/profile">
-                    <i class="far fa-address-card fa-2x text-endless"></i>
+                  <router-link to="/profile" class="text-endless">
+                    <i class="far fa-address-card fa-3x"></i>
                   </router-link>
                 </li>
               </div>
+              <p class="text-word text-right mt-2">本網頁並無商業用途，僅供個人使用</p>
             </div>
           </div>
           <p class="text-word text-center">Copyright © Jell's Website 2020</p>

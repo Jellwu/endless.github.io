@@ -8,7 +8,8 @@ export default {
     categories: [],
     productId: '',
     product: {},
-    favorite: []
+    favorite: [],
+    category: ''
   },
   mutations: {
     // 全產品寫入
@@ -22,6 +23,10 @@ export default {
         categories.add(item.category)
       })
       state.categories = Array.from(categories)
+    },
+    // 分類選擇
+    CATEGORYSELECTED (state, payload) {
+      state.category = payload
     },
     // 單一產品的ID
     PRODUCTID (state, payload) {
@@ -70,11 +75,17 @@ export default {
     getproductId (context, id) {
       context.commit('PRODUCTID', id)
     },
+    // 修改分類
+    changeCategory (context, Category) {
+      context.commit('CATEGORYSELECTED', Category)
+    },
     // 抓單一產品內容
     getproductDetail (context, id) {
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/product/${id}`
+      context.dispatch('updateLoading', true, { root: true })
       axios.get(url).then((response) => {
         context.commit('PRODUCTDETAIL', response.data.product)
+        context.dispatch('updateLoading', false, { root: true })
       })
     },
     // 更新單一產品內容(接收tempProduct的資料)
@@ -162,8 +173,13 @@ export default {
   },
   // 給computed的mapGetters使用
   getters: {
+    // 回傳所有分類
     categories (state) {
       return state.categories
+    },
+    // 回傳首頁選取分類
+    category (state) {
+      return state.category
     },
     products (state) {
       return state.products

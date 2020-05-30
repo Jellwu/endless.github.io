@@ -61,6 +61,7 @@ export default {
   computed: {
     ...mapGetters('productsModules', ['productDetail']),
     ...mapGetters('cartModules', ['cart']),
+    ...mapGetters(['isLoading']),
     subtotal () {
       const data = this.productDetail.price * this.productNum
       return data
