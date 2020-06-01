@@ -32,10 +32,20 @@ export default {
       context.commit('LOADING', true)
       axios.post(url, { data: item }).then((response) => {
         if (response.data.success) {
-          alert(response.data.message)
+          context.dispatch('cartMessage',
+            {
+              state: true,
+              msg: response.data.message
+            },
+            { root: true })
           context.dispatch('getCoupon')
         } else {
-          alert(response.data.message)
+          context.dispatch('cartMessage',
+            {
+              state: true,
+              msg: response.data.message
+            },
+            { root: true })
         }
         context.commit('LOADING', false)
       })
@@ -45,10 +55,20 @@ export default {
       context.commit('LOADING', true)
       axios.put(url, { data: item }).then((response) => {
         if (response.data.success) {
-          alert(response.data.message)
+          context.dispatch('cartMessage',
+            {
+              state: true,
+              msg: response.data.message
+            },
+            { root: true })
           context.dispatch('getCoupon')
         } else {
-          alert(response.data.message)
+          context.dispatch('cartMessage',
+            {
+              state: true,
+              msg: response.data.message
+            },
+            { root: true })
         }
         context.commit('LOADING', false)
       })
@@ -58,9 +78,19 @@ export default {
       context.commit('LOADING', true)
       axios.delete(url).then((response) => {
         if (response.data.success) {
-          alert(response.data.message)
+          context.dispatch('cartMessage',
+            {
+              state: true,
+              msg: response.data.message
+            },
+            { root: true })
         } else {
-          alert(response.data.message)
+          context.dispatch('cartMessage',
+            {
+              state: true,
+              msg: response.data.message
+            },
+            { root: true })
         }
         context.commit('LOADING', false)
       })

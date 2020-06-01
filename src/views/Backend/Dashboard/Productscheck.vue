@@ -131,28 +131,27 @@
     </div>
 
     <!-- dropModel -->
-        <div class="modal fade" id="dropModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header bg-danger text-white">
-                <h5 class="modal-title" id="exampleModalLabel">刪除確認</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                    <p>是否刪除產品：<span class="text-danger font-weight-bold">{{ tempProduct.title }}?</span></p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-danger" @click="dropProduct">刪除</button>
-              </div>
+      <div class="modal fade" id="dropModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+              <h5 class="modal-title" id="exampleModalLabel">刪除確認</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>是否刪除產品：<span class="text-danger font-weight-bold">{{ tempProduct.title }}?</span></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+              <button type="button" class="btn btn-danger" @click="dropProduct">刪除</button>
             </div>
           </div>
         </div>
-
+      </div>
     </div>
-    </template>
+</template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
@@ -175,12 +174,13 @@ export default {
   methods: {
     ...mapActions('productsModules', ['getProducts']),
     openPdcModal (isNew, item) {
+      const vm = this
       if (isNew) {
-        this.tempProduct = {}
-        this.isNew = true
+        vm.tempProduct = {}
+        vm.isNew = true
       } else {
-        this.tempProduct = Object.assign({}, item)
-        this.isNew = false
+        vm.tempProduct = Object.assign({}, item)
+        vm.isNew = false
       }
       $('#pdcModal').modal('show')
     },
@@ -190,11 +190,12 @@ export default {
     },
 
     updateProduct () {
-      if (!this.isNew) {
-        this.$store.dispatch('productsModules/updateProduct', this.tempProduct)
+      const vm = this
+      if (!vm.isNew) {
+        vm.$store.dispatch('productsModules/updateProduct', vm.tempProduct)
         $('#pdcModal').modal('hide')
       } else {
-        this.$store.dispatch('productsModules/addProduct', this.tempProduct)
+        vm.$store.dispatch('productsModules/addProduct', vm.tempProduct)
         $('#pdcModal').modal('hide')
       }
     },
@@ -207,7 +208,7 @@ export default {
       vm.status.preuploadFile = true
 
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/upload`
-      this.$http.post(url, formData, {
+      vm.$http.post(url, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

@@ -93,10 +93,20 @@ export default {
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/product/${item.id}`
       axios.put(url, { data: item }).then(response => {
         if (response.data.success) {
-          alert(response.data.message)
+          context.dispatch('cartMessage',
+            {
+              state: true,
+              msg: response.data.message
+            },
+            { root: true })
           context.dispatch('getProducts')
         } else {
-          alert(response.data.message)
+          context.dispatch('cartMessage',
+            {
+              state: true,
+              msg: response.data.message
+            },
+            { root: true })
         }
       })
     },
@@ -104,9 +114,19 @@ export default {
       let url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/product/`
       axios.post(url, { data: item }).then((response) => {
         if (response.data.success) {
-          alert(response.data.message)
+          context.dispatch('cartMessage',
+            {
+              state: true,
+              msg: response.data.message
+            },
+            { root: true })
         } else {
-          alert(response.data.message)
+          context.dispatch('cartMessage',
+            {
+              state: true,
+              msg: response.data.message
+            },
+            { root: true })
         }
         url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`
         axios.get(url).then((response) => {
@@ -118,7 +138,12 @@ export default {
     dropProduct (context, item) {
       let url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/product/${item.id}`
       axios.delete(url).then((response) => {
-        alert(response.data.message)
+        context.dispatch('cartMessage',
+          {
+            state: true,
+            msg: response.data.message
+          },
+          { root: true })
         url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`
         axios.get(url).then((response) => {
           // 將api取到的資料抓出來，準備給mutation改寫

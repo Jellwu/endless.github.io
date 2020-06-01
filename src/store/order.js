@@ -34,8 +34,6 @@ export default {
           context.dispatch('updateLoading', false, { root: true })
           context.commit('ORDERID', response.data.orderId)
           router.push(`/cart_checkout/${response.data.orderId}`)
-        } else {
-          alert(response.data.message)
         }
       })
     },

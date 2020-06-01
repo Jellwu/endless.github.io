@@ -100,10 +100,12 @@
 .discursor {
   cursor: not-allowed;
 }
+
 .cancelAlter {
   position: relative;
   overflow: hidden;
 }
+
 .cancelBox {
   position: absolute;
   width:100%;
@@ -114,6 +116,7 @@
   z-index:10;
   transition: all 0.3s ease;
 }
+
 .fadeInRight-cart {
   right:0px;
   animation-duration: 0.3s;
@@ -124,6 +127,7 @@
   -webkit-animation-name: cartfadeInright;
   transition: all 0.3s ease;
 }
+
 .fadeOutRight-cart {
   animation-duration: 0.3s;
   animation-fill-mode: both;

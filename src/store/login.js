@@ -24,8 +24,21 @@ export default {
         if (response.data.success) {
           router.push('/admin/productscheck')
         } else {
-          alert(response.data.message)
+          context.dispatch('cartMessage',
+            {
+              state: true,
+              msg: response.data.message
+            },
+            { root: true })
         }
+      })
+    },
+    logout (context) {
+      const api = `${process.env.VUE_APP_APIPATH}/logout`
+      context.commit('LOADING', true)
+      this.$http.post(api).then((response) => {
+        context.commit('LOADING', false)
+        this.$router.push('/login')
       })
     }
   },

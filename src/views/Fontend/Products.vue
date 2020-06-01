@@ -130,7 +130,7 @@
       </div>
     </div>
     <!-- 產品分頁 -->
-    <div class="row mb-4 d-flex justify-content-end" v-if = "filterData.length > 1">
+    <div class="row mb-4 d-flex justify-content-end" v-if="filterData.length > 1">
       <div class="col-md-4 d-flex justify-content-end">
         <nav aria-label="Page navigation example">
           <ul class="pagination">

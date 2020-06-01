@@ -40,9 +40,6 @@ export default {
   },
   computed: {
     ...mapGetters('loginModules', ['isLoading'])
-  },
-  created () {
-    window.addEventListener('scroll', this.handleScroll)
   }
 }
 </script>

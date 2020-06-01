@@ -132,7 +132,12 @@ export default {
           context.dispatch('getCart')
         } else {
           context.commit('COUPONCODE', {})
-          alert(response.data.message)
+          context.dispatch('cartMessage',
+            {
+              state: true,
+              msg: '取消異常'
+            },
+            { root: true })
         }
       })
     }

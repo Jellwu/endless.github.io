@@ -4,7 +4,7 @@
     <section id = "intro" class="d-flex flex-column justify-content-center">
       <div class="text-endless text-center">
         <div class="h3">
-          <p style="font-family:sans-serif;">
+          <p class="font-weight-bold" style="font-family:cursive;font-size:40px;">
             Endless
           </p>
           <span>經典是無可取代的</span>
@@ -19,34 +19,34 @@
     </section>
     <section id="active">
       <div class="row bg-active">
-          <div class="col-md-6 py-5 active-info d-flex flex-column justify-content-between pl-4">
+          <div class="col-md-6 active-info d-flex flex-column justify-content-between pl-md-5">
             <p class="h2 font-weight-bold text-dark pb-2"><i class="fas fa-headphones-alt"></i>
               Pop-up shop of Vinyl Record
             </p>
-            <p class="h5 text-endless mb-3">2020年快閃店出爐囉！想來感受黑膠唱片的魔力，別錯過！</p>
+            <p class="h5 text-endless mb-3">2020年第三季快閃店出爐囉！一同來感受黑膠的溫暖吧！</p>
             <div class="popShop">
               <p class="font-weight-bold">
-                <i class="fas fa-map-marker-alt"></i>
-                高雄三多大遠百B1
+                <i class="fas fa-map-marker-alt mr-2"></i>
+                <span class="text-dark">台北 華山藝術特區A5</span>
               </p>
-              <p><i class="far fa-clock"></i>
-                2020/06/15 ~ 2020/08/15 10:00 A.M - 10:00 P.M
+              <p>
+                <i class="far fa-clock"></i> 2020/06/15 ~ 2020/08/15
               </p>
             </div>
 
             <div class="popShop">
               <p class="font-weight-bold">
-                <i class="fas fa-map-marker-alt"></i>
-                台北信義區微風廣場
+                <i class="fas fa-map-marker-alt mr-2"></i>
+                <span class="text-dark">高雄 三多遠東百貨B1</span>
               </p>
-              <p><i class="far fa-clock"></i>
-                2020/06/15 ~ 2020/12/15 10:00 A.M - 10:00 P.M
+              <p>
+                <i class="far fa-clock"></i> 2020/06/15 ~ 2020/12/15
               </p>
             </div>
 
             <div class="popShop font-weight-bold">
-              <i class="fas fa-exclamation-circle"></i>
-              來店參觀即享有優惠折扣碼，不要錯過我們這次的快閃活動囉！
+              <i class="fas fa-exclamation-circle mr-1"></i>
+              <span class="text-dark">來店參觀即可索取優惠折扣碼，別錯過我們這次的快閃活動囉！</span>
             </div>
           </div>
       </div>
@@ -67,8 +67,8 @@
               <i class="fas fa-headphones mr-3"></i>
               <span class="text-endless text-endless-spacing">聽嘻哈</span>
             </div>
-            <div class="bg-collection cursor" @click.prevent = "goPage('Hip Hop')">
-              <div class="bg-hiphop hvr-hang"></div>
+            <div class="bg-collection hvr-hang" @click.prevent = "goPage('Hip Hop')">
+              <div class="bg-hiphop hvr-hang-content"></div>
             </div>
           </div>
           <div class="col-md-4 d-flex flex-column align-items-center flow-hidden">
@@ -76,8 +76,8 @@
               <i class="fas fa-headphones mr-3"></i>
               <span class="text-endless text-endless-spacing">聽搖滾</span>
             </div>
-            <div class="bg-collection" @click.prevent = "goPage('Independent')">
-              <div class="bg-rock hvr-hang"></div>
+            <div class="bg-collection hvr-hang" @click.prevent = "goPage('Independent')">
+              <div class="bg-rock hvr-hang-content"></div>
             </div>
           </div>
           <div class="col-md-4 d-flex flex-column align-items-center flow-hidden">
@@ -85,8 +85,8 @@
               <i class="fas fa-headphones mr-3"></i>
               <span class="text-endless text-endless-spacing">聽浪漫</span>
             </div>
-            <div class="bg-collection" @click.prevent = "goPage('Popular')">
-              <div class="bg-popular hvr-hang"></div>
+            <div class="bg-collection hvr-hang" @click.prevent = "goPage('Popular')">
+              <div class="bg-popular hvr-hang-content"></div>
             </div>
           </div>
         </div>
@@ -119,7 +119,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-8">
+          <div class="col-md-9">
             <div class="git-speaker"></div>
           </div>
         </div>
@@ -137,8 +137,9 @@
                 </div>
               </div>
               <div class="row p-md-4 m-md-3 d-flex justify-content-around align-items-center bg-underText-black hvr-grow-shadow">
-                <div class="col-md-8 text-endless">
-                  <p class="h2 text-center">獨特的我們</p>
+                <img class="col-md-4 img-fluid order-md-2" src="https://images.unsplash.com/photo-1584696401562-f9dbc7ff939f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=350&q=80" alt="">
+                <div class="col-md-8 text-endless order-md-1">
+                  <p class="h2 text-center">獨特的將經典重現</p>
                   <span class="d-flex pr-2 text-icon justify-content-center">
                     <i class="fas fa-compact-disc"></i>
                     <i class="fas fa-plus"></i>
@@ -147,11 +148,10 @@
                     <i class="fab fa-napster"></i>
                   </span>
                   <span class="text-endless">
-                    利用了現今的數位科技與黑膠結合，呈現了輕巧又獨特的黑膠唱盤機，將黑膠音質與數位介面結合；目前已將兩萬多張 78 轉速百年老黑膠唱片數位化，
-                    轉為數位格式並放在網路上供使用者或研究人員線上聆聽。
+                    利用了現今的數位科技與黑膠結合，呈現了輕巧又獨特的黑膠唱盤機，將黑膠音質與數位介面結合；我們擁有製作黑膠的獨特技術，
+                    目前已將兩萬多張 78 轉速百年老黑膠唱片重置並實體化，不僅能用黑膠播放，更能將這些音樂以數位化的方式存放。
                   </span>
                 </div>
-                <img class="col-md-4 img-fluid" src="https://images.unsplash.com/photo-1584696401562-f9dbc7ff939f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=350&q=80" alt="">
               </div>
               <div class="row p-md-4 m-md-3 d-flex justify-content-around align-items-center bg-underText-yellow hvr-grow-shadow">
                 <img class="col-md-4 img-fluid" src="https://images.unsplash.com/photo-1535953472862-9cc610a70f8a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=350&q=80" alt="">
@@ -223,7 +223,7 @@
       </div>
     </section>
 
-    </div>
+  </div>
 </template>
 
 <script>

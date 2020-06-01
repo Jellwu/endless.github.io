@@ -182,7 +182,7 @@ ul {
   list-style: none;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .nav-bg h1{
     font-size: 20px;
   }
@@ -190,14 +190,18 @@ ul {
     display: none;
   }
 
-  footer .content-center {
-    justify-content: center;
-    padding: 10px 0 0;
+footer {
+  .col-md-8 {
+    text-align: center;
+    margin-bottom: 50px;
   }
-
-  footer .text-endless {
-    color: #F3F6E0;
+  .col-md-4 p {
+    text-align: center !important;
   }
+  .justify-content-end {
+    justify-content:center !important;
+  }
+}
 
   .order-md-1 .dropleft .dropdown-menu {
     top: 100%;

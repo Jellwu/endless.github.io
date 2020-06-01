@@ -32,17 +32,17 @@
     </table>
 
     <!-- 預設10筆頁數 -->
-      <div class="row justify-content-center">
-        <nav aria-label="Page navigation example">
-          <ul class="pagination">
-            <li class="page-item" v-for="pages in pages.total_pages" :key="pages.current_page"
+    <div class="row justify-content-center">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item" v-for="pages in pages.total_pages" :key="pages.current_page"
             :class="{'active': pages.current_page == pages }"
             @click.prevent = "getOrderList(pages)">
-              <a class="page-link" href="#">{{ pages }}</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
+            <a class="page-link" href="#">{{ pages }}</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
   </div>
 </template>
 
