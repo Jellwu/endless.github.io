@@ -201,3 +201,10 @@ ul {
   transform: translateX(100%);
   opacity: 0;
 }
+
+// RWD
+@media (max-width: 320px) {
+  .product-menu h5{
+    font-size: 16px;
+  }
+}

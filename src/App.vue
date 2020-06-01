@@ -1,6 +1,9 @@
 <template>
   <div id="app">
     <Loading loader="bars" color="#C4A670" :active.sync="isLoading"></Loading>
+    <a href="#" class="scrollTop smooth-scroll btn btn-outline-light btn-lg">
+      <i class="fas fa-chevron-up"></i>
+    </a>
     <cartMessage></cartMessage>
     <header>
     <div id="nav">
@@ -18,11 +21,13 @@
         </router-link>
 
         <ul class="order-md-3 d-flex mr-md-6">
-          <li class="nav-item py-1 pl-xl-4">
+          <li class="nav-item mx-2">
             <div class="btn-group dropleft">
               <button type="button" class="btn m-0 p-0 moblieHide" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-heart" aria-haspopup="true" aria-expanded="false">
-                  <span class="badge badge-pill badge-danger">{{ favorite.length }}</span>
+                <i class="fas fa-heart position-relative" aria-haspopup="true" aria-expanded="false">
+                  <span class="badge badge-pill badge-danger nav-length" v-if="favorite.length !== 0">
+                    {{ favorite.length }}
+                  </span>
                 </i>
               </button>
               <div class="dropdown-menu bg-dark dropdown-menu-left">
@@ -49,14 +54,16 @@
               </div>
             </div>
           </li>
-          <li class="nav-item py-1">
+          <li class="nav-item mx-2">
             <router-link class="text-endless" href="#" to="/cart">
-              <i class="fas fa-shipping-fast">
-                <span class="badge badge-pill badge-danger">{{ cart.carts.length }}</span>
+              <i class="fas fa-shipping-fast position-relative">
+                <span class="badge badge-pill badge-danger nav-length" v-show="cart.carts.length !== 0">
+                  {{ cart.carts.length }}
+                </span>
               </i>
             </router-link>
           </li>
-          <li class="nav-item py-1 pl-xl-2 moblieHide">
+          <li class="nav-item moblieHide mx-2">
             <router-link class="text-endless" href="#" to="/login"><i class="fas fa-user-cog"></i></router-link>
           </li>
         </ul>

@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 .navbar-dark .navbar-nav .nav-link {
   color: rgba(255, 255, 255, 1);
 }
@@ -7,6 +11,15 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #262626;
+
+  .scrollTop {
+    position: fixed;
+    bottom:10px;
+    right:10px;
+    border: 5px dash $light ;
+    border-radius: 50%;
+    z-index: 999999;
+  }
 
   .logo-title h1 {
     color: white;
@@ -31,6 +44,12 @@
 }
 
 #nav {
+  .nav-length {
+    position: absolute;
+    top:-20%;
+    right:-35%;
+  }
+
   .router-link-exact-active,
   .router-link-exact-active i {
     color: #F2CA52;
@@ -54,7 +73,6 @@
 
   .badge {
     font-size: 9px;
-    margin-right: 10px;
   }
 
   .fas {
@@ -182,6 +200,14 @@ ul {
   list-style: none;
 }
 
+// RWD
+@media (max-width: 1024px) {
+  footer {
+    .text-word {
+      font-size: 20px;
+    }
+  }
+}
 @media (max-width: 768px) {
   .nav-bg h1{
     font-size: 20px;
@@ -190,17 +216,23 @@ ul {
     display: none;
   }
 
-footer {
-  .col-md-8 {
-    text-align: center;
-    margin-bottom: 50px;
+  #nav {
+    .nav-length {
+      right:-20%;
+    }
   }
-  .col-md-4 p {
-    text-align: center !important;
-  }
-  .justify-content-end {
-    justify-content:center !important;
-  }
+
+  footer {
+    .col-md-8 {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .col-md-4 p {
+      text-align: center !important;
+    }
+    .justify-content-end {
+      justify-content:center !important;
+    }
 }
 
   .order-md-1 .dropleft .dropdown-menu {

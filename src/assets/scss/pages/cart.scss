@@ -112,7 +112,7 @@
   height:100%;
   background-color: rgba($warning,1);
   top:0%;
-  right:-160px;
+  right:-200px;
   z-index:10;
   transition: all 0.3s ease;
 }
@@ -137,15 +137,41 @@
   -webkit-animation-name: cartfadeOutright;
 }
 
+// RWD
+@media (max-width: 1024px) {
+  .about .no-carts {
+    height:850px;
+  }
+  .pay-process .complited-1::after {
+    font-size: 14px;
+  }
+  .pay-process-1::after, .pay-process-2::after {
+    width:100px;
+  }
+  .pay-process .complited-1::after {
+    content: '優惠券'
+  }
+}
 @media (max-width: 768px) {
-  .pay-process .complited-1::after,  .pay-process .complited-2::after{
-    content:'';
+  .pay-process-1::after, .pay-process-2::after {
+    width:130px
   }
-  .pay-process-1::after,
-  .pay-process-2::after {
-    width: 30px;
+  .pay-process .complited-1::after {
+    content: '別忘了優惠券'
   }
-
+  .col-md-4 {
+    margin-top: 20px;
+  }
+  .cartOrder-content {
+    font-size: 14px;
+  }
+  .bg-cart-box .col-md-5 {
+    display: flex;
+    align-items: flex-end;
+  }
+  .no-carts p{
+    font-size: 32px;
+  }
   .input-group-sm{
     width:114px !important;
   }

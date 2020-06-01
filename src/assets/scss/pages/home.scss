@@ -345,50 +345,91 @@ hr {
 }
 
 // RWD
+// 1024px 以下自適應
+@media (max-width: 1024px) {
+  #feature {
+    .bg-feature {
+      .text-title {
+        font-size: 32px;
+        &::before {
+          width:100%;
+        }
+      }
+    .text-content, .text-content-r {
+      font-size: 12.5px;
+        &::before {
+          height:40%;
+          width:100%;
+          bottom:-12%;
+        }
+      }
+    .text-content-r::before {
+      left:30%;
+    }
+    }
+    .git-speaker {
+      height:300px;
+    }
+  }
+  footer {
+    .text-word {
+      font-size: 20px;
+    }
+  }
+}
 // 768px 以下自適應
-@media (max-width: 768px) {
-#active {
-  .bg-active {
-    .h2 {
-      padding:0px 20px;
-      width:75%;
-      margin-bottom: 20px;
-    }
-    .h5 {
-      padding:0px 20px;
-      width:85%;
-    }
-    .popShop {
+@media (max-width: 767px) {
+  #active {
+    .bg-active {
+      .h2 {
+        padding:0px 20px;
+        width:75%;
+        margin-bottom: 20px;
+      }
+      .h5 {
+        padding:0px 20px;
         width:85%;
+      }
+      .popShop {
+          width:85%;
+      }
+    }
+  }
+
+  #collection {
+    .col-md-4 {
+      margin-top:50px;
+    }
+  }
+
+  #feature {
+    .text-title::before {
+      width:77%;
+      border-radius: 10px 0px 0px 10px;
+    }
+    .text-content-r::before{
+      width:70%;
+      right:-4%;
+    }
+
+    .col-md-4, .col-md-8 {
+      padding:30px 10px;
+    }
+    .collapse-content {
+      .text-icon {
+        font-size: 40px;
+      }
     }
   }
 }
 
-#collection {
-  .col-md-4 {
-    margin-top:50px;
-  }
-}
-#feature {
-  .text-title::before {
-    width:77%;
-    border-radius: 10px 0px 0px 10px;
-  }
-  .text-content-r::before{
-    width:70%;
-    right:-4%;
-  }
-
-  .col-md-4, .col-md-8 {
-    padding:30px 10px;
-  }
-  .collapse-content {
-    .text-icon {
-      font-size: 40px;
+// 320px 以下自適應
+@media (max-width: 320px) {
+  #feature {
+    .collapse-content {
+      .text-icon {
+        font-size: 32px;
+      }
     }
   }
-}
-
-
-
 }

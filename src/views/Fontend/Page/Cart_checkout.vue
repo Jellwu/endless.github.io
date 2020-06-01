@@ -106,25 +106,26 @@
             </div>
           </div>
         </div>
-        <div class="col-md-7 sticky-top md-spacing">
+
+        <div class="col-md-7 sticky-top md-spacing" id="pay-info">
           <div class="h2 bg-warning text-dark text-center py-3">
             輸入付款資訊
           </div>
           <div class="bg-orders text-endless cartOrder-content">
             <ValidationObserver ref="observer" v-slot="{ invalid }" tag="form">
               <form class="my-4">
+                <label for="creditNo" class="col-form-label">信用卡號</label>
                 <div class="form-row mb-2">
-                  <label for="creditNo" class="col-form-label">信用卡號:</label>
-                  <ValidationProvider class="col creditform" rules="required|numeric|digits:4" name="卡號" v-slot="{ errors }">
+                  <ValidationProvider class="col" rules="required|numeric|digits:4" name="卡號" v-slot="{ errors }">
                     <input type="text" class="form-control" name="creditNo" maxlength="4" v-model="order.credit.no1" :class="{'is-invalid':errors[0]}" placeholder="06xx">
                     <span class="text-error" v-if="errors[0]">{{ errors[0] }}</span>
                   </ValidationProvider>
 
-                  <ValidationProvider class="col creditform" rules="required|numeric|digits:4" name="" v-slot="{ errors }">
+                  <ValidationProvider class="col" rules="required|numeric|digits:4" name="" v-slot="{ errors }">
                     <input type="text" class="form-control" v-model="order.credit.no2" :class="{'is-invalid':errors[0]}" maxlength="4" placeholder="xxxx">
                   </ValidationProvider>
 
-                  <ValidationProvider class="col creditform" rules="required|numeric|digits:4" name="" v-slot="{ errors }">
+                  <ValidationProvider class="col" rules="required|numeric|digits:4" name="" v-slot="{ errors }">
                     <input type="text" class="form-control" v-model="order.credit.no3" :class="{'is-invalid':errors[0]}" maxlength="4" placeholder="xxxx">
                   </ValidationProvider>
 
@@ -133,30 +134,29 @@
                   </ValidationProvider>
                 </div>
 
+                <label for="credit" class="col-form-label">卡片期限</label>
                 <div class="form-row mb-2" id="creditNo">
-                  <label for="credit" class="col-form-label">卡片期限:</label>
-                  <ValidationProvider class="col-2" rules="required|numeric|digits:2" name="期限" v-slot="{ errors }">
-                    <input type="text" class="form-control" name="creditNo" v-model="order.credit.month" :class="{'is-invalid':errors[0]}" placeholder="06" maxlength="2">
+                  <ValidationProvider class="col" rules="required|numeric|digits:2" name="期限" v-slot="{ errors }">
+                    <input type="text" class="form-control" name="creditNo" v-model="order.credit.month" :class="{'is-invalid':errors[0]}" placeholder="MM" maxlength="2">
                   </ValidationProvider>
-                  <ValidationProvider class="col-2" rules="required|numeric|digits:2" name="期限" v-slot="{ errors }">
-                    <input type="text" class="form-control" v-model="order.credit.year" :class="{'is-invalid':errors[0]}" maxlength="2" placeholder="30">
+                  <ValidationProvider class="col" rules="required|numeric|digits:2" name="期限" v-slot="{ errors }">
+                    <input type="text" class="form-control" v-model="order.credit.year" :class="{'is-invalid':errors[0]}" maxlength="2" placeholder="YY">
                   </ValidationProvider>
                 </div>
-
+                <label for="creditName" class="col-form-label">持卡人姓名:</label>
                 <div class="form-row mb-2">
-                  <label for="creditName" class="col-form-label">持卡人姓名:</label>
-                  <ValidationProvider class="col-2" rules="required" name="姓名" v-slot="{ errors }">
+                  <ValidationProvider class="col" rules="required" name="姓名" v-slot="{ errors }">
                     <input type="text" class="form-control" v-model="order.credit.surName" :class="{'is-invalid':errors[0]}" placeholder="cheng" maxlength="10">
                   </ValidationProvider>
 
-                  <ValidationProvider class="col-3" rules="required" name="姓名" v-slot="{ errors }">
+                  <ValidationProvider class="col" rules="required" name="姓名" v-slot="{ errors }">
                     <input type="text" class="form-control" v-model="order.credit.name" :class="{'is-invalid':errors[0]}" placeholder="Wei chin" maxlength="10">
                   </ValidationProvider>
                 </div>
 
+                <label for="credit" class="col-form-label">安全碼:</label>
                 <div class="form-row mb-2" id="creditNo">
-                  <label for="credit" class="col-form-label">安全碼:</label>
-                  <ValidationProvider class="col-2" rules="required|numeric|digits:3" name="安全碼" v-slot="{ errors }">
+                  <ValidationProvider class="col" rules="required|numeric|digits:3" name="安全碼" v-slot="{ errors }">
                     <input type="text" class="form-control" v-model="order.credit.secureCode" :class="{'is-invalid':errors[0]}" placeholder="999" maxlength="3">
                   </ValidationProvider>
                 </div>

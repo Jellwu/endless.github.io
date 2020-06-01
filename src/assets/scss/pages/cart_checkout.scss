@@ -1,15 +1,8 @@
-.creditform {
-  position: relative;
-
-  &::after {
-    position: absolute;
-    color: gray;
-    top: 5%;
-    right: -6.5%;
-    content: '-';
+#pay-info {
+  .cartOrder-content span {
+    margin-right:0px;
   }
 }
-
 .text-error {
   font-size: 14px;
   color: $warning;

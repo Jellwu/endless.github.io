@@ -37,6 +37,16 @@
             <div class="popShop">
               <p class="font-weight-bold">
                 <i class="fas fa-map-marker-alt mr-2"></i>
+                <span class="text-dark">台南 南紡購物中心</span>
+              </p>
+              <p>
+                <i class="far fa-clock"></i> 2020/06/15 ~ 2020/08/15
+              </p>
+            </div>
+
+            <div class="popShop">
+              <p class="font-weight-bold">
+                <i class="fas fa-map-marker-alt mr-2"></i>
                 <span class="text-dark">高雄 三多遠東百貨B1</span>
               </p>
               <p>

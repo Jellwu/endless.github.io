@@ -21,12 +21,12 @@
     <div v-else-if="cart.carts.length !== 0">
       <div class="container my-5">
         <div class="row d-flex d-flex justify-content-between align-items-center">
-          <div class="col-8">
+          <div class="col-md-8">
             <h2 class="text-white">
               Step 1. 確認商品
             </h2>
           </div>
-          <div class="col-4">
+          <div class="col-md-4">
             <div class="pay-process">
               <ul class="d-flex justify-content-between">
                 <li class="pay-process-1 complited-1"></li>
@@ -38,15 +38,14 @@
         </div>
         <div class="row d-flex justify-content-center">
           <div class="col-md-12 mt-5">
-            <div class="h2 bg-warning text-dark text-center py-3">
-              購物車清單
-            </div>
             <table class="table table-borderless table-striped text-endless">
               <thead class="text-endless h5">
+                <th colspan="4" class="h2 bg-warning text-dark text-center py-3">
+                  購物車清單
+                </th>
                 <tr>
                   <td class="text-center">功能</td>
-                  <td valign="middle">項目</td>
-                  <td valign="middle">產品名稱</td>
+                  <td >產品</td>
                   <td>購買數量</td>
                   <td class="text-right">產品單價</td>
                 </tr>
@@ -58,18 +57,18 @@
                       <i class="fas fa-trash"></i>
                     </button>
                   </td>
-                  <td style="width:120px;vertical-align: middle;">
-                    <img class="img-fluid" :src="items.product.imageUrl">
+                  <td class="row d-flex align-items-center" style="vertical-align: middle;">
+                    <img class="img-fluid col-md-4 moblieHide" :src="items.product.imageUrl" style="width:25px;">
+                    <div class="col-md-8">
+                      <a href="#" @click.prevent='getproductId(items.product.id)'>
+                        {{ items.product.title }}
+                      </a>
+                      <p class="text-success" v-if="items.final_total !== items.total">
+                        已套用優惠券
+                      </p>
+                    </div>
                   </td>
-                  <td style="vertical-align: middle;">
-                    <a href="#" @click.prevent='getproductId(items.product.id)'>
-                      {{ items.product.title }}
-                    </a>
-                    <p class="text-success" v-if="items.final_total !== items.total">
-                      已套用優惠券
-                    </p>
-                  </td>
-                  <td class="text-center cancelAlter p-0" style="width:140px; vertical-align: middle;">
+                  <td class="text-center cancelAlter p-0" style="vertical-align: middle;">
                     <div v-for="(dropItem) in tempdropCart" :key='dropItem.id' class="cancelBox" :class="{'fadeInRight-cart':dropItem.id === items.id, 'fadeOutRight-cart':dropItem.qty > 0 }">
                       <div class="text-white d-flex flex-column align-items-center justify-content-center" style="height:105px">
                         <p class="text-dark h6 mb-1">刪除品項?</p>
@@ -102,18 +101,22 @@
                       </div>
                     </div>
                   </td>
-                  <td class="text-right" style="width:120px; vertical-align: middle;">{{ items.product.price * items.qty | currency }}</td>
+                  <td class="text-right" style="vertical-align: middle;">{{ items.product.price * items.qty | currency }}</td>
                 </tr>
               </tbody>
               <tfoot>
-                <tr class="cartOrder-content">
-                  <td class="text-right" colspan="4" style="vertical-align: bottom;">
-                    <p>總計金額：</p>
-                  </td>
-                  <td class="text-right px-0 py-2">
+                <tr>
+                  <td colspan="4" class="text-right">
                     <button class="btn btn-outline-warning mb-1" @click.prevent="updateCartqty()" type="button" name="button" :disabled="isDisabled" :class="{ 'discursor':isDisabled }">
                       更新購物車
                     </button>
+                  </td>
+                </tr>
+                <tr class="cartOrder-content">
+                  <td class="text-right" colspan="3" style="vertical-align: bottom;">
+                    <p>總計金額：</p>
+                  </td>
+                  <td class="text-right px-0 py-2">
                     <span class="ml-4 mr-0">{{ cart.total | currency }}</span>
                   </td>
                 </tr>
