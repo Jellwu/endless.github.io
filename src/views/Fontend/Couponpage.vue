@@ -9,17 +9,7 @@
           v-for="(item,index) in rePuzzles" :key="index"
           :src="item" @click.prevent = moveSquare(index);
           alt="..." style="width:33%">
-          <div class="coverImg" :class="{ 'coverImg-show': active }">
-            <div class="d-flex justify-content-center align-items-center" style="height:100%">
-              <div class="coverText text-center">
-                <router-link class="" to="/productList">
-                  <button class="btn-lg btn-outline-info" type="button" name="button">
-                    來去逛逛 <i class="fas fa-shipping-fast"></i>
-                  </button>
-                </router-link>
-              </div>
-            </div>
-          </div>
+          <div class="coverImg" :class="{ 'coverImg-show': active }"></div>
         </div>
         <div class="col-md-11 bg-opacity  d-flex flex-column align-items-center mb-4 py-2">
           <h2 class="my-3 text-white">輸入你看到的數字吧！</h2>

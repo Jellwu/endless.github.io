@@ -128,7 +128,7 @@
       border-radius: 10px;
     }
   }
-  
+
   .col-md-3 {
     .h4 {
       font-size: 122%;
@@ -351,38 +351,6 @@ hr {
 }
 
 // RWD
-// 1024px 以下自適應
-// @media (max-width: 1024px) {
-//   #feature {
-//     .bg-feature {
-//       .text-title {
-//         font-size: 32px;
-//         &::before {
-//           width:100%;
-//         }
-//       }
-//     .text-content, .text-content-r {
-//       font-size: 12.5px;
-//         &::before {
-//           height:40%;
-//           width:100%;
-//           bottom:-12%;
-//         }
-//       }
-//     .text-content-r::before {
-//       left:30%;
-//     }
-//     }
-//     .git-speaker {
-//       height:300px;
-//     }
-//   }
-//   footer {
-//     .text-word {
-//       font-size: 20px;
-//     }
-//   }
-// }
 // 768px 以下自適應
 @media (max-width: 767px) {
   #active {
@@ -403,7 +371,7 @@ hr {
   }
 
   #collection {
-    .col-md-4 {
+    .col-md-3 {
       margin-top:50px;
     }
   }
