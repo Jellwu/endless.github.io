@@ -38,7 +38,7 @@
         </div>
         <div class="row d-flex justify-content-center">
           <div class="col-md-12 mt-5">
-            <table class="table table-borderless table-striped text-endless rwd-table">
+            <table class="table-borderless table-striped text-endless" :class="{'table':screenWidth > 380, 'table-sm':screenWidth <= 375}">
               <thead class="text-endless h5">
                 <th colspan="4" class="h2 bg-warning text-dark text-center py-3">
                   購物車清單
@@ -94,7 +94,8 @@
                           <i class="fas fa-minus"></i>
                         </button>
                       </div>
-                      <input class="text-center text-dark" type="number" min="0" max="100" v-model="items.qty" @change.prevent="changNum()">
+                      <input class="text-center text-dark" type="number" min="0" max="100"
+                      maxlength="2" v-model="items.qty" @change.prevent="changNum()">
                       <div class="input-group-append">
                         <button class="btn btn-outline-warning moblieHide" type="button" id="button-addon2" @click.prevent="changNum(items.product_id, 1)">
                           <i class="fas fa-plus"></i>
@@ -199,7 +200,8 @@ export default {
       tempdropCart: {
         product: {}
       },
-      alertShow: false
+      alertShow: false,
+      screenWidth: 0
     }
   },
   computed: {
@@ -243,7 +245,10 @@ export default {
       if (qty !== 0) {
         vm.cart.carts.forEach((item, i) => {
           if (item.product_id === id) {
-            item.qty = item.qty + qty
+            item.qty = parseInt(item.qty) + qty
+            if (item.qty >= 99) {
+              item.qty = 99
+            }
           }
         })
       }
@@ -297,6 +302,9 @@ export default {
         return parseInt(item.qty) === 0
       })
     }
+  },
+  beforeMount () {
+    this.screenWidth = window.screen.width
   },
   created () {
     this.getCart()
