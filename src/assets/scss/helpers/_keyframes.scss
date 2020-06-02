@@ -25,7 +25,7 @@
   }
 
   to {
-    transform: translate3d(200px,0,0);
+    transform: translate3d(100px,0,0);
     opacity: 1;
   }
 }
@@ -35,53 +35,7 @@
   }
 
   to {
-    transform: translate3d(160px,0,0);
-    opacity: 1;
-  }
-}
-
-// 首頁動畫
-@keyframes fadeInRight {
-  from {
-    transform: translate3d(50px,0,0);
-    opacity: 0;
-  }
-
-  to {
-    transform: translate3d(0,0,0);
-    opacity: 1;
-  }
-}
-@-webkit-keyframes fadeInRight {
-  from {
-    transform: translate3d(50px,0,0);
-    opacity: 0;
-  }
-
-  to {
-    transform: translate3d(0,0,0);
-    opacity: 1;
-  }
-}
-@keyframes fadeInLeft {
-  from {
-    transform: translate3d(-50px,0,0);
-    opacity: 0;
-  }
-
-  to {
-    transform: translate3d(0,0,0);
-    opacity: 1;
-  }
-}
-@-webkit-keyframes fadeInLeft {
-  from {
-    transform: translate3d(-50px,0,0);
-    opacity: 0;
-  }
-
-  to {
-    transform: translate3d(0,0,0);
+    transform: translate3d(200px,0,0);
     opacity: 1;
   }
 }
