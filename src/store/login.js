@@ -31,7 +31,7 @@ export default {
       context.commit('LOADING', true)
       this.$http.post(api).then((response) => {
         context.commit('LOADING', false)
-        this.$router.push('/login')
+        router.push('/login')
       })
     }
   },

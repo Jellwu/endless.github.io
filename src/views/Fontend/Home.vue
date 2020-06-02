@@ -72,7 +72,7 @@
 
       <div class="container mt-5">
         <div class="row d-flex justify-content-around mt-5">
-          <div class="col-md-4 d-flex flex-column align-items-center flow-hidden">
+          <div class="col-xl-4 col-md-3 d-flex flex-column align-items-center flow-hidden">
             <div class="h3 text-center text-light mb-5">
               <i class="fas fa-headphones mr-3"></i>
               <span class="text-endless text-endless-spacing">聽嘻哈</span>
@@ -81,7 +81,7 @@
               <div class="bg-hiphop hvr-hang-content"></div>
             </div>
           </div>
-          <div class="col-md-4 d-flex flex-column align-items-center flow-hidden">
+          <div class="col-xl-4 col-md-3 d-flex flex-column align-items-center flow-hidden">
             <div class="h3 text-center text-light mb-5">
               <i class="fas fa-headphones mr-3"></i>
               <span class="text-endless text-endless-spacing">聽搖滾</span>
@@ -90,7 +90,7 @@
               <div class="bg-rock hvr-hang-content"></div>
             </div>
           </div>
-          <div class="col-md-4 d-flex flex-column align-items-center flow-hidden">
+          <div class="col-xl-4 col-md-3 d-flex flex-column align-items-center flow-hidden">
             <div class="h3 text-center text-light mb-5">
               <i class="fas fa-headphones mr-3"></i>
               <span class="text-endless text-endless-spacing">聽浪漫</span>

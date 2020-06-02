@@ -115,7 +115,7 @@
     text-align: center;
     letter-spacing: 1.5px;
     padding: 5px 0px;
-    font-size: 54px;
+    font-size: 280%;
     color:$light;
     &::before{
       position: absolute;
@@ -126,6 +126,12 @@
       height:50%;
       background-color: rgba(#F2AE2E, 0.7);
       border-radius: 10px;
+    }
+  }
+  
+  .col-md-3 {
+    .h4 {
+      font-size: 122%;
     }
   }
 
@@ -346,37 +352,37 @@ hr {
 
 // RWD
 // 1024px 以下自適應
-@media (max-width: 1024px) {
-  #feature {
-    .bg-feature {
-      .text-title {
-        font-size: 32px;
-        &::before {
-          width:100%;
-        }
-      }
-    .text-content, .text-content-r {
-      font-size: 12.5px;
-        &::before {
-          height:40%;
-          width:100%;
-          bottom:-12%;
-        }
-      }
-    .text-content-r::before {
-      left:30%;
-    }
-    }
-    .git-speaker {
-      height:300px;
-    }
-  }
-  footer {
-    .text-word {
-      font-size: 20px;
-    }
-  }
-}
+// @media (max-width: 1024px) {
+//   #feature {
+//     .bg-feature {
+//       .text-title {
+//         font-size: 32px;
+//         &::before {
+//           width:100%;
+//         }
+//       }
+//     .text-content, .text-content-r {
+//       font-size: 12.5px;
+//         &::before {
+//           height:40%;
+//           width:100%;
+//           bottom:-12%;
+//         }
+//       }
+//     .text-content-r::before {
+//       left:30%;
+//     }
+//     }
+//     .git-speaker {
+//       height:300px;
+//     }
+//   }
+//   footer {
+//     .text-word {
+//       font-size: 20px;
+//     }
+//   }
+// }
 // 768px 以下自適應
 @media (max-width: 767px) {
   #active {
@@ -429,6 +435,11 @@ hr {
     .collapse-content {
       .text-icon {
         font-size: 32px;
+      }
+    }
+    .col-md-8 {
+      .h2 {
+        font-size: 1.8rem;
       }
     }
   }
