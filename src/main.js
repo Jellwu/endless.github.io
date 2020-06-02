@@ -25,6 +25,9 @@ import tw from 'vee-validate/dist/locale/zh_TW.json'
 
 import VueSlideUpDown from 'vue-slide-up-down'
 
+// axios帶cookie
+axios.defaults.withCredentials = true
+
 Vue.config.productionTip = false
 Vue.use(VueAxios, axios)
 Vue.component('Loading', Loading)

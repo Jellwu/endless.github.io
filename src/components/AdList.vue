@@ -16,6 +16,7 @@
         </div>
       </span>
     </h2>
+
     <div id="carouselList" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner my-5">
         <div class="carousel-item" v-for="(num,index) in listNum"
@@ -32,22 +33,22 @@
                   查看更多
                 </h6>
               </div>
+            </div>
           </div>
         </div>
+        <a class="carousel-control-prev" href="#carouselList" v-show="false"
+        role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselList" v-if="carouselList.length > 4"
+        role="button" data-slide="next" style="width:4%;background-color:rgba(0,0,0,1)">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
       </div>
-      <a class="carousel-control-prev" href="#carouselList" v-show="false"
-      role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#carouselList" v-if="carouselList.length > 4"
-      role="button" data-slide="next" style="width:4%;background-color:rgba(0,0,0,1)">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
     </div>
   </div>
-</div>
 </template>
 
 <script>
@@ -80,6 +81,15 @@ export default {
     getproduct (id) {
       const vm = this
       vm.$store.dispatch('productsModules/getproductId', id)
+    }
+  },
+  // 當解析度小於768時，卡片以一筆資料呈現
+  beforeMount () {
+    const vm = this
+    if (window.screen.width < 768) {
+      vm.pageofList = 1
+    } else if (window.screen.width === 768) {
+      vm.pageofList = 2
     }
   }
 }

@@ -1,12 +1,12 @@
 <template>
-  <div class="container">
+  <div id="productDetail" class="container">
     <cartMessage></cartMessage>
-    <div class="box"></div>
+    <div class="spacing"></div>
     <div class="row">
-      <div class="col-md-6 d-flex justify-content-center">
+      <div class="col-lg-6 d-flex justify-content-center">
         <img class="img-fluid rounded" :src="productDetail.imageUrl" alt="">
       </div>
-      <div class="col-md-6 d-flex flex-column justify-content-around">
+      <div class="col-lg-6 d-flex flex-column justify-content-around">
         <div class="text-endless">
           <h2 class="my-3">
             <span><i class="fas fa-crown text-warning"></i></span>
@@ -116,36 +116,3 @@ export default {
   }
 }
 </script>
-<style scpoed>
-.box {
-  height: 200px;
-  width: 100%;
-}
-
-.card-title {
-  background-color: rgba(0, 0, 0, 0);
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  max-width: 200px;
-}
-
-.card-title:hover {
-  background-color: rgba(0, 0, 0, 0.6);
-  border-radius: 10px;
-}
-
-.custom-select {
-  width: 260px;
-  margin-left: 20px
-}
-
-.bg-box-endless {
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.1);
-}
-
-.box-advice .card {
-  max-height: 300px;
-}
-</style>

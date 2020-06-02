@@ -8,12 +8,12 @@
     </div>
     <div class="container my-5">
       <div class="row d-flex d-flex justify-content-between align-items-center mt-5">
-        <div class="col-8">
+        <div class="col-md-8">
           <h2 class="text-white carts-check-title ml-2">
             Step 3. 輸入付款資訊
           </h2>
         </div>
-        <div class="col-4">
+        <div class="col-md-4">
           <div class="pay-process">
             <ul class="d-flex justify-content-between">
               <li class="pay-process-1 complited-1"></li>

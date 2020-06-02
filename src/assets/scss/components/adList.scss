@@ -69,3 +69,15 @@
     visibility: visible;
   }
 }
+
+// RWD
+@media ( max-width:768px ) {
+  .bg-adList {
+    h2 {
+      font-size: 1.3rem;
+    }
+    .carousel-inner {
+      padding: 0rem 1.5rem;
+    }
+  }
+}

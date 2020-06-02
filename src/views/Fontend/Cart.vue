@@ -38,16 +38,16 @@
         </div>
         <div class="row d-flex justify-content-center">
           <div class="col-md-12 mt-5">
-            <table class="table table-borderless table-striped text-endless">
+            <table class="table table-borderless table-striped text-endless rwd-table">
               <thead class="text-endless h5">
                 <th colspan="4" class="h2 bg-warning text-dark text-center py-3">
                   購物車清單
                 </th>
                 <tr>
                   <td class="text-center">功能</td>
-                  <td >產品</td>
-                  <td>購買數量</td>
-                  <td class="text-right">產品單價</td>
+                  <td>產品</td>
+                  <td>數量</td>
+                  <td class="text-right">單價</td>
                 </tr>
               </thead>
               <tbody class="cartOrder-content">
@@ -74,10 +74,10 @@
                         <p class="text-dark h6 mb-1">刪除品項?</p>
                         <div>
                           <div id="button-addon3">
-                            <button class="btn btn-sm btn-outline-dark mr-2" type="button" @click.prevent="removeCart(dropItem.id)">
+                            <button class="btn btn-sm btn-outline-dark mr-2 h6" type="button" @click.prevent="removeCart(dropItem.id)">
                               是
                             </button>
-                            <button class="btn btn-sm btn-outline-dark" type="button" @click.prevent="items.qty = 1">
+                            <button class="btn btn-sm btn-outline-dark h6" type="button" @click.prevent="items.qty = 1">
                               否
                             </button>
                           </div>
@@ -89,13 +89,13 @@
                     </p>
                     <div class="input-group input-group-sm pl-2" v-else-if="items.final_total === items.total">
                       <div class="input-group-prepend">
-                        <button class="btn btn-outline-warning" type="button" id="button-addon1" @click.prevent="changNum(items.product_id, -1)">
+                        <button class="btn btn-outline-warning moblieHide" type="button" id="button-addon1" @click.prevent="changNum(items.product_id, -1)">
                           <i class="fas fa-minus"></i>
                         </button>
                       </div>
                       <input class="text-center text-dark" type="number" min="0" max="100" v-model="items.qty" @change.prevent="changNum()">
                       <div class="input-group-append">
-                        <button class="btn btn-outline-warning" type="button" id="button-addon2" @click.prevent="changNum(items.product_id, 1)">
+                        <button class="btn btn-outline-warning moblieHide" type="button" id="button-addon2" @click.prevent="changNum(items.product_id, 1)">
                           <i class="fas fa-plus"></i>
                         </button>
                       </div>

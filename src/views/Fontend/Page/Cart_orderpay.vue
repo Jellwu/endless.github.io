@@ -8,12 +8,12 @@
     </div>
     <div class="container my-5">
       <div class="row d-flex d-flex justify-content-between align-items-center mt-5">
-        <div class="col-8">
+        <div class="col-md-8">
           <h2 class="text-white carts-check-title ml-2">
             Final Step. 訂單查詢
           </h2>
         </div>
-        <div class="col-4">
+        <div class="col-md-4">
           <div class="pay-process">
             <ul class="d-flex justify-content-between">
               <li class="pay-process-1 complited-1"></li>
@@ -109,8 +109,14 @@
         <div class="col-md-7 md-spacing">
           <div class="sticky-top">
             <div class="col">
-              <div class="bg-orderpay d-flex justify-content-center align-items-center"></div>
-              <div class="d-flex justify-content-center align-items-center" :class="{ 'bg-nopay': !Order.is_paid }"></div>
+              <div class="bg-orderpay d-flex justify-content-center align-items-center"
+              v-if = "Order.is_paid">
+                訂單付款完成
+              </div>
+              <div class="d-flex justify-content-center align-items-center"
+              v-if ="!Order.is_paid">
+                訂單尚未付款完成
+              </div>
             </div>
             <div class="col mt-3">
               <button type="button" name="button" class="goProducts btn-block btn-warning">

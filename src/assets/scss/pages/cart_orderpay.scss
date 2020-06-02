@@ -24,19 +24,6 @@
     background-color: rgba(#A6710F,0.5);
     transition: all 0.3s ease;
   }
-
-  &::before {
-    content: '訂單已完成';
-    position: absolute;
-    right: 32.5%;
-    top: 45%;
-    z-index: 30;
-    transition: all 0.3s ease;
-  }
-}
-
-.bg-nopay::before {
-  content: '訂單尚未完成';
 }
 
 .bg-nopay .textArea-order,

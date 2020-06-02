@@ -23,13 +23,6 @@ export default {
         context.commit('LOADING', false)
         if (response.data.success) {
           router.push('/admin/productscheck')
-        } else {
-          context.dispatch('cartMessage',
-            {
-              state: true,
-              msg: response.data.message
-            },
-            { root: true })
         }
       })
     },

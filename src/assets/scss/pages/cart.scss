@@ -108,17 +108,17 @@
 
 .cancelBox {
   position: absolute;
-  width:100%;
-  height:100%;
+  width: 100%;
+  height: 100%;
   background-color: rgba($warning,1);
-  top:0%;
-  right:-200px;
-  z-index:10;
+  top: 0;
+  right: -200px;
+  z-index: 10;
   transition: all 0.3s ease;
 }
 
 .fadeInRight-cart {
-  right:0px;
+  right: 0;
   animation-duration: 0.3s;
   animation-fill-mode: both;
   -webkit-animation-duration: 0.3s;
@@ -138,47 +138,103 @@
 }
 
 // RWD
-@media (max-width: 1024px) {
+@media (max-width: 1100px) {
   .about .no-carts {
-    height:850px;
+    height: 850px;
   }
+
   .pay-process .complited-1::after {
     font-size: 14px;
   }
-  .pay-process-1::after, .pay-process-2::after {
-    width:100px;
+
+  .pay-process-1::after,
+  .pay-process-2::after {
+    width: 390%;
   }
+
   .pay-process .complited-1::after {
-    content: '優惠券'
+    content: '優惠券';
   }
 }
-@media (max-width: 768px) {
-  .pay-process-1::after, .pay-process-2::after {
-    width:130px
+@media (max-width: 1023px) {
+  .about .no-carts {
+    height: 850px;
   }
+
   .pay-process .complited-1::after {
-    content: '別忘了優惠券'
+    font-size: 14px;
   }
+
+  .pay-process-1::after,
+  .pay-process-2::after {
+    width: 220%;
+  }
+
+  .pay-process .complited-1::after {
+    content: '優惠券';
+  }
+}
+@media (max-width: 767px) {
+  .pay-process-1::after,
+  .pay-process-2::after {
+    width: 520%;
+  }
+
+  .pay-process .complited-1::after {
+    content: '別忘了優惠券';
+  }
+
   .col-md-4 {
     margin-top: 20px;
   }
+
   .cartOrder-content {
     font-size: 14px;
   }
+
   .bg-cart-box .col-md-5 {
     display: flex;
     align-items: flex-end;
   }
-  .no-carts p{
+
+  .no-carts p {
     font-size: 32px;
   }
-  .input-group-sm{
-    width:114px !important;
+
+  .input-group-sm {
+    width: 110px !important;
   }
-  .text-md-sm{
-    font-size:12px;
+
+  .text-md-sm {
+    font-size: 12px;
   }
-  .md-spacing{
-    margin:50px 0px;
+
+  .md-spacing {
+    margin: 50px 0;
+  }
+}
+@media (max-width: 375px) {
+  .pay-process-1::after,
+  .pay-process-2::after {
+    width: 473%;
+  }
+}
+@media (max-width: 320px) {
+  .pay-process-1::after,
+  .pay-process-2::after {
+    width: 352%;
+  }
+
+  .input-group-sm {
+    width: 60px !important;
+  }
+
+  .moblieHide {
+    display: none;
+  }
+
+  .cancelBox .h6 {
+    padding: 0 3px;
+    font-size: 0.8rem;
   }
 }

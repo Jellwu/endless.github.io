@@ -1,0 +1,28 @@
+#productDetail {
+  .card-title {
+    background-color: rgba(0, 0, 0, 0);
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    max-width: 200px;
+  }
+
+  .card-title:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+  }
+
+  .custom-select {
+    width: 260px;
+    margin-left: 20px
+  }
+
+  .bg-box-endless {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .box-advice .card {
+    max-height: 300px;
+  }
+}

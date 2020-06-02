@@ -7,12 +7,12 @@
     </div>
     <div class="container my-5">
       <div class="row d-flex d-flex justify-content-between align-items-center">
-        <div class="col-8">
+        <div class="col-md-8">
           <h2 class="text-white">
             Step 2. 填寫寄貨資料
           </h2>
         </div>
-        <div class="col-4">
+        <div class="col-md-4">
           <div class="pay-process">
             <ul class="d-flex justify-content-between">
               <li class="pay-process-1 complited-1"></li>
@@ -192,5 +192,12 @@ export default {
 
 .badge-pill {
   cursor: none;
+}
+
+/* RWD */
+@media (max-width: 768px) {
+  .col-md-8 h2 {
+    font-size: 1.8rem;
+  }
 }
 </style>
