@@ -4,28 +4,27 @@
     <div class="container d-flex flex-column align-items-center text-white">
       <h2 class="my-3 text-white">試著完成酷碰圖片吧！</h2>
       <p class="text-warning mb-2">遊戲規則：點選圖片時會向空白處移動，試著拼出完整的圖片吧！</p>
-        <div class="LottoArea my-5">
-          <img class="img-fluid LottoPuzzle" :class="{ 'LottoPuzzle-hide':active }"
-          v-for="(item,index) in rePuzzles" :key="index"
-          :src="item" @click.prevent = moveSquare(index);
-          alt="..." style="width:33%">
-          <div class="coverImg" :class="{ 'coverImg-show': active }"></div>
-        </div>
-        <div class="col-md-11 bg-opacity  d-flex flex-column align-items-center mb-4 py-2">
-          <h2 class="my-3 text-white">輸入你看到的數字吧！</h2>
-          <p class="text-warning mb-3">提示：觀察蛛絲馬跡！不用完整拼出來也可以猜到拉！</p>
-          <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="驗證Coupon Code" v-model="couponCode">
-            <div class="input-group-append" v-if="active === false">
-              <button class="btn btn-outline-warning" @click.prevent = ansCheck()
-              type="button" id="button-addon2">
-                送出
-              </button>
-            </div>
+      <div class="LottoArea my-5">
+        <img class="img-fluid LottoPuzzle" :class="{ 'LottoPuzzle-hide':active }"
+        v-for="(item,index) in rePuzzles" :key="index"
+        :src="item" @click.prevent = moveSquare(index);
+        alt="..." style="width:33%">
+        <div class="coverImg" :class="{ 'coverImg-show': active }"></div>
+      </div>
+      <div class="col-md-11 bg-opacity  d-flex flex-column align-items-center mb-4 py-2">
+        <h2 class="my-3 text-white">輸入你看到的數字吧！</h2>
+        <p class="text-warning mb-3">提示：觀察蛛絲馬跡！不用完整拼出來也可以猜到拉！</p>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="驗證Coupon Code" v-model="couponCode">
+          <div class="input-group-append" v-if="active === false">
+            <button class="btn btn-outline-warning" @click.prevent = ansCheck()
+            type="button" id="button-addon2">
+              送出
+            </button>
           </div>
-          <span v-if="ansMsg !== ''" class="text-white">{{ ansMsg }}</span>
         </div>
-
+        <span v-if="ansMsg !== ''" class="text-white">{{ ansMsg }}</span>
+      </div>
     </div>
   </div>
 </template>
