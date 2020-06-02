@@ -69,7 +69,8 @@
                     </div>
                   </td>
                   <td class="text-center cancelAlter p-0" style="vertical-align: middle;">
-                    <div v-for="(dropItem) in tempdropCart" :key='dropItem.id' class="cancelBox" :class="{'fadeInRight-cart':dropItem.id === items.id, 'fadeOutRight-cart':dropItem.qty > 0 }">
+                    <div v-for="(dropItem) in tempdropCart" :key='dropItem.id' class="cancelBox"
+                    :class="{'fadeInRight-cart':dropItem.id === items.id, 'fadeOutRight-cart':dropItem.qty > 0 }">
                       <div class="text-white d-flex flex-column align-items-center justify-content-center" style="height:100%">
                         <p class="text-dark h6 mb-1">刪除品項?</p>
                         <div>
