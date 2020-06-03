@@ -22,11 +22,7 @@ export default new Vuex.Store({
   mutations: {
     LOADING (state, payload) {
       // 若以CartMsg表示的就不再重新跑一次Laoder
-      if (state.isCartmessage.state === true) {
-        state.isLoading = false
-      } else {
-        state.isLoading = payload
-      }
+      state.isLoading = payload
     },
     CARTMESSAGE (state, payload) {
       state.isCartmessage = payload

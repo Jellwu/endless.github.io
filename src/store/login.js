@@ -18,9 +18,9 @@ export default {
     },
     singin (context, user) {
       const api = `${process.env.VUE_APP_APIPATH}/admin/signin`
-      context.commit('LOADING', true)
+      context.dispatch('updateLoading', true, { root: true })
       axios.post(api, user).then(response => {
-        context.commit('LOADING', false)
+        context.dispatch('updateLoading', false, { root: true })
         if (response.data.success) {
           router.push('/admin/productscheck')
         }
@@ -28,9 +28,9 @@ export default {
     },
     logout (context) {
       const api = `${process.env.VUE_APP_APIPATH}/logout`
-      context.commit('LOADING', true)
-      this.$http.post(api).then((response) => {
-        context.commit('LOADING', false)
+      context.dispatch('updateLoading', true, { root: true })
+      axios.post(api).then((response) => {
+        context.dispatch('updateLoading', false, { root: true })
         router.push('/login')
       })
     }

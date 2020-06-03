@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Loading loader="bars" color="#C4A670" :active.sync="isLoading"></Loading>
-    <a href="#" class="scrollTop smooth-scroll btn btn-outline-light btn-lg">
+    <a href="#" class="scrollTop btn btn-outline-light btn-lg">
       <i class="fas fa-chevron-up"></i>
     </a>
     <cartMessage></cartMessage>

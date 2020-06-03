@@ -77,7 +77,11 @@ export default {
     },
     // 修改分類
     changeCategory (context, Category) {
-      context.commit('CATEGORYSELECTED', Category)
+      context.dispatch('updateLoading', true, { root: true })
+      if (Category) {
+        context.dispatch('updateLoading', false, { root: true })
+        context.commit('CATEGORYSELECTED', Category)
+      }
     },
     // 抓單一產品內容
     getproductDetail (context, id) {

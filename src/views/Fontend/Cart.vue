@@ -38,7 +38,8 @@
         </div>
         <div class="row d-flex justify-content-center">
           <div class="col-md-12 mt-5">
-            <table class="table-borderless table-striped text-endless" :class="{'table':screenWidth > 380, 'table-sm':screenWidth <= 375}">
+            <table class="table-borderless table-striped text-endless"
+            :class="{'table':screenWidth > 380, 'table-sm':screenWidth <= 375}">
               <thead class="text-endless h5">
                 <th colspan="4" class="h2 bg-warning text-dark text-center py-3">
                   購物車清單
@@ -58,8 +59,8 @@
                     </button>
                   </td>
                   <td class="row d-flex align-items-center" style="vertical-align: middle;">
-                    <img class="img-fluid col-md-4 moblieHide" :src="items.product.imageUrl" style="width:25px;">
-                    <div class="col-md-8">
+                    <img class="img-fluid col-3 moblieHide" :src="items.product.imageUrl" style="width:15px;">
+                    <div class="col-9">
                       <a href="#" @click.prevent='getproductId(items.product.id)'>
                         {{ items.product.title }}
                       </a>
@@ -94,8 +95,7 @@
                           <i class="fas fa-minus"></i>
                         </button>
                       </div>
-                      <input class="text-center text-dark" type="number" min="0" max="100"
-                      maxlength="2" v-model="items.qty" @change.prevent="changNum()">
+                      <input class="text-center text-dark border-warning" type="number" min="0" max="100" v-model="items.qty" @change.prevent="changNum(items.product_id, items.qty)">
                       <div class="input-group-append">
                         <button class="btn btn-outline-warning moblieHide" type="button" id="button-addon2" @click.prevent="changNum(items.product_id, 1)">
                           <i class="fas fa-plus"></i>
@@ -242,12 +242,25 @@ export default {
     // 用來判斷數值有沒有更改，若有不能進行下一步
     changNum (id, qty) {
       const vm = this
-      if (qty !== 0) {
+      if (Math.abs(parseInt(qty)) === 1) {
         vm.cart.carts.forEach((item, i) => {
           if (item.product_id === id) {
-            item.qty = parseInt(item.qty) + qty
+            item.qty = parseInt(item.qty) + parseInt(qty)
             if (item.qty >= 99) {
               item.qty = 99
+            } else if (item.qty <= 0) {
+              item.qty = 0
+            }
+          }
+        })
+      } else {
+        vm.cart.carts.forEach((item, i) => {
+          if (item.product_id === id) {
+            item.qty = parseInt(qty)
+            if (item.qty >= 99) {
+              item.qty = 99
+            } else if (item.qty <= 0) {
+              item.qty = 0
             }
           }
         })

@@ -36,7 +36,9 @@ export default {
     },
     removeCart (context, id) {
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${id}`
+      context.dispatch('updateLoading', true, { root: true })
       axios.delete(url).then((response) => {
+        context.dispatch('updateLoading', true, { root: false })
         context.dispatch('cartMessage',
           {
             state: true,
@@ -57,7 +59,9 @@ export default {
       const delUrl = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${changeId}`
       const addUrl = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
       function addApi (item) {
+        context.dispatch('updateLoading', true, { root: true })
         axios.post(addUrl, { data: item }).then((response) => {
+          context.dispatch('updateLoading', false, { root: true })
           context.dispatch('cartMessage',
             {
               state: true,
