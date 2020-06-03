@@ -67,7 +67,6 @@ router.beforeEach((to, from, next) => {
       if (response.data.success) {
         next()
       } else {
-        alert(response.data.message)
         next({
           path: './login'
         })

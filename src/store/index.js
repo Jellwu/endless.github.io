@@ -17,11 +17,11 @@ export default new Vuex.Store({
     isCartmessage: {
       state: false,
       msg: ''
-    }
+    },
+    resignShow: false
   },
   mutations: {
     LOADING (state, payload) {
-      // 若以CartMsg表示的就不再重新跑一次Laoder
       state.isLoading = payload
     },
     CARTMESSAGE (state, payload) {
