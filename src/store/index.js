@@ -17,8 +17,7 @@ export default new Vuex.Store({
     isCartmessage: {
       state: false,
       msg: ''
-    },
-    resignShow: false
+    }
   },
   mutations: {
     LOADING (state, payload) {

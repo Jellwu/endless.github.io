@@ -23,6 +23,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.cart-Message-bg{
+  position: absolute;
+  z-index: 9999;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(#333333, 0.4)
+}
 .cart-Message{
   padding:20px;
   background-color: rgba(242, 183, 5, 0.5);

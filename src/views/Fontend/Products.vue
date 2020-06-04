@@ -15,16 +15,19 @@
               <span class="pl-2">TAGS</span>
             </div>
             <div class="ml-3 p-3">
-              <div class="badge badge-pill badge-warning mr-2 mb-2 py-md-2" v-for="items in categories" :key="items" :class="{ tagActive : category === items }">
+              <div class="badge badge-pill badge-warning mr-2 mb-2 py-md-2" v-for="items in categories" :key="items"
+              :class="{ tagActive : category === items }" @click.prevent="changeCategory(items)">
                 <i class="fas fa-tag mx-1 fa" style="font-size:13px"></i>
-                <span class="cursor px-1 h6" @click.prevent="changeCategory(items)">
+                <span class="cursor px-1 h6">
                   {{ items }}
                 </span>
               </div>
               <div class="mr-2">
-                <div class="badge badge-pill badge-warning my-1 py-md-2" :class="{ tagActive : category == '' }">
+                <div class="badge badge-pill badge-warning my-1 py-md-2"
+                :class="{ tagActive : (category === 'all' || category === '') }"
+                @click.prevent="changeCategory('all')">
                   <i class="fas fa-tag mx-1 fa" style="font-size:13px"></i>
-                  <span class="cursor px-1 h6" @click.prevent="changeCategory('')">
+                  <span class="cursor px-1 h6">
                     All Products
                   </span>
                 </div>
@@ -120,7 +123,8 @@
                   <div class="footer-btn p-2 border-right" @click="addFavorite(item.id,item.title)">
                     <i class="fas fa-heart"></i> 加入最愛
                   </div>
-                  <div class="footer-btn p-2" @click.prevent="addtoCart(item.id,1)" style="width:50%;">
+                  <div class="footer-btn p-2" @click.prevent="addtoCart(item.id,1)"
+                  :disabled="isDisabled" style="width:50%;">
                     <i class="fas fa-shipping-fast"></i> 加入購物車
                   </div>
                 </div>
@@ -159,7 +163,8 @@ export default {
       itemPage: 0,
       pageNum: 8,
       isActiveid: '',
-      active: false
+      active: false,
+      isDisabled: true
     }
   },
   computed: {
@@ -169,12 +174,14 @@ export default {
       // 重新抓一次產品資料做過濾
       let products = vm.products
       // 針對全產品第一次過濾
-      if (vm.category) {
+      if (vm.category && vm.category !== 'all') {
         vm.itemPage = 0
         products = products.filter((item) => {
           const data = item.category.toLowerCase().includes(vm.category.toLowerCase())
           return data
         })
+      } else {
+        products = vm.products
       }
       // 分頁過濾(6筆/1頁)
       products.forEach((item, i) => {
@@ -201,7 +208,6 @@ export default {
     },
     ...mapGetters('productsModules', ['products', 'categories', 'category']),
     ...mapGetters('cartModules', ['cart'])
-
   },
   methods: {
     // 抓全產品資料
@@ -217,6 +223,7 @@ export default {
     addtoCart (id, qty = 1) {
       const vm = this
       const duplicatdItem = vm.cart.carts.filter(items => items.product_id === id)
+      vm.isDisabled = false
       if (duplicatdItem.length > 0) {
         const sameItem = duplicatdItem[0]
         const originCartId = sameItem.id
@@ -233,6 +240,7 @@ export default {
           qty
         })
       }
+      vm.isDisabled = true
     },
     removeCart (id) {
       this.$store.dispatch('cartModules/removeCart', id)
