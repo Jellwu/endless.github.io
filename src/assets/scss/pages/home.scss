@@ -78,6 +78,22 @@
     width: 100%;
     z-index: 10;
   }
+
+  .bg-hiphop, .bg-rock, .bg-popular {
+    .go-icon {
+      position: absolute;
+      width:100%;
+      font-size: 22px;
+      color: $light;
+      font-weight: bold;
+      bottom: 0px;
+      right: 0px;
+      z-index: 15;
+      text-align:center;
+      background-color: rgba(#333333,0.8);
+      padding:5px 0px;
+    }
+  }
 }
 
 #feature {
@@ -95,7 +111,10 @@
 
   .bg-feature{
     position: relative;
-    background-color: #333333;
+    background: url('https://i.imgur.com/HM1PDqh.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     border-radius: 5px;
   }
 
@@ -117,16 +136,6 @@
     padding: 5px 0px;
     font-size: 280%;
     color:$light;
-    &::before{
-      position: absolute;
-      content: '';
-      left:27%;
-      bottom:0px;
-      width:100%;
-      height:50%;
-      background-color: rgba(#F2AE2E, 0.7);
-      border-radius: 10px;
-    }
   }
 
   .col-md-3 {
@@ -136,36 +145,14 @@
   }
 
   .text-content {
-    position: relative;
-    &::before {
-      position: absolute;
-      content: '';
-      left:-5.9%;
-      bottom:-30%;
-      width:100%;
-      height:55%;
-      background-color: rgba(#F2AE2E, 0.5);
-      border-radius: 0px 10px 10px 0px;
-    }
-  }
-
-  .text-content-r {
-    position: relative;
-    &::before{
-      position: absolute;
-      content: '';
-      right:-15%;
-      bottom:-30%;
-      width:75%;
-      height:55%;
-      background-color: rgba(#F2AE2E, 0.5);
-      border-radius: 10px 0px 0px 10px;
-    }
+    width:100%;
   }
 
   .collapse-content {
     top:15px;
-    background-color: rgba(196, 166, 112, 0);
+    background-color: rgba(#333333, 1);
+    border-radius: 10px;
+
     .input-group {
       width:75%;
     }
@@ -212,11 +199,11 @@
   height: 450px;
 
   &-yellow {
-    background-color: rgba(242, 174, 46 ,0.7);
+    background-color: rgba(242, 174, 46 ,0.85);
   }
 
   &-black {
-    background-color: rgba(#333333, 0.7);
+    background-color: rgba(#242424, 0.85);
   }
 }
 
@@ -265,8 +252,9 @@ hr {
   background-image: url('https://cdn3.iconfinder.com/data/icons/arrow-filled-line/24/fast_double_circle_Arrow_down_download_chevron-512.png');
   background-position: center;
   background-size: cover;
-  opacity: 0;
+  opacity: 1;
   transform: rotateX(0deg);
+  z-index: 50;
   /* W3C */
   -webkit-transition-duration: 0.3s;
   transition-duration: 0.3s;
@@ -299,9 +287,9 @@ hr {
   transition-property: box-shadow, transform;
 }
 .hvr-grow-shadow:hover, .hvr-grow-shadow:focus, .hvr-grow-shadow:active {
-  box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5);
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
+  z-index:10;
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 // animation
@@ -378,15 +366,9 @@ hr {
   }
 
   #feature {
-    .text-title::before {
-      width:77%;
-      border-radius: 10px 0px 0px 10px;
+    .bg-feature {
+      background-position: left;
     }
-    .text-content-r::before{
-      width:70%;
-      right:-4%;
-    }
-
     .col-md-4, .col-md-8 {
       padding:30px 10px;
     }
@@ -395,6 +377,11 @@ hr {
         font-size: 40px;
       }
     }
+  }
+  // 不套用grow
+  .hvr-grow-shadow:hover, .hvr-grow-shadow:focus, .hvr-grow-shadow:active {
+    -webkit-transform: scale(1);
+    transform: scale(1);
   }
 }
 

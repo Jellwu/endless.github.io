@@ -21,9 +21,9 @@
         </router-link>
 
         <ul class="order-md-3 d-flex mr-md-6">
-          <li class="nav-item mx-2">
+          <li class="nav-item mx-md-2">
             <div class="btn-group dropleft">
-              <button type="button" class="btn m-0 p-0 moblieHide" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <button type="button" class="btn m-0 p-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-heart position-relative" aria-haspopup="true" aria-expanded="false">
                   <span class="badge badge-pill badge-danger nav-length" v-if="favorite.length !== 0">
                     {{ favorite.length }}
@@ -70,17 +70,17 @@
 
         <div class="collapse navbar-collapse order-md-1" id="navbarNav">
           <ul class="navbar-nav">
-            <li class="nav-item">
+            <li class="nav-item" @click.prevent="isCollapse()">
               <router-link class="nav-link mx-2" to="/">
                 <span class="underline">關於黑膠</span>
               </router-link>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" @click.prevent="isCollapse()">
               <router-link class="nav-link mx-2" to="/productList">
                 <span class="underline">唱盤列表</span>
               </router-link>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" @click.prevent="isCollapse()">
               <router-link class="nav-link mx-2" to="/couponpage">
                 <span class="underline">我要酷碰</span>
               </router-link>
@@ -180,8 +180,10 @@ export default {
     },
     getproductId (id) {
       this.$store.dispatch('productsModules/getproductId', id)
+    },
+    isCollapse () {
+      $('#navbarNav').collapse('hide')
     }
-
   },
   computed: {
     ...mapGetters(['isLoading']),

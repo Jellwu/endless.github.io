@@ -1,7 +1,7 @@
 <template>
   <div>
     <Carouse></Carouse>
-    <section id = "intro" class="d-flex flex-column justify-content-center">
+    <section id = "intro" class="d-flex flex-column justify-content-around">
       <div class="text-endless text-center">
         <div class="h3">
           <p class="font-weight-bold" style="font-family:cursive;font-size:40px;">
@@ -78,7 +78,11 @@
               <span class="text-endless text-endless-spacing">聽嘻哈</span>
             </div>
             <div class="bg-collection hvr-hang" @click.prevent = "goPage('Hip Hop')">
-              <div class="bg-hiphop hvr-hang-content"></div>
+              <div class="bg-hiphop hvr-hang-content">
+                <div class="go-icon" v-if="screenWidth < 767">
+                  點擊看更多 <i class="fas fa-shipping-fast mr-1"></i>
+                </div>
+              </div>
             </div>
           </div>
           <div class="col-xl-4 col-md-3 d-flex flex-column align-items-center flow-hidden">
@@ -87,7 +91,11 @@
               <span class="text-endless text-endless-spacing">聽搖滾</span>
             </div>
             <div class="bg-collection hvr-hang" @click.prevent = "goPage('Independent')">
-              <div class="bg-rock hvr-hang-content"></div>
+              <div class="bg-rock hvr-hang-content">
+                <div class="go-icon" v-if="screenWidth < 767">
+                  點擊看更多 <i class="fas fa-shipping-fast mr-1"></i>
+                </div>
+              </div>
             </div>
           </div>
           <div class="col-xl-4 col-md-3 d-flex flex-column align-items-center flow-hidden">
@@ -96,7 +104,11 @@
               <span class="text-endless text-endless-spacing">聽浪漫</span>
             </div>
             <div class="bg-collection hvr-hang" @click.prevent = "goPage('Popular')">
-              <div class="bg-popular hvr-hang-content"></div>
+              <div class="bg-popular hvr-hang-content">
+                <div class="go-icon" v-if="screenWidth < 767">
+                  點擊看更多 <i class="fas fa-shipping-fast mr-1"></i>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -113,29 +125,27 @@
     <div class="container">
       <a data-toggle="collapse" href="#multiCollapseFeature" role="button" aria-expanded="false" aria-controls="multiCollapseFeature">
         <div class="row bg-feature d-flex justify-content-around py-3 hvr-float-shadow">
-          <div class="col-md-3">
-            <p class="text-title">
-              <i class="fas fa-compact-disc"></i>
-              黑膠癮
-            </p>
-            <div class="d-flex flex-column justify-content-around" style="height:75%;">
-              <div class="text-endless text-content h4 text-endless-spacing">
+          <div class="col-md-9 order-md-2">
+            <div class="git-speaker"></div>
+          </div>
+          <div class="col-md-3 d-flex align-items-center mt-md-5 order-md-1">
+            <div class="d-flex flex-column justify-content-around justify-contetnt-end" style="height:75%;">
+              <p class="text-title">
+                <i class="fas fa-compact-disc"></i>
+                黑膠癮
+              </p>
+              <div class="text-endless text-content h4 text-endless-spacing pl-4">
                 <p>黑膠獨特的魅力</p>
-                <p style="text-indent: 20px;">不禁讓人想一探究竟</p>
-              </div>
-              <div class="text-endless text-content-r h4 text-endless-spacing">
+                <p style="text-indent: 25px;">不禁讓人想一探究竟</p>
                 <p>數位結合經典</p>
-                <p style="text-indent: 20px;">創造充滿質感的聲音</p>
+                <p style="text-indent: 25px;">創造充滿質感的聲音</p>
               </div>
             </div>
-          </div>
-          <div class="col-md-9">
-            <div class="git-speaker"></div>
           </div>
         </div>
       </a>
       <div class="mt-2">
-          <div class="collapse multi-collapse collapse-content show" id="multiCollapseFeature">
+          <div class="collapse multi-collapse collapse-content bg-collapse py-2 show" id="multiCollapseFeature">
               <div class="row p-md-4 m-md-3 d-flex justify-content-around align-items-center bg-underText-yellow hvr-grow-shadow">
                 <img class="col-md-4 img-fluid" src="https://images.unsplash.com/photo-1584679109597-c656b19974c9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=350&q=80" alt="">
                 <div class="col-md-8 text-endless">
@@ -238,10 +248,14 @@
 
 <script>
 import Carouse from '@/components/Carouse.vue'
-// import $ from 'jquery'
 import { mapGetters } from 'vuex'
 export default {
   name: 'Home',
+  data () {
+    return {
+      screenWidth: 0
+    }
+  },
   computed: {
     ...mapGetters('productsModules', ['products'])
   },
@@ -254,6 +268,9 @@ export default {
   },
   components: {
     Carouse
+  },
+  created () {
+    this.screenWidth = window.screen.width
   }
 }
 </script>

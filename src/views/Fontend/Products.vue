@@ -86,48 +86,50 @@
         <!-- 產品列表 -->
         <div class="col-md-8">
           <div class="row">
-            <div class="col-md-6 mb-4" v-for="(item) in filterData[itemPage]" :key="item.id">
+            <div class="col-md-6 mb-4 hvr-grow-shadow"
+            v-for="(item) in filterData[itemPage]" :key="item.id">
               <div class="card product-card text-center position-relative">
-                <a href="#" @click.prevent="getproductId(item.id)">
-                  <div class="card-img" :style="{backgroundImage: 'url(' + item.imageUrl + ')' }">
-                    <span class="card-link-text">查看更多</span>
-                  </div>
+                <div class="card-img" :style="{backgroundImage: 'url(' + item.imageUrl + ')' }"></div>
 
-                  <div class="card-body">
-                    <div class="row d-flex justify-content-center">
-                      <div class="col-md-12 card-title m-0">
-                        <p>
-                          {{ item.title }}
-                        </p>
-                      </div>
-                    </div>
-
-                    <div class="row mt-1">
-                      <div class="col-md-6 d-flex align-items-center justify-content-center">
-                        <span class="badge badge-warning px-3 py-1">
-                          <i class="fas fa-tag mr-2"></i>{{ item.category }}
-                        </span>
-                      </div>
-                      <div class="col-md-6">
-                        <p class="text-center">
-                          <del class="text-danger" style="font-weight:bold">
-                            {{ item.origin_price | currency }}
-                          </del>
-                        </p>
-                        <p class="card-text text-center">{{ item.price | currency }}</p>
-                      </div>
+                <div class="card-body">
+                  <div class="row d-flex justify-content-center">
+                    <div class="col-md-12">
+                      <p class="card-title">{{ item.title }}</p>
                     </div>
                   </div>
-                </a>
-                <div class="card-footer-text d-flex justify-content-between">
-                  <div class="footer-btn p-2 border-right" @click="addFavorite(item.id,item.title)">
-                    <i class="fas fa-heart"></i> 加入最愛
+
+                  <div class="row mt-1">
+                    <div class="col-md-6 d-flex align-items-center justify-content-center">
+                      <span class="badge badge-warning px-3 py-1">
+                        <i class="fas fa-tag mr-2"></i>{{ item.category }}
+                      </span>
+                    </div>
+                    <div class="col-md-6">
+                      <p class="text-center">
+                        <del class="text-danger" style="font-weight:bold">
+                          {{ item.origin_price | currency }}
+                        </del>
+                      </p>
+                      <p class="card-text text-center">{{ item.price | currency }}</p>
+                    </div>
                   </div>
-                  <div class="footer-btn p-2" @click.prevent="addtoCart(item.id,1)"
-                  :disabled="isDisabled" style="width:50%;">
-                    <i class="fas fa-shipping-fast"></i> 加入購物車
+
+                  <div class="row no-gutters mb-3">
+                    <div class="col-6 footer-btn border-right border-light card-footer-text rounded-left"
+                      @click="addFavorite(item.id,item.title)">
+                      <i class="fas fa-heart"></i> 加入最愛
+                    </div>
+                    <div class="col-6 footer-btn card-footer-text rounded-right"
+                      @click.prevent="addtoCart(item.id,1)" :disabled="isDisabled" style="width:50%;">
+                      <i class="fas fa-shipping-fast"></i> 加入購物車
+                    </div>
                   </div>
                 </div>
+
+                  <div class="card-footer py-3" @click="getproductId(item.id)">
+                    <p class="h5">查看產品</p>
+                  </div>
+
               </div>
             </div>
           </div>
@@ -194,8 +196,8 @@ export default {
       })
       return newData
     },
-    sortedArray: function () {
-      function compare (a, b) {
+    sortedArray () {
+      const compare = (a, b) => {
         if (a.product.title < b.product.title) {
           return -1
         }

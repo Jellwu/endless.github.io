@@ -1,7 +1,3 @@
-.bg-orders {
-  background-color: rgba(255,255,255,0.1);
-}
-
 .pay-process {
   color: #ffc107;
 }
@@ -29,11 +25,9 @@
 
 .pay-process .complited-1 {
   position: relative;
-
   &::after {
     content: '別忘了優惠券';
   }
-
   &::before {
     content: '';
     position: absolute;
@@ -49,11 +43,9 @@
 
 .pay-process .complited-2 {
   position: relative;
-
   &::after {
     content: '即將完成訂單';
   }
-
   &::before {
     content: '';
     position: absolute;
@@ -69,7 +61,6 @@
 
 .pay-process .complited-3 {
   position: relative;
-
   &::before {
     content: '';
     position: absolute;
@@ -92,6 +83,10 @@
     margin-right: 10px;
   }
 }
+.overview-text {
+  width: 100%;
+  text-align: right;
+}
 
 .noticed-item li {
   list-style: square;
@@ -101,40 +96,26 @@
   cursor: not-allowed;
 }
 
+// 產品刪除動畫區
 .cancelAlter {
   position: relative;
   overflow: hidden;
-}
-
-.cancelBox {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: rgba($warning,1);
-  top: 0;
-  right: -200px;
-  z-index: 10;
-  transition: all 0.3s ease;
-}
-
-.fadeInRight-cart {
-  right: 0;
-  animation-duration: 0.3s;
-  animation-fill-mode: both;
-  -webkit-animation-duration: 0.3s;
-  -webkit-animation-fill-mode: both;
-  animation-name: cartfadeInright;
-  -webkit-animation-name: cartfadeInright;
-  transition: all 0.3s ease;
-}
-
-.fadeOutRight-cart {
-  animation-duration: 0.3s;
-  animation-fill-mode: both;
-  -webkit-animation-duration: 0.3s;
-  -webkit-animation-fill-mode: both;
-  animation-name: cartfadeOutright;
-  -webkit-animation-name: cartfadeOutright;
+  .cancelBox {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($warning,1);
+    top: 0;
+    right: -200px;
+    z-index: 10;
+    transition: all 0.3s ease;
+  }
+  .fadeInRight-cart {
+    right: 0;
+  }
+  .fadeOutRight-cart {
+    right:-200px;
+  }
 }
 
 // RWD

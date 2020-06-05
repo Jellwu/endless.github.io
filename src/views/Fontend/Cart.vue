@@ -59,8 +59,8 @@
                     </button>
                   </td>
                   <td class="row d-flex align-items-center" style="vertical-align: middle;">
-                    <img class="img-fluid col-3 moblieHide" :src="items.product.imageUrl" style="width:15px;">
-                    <div class="col-9">
+                    <img class="img-fluid col-md-3" :src="items.product.imageUrl" style="width:15px;">
+                    <div class="col-md-9">
                       <a href="#" @click.prevent='getproductId(items.product.id)'>
                         {{ items.product.title }}
                       </a>
@@ -69,7 +69,7 @@
                       </p>
                     </div>
                   </td>
-                  <td class="text-center cancelAlter p-0" style="vertical-align: middle;">
+                  <td class="text-center p-0 cancelAlter" style="vertical-align: middle;">
                     <div v-for="(dropItem) in tempdropCart" :key='dropItem.id' class="cancelBox"
                     :class="{'fadeInRight-cart':dropItem.id === items.id, 'fadeOutRight-cart':dropItem.qty > 0 }">
                       <div class="text-white d-flex flex-column align-items-center justify-content-center" style="height:100%">
@@ -137,45 +137,43 @@
               <li>本商品目前只供應台灣地區，只提供宅配到府。</li>
             </ul>
           </div>
-          <div class="col-md-5">
-            <div class="text-endless mt-4">
+          <div class="col-md-5 d-flex justify-content-end align-items-end">
               <!-- 結帳資訊區 -->
-              <div class="text-right">
-                <p class="pt-3 pr-2">共計 <span class="text-warning">{{ cart.carts.length }}</span> 項商品</p>
-                <p class="pr-2" v-if="cart.final_total !== cart.total">
-                  <span class="badge badge-pill badge-warning">已輸入優惠券</span>
-                  <br>
-                  結帳金額：<span class="text-warning">{{ cart.final_total | currency }}</span>
-                </p>
-                <p class="pr-2" v-else-if="cart.final_total === cart.total">
-                  結帳金額：<span class="text-warning">{{ cart.final_total | currency }}</span>
-                </p>
+            <div class="overview-text text-endless mt-4">
+              <p class="pt-3 pr-2">共計 <span class="text-warning">{{ cart.carts.length }}</span> 項商品</p>
+              <p class="pr-2" v-if="cart.final_total !== cart.total">
+                <span class="badge badge-pill badge-warning">已輸入優惠券</span>
+                <br>
+                結帳金額：<span class="text-warning">{{ cart.final_total | currency }}</span>
+              </p>
+              <p class="pr-2" v-else-if="cart.final_total === cart.total">
+                結帳金額：<span class="text-warning">{{ cart.final_total | currency }}</span>
+              </p>
 
                 <!-- 優惠券按鈕區 -->
-                <div class="pb-2">
-                  <div class="input-group ml-auto" v-if="cart.final_total !== cart.total">
-                    <input type="text" class="form-control" placeholder="輸入優惠券號碼" v-model="couponCode" aria-label="Recipient's username" aria-describedby="button-addon2" disabled>
-                    <div class="input-group-append">
-                      <button class="btn btn-outline-secondary" @click="cancelCoupon" type="button" id="button-addon2">取消</button>
-                    </div>
+              <div class="pb-2">
+                <div class="input-group ml-auto" v-if="cart.final_total !== cart.total">
+                  <input type="text" class="form-control" placeholder="輸入優惠券號碼" v-model="couponCode" aria-label="Recipient's username" aria-describedby="button-addon2" disabled>
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" @click="cancelCoupon" type="button" id="button-addon2">取消</button>
                   </div>
-                  <div class="input-group ml-auto" v-else-if="cart.final_total === cart.total">
-                    <input type="text" class="form-control" placeholder="輸入優惠券號碼" v-model="couponCode" aria-label="Recipient's username" aria-describedby="button-addon2">
-                    <div class="input-group-append">
-                      <button class="btn btn-sm btn-outline-warning" @click="getCoupon" type="button" id="button-addon2">優惠券</button>
-                    </div>
+                </div>
+                <div class="input-group ml-auto" v-else-if="cart.final_total === cart.total">
+                  <input type="text" class="form-control" placeholder="輸入優惠券號碼" v-model="couponCode" aria-label="Recipient's username" aria-describedby="button-addon2">
+                  <div class="input-group-append">
+                    <button class="btn btn-sm btn-outline-warning" @click="getCoupon" type="button" id="button-addon2">優惠券</button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-md-12 text-right mt-3">
-            <router-link to="/cart_info">
-              <button class="btn btn-warning" :class="{'discursor': disNext }" type="button" name="button" :disabled="disNext">
-                下一步
-              </button>
-            </router-link>
-          </div>
+        </div>
+        <div class="col-md-12 text-right mt-3">
+          <router-link to="/cart_info">
+            <button class="btn btn-warning" :class="{'discursor': disNext }" type="button" name="button" :disabled="disNext">
+              下一步
+            </button>
+          </router-link>
         </div>
       </div>
     </div>
@@ -208,8 +206,8 @@ export default {
     ...mapGetters('cartModules', ['cart']),
 
     // 購物車產品排序(避免更新購物車時產生順序變動)
-    sortedArray: function () {
-      function compare (a, b) {
+    sortedArray () {
+      const compare = (a, b) => {
         if (a.product.title < b.product.title) {
           return -1
         }
