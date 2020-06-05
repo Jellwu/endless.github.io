@@ -32,21 +32,21 @@ export default {
   z-index: 9999;
   width: 100%;
   height: 100%;
-  background-color: rgba(#333333, 0.4)
 }
+
 .cart-Message{
   padding:20px;
-  background-color: rgba(242, 183, 5, 0.5);
+  background-color: rgba(242, 183, 5, 1);
   border-radius: 10px;
   position: fixed;
   top:20%;
   right:5%;
   color:orange;
   transition: 0.5s;
-  color:white;
+  color:#333333;
   z-index: 100;
 }
-.cart-Message p{
+.cart-Message p {
   margin-top: 5px;
   font-size:20px;
 }
