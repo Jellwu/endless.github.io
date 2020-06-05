@@ -138,14 +138,14 @@
     color:$light;
   }
 
+  .endless-text-indent{
+    text-indent: -6rem;
+  }
+
   .col-md-3 {
     .h4 {
       font-size: 122%;
     }
-  }
-
-  .text-content {
-    width:100%;
   }
 
   .collapse-content {
@@ -367,7 +367,10 @@ hr {
 
   #feature {
     .bg-feature {
-      background-position: left;
+      background-position: right;
+      .git-speaker{
+        height:300px;
+      }
     }
     .col-md-4, .col-md-8 {
       padding:30px 10px;
@@ -376,6 +379,9 @@ hr {
       .text-icon {
         font-size: 40px;
       }
+    }
+    .endless-text-indent{
+      text-indent: 0rem;
     }
   }
   // 不套用grow

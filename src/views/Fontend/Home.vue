@@ -129,16 +129,19 @@
             <div class="git-speaker"></div>
           </div>
           <div class="col-md-3 d-flex align-items-center mt-md-5 order-md-1">
-            <div class="d-flex flex-column justify-content-around justify-contetnt-end" style="height:75%;">
+            <div class="d-flex flex-column w-100 justify-content-around justify-contetnt-end" style="height:75%;">
               <p class="text-title">
                 <i class="fas fa-compact-disc"></i>
                 黑膠癮
               </p>
-              <div class="text-endless text-content h4 text-endless-spacing pl-4">
-                <p>黑膠獨特的魅力</p>
-                <p style="text-indent: 25px;">不禁讓人想一探究竟</p>
-                <p>數位結合經典</p>
-                <p style="text-indent: 25px;">創造充滿質感的聲音</p>
+              <div class="text-endless text-center h4 text-endless-spacing pl-md-4">
+                <p class="endless-text-indent">
+                  黑膠獨特的魅力<br>
+                  不禁讓人想一探究竟
+                </p>
+                <p class="endless-text-indent">
+                  數位與經典結合<br>
+                  創造充滿質感的聲音</p>
               </div>
             </div>
           </div>
