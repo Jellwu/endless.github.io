@@ -4,7 +4,7 @@
     <section id = "intro" class="d-flex flex-column justify-content-around">
       <div class="text-endless text-center">
         <div class="h3">
-          <p class="font-weight-bold" style="font-family:cursive;font-size:40px;">
+          <p class="font-weight-bold" style="font-family:Arial Black;font-size:40px;">
             Endless
           </p>
           <span>經典是無可取代的</span>
