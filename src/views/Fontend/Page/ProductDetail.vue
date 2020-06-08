@@ -71,14 +71,11 @@ export default {
     getProducts (pages = 1) {
       this.$store.dispatch('productsModules/getProducts', pages)
     },
-    getproductDetail (id) {
+    getProductDetail (id) {
       this.$store.dispatch('productsModules/getproductDetail', id)
     },
-    getproductId (id) {
-      this.$store.dispatch('productsModules/getproductId', id)
-    },
     addtoCart (id, qty = 1) {
-      // 判斷購物車是否有重複的資料:有的話重新給一個新的數量，無則直接新增一筆到購物車
+      // 判斷購物車是否有重複的資料: 有的話重新給一個新的數量，無則直接新增一筆到購物車
       const vm = this
       const duplicatdItem = vm.cart.carts.filter(items => items.product_id === id)
       if (duplicatdItem.length > 0) {
@@ -99,10 +96,10 @@ export default {
       }
     }
   },
-  // 監控route的變化：當路徑有改變的時候，重新去渲染網頁的內容
+  // 監控 route的變化：當路徑有改變的時候，重新去渲染網頁的內容
   watch: {
     $route (to, from) {
-      this.getproductDetail(to.params.productID)
+      this.getProductDetail(to.params.productID)
     }
   },
   components: {
@@ -112,7 +109,7 @@ export default {
   created () {
     this.getProducts()
     const productId = this.$route.params.productID
-    this.getproductDetail(productId)
+    this.getProductDetail(productId)
   }
 }
 </script>

@@ -27,3 +27,22 @@
     transform: translateX(-150px);
   }
 }
+@-webkit-keyframes neon-shine{
+  0%  {
+    opacity:1;
+  }
+
+  90%  {
+    opacity:0;
+  }
+  100%  {
+  color:#333333;
+  }
+}
+
+@keyframes neon-shine{
+  0%{opacity:1;}
+  90%{opacity:0;}
+  100%{
+  color:#232323;}
+}

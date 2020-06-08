@@ -297,7 +297,7 @@ export default {
     cartMessage
   },
   watch: {
-    alterCart: function () {
+    alterCart () {
       const vm = this
       if (vm.alterCart.length === 0) {
         vm.disNext = false

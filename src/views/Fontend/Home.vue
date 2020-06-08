@@ -1,8 +1,16 @@
 <template>
   <div>
     <Carouse></Carouse>
-    <section id = "intro" class="d-flex flex-column justify-content-around">
-      <div class="text-endless text-center">
+    <section id = "intro" class="d-flex flex-column justify-content-center">
+      <a href="#goProdcuts">
+        <div class="scrollDown d-flex flex-column align-items-center">
+          <span class="h5">
+            Scroll
+          </span>
+          <i class="fas fa-angle-double-down"></i>
+        </div>
+      </a>
+      <div id="goProdcuts" class="text-endless text-center">
         <div class="h3">
           <p class="font-weight-bold" style="font-family:Arial Black;font-size:40px;">
             Endless
@@ -188,7 +196,7 @@
                     <i class="fab fa-replyd"></i>
                   </span>
                   <span class="text-endless">
-                    在下方留下你的Mail，我們將會有專人聯絡，與您討論獨特的黑膠唱盤機
+                    在下方留下你的 Mail，我們將會有專人聯絡，與您討論獨特的黑膠唱盤機
                   </span>
                   <div class="input-group mt-3 mr-auto ml-auto">
                     <input type="text" class="form-control" placeholder="輸入Mail">

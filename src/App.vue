@@ -12,9 +12,8 @@
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <router-link href="#" to="/" style="rgba(0,0,0,0);"
-          class="order-md-1 navbar-brand d-flex justify-content-center align-items-center router-link-exact-active active ml-md-6">
-          <div class="logo-title d-inline-block d-flex flex-column nav-title">
+        <router-link href="#" to="/" class="order-md-1 navbar-brand router-link-exact-active ml-md-6">
+          <div class="logo-title d-inline-block d-flex flex-column">
             <h1 class="mb-0 navbar-color">黑膠時光</h1>
             <span class="h6 align-self-center">Endless</span>
           </div>
@@ -34,14 +33,14 @@
                 <h6 class="text-center m-0 py-2 text-warning">我的最愛清單</h6>
                 <hr class="my-2">
                 <div class="row justify-content-center my-1" v-for="items in favorite" :key="items.id">
-                  <div class="col-1" @click.prevent="dropfavorite(items.id)">
+                  <div class="col-1" @click.prevent="dropFavorite(items.id)">
                     <i class="fas fa-eraser" style="font-size:16px"></i>
                   </div>
                   <div class="col-1" @click.prevent="addtoCart(items.id,1)">
                     <i class="fas fa-plus-circle" style="font-size:16px"></i>
                   </div>
                   <div class="col-8 text-warning text-left">
-                    <span class="bg-box-pop" style="display:block" @click.prevent="getproductId(items.id)">
+                    <span class="bg-box-pop" style="display:block" @click.prevent="getProductId(items.id)">
                       {{ items.title }}
                     </span>
                   </div>
@@ -156,7 +155,7 @@ export default {
         $('.nav-bg').removeClass('nav-bg-visible')
       }
     },
-    getfavorite () {
+    getFavorite () {
       this.$store.dispatch('productsModules/getfavorite')
     },
     addtoCart (id, qty = 1) {
@@ -175,10 +174,10 @@ export default {
         })
       }
     },
-    dropfavorite (id) {
+    dropFavorite (id) {
       this.$store.dispatch('productsModules/dropfavorite', id)
     },
-    getproductId (id) {
+    getProductId (id) {
       this.$store.dispatch('productsModules/getproductId', id)
     },
     isCollapse () {
@@ -201,7 +200,7 @@ export default {
   },
   created () {
     window.addEventListener('scroll', this.handleScroll)
-    this.getfavorite()
+    this.getFavorite()
     this.getCart()
   }
 }

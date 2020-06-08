@@ -66,4 +66,17 @@ export default {
 }
 
 </script>
-<style></style>
+<style>
+.carousel-item{
+  position: relative;
+}
+.carousel-item::after{
+  position: absolute;
+  left:100px;
+  top:100px;
+  width:100px;
+  height: 100px;
+  border:1px solid black;
+  z-index: 999999;
+}
+</style>

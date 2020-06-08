@@ -67,7 +67,7 @@
                   <h5 style="line-height:38px">總金額: {{ cart.final_total | currency }}</h5>
                 </div>
                 <div class="text-right mr-3">
-                  <button class="btn bg-warning" type="button" name="button" @click.prevent="gocart()">
+                  <button class="btn bg-warning" type="button" name="button" @click.prevent="goCart()">
                     <i class="fas fa-shopping-basket">
                       <span class="ml-1">結帳</span>
                     </i>
@@ -126,7 +126,7 @@
                   </div>
                 </div>
 
-                  <div class="card-footer py-3" @click="getproductId(item.id)">
+                  <div class="card-footer py-3" @click="getProductId(item.id)">
                     <p class="h5">查看產品</p>
                   </div>
 
@@ -247,12 +247,12 @@ export default {
     removeCart (id) {
       this.$store.dispatch('cartModules/removeCart', id)
     },
-    getproductId (id) {
+    getProductId (id) {
       // 帶入此產品的id給action抓api的資料
       this.$store.dispatch('productsModules/getproductId', id)
       this.$router.push(`/productList/${id}`)
     },
-    gocart () {
+    goCart () {
       this.$router.push('/cart')
     },
     addFavorite (id, title) {
